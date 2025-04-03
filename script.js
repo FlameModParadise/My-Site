@@ -39,6 +39,8 @@ if (banner && closeBanner && !localStorage.getItem("hideBanner")) {
 let allTools = [];
 
 async function loadData() {
+  container.innerHTML = "<p>Loading...</p>";
+
   const data = await Promise.all(DATA_FILES.map(url =>
     fetch(url).then(res => res.ok ? res.json() : []).catch(() => [])
   ));
@@ -88,6 +90,12 @@ function applyURLState() {
   if (savedSort === "discount") filtered.sort((a, b) => (b.discount || 0) - (a.discount || 0));
 
   renderTools(filtered);
+
+  // highlight correct filter button
+  document.querySelectorAll("#filters button").forEach(b => {
+    b.classList.remove("active");
+    if (b.textContent.toLowerCase() === savedFilter) b.classList.add("active");
+  });
 }
 
 function renderTools(data) {
@@ -103,7 +111,7 @@ function renderTools(data) {
     const card = document.createElement("div");
     card.className = "tool-card fade-in";
     card.innerHTML = `
-      <img src="${tool.image || 'assets/placeholder.jpg'}" alt="${tool.name}" class="tool-thumb" />
+      <img src="${tool.image || 'assets/placeholder.jpg'}" onerror="this.src='assets/placeholder.jpg'" alt="${tool.name}" class="tool-thumb" />
       <div class="tool-card-body">
         <h3 class="tool-title">${tool.name}</h3>
         <p class="tool-desc">${getShortDescription(tool)}</p>
@@ -134,7 +142,7 @@ function showToolDetail(tool, isInitial = false) {
       </div>
       <div class="tool-detail-content">
         <div class="tool-detail-left">
-          <img src="${tool.image || 'assets/placeholder.jpg'}" class="tool-main-img" />
+          <img src="${tool.image || 'assets/placeholder.jpg'}" onerror="this.src='assets/placeholder.jpg'" class="tool-main-img" />
           <div class="tool-gallery">
             ${(tool.images || []).map(img => `<img src="${img}" alt="gallery" />`).join("")}
           </div>
@@ -161,6 +169,7 @@ function showToolDetail(tool, isInitial = false) {
 
 function clearHash() {
   location.hash = "";
+  window.scrollTo({ top: 0, behavior: "smooth" });
   applyURLState();
 }
 
@@ -172,8 +181,8 @@ function renderRecommendations(tool) {
       <h3>You may also like</h3>
       <div class="recommended-scroll">
         ${recs.map(r => `
-          <div class="recommended-card" onclick='location.hash="tool=${encodeURIComponent(r.name)}"; showToolDetail(${JSON.stringify(r).replace(/"/g, "&quot;")})'>
-            <img src="${r.image || 'assets/placeholder.jpg'}" />
+          <div class="recommended-card" onclick='location.hash="tool=${encodeURIComponent(r.name)}"'>
+            <img src="${r.image || 'assets/placeholder.jpg'}" onerror="this.src='assets/placeholder.jpg'" />
             <h4>${r.name}</h4>
             <p>${getShortDescription(r)}</p>
             <div class="price">${getPrice(r)}</div>
@@ -229,7 +238,7 @@ function getPrice(tool) {
   return "$1";
 }
 
-// === Live filter/save state ===
+// === Save search/sort/filter ===
 searchInput?.addEventListener("input", () => {
   sessionStorage.setItem("search", searchInput.value);
   applyURLState();
@@ -273,12 +282,11 @@ scrollToTopBtn?.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
-loadData();
-
-// Mobile navbar toggle
+// === Mobile navbar toggle ===
 const navbarToggle = document.getElementById("navbarToggle");
 const navbarMenu = document.getElementById("navbarMenu");
-
 navbarToggle?.addEventListener("click", () => {
   navbarMenu.classList.toggle("show-menu");
 });
+
+loadData();
