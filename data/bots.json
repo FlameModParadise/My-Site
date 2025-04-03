@@ -1,0 +1,28 @@
+[
+  {
+    "name": "Custom Discord Bot",
+    "type": "Bots",
+    "description": "Create powerful, tailored bots.",
+    "long_description": "🤖 Custom Discord Bot\n\n• Get a fully personalized bot for your Discord server.\n• Features include:\n  - Moderation tools\n  - Auto role assignment\n  - Logging and analytics\n  - Giveaways\n  - File delivery\n  - Scraping, API calls, automation\n• Designed per your exact needs — flexible & scalable.\n\nPricing: From $5 to $15 depending on features\nContact: @fmpChatBot",
+    "image": "assets/bots/discord-bot.jpg",
+    "tags": ["discord", "moderation", "giveaway", "automation"],
+    "release_date": "2025-04-01",
+    "update_date": "2025-04-03",
+    "price": "From $5 to $15 depending on features",
+    "contact": "telegram",
+    "keywords": ["discord bot", "moderation", "giveaway", "auto role", "custom bot"]
+  },
+  {
+    "name": "Custom Telegram Bot",
+    "type": "Bots",
+    "description": "Get Telegram bots custom automation.",
+    "long_description": "📩 Custom Telegram Bot\n\n• Fully custom Telegram bots for business, shops, or automation:\n  - File sending and delivery\n  - Group management & alerts\n  - Scraper bots\n  - Automated replies & workflows\n• Ideal for support, shop, or utility bots.\n\nPricing: From $5 to $15 depending on features\nContact: @fmpChatBot",
+    "image": "assets/bots/telegram-bot.jpg",
+    "tags": ["telegram", "file", "support", "shop", "bot"],
+    "release_date": "2025-04-01",
+    "update_date": "2025-04-03",
+    "price": "From $5 to $15 depending on features",
+    "contact": "telegram",
+    "keywords": ["telegram bot", "file sender", "scraper", "support bot", "custom bot"]
+  }
+]

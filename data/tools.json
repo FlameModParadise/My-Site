@@ -1,0 +1,47 @@
+[
+  {
+    "name": "Log Extractor",
+    "type": "Tools",
+    "description": "Extract cookies from logs quickly and cleanly.",
+    "long_description": "🔧 LOG EXTRACTOR (Cookies Only)\n\n• Parses logs and extracts valid cookies.\n• Skips corrupt lines and sorts automatically.\n• Proxyless — no external access required.\n\n💰 Pricing:\n- 1 Day: $0.5\n- 1 Month: $2\n- Lifetime (No Update): $5\n- Lifetime (With Updates): $8\n- Source Code: $10\n\n🛠 Updates include speed improvements & performance tweaks.",
+    "image": "assets/tools/log-extractor.jpg",
+    "images": [],
+    "video": "",
+    "tags": ["logs", "extractor", "cookies", "bots"],
+    "release_date": "2025-03-25",
+    "update_date": "2025-04-01",
+    "pricing": {
+      "1 Day": "$0.5",
+      "1 Month": "$2",
+      "Lifetime (No Update)": "$5",
+      "Lifetime (With Updates)": "$8",
+      "Source Code": "$10"
+    },
+    "discount": null,
+    "offer": null,
+    "offer_expiry": "",
+    "contact": "telegram",
+    "keywords": ["log", "extract", "cookies", "debug"]
+  },
+  {
+    "name": "ULP Working Tool",
+    "type": "Tools",
+    "description": "Create ULP combos with ease. Stable and fast automation tool.",
+    "long_description": "🛠️ ULP Combo Maker\n\n• Automatically creates ULP-style combos.\n• Great for repetitive combo generation tasks.\n• Stable and consistent format output.\n\n💰 Pricing:\n- Lifetime: $10\n- Source Code: $15\n\n📩 Contact @fmpChatBot for demo, requests, or support.",
+    "image": "assets/tools/ulp-tool.jpg",
+    "images": [],
+    "video": "",
+    "tags": ["ulp", "combo", "maker", "automation"],
+    "release_date": "2025-02-10",
+    "update_date": "2025-03-28",
+    "pricing": {
+      "Lifetime": "$10",
+      "Source Code": "$15"
+    },
+    "discount": null,
+    "offer": null,
+    "offer_expiry": "",
+    "contact": "telegram",
+    "keywords": ["ulp", "combo", "task", "script"]
+  }
+]

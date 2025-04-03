@@ -1,0 +1,21 @@
+{
+    "telegram": {
+      "label": "Telegram",
+      "url": "https://t.me/fmpChatBot",
+      "icon": "assets/icons/telegram.png",
+      "note": "Fastest support. Reach me directly here."
+    },
+    "discord": {
+      "label": "Discord",
+      "url": "https://discord.gg/kfJfP3aNwC",
+      "icon": "assets/icons/discord.png",
+      "note": "Join the community or contact for bot help."
+    },
+    "email": {
+      "label": "Email",
+      "url": "mailto:flamemodparadiscord@gmail.com",
+      "icon": "assets/icons/email.png",
+      "note": "For formal support or inquiries."
+    }
+  }
+  

@@ -1,0 +1,69 @@
+[
+    {
+      "name": "Netflix Cookies",
+      "type": "Cookie",
+      "description": "Checked Cookies for Netflix (HD, UHD, TP, and more). No replacement or warranty.",
+      "long_description": "🍿 Netflix Cookies (No R/W)\n- Normal (HD): $0.30\n- Normal (UHD): $0.33\n- Country-Based: $0.40\n- 3rd Party Billing (TP): $0.50\n- EM Specific (Bought): $0.70",
+      "tags": ["netflix", "Cookies", "streaming", "uhd", "tp"],
+      "release_date": "2025-03-19",
+      "update_date": "2025-04-01",
+      "price": "From $0.30 to $0.70",
+      "contact": "telegram",
+      "keywords": ["netflix", "Cookie", "hd", "uhd", "tp", "em"],
+      "image": "assets/icons/netflix.png"
+      
+    },
+    {
+      "name": "GPT+ Cookies",
+      "type": "Cookie",
+      "description": "Fresh GPT+ Cookies with optional warranty and replacement durations.",
+      "long_description": "🤖 GPT+ Cookies\n- GPT+: $0.35 each\n- GPT+ Bulk: $0.30 each\n- GPT+ (10d R): $0.5\n- GPT+ (15d R): $1",
+      "tags": ["gpt", "chatgpt", "Cookies", "bulk"],
+      "release_date": "2025-03-19",
+      "update_date": "2025-04-01",
+      "price": "$0.30 to $1",
+      "contact": "telegram",
+      "keywords": ["gpt+", "Cookie", "bulk", "chatgpt"],
+      "image": "assets/icons/chatgpt.png"
+    },
+    {
+      "name": "Spotify Cookies",
+      "type": "Cookie",
+      "description": "Country-based and mixed Spotify Cookies at bulk rates.",
+      "long_description": "🎵 Spotify Cookies\n- Mixed: $1 per 10\n- Country-Based: $1 per 8",
+      "tags": ["spotify", "Cookie", "music", "bulk"],
+      "release_date": "2025-03-19",
+      "update_date": "2025-04-01",
+      "price": "$1 for 8–10",
+      "contact": "telegram",
+      "keywords": ["spotify", "Cookie", "country", "music"],
+      "image": "assets/icons/spotify.png"
+    },
+    {
+      "name": "Hotstar Cookies",
+      "type": "Cookie",
+      "description": "Mixed region Cookies available in packs of 10.",
+      "long_description": "📺 Hotstar Cookies\n- Mixed: $1 per 10",
+      "tags": ["hotstar", "Cookie", "india", "bulk"],
+      "release_date": "2025-03-19",
+      "update_date": "2025-04-01",
+      "price": "$1 per 10",
+      "contact": "telegram",
+      "keywords": ["hotstar", "Cookie", "streaming"],
+      "image": "assets/icons/hotstar.png"
+    },
+    {
+      "name": "Prime Video Cookies",
+      "type": "Cookie",
+      "description": "Mixed and country-based Prime Video Cookies available.",
+      "long_description": "🎥 Prime Video Cookies\n- Mixed: $1 per 10\n- Country-Based: $1 per 8",
+      "tags": ["prime", "Cookie", "amazon", "bulk"],
+      "release_date": "2025-03-19",
+      "update_date": "2025-04-01",
+      "price": "$1 for 8–10",
+      "contact": "telegram",
+      "keywords": ["prime", "amazon", "Cookie"],
+      "image": "assets/icons/primevideo.png"
+    }
+  ]
+  
