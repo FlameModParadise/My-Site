@@ -9,12 +9,13 @@
 :root {
   --font-body: "Inter", sans-serif;
   --font-size: 16px;
-
+  
   --light-bg: #f4f7fa;
   --dark-bg: #121212;
-
+  
   --text-light: #1e1e1e;
-  --text-dark: #eaeaea;
+  --text-dark: #dddddd; /* or #dddddd, #bbbbbb, etc. */
+  /* --text-dark: #eaeaea; */
 
   --color-primary: #0d6efd;
   --color-accent: #6c757d;
@@ -249,6 +250,7 @@ body.dark .tool-card {
   color: var(--text-dark);
 }
 
+
 /* ========= DETAIL VIEW ========= */
 .detail-wrapper {
   margin-top: 2rem;
@@ -296,6 +298,11 @@ body.dark .tool-card {
 .tool-detail-right .desc {
   font-size: 1rem;
   margin: 1rem 0;
+}
+/* Add this block to your dark-mode overrides */
+body.dark .tool-detail {
+  background: #1f1f1f; /* or another dark color to match your theme */
+  color: var(--text-dark);
 }
 
 /* ========= BUTTONS & LINKS ========= */
@@ -364,8 +371,84 @@ body.dark .tool-card {
   border-radius: 6px;
   object-fit: cover;
 }
+/* Dark mode overrides for the recommended section */
+body.dark .recommended-card {
+  background: #1f1f1f; /* match other dark elements */
+  border-color: #333;   /* darken border if needed */
+  color: var(--text-dark);
+}
 
-/* ========= SCROLL TO TOP BUTTON ========= */
+/* ===== INSTALL PROMPT BOX ===== */
+.install-box {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #ffffff;
+  border: 1px solid #ddd;
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+  max-width: 300px;
+  transition: all 0.3s ease;
+}
+
+.install-box p {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.install-box button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+
+#install-now {
+  background: var(--color-primary);
+  color: white;
+}
+
+#install-now:hover {
+  background: #0b5ed7;
+}
+
+#install-later {
+  background: #e0e0e0;
+  color: #333;
+}
+
+#install-later:hover {
+  background: #d0d0d0;
+}
+
+body.dark .install-box {
+  background: #1f1f1f;
+  border-color: #333;
+}
+
+body.dark .install-box p {
+  color: var(--text-dark);
+}
+
+body.dark #install-later {
+  background: #2c2c2c;
+  color: #eee;
+}
+
+body.dark #install-later:hover {
+  background: #3c3c3c;
+}
+
+/* ===== SCROLL TO TOP BUTTON (Consolidated) ===== */
 #scrollToTopBtn {
   position: fixed;
   bottom: 30px;
@@ -380,9 +463,70 @@ body.dark .tool-card {
   cursor: pointer;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
   display: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+#scrollToTopBtn:hover {
+  transform: scale(1.1);
 }
 #scrollToTopBtn.show {
   display: block;
+}
+body.dark #scrollToTopBtn {
+  background: var(--color-primary); /* same color in dark mode */
+  color: white;
+}
+#scrollToTopBtn img {
+  display: block;
+}
+
+/* ===== CONTACT SECTION ===== */
+#contact {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+  margin-bottom: 3rem;
+}
+
+#contact h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.8rem;
+}
+
+#contact p {
+  font-size: 1rem;
+  margin-bottom: 0.8rem;
+  color: var(--color-accent);
+}
+
+#contact ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+#contact li {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+#contact a {
+  color: var(--color-primary);
+  text-decoration: none;
+  word-break: break-all;
+}
+
+#contact a:hover {
+  text-decoration: underline;
+}
+
+/* ===== DARK MODE (Contact) ===== */
+body.dark #contact {
+  background: #1f1f1f;
+}
+
+body.dark #contact p,
+body.dark #contact li {
+  color: var(--text-dark);
 }
 
 /* ========= RESPONSIVENESS ========= */
@@ -397,6 +541,7 @@ body.dark .tool-card {
     max-width: 400px;
   }
 }
+
 @media (max-width: 768px) {
   .tool-detail-content {
     flex-direction: column;
@@ -411,6 +556,7 @@ body.dark .tool-card {
     font-size: 1.5rem;
   }
 }
+
 @media (max-width: 480px) {
   .navbar {
     padding: 0.6rem 1rem;
@@ -577,5 +723,23 @@ body.dark .tool-card {
     right: 20px;
     font-size: 1.2rem;
     padding: 0.5rem 0.7rem;
+  }
+
+  #contact {
+    padding: 1.2rem;
+    margin-bottom: 2rem;
+  }
+
+  #contact h2 {
+    font-size: 1.25rem;
+  }
+
+  #contact p,
+  #contact li {
+    font-size: 0.95rem;
+  }
+
+  #contact li {
+    margin-bottom: 0.4rem;
   }
 }
