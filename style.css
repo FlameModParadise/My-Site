@@ -8,7 +8,6 @@ html, body {
   max-width: 100%;
   overflow-x: hidden;
 }
-
 /* ========= THEME ROOT ========= */
 :root {
   --font-body: "Inter", sans-serif;
@@ -354,6 +353,8 @@ body.dark .tool-detail {
 .recommended-section {
   margin-top: 2rem;
 }
+
+
 .recommended-scroll {
   display: flex;
   gap: 1rem;

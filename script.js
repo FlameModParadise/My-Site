@@ -290,3 +290,5 @@ navbarToggle?.addEventListener("click", () => {
 });
 
 loadData();
+
+window.addEventListener("hashchange", applyURLState);
