@@ -274,3 +274,11 @@ scrollToTopBtn?.addEventListener("click", () => {
 });
 
 loadData();
+
+// Mobile navbar toggle
+const navbarToggle = document.getElementById("navbarToggle");
+const navbarMenu = document.getElementById("navbarMenu");
+
+navbarToggle?.addEventListener("click", () => {
+  navbarMenu.classList.toggle("show-menu");
+});

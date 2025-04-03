@@ -685,3 +685,46 @@ body.dark #contact li {
     bottom: 10px;
   }
 }
+.navbar-toggle {
+  display: none;
+  font-size: 1.6rem;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+
+  .navbar-toggle {
+    display: block;
+    margin-left: auto;
+    margin-right: 1rem;
+    margin-top: -0.5rem;
+  }
+
+  .navbar-right {
+    flex-direction: column;
+    width: 100%;
+    display: none;
+    padding: 0.5rem 1rem;
+    background: #fff;
+    border-top: 1px solid #eee;
+  }
+
+  .navbar-right a,
+  .navbar-right button {
+    width: 100%;
+    text-align: left;
+    padding: 0.5rem 0;
+  }
+
+  .navbar-right.show-menu {
+    display: flex;
+  }
+
+  body.dark .navbar-right {
+    background: #1f1f1f;
+  }
+}
