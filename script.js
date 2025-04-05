@@ -1,3 +1,4 @@
+// === DATA FILES & ELEMENT REFERENCES ===
 const DATA_FILES = [
   "data/tools.json",
   "data/bots.json",
@@ -15,17 +16,27 @@ const searchInput = document.getElementById("searchInput");
 const sortSelect = document.getElementById("sortSelect");
 const scrollToTopBtn = document.getElementById("scrollToTopBtn");
 
-// === Theme toggle ===
+// === DARK MODE TOGGLE ===
 const darkToggle = document.getElementById("darkToggle");
-darkToggle?.addEventListener("click", () => {
-  document.body.classList.toggle("dark");
-  localStorage.setItem("theme", document.body.classList.contains("dark") ? "dark" : "light");
-});
+if (darkToggle) {
+  darkToggle.addEventListener("click", () => {
+    if (document.body.classList.contains("dark")) {
+      document.body.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    } else {
+      document.body.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    }
+  });
+}
+
+// On load, apply the saved theme:
 if (localStorage.getItem("theme") === "dark") {
   document.body.classList.add("dark");
 }
 
-// === Offer banner ===
+
+// === OFFER BANNER ===
 const banner = document.getElementById("announcement-banner");
 const closeBanner = document.getElementById("close-banner");
 if (banner && closeBanner && !localStorage.getItem("hideBanner")) {
@@ -38,14 +49,20 @@ if (banner && closeBanner && !localStorage.getItem("hideBanner")) {
 
 let allTools = [];
 
+// === DATA LOADING ===
 async function loadData() {
   container.innerHTML = "<p>Loading...</p>";
 
-  const data = await Promise.all(DATA_FILES.map(url =>
-    fetch(url).then(res => res.ok ? res.json() : []).catch(() => [])
-  ));
+  const data = await Promise.all(
+    DATA_FILES.map(url =>
+      fetch(url)
+        .then(res => (res.ok ? res.json() : []))
+        .catch(() => [])
+    )
+  );
   const flatData = data.flat();
 
+  // Remove duplicate tools (by name, case insensitive)
   const seen = new Set();
   allTools = flatData.filter(tool => {
     const nameKey = (tool.name || "").toLowerCase();
@@ -78,20 +95,25 @@ function applyURLState() {
   if (savedSearch) {
     const q = savedSearch.toLowerCase();
     filtered = filtered.filter(t =>
-      t.name?.toLowerCase().includes(q) || (t.keywords || []).some(k => k.toLowerCase().includes(q))
+      t.name?.toLowerCase().includes(q) ||
+      (t.keywords || []).some(k => k.toLowerCase().includes(q))
     );
   }
   if (savedFilter !== "all") {
     filtered = filtered.filter(t => t.type?.toLowerCase() === savedFilter);
   }
-  if (savedSort === "name") filtered.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
-  if (savedSort === "release_date") filtered.sort((a, b) => new Date(b.release_date) - new Date(a.release_date));
-  if (savedSort === "update_date") filtered.sort((a, b) => new Date(b.update_date) - new Date(a.update_date));
-  if (savedSort === "discount") filtered.sort((a, b) => (b.discount || 0) - (a.discount || 0));
+  if (savedSort === "name")
+    filtered.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
+  if (savedSort === "release_date")
+    filtered.sort((a, b) => new Date(b.release_date) - new Date(a.release_date));
+  if (savedSort === "update_date")
+    filtered.sort((a, b) => new Date(b.update_date) - new Date(a.update_date));
+  if (savedSort === "discount")
+    filtered.sort((a, b) => (b.discount || 0) - (a.discount || 0));
 
   renderTools(filtered);
 
-  // highlight correct filter button
+  // Highlight the active filter button
   document.querySelectorAll("#filters button").forEach(b => {
     b.classList.remove("active");
     if (b.textContent.toLowerCase() === savedFilter) b.classList.add("active");
@@ -152,7 +174,7 @@ function showToolDetail(tool, isInitial = false) {
           <p class="desc">${(tool.long_description || tool.description || "No description available.").replace(/\n/g, "<br>")}</p>
           ${tool.pricing ? `
             <ul class="pricing-list">
-              ${Object.entries(tool.pricing).map(([k,v]) => `<li>${k}: ${v}</li>`).join("")}
+              ${Object.entries(tool.pricing).map(([k, v]) => `<li>${k}: ${v}</li>`).join("")}
             </ul>
           ` : tool.price ? `<p><strong>Price:</strong><br>${tool.price.replace(/\n/g, "<br>")}</p>` : ""}
           ${tool.discount ? `<p><strong>Discount:</strong> ${tool.discount}%</p>` : ""}
@@ -165,6 +187,17 @@ function showToolDetail(tool, isInitial = false) {
     </div>
     ${renderRecommendations(tool)}
   `;
+
+  // Set up gallery click event to update the main image
+  const mainImg = document.querySelector(".tool-main-img");
+  const galleryImgs = document.querySelectorAll(".tool-gallery img");
+  galleryImgs.forEach(img => {
+    img.addEventListener("click", () => {
+      if (mainImg && img.src) {
+        mainImg.src = img.src;
+      }
+    });
+  });
 }
 
 function clearHash() {
@@ -174,26 +207,32 @@ function clearHash() {
 }
 
 function renderRecommendations(tool) {
-  const recs = allTools.filter(t => t.name !== tool.name && t.type?.toLowerCase() === tool.type?.toLowerCase()).slice(0, 6);
+  const recs = allTools
+    .filter(t => t.name !== tool.name && t.type?.toLowerCase() === tool.type?.toLowerCase())
+    .slice(0, 6);
   if (!recs.length) return "";
   return `
     <section class="recommended-section fade-in">
       <h3>You may also like</h3>
       <div class="recommended-scroll">
-        ${recs.map(r => `
+        ${recs
+          .map(
+            r => `
           <div class="recommended-card" onclick='location.hash="tool=${encodeURIComponent(r.name)}"'>
             <img src="${r.image || 'assets/placeholder.jpg'}" onerror="this.src='assets/placeholder.jpg'" />
             <h4>${r.name}</h4>
             <p>${getShortDescription(r)}</p>
             <div class="price">${getPrice(r)}</div>
           </div>
-        `).join("")}
+        `
+          )
+          .join("")}
       </div>
     </section>
   `;
 }
 
-// === Helpers ===
+// === HELPER FUNCTIONS ===
 function getShortDescription(tool) {
   if (tool.description) return tool.description;
   if (tool.long_description) return tool.long_description.split("\n")[0] + "...";
@@ -238,7 +277,7 @@ function getPrice(tool) {
   return "$1";
 }
 
-// === Save search/sort/filter ===
+// === SAVE SEARCH / SORT / FILTER STATE ===
 searchInput?.addEventListener("input", () => {
   sessionStorage.setItem("search", searchInput.value);
   applyURLState();
@@ -252,7 +291,7 @@ function filterByType(type) {
   applyURLState();
 }
 
-// === Filters ===
+// === FILTER BUTTONS ===
 function generateFilterButtons() {
   const types = [...new Set(allTools.map(t => t.type?.toLowerCase()))];
   filtersContainer.innerHTML = "";
@@ -274,7 +313,7 @@ function createFilterBtn(label, fn) {
   return btn;
 }
 
-// === Scroll To Top ===
+// === SCROLL TO TOP BUTTON ===
 window.addEventListener("scroll", () => {
   scrollToTopBtn.classList.toggle("show", window.scrollY > 300);
 });
@@ -282,13 +321,31 @@ scrollToTopBtn?.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
-// === Mobile navbar toggle ===
+// === MOBILE NAVBAR TOGGLE ===
 const navbarToggle = document.getElementById("navbarToggle");
 const navbarMenu = document.getElementById("navbarMenu");
-navbarToggle?.addEventListener("click", () => {
-  navbarMenu.classList.toggle("show-menu");
-});
+if (navbarToggle && navbarMenu) {
+  navbarToggle.addEventListener("click", () => {
+    navbarMenu.classList.toggle("show-menu");
+  });
+}
 
+function highlightActiveNav(type) {
+  document.querySelectorAll(".navbar-right a").forEach(link => {
+    link.classList.remove("active");
+    if (link.textContent.toLowerCase() === type) {
+      link.classList.add("active");
+    }
+  });
+}
+
+function filterByType(type) {
+  sessionStorage.setItem("filter", type.toLowerCase());
+  highlightActiveNav(type.toLowerCase());
+  applyURLState();
+}
+
+
+// === INITIALIZE DATA & STATE ===
 loadData();
-
 window.addEventListener("hashchange", applyURLState);

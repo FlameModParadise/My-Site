@@ -4,21 +4,23 @@
   padding: 0;
   box-sizing: border-box;
 }
-html, body {
+html,
+body {
   max-width: 100%;
   overflow-x: hidden;
 }
+
 /* ========= THEME ROOT ========= */
 :root {
   --font-body: "Inter", sans-serif;
   --font-size: 16px;
-  
+  --line-height: 1.6;
+
   --light-bg: #f4f7fa;
   --dark-bg: #121212;
-  
+
   --text-light: #1e1e1e;
-  --text-dark: #dddddd; /* or #dddddd, #bbbbbb, etc. */
-  /* --text-dark: #eaeaea; */
+  --text-dark: #e0e0e0; /* Updated for better readability in dark mode */
 
   --color-primary: #0d6efd;
   --color-accent: #6c757d;
@@ -34,9 +36,12 @@ html, body {
 body {
   font-family: var(--font-body);
   font-size: var(--font-size);
+  line-height: var(--line-height);
   background: var(--light-bg);
   color: var(--text-light);
   transition: background var(--transition), color var(--transition);
+  -webkit-font-smoothing: antialiased; /* Added for better font rendering */
+  -moz-osx-font-smoothing: grayscale;
 }
 body.dark {
   background: var(--dark-bg);
@@ -55,84 +60,118 @@ img {
   display: none !important;
 }
 
-/* ========= NAVBAR ========= */
+/* === ENHANCED NAVBAR === */
 .navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #fff;
+  background: #ffffff;
   padding: 1rem 2rem;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.04);
   position: sticky;
   top: 0;
-  z-index: 10;
-}
-body.dark .navbar {
-  background: #1f1f1f;
-}
-.logo {
-  font-weight: bold;
-  font-size: 1.2rem;
-}
-.navbar-toggle {
-  display: none;
-  font-size: 1.6rem;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: inherit;
-}
-.navbar-right {
-  display: flex;
-  gap: 1rem;
-}
-.navbar-right a,
-.navbar-right button {
-  background: none;
-  border: none;
-  font-weight: 500;
-  color: inherit;
-  cursor: pointer;
-}
-.navbar-right button {
-  padding: 0.4rem 0.8rem;
-  background: var(--color-primary);
-  color: #fff;
-  border-radius: 5px;
+  z-index: 100;
+  transition: background 0.3s ease;
+  border-bottom: 1px solid #e5e5e5;
 }
 
-/* ========= RESPONSIVE NAVBAR ========= */
+body.dark .navbar {
+  background: #1f1f1f;
+  border-bottom: 1px solid #333;
+}
+
+.logo {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.navbar-toggle {
+  display: none;
+  font-size: 1.8rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.navbar-right a,
+.navbar-right button {
+  font-weight: 500;
+  color: inherit;
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.navbar-right a:hover,
+.navbar-right button:hover {
+  color: var(--color-primary);
+}
+
+.navbar-right a.active {
+  color: var(--color-primary);
+  font-weight: 600;
+  position: relative;
+}
+
+.navbar-right a.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-primary);
+}
+
+/* Responsive Navbar */
 @media (max-width: 768px) {
   .navbar {
-    flex-wrap: wrap;
     flex-direction: column;
     align-items: flex-start;
     padding: 1rem;
   }
+
   .navbar-toggle {
     display: block;
-    margin-left: auto;
+    align-self: flex-end;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
   }
+
   .navbar-right {
     display: none;
-    width: 100%;
     flex-direction: column;
-    background: #fff;
-    padding: 0.5rem 0;
+    width: 100%;
+    gap: 0.75rem;
+    background-color: #fff;
+    padding: 0.75rem 0;
     border-top: 1px solid #eee;
   }
+
   .navbar-right.show-menu {
     display: flex;
   }
+
   .navbar-right a,
   .navbar-right button {
     width: 100%;
-    padding: 0.6rem 1rem;
     text-align: left;
+    padding: 0.6rem 1rem;
   }
+
   body.dark .navbar-right {
-    background: #1f1f1f;
-    border-top: 1px solid #333;
+    background-color: #2c2c2c;
+    border-top: 1px solid #444;
   }
 }
 
@@ -143,17 +182,19 @@ body.dark .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: background var(--transition);
 }
 
 /* ========= CONTAINER & TITLES ========= */
 .container {
-  max-width: 1200px;
+  max-width: 1350px;
   margin: auto;
   padding: 2rem 1rem;
 }
 .title {
   text-align: center;
   font-size: 2rem;
+  font-weight: 600;
 }
 .notice {
   text-align: center;
@@ -191,6 +232,7 @@ body.dark .navbar {
   color: white;
   border: none;
   cursor: pointer;
+  transition: background var(--transition);
 }
 .filter-tags button.active {
   background: var(--color-primary);
@@ -209,6 +251,27 @@ body.dark .filter-tags button:hover {
   gap: 1.5rem;
   margin-top: 2rem;
 }
+
+/* Add sliding & loading animations to tiles */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .tool-card {
   background: #fff;
   padding: 1rem;
@@ -216,16 +279,23 @@ body.dark .filter-tags button:hover {
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
   cursor: pointer;
   transition: transform var(--transition), box-shadow var(--transition);
+  animation: slideIn 0.5s ease-in-out; /* Added loading slide animation */
 }
 .tool-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
-.tool-thumb {
+.tool-thumb-wrapper {
+  width: 100%;
   height: 160px;
-  object-fit: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
   border-radius: 8px;
 }
+
+
 .tool-title {
   font-weight: 600;
   font-size: 1rem;
@@ -253,7 +323,6 @@ body.dark .tool-card {
   color: var(--text-dark);
 }
 
-
 /* ========= DETAIL VIEW ========= */
 .detail-wrapper {
   margin-top: 2rem;
@@ -266,6 +335,7 @@ body.dark .tool-card {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  animation: fadeIn 0.6s ease; /* Fade-in animation for details */
 }
 .tool-detail-content {
   display: flex;
@@ -278,9 +348,19 @@ body.dark .tool-card {
 }
 .tool-main-img {
   width: 100%;
-  border-radius: 12px;
-  object-fit: cover;
+  max-height: 420px;
+  object-fit: contain; /* Shows full image without cropping */
+  border-radius: 16px;
+  background-color: #f0f0f0; /* fallback bg in case image has transparency */
+  padding: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+.tool-main-img:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
 .tool-gallery {
   display: flex;
   gap: 0.5rem;
@@ -292,6 +372,17 @@ body.dark .tool-card {
   height: 64px;
   border-radius: 8px;
 }
+/* Enlarged preview on hover */
+.tool-gallery img:hover {
+  position: absolute;
+  width: 60vw;
+  height: auto;
+  max-height: 60vh;
+  z-index: 999;
+  transform: scale(1.1);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
 .tool-video {
   width: 100%;
   height: 250px;
@@ -302,9 +393,9 @@ body.dark .tool-card {
   font-size: 1rem;
   margin: 1rem 0;
 }
-/* Add this block to your dark-mode overrides */
+/* Dark mode override for detail view */
 body.dark .tool-detail {
-  background: #1f1f1f; /* or another dark color to match your theme */
+  background: #1f1f1f;
   color: var(--text-dark);
 }
 
@@ -325,6 +416,7 @@ body.dark .tool-detail {
   margin-top: 1rem;
   text-align: center;
   text-decoration: none;
+  transition: background var(--transition);
 }
 
 /* ========= BADGES ========= */
@@ -353,13 +445,21 @@ body.dark .tool-detail {
 .recommended-section {
   margin-top: 2rem;
 }
-
-
 .recommended-scroll {
   display: flex;
   gap: 1rem;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
+}
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 .recommended-card {
   flex: 0 0 200px;
@@ -376,10 +476,10 @@ body.dark .tool-detail {
   border-radius: 6px;
   object-fit: cover;
 }
-/* Dark mode overrides for the recommended section */
+/* Dark mode override for recommended section */
 body.dark .recommended-card {
-  background: #1f1f1f; /* match other dark elements */
-  border-color: #333;   /* darken border if needed */
+  background: #1f1f1f;
+  border-color: #333;
   color: var(--text-dark);
 }
 
@@ -477,7 +577,7 @@ body.dark #install-later:hover {
   display: block;
 }
 body.dark #scrollToTopBtn {
-  background: var(--color-primary); /* same color in dark mode */
+  background: var(--color-primary);
   color: white;
 }
 #scrollToTopBtn img {
@@ -559,6 +659,7 @@ body.dark #contact li {
   }
   .title {
     font-size: 1.5rem;
+    font-weight: 600;
   }
 }
 
@@ -566,103 +667,85 @@ body.dark #contact li {
   .navbar {
     padding: 0.6rem 1rem;
   }
-
   .logo {
     font-size: 1rem;
+    font-weight: 700;
   }
-
   .navbar-toggle {
     font-size: 1.3rem;
   }
-
   .navbar-right a,
   .navbar-right button {
     padding: 0.5rem 0.8rem;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+    font-weight: 500;
   }
-
   .banner {
     padding: 0.6rem 0.8rem;
     font-size: 0.85rem;
   }
-
   .title {
     font-size: 1.3rem;
+    font-weight: 600;
   }
-
   .notice {
     font-size: 0.85rem;
   }
-
   .container {
     padding: 1.5rem 1rem;
   }
-
   .controls {
     flex-direction: column;
     gap: 0.6rem;
     margin: 1rem 0;
   }
-
   .controls input,
   .controls select {
     padding: 0.5rem;
     min-width: 100%;
     font-size: 0.9rem;
   }
-
   .filter-tags {
     gap: 0.4rem;
   }
-
   .filter-tags button {
     padding: 0.4rem 0.8rem;
     font-size: 0.8rem;
   }
-
   .main-grid {
     grid-template-columns: 1fr;
     gap: 1rem;
     margin-top: 1.5rem;
   }
-
   .tool-card {
-    padding: 0.8rem;
+    padding: 1rem;
     border-radius: 8px;
   }
-
   .tool-thumb {
     height: 130px;
     border-radius: 6px;
   }
-
   .tool-title {
     font-size: 0.95rem;
   }
-
   .tool-desc {
     font-size: 0.85rem;
   }
-
   .tag {
     font-size: 0.7rem;
     padding: 3px 8px;
   }
-
   .tool-detail {
     padding: 1.2rem;
     gap: 1.2rem;
   }
-
   .tool-detail-left,
   .tool-detail-right {
     flex: 1 1 100%;
   }
-
   .tool-main-img {
     border-radius: 8px;
   }
-
   .tool-gallery img {
     width: 52px;
     height: 52px;
@@ -673,17 +756,14 @@ body.dark #contact li {
     height: 200px;
     border-radius: 8px;
   }
-
   .tool-detail-right .desc {
     font-size: 0.95rem;
     margin: 0.8rem 0;
   }
-
   .pricing-list li {
     font-size: 0.9rem;
     margin-bottom: 0.3rem;
   }
-
   .back-btn,
   .contact-btn {
     width: 100%;
@@ -691,59 +771,47 @@ body.dark #contact li {
     font-size: 0.95rem;
     margin-top: 0.6rem;
   }
-
   .recommended-section {
     margin-top: 1.5rem;
   }
-
   .recommended-scroll {
     gap: 0.8rem;
   }
-
   .recommended-card {
     flex: 0 0 90%;
     padding: 0.6rem;
     border-radius: 8px;
   }
-
   .recommended-card img {
     height: 100px;
     border-radius: 6px;
   }
-
   .recommended-card h4 {
     font-size: 0.9rem;
   }
-
   .recommended-card p {
     font-size: 0.8rem;
   }
-
   .recommended-card .price {
     font-size: 0.85rem;
   }
-
   #scrollToTopBtn {
     bottom: 20px;
     right: 20px;
     font-size: 1.2rem;
     padding: 0.5rem 0.7rem;
   }
-
   #contact {
     padding: 1.2rem;
     margin-bottom: 2rem;
   }
-
   #contact h2 {
     font-size: 1.25rem;
   }
-
   #contact p,
   #contact li {
     font-size: 0.95rem;
   }
-
   #contact li {
     margin-bottom: 0.4rem;
   }
