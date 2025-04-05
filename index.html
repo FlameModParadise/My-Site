@@ -31,7 +31,7 @@
       <a href="#contact">Contact</a>
       <button id="darkToggle" title="Toggle Dark Mode">💡</button>
     </div>
-  </nav>  
+  </nav>
 
   <!-- OFFER BANNER -->
   <div id="announcement-banner" class="banner hidden">
@@ -82,11 +82,18 @@
     <button id="install-later">Later</button>
   </div>
 
+  <!-- MODAL POPUP -->
+  <div id="popupMessage" class="popup-box hidden">
+    <div class="popup-content">
+      <p id="popupText"></p>
+      <button onclick="closePopup()">Close</button>
+    </div>
+  </div>
+
   <!-- Scroll To Top Button -->
   <button id="scrollToTopBtn" title="Go to top">
     <img src="assets/icons/up-arrow.svg" alt="⬆️" width="24" />
   </button>
-
 
   <script src="script.js"></script>
   <script>

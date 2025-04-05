@@ -1,55 +1,54 @@
 [
-    {
-      "name": "Netflix Methods",
-      "type": "Method",
-      "description": "Access Netflix via EM, C2P, and Privatizing strategies.",
-      "long_description": "🛠️ Netflix Methods:\n- Netflix C2P: $3\n- Netflix EM: $1\n- Manual Privatize: $1.5",
-      "tags": ["netflix", "Method", "c2p", "em", "private"],
-      "release_date": "2025-03-19",
-      "update_date": "2025-04-01",
-      "price": "$1 – $3",
-      "contact": "telegram",
-      "keywords": ["netflix", "Method", "c2p", "em", "privatize"],
-      "image": "assets\\methods-pic\\netflix.png"
-    },
-    {
-      "name": "GPT Invite Trick",
-      "type": "Method",
-      "description": "Invite-based GPT+ access trick using automated flows.",
-      "long_description": "🧠 GPT Invite Trick:\n- Mail Invite Trick: $2",
-      "tags": ["gpt", "Method", "invite"],
-      "release_date": "2025-03-19",
-      "update_date": "2025-04-01",
-      "price": "$2",
-      "contact": "telegram",
-      "keywords": ["gpt", "invite", "trick"],
-      "image": "assets\\methods-pic\\chatgpt.png"
-    },
-    {
-      "name": "Spotify Methods",
-      "type": "Method",
-      "description": "Simple Spotify invitation and conversion tricks.",
-      "long_description": "🎵 Spotify Methods:\n- Mail Invite Trick: $1\n- C2P: $2",
-      "tags": ["spotify", "Method", "invite", "c2p"],
-      "release_date": "2025-03-19",
-      "update_date": "2025-04-01",
-      "price": "$1 – $2",
-      "contact": "telegram",
-      "keywords": ["spotify", "invite", "trick", "c2p"],
-      "image": "assets\\methods-pic\\spotify.png"
-    },
-    {
-      "name": "Hotstar Method",
-      "type": "Method",
-      "description": "Convert Hotstar trial or invite into working access.",
-      "long_description": "📺 Hotstar Methods:\n- C2P: $2",
-      "tags": ["hotstar", "Method", "c2p"],
-      "release_date": "2025-03-19",
-      "update_date": "2025-04-01",
-      "price": "$2",
-      "contact": "telegram",
-      "keywords": ["hotstar", "Method", "trick", "c2p"],
-      "image": "assets\\methods-pic\\hotstar.png"
-    }
-  ]
-  
+  {
+    "name": "Netflix Methods",
+    "type": "Method",
+    "description": "Access Netflix via EM, C2P, and Privatizing strategies.",
+    "long_description": "🛠️ Netflix Methods:\n- Netflix C2P: Change owner mail to your own.\n- Netflix EM: Get an invite without touching the owner's mail.\n- Manual Privatize: Convert public Netflix cookies into private ones.",
+    "tags": ["netflix", "Method", "c2p", "em", "private"],
+    "release_date": "2025-03-19",
+    "update_date": "2025-04-01",
+    "price": "- Netflix C2P: $3\n- Netflix EM: $1\n- Manual Privatize: $1.5\n",
+    "contact": "telegram",
+    "keywords": ["netflix", "Method", "c2p", "em", "privatize", "netflix method", "netflix c2p", "methods"],
+    "image": "assets/methods-pic/netflix.png"
+  },
+  {
+    "name": "GPT Invite Trick",
+    "type": "Method",
+    "description": "Invite-based GPT+ access.",
+    "long_description": "🧠 GPT Invite Trick:\n- Invite is sent to your own mail.\n- It works based on luck only.\n- Fully automatic delivery.\n- Same as Netflix lifetime method.",
+    "tags": ["Chatgpt", "Method", "invite"],
+    "release_date": "2025-03-19",
+    "update_date": "2025-04-01",
+    "price": "Per Invite: $2\n",
+    "contact": "telegram",
+    "keywords": ["gpt", "chatgpt", "invite", "trick"],
+    "image": "assets/methods-pic/chatgpt.png"
+  },
+  {
+    "name": "Spotify Methods",
+    "type": "Method",
+    "description": "Simple Spotify invitation and conversion tricks.",
+    "long_description": "🎵 Spotify Methods:\n- Mail Invite: Spotify invite sent to your mail.\n- C2P: Convert account from owner's mail to your own.",
+    "tags": ["spotify", "Method", "invite", "c2p"],
+    "release_date": "2025-03-19",
+    "update_date": "2025-04-01",
+    "price": "- Invite: $1,\n- C2P: $2\n",
+    "contact": "telegram",
+    "keywords": ["spotify", "invite", "trick", "c2p", "spotify c2p"],
+    "image": "assets/methods-pic/spotify.png"
+  },
+  {
+    "name": "Hotstar Method",
+    "type": "Method",
+    "description": "Convert other Hotstar accounts to yours.",
+    "long_description": "📺 Hotstar Method:\n- C2P: Convert from owner’s mail to your mobile number.",
+    "tags": ["hotstar", "Method", "c2p"],
+    "release_date": "2025-03-19",
+    "update_date": "2025-04-01",
+    "price": "C2P: $2\n",
+    "contact": "telegram",
+    "keywords": ["hotstar", "Method", "trick", "c2p", "hoststar c2p"],
+    "image": "assets/methods-pic/hotstar.png"
+  }
+]

@@ -20,21 +20,13 @@ const scrollToTopBtn = document.getElementById("scrollToTopBtn");
 const darkToggle = document.getElementById("darkToggle");
 if (darkToggle) {
   darkToggle.addEventListener("click", () => {
-    if (document.body.classList.contains("dark")) {
-      document.body.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-    } else {
-      document.body.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    }
+    document.body.classList.toggle("dark");
+    localStorage.setItem("theme", document.body.classList.contains("dark") ? "dark" : "light");
   });
 }
-
-// On load, apply the saved theme:
 if (localStorage.getItem("theme") === "dark") {
   document.body.classList.add("dark");
 }
-
 
 // === OFFER BANNER ===
 const banner = document.getElementById("announcement-banner");
@@ -55,14 +47,10 @@ async function loadData() {
 
   const data = await Promise.all(
     DATA_FILES.map(url =>
-      fetch(url)
-        .then(res => (res.ok ? res.json() : []))
-        .catch(() => [])
+      fetch(url).then(res => (res.ok ? res.json() : [])).catch(() => [])
     )
   );
   const flatData = data.flat();
-
-  // Remove duplicate tools (by name, case insensitive)
   const seen = new Set();
   allTools = flatData.filter(tool => {
     const nameKey = (tool.name || "").toLowerCase();
@@ -113,7 +101,6 @@ function applyURLState() {
 
   renderTools(filtered);
 
-  // Highlight the active filter button
   document.querySelectorAll("#filters button").forEach(b => {
     b.classList.remove("active");
     if (b.textContent.toLowerCase() === savedFilter) b.classList.add("active");
@@ -171,17 +158,28 @@ function showToolDetail(tool, isInitial = false) {
           ${tool.video ? `<iframe src="${tool.video}" class="tool-video" allowfullscreen></iframe>` : ""}
         </div>
         <div class="tool-detail-right">
-          <p class="desc">${(tool.long_description || tool.description || "No description available.").replace(/\n/g, "<br>")}</p>
-          ${tool.pricing ? `
-            <ul class="pricing-list">
-              ${Object.entries(tool.pricing).map(([k, v]) => `<li>${k}: ${v}</li>`).join("")}
-            </ul>
-          ` : tool.price ? `<p><strong>Price:</strong><br>${tool.price.replace(/\n/g, "<br>")}</p>` : ""}
-          ${tool.discount ? `<p><strong>Discount:</strong> ${tool.discount}%</p>` : ""}
-          ${tool.offer_expiry ? `<p>⏳ Offer ends in ${daysLeft(tool.offer_expiry)} days</p>` : ""}
-          <p><strong>Released:</strong> ${tool.release_date}</p>
-          <p><strong>Updated:</strong> ${tool.update_date}</p>
-          <a href="${getContactLink(tool.contact)}" target="_blank" class="contact-btn">💬 Contact</a>
+          <div class="tool-info">
+            <p class="desc">
+              <strong>Description:</strong><br>
+              ${(tool.long_description || tool.description || "No description available.")
+                .replace(/\n/g, "<br>")
+                .replace(/(<br>\s*)$/, "<br>&nbsp;")}
+            </p>
+            <br>
+            ${tool.pricing ? `
+              <p><strong>Pricing:</strong></p>
+              <ul class="pricing-list">
+                ${Object.entries(tool.pricing).map(([k, v]) => `<li>${k}: ${v}</li>`).join("")}
+              </ul>
+              <br>` :
+              tool.price ? `<p><strong>Price:</strong><br>${tool.price.replace(/\n/g, "<br>").replace(/(<br>\s*)$/, "<br>&nbsp;")}</p><br>` : ""
+            }
+            ${tool.discount ? `<p><strong>Discount:</strong> ${tool.discount}%</p><br>` : ""}
+            ${tool.offer_expiry ? `<p>⏳ Offer ends in ${daysLeft(tool.offer_expiry)} days</p><br>` : ""}
+            <p><strong>Released:</strong><br>${tool.release_date || "N/A"}</p><br>
+            <p><strong>Updated:</strong><br>${tool.update_date || "N/A"}</p><br>
+            <a href="${getContactLink(tool.contact)}" target="_blank" class="contact-btn">💬 Contact</a>
+          </div>
         </div>
       </div>
     </div>
@@ -190,8 +188,7 @@ function showToolDetail(tool, isInitial = false) {
 
   // Set up gallery click event to update the main image
   const mainImg = document.querySelector(".tool-main-img");
-  const galleryImgs = document.querySelectorAll(".tool-gallery img");
-  galleryImgs.forEach(img => {
+  document.querySelectorAll(".tool-gallery img").forEach(img => {
     img.addEventListener("click", () => {
       if (mainImg && img.src) {
         mainImg.src = img.src;
@@ -215,18 +212,12 @@ function renderRecommendations(tool) {
     <section class="recommended-section fade-in">
       <h3>You may also like</h3>
       <div class="recommended-scroll">
-        ${recs
-          .map(
-            r => `
-          <div class="recommended-card" onclick='location.hash="tool=${encodeURIComponent(r.name)}"'>
+        ${recs.map(r => `
+          <div class="recommended-card" onclick='location.hash="tool=${encodeURIComponent(r.name)}"' >
             <img src="${r.image || 'assets/placeholder.jpg'}" onerror="this.src='assets/placeholder.jpg'" />
             <h4>${r.name}</h4>
             <p>${getShortDescription(r)}</p>
-            <div class="price">${getPrice(r)}</div>
-          </div>
-        `
-          )
-          .join("")}
+          </div>`).join("")}
       </div>
     </section>
   `;
@@ -277,18 +268,40 @@ function getPrice(tool) {
   return "$1";
 }
 
-// === SAVE SEARCH / SORT / FILTER STATE ===
-searchInput?.addEventListener("input", () => {
-  sessionStorage.setItem("search", searchInput.value);
-  applyURLState();
-});
-sortSelect?.addEventListener("change", () => {
-  sessionStorage.setItem("sort", sortSelect.value);
-  applyURLState();
-});
-function filterByType(type) {
-  sessionStorage.setItem("filter", type.toLowerCase());
-  applyURLState();
+// === POPUP MESSAGE ===
+const messages = {
+  all: "Showing all tools in the store.\nExplore freely!",
+  tools: "General or automation tools.\nSome may include scripts, uploaders, etc.",
+  bots: "Custom bots for Discord, Telegram, etc.\nAuto tasks, scraping, moderation.",
+  checker: "Auto cookie checkers.\nPlatforms like GPT+, Netflix, and more.",
+  steam: "Legit Steam games.\nDelivered to your own account.",
+  cookie: "Cookies like Netflix, GPT, Spotify, etc.\nNo replacement unless told.",
+  method: "Conversion or trick-based methods.\nUse at your own risk."
+};
+function showPopup(type) {
+  const popup = document.createElement("div");
+  popup.className = "popup-banner";
+
+  // Create close button
+  const closeBtn = document.createElement("button");
+  closeBtn.className = "popup-close";
+  closeBtn.innerText = "✖";
+  closeBtn.onclick = () => popup.remove();
+
+  // Add text
+  const msgText = document.createElement("div");
+  msgText.className = "popup-text";
+  msgText.innerText = messages[type] || "Info not available.";
+
+  popup.appendChild(msgText);
+  popup.appendChild(closeBtn);
+
+  document.body.appendChild(popup);
+  setTimeout(() => popup.classList.add("visible"), 10);
+  setTimeout(() => {
+    popup.classList.remove("visible");
+    setTimeout(() => popup.remove(), 400);
+  }, 3000);
 }
 
 // === FILTER BUTTONS ===
@@ -309,11 +322,12 @@ function createFilterBtn(label, fn) {
     document.querySelectorAll("#filters button").forEach(b => b.classList.remove("active"));
     btn.classList.add("active");
     fn();
+    showPopup(label.toLowerCase());
   };
   return btn;
 }
 
-// === SCROLL TO TOP BUTTON ===
+// === SCROLL TO TOP ===
 window.addEventListener("scroll", () => {
   scrollToTopBtn.classList.toggle("show", window.scrollY > 300);
 });
@@ -321,7 +335,7 @@ scrollToTopBtn?.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
-// === MOBILE NAVBAR TOGGLE ===
+// === NAVBAR TOGGLE ===
 const navbarToggle = document.getElementById("navbarToggle");
 const navbarMenu = document.getElementById("navbarMenu");
 if (navbarToggle && navbarMenu) {
@@ -329,23 +343,18 @@ if (navbarToggle && navbarMenu) {
     navbarMenu.classList.toggle("show-menu");
   });
 }
-
 function highlightActiveNav(type) {
   document.querySelectorAll(".navbar-right a").forEach(link => {
     link.classList.remove("active");
-    if (link.textContent.toLowerCase() === type) {
-      link.classList.add("active");
-    }
+    if (link.textContent.toLowerCase() === type) link.classList.add("active");
   });
 }
-
 function filterByType(type) {
   sessionStorage.setItem("filter", type.toLowerCase());
   highlightActiveNav(type.toLowerCase());
   applyURLState();
 }
 
-
-// === INITIALIZE DATA & STATE ===
+// === INIT ===
 loadData();
 window.addEventListener("hashchange", applyURLState);

@@ -2,66 +2,203 @@
   {
     "name": "Mortal Kombat 11 (Steam)",
     "type": "Steam",
-    "description": "💥 Get MK11 on your Steam account at a lower price — fully legit and directly delivered.",
-    "long_description": "Mortal Kombat 11 (Standard Edition) is purchased and delivered directly to your own Steam account. No shady methods — 100% legit from the official Steam store. DLC options available separately. Message @fmpChatBot to get it delivered instantly.",
-    "image": "assets/Steam/mk11.jpg",
-    "price": "$7",
-    "tags": ["Steam", "mk11", "mortal kombat", "game"],
+    "description": "💥 MK11 Steam key at ultra-low price. Legit and safe delivery.",
+    "long_description": "<h1>Mortal Kombat 11 </h1> is delivered as a valid Steam key. Fully safe. Direct delivery to your Steam account. No risk. DLCs available if needed.",
+    "image": "assets/steams-pic/mk11.jpg",
+    "price": "$3.5",
+    "tags": [
+      "Steam",
+      "mk11",
+      "mortal kombat",
+      "game"
+    ],
     "release_date": "2025-04-01",
     "update_date": "2025-04-03",
     "contact": "telegram",
-    "keywords": ["mortal kombat", "mk11", "Steam game", "cheap"]
+    "keywords": [
+      "mortal kombat",
+      "mk11",
+      "Steam game",
+      "cheap"
+    ]
+  },
+  {
+    "name": "Mortal Kombat 1 (Steam)",
+    "type": "Steam",
+    "description": "🔥 Get MK1 with standard or premium edition on Steam. Safe and direct.",
+    "long_description": "<h1>Mortal Kombat 1 (Standard or Premium)</h1> is delivered via Steam key. You can choose your edition. Fast delivery. Works globally. DLC or bonus versions available if requested.",
+    "image": "assets/steams-pic/mk1.png",
+    "price": "- Standard: $17\n- Premium: $40\n- Premium + Bonus: $44\n",
+    "tags": [
+      "Steam",
+      "mk1",
+      "mortal kombat",
+      "fighting"
+    ],
+    "release_date": "2025-04-01",
+    "update_date": "2025-04-05",
+    "contact": "telegram",
+    "keywords": [
+      "mortal kombat",
+      "mk1",
+      "Steam game",
+      "key",
+      "premium"
+    ]
   },
   {
     "name": "Spiderman 2 (Steam)",
     "type": "Steam",
     "description": "🕷 Own Spiderman 2 legit on your Steam — cheaper than official price, no hacks!",
-    "long_description": "Spiderman 2 is delivered directly to your Steam account, purchased officially via Steam. Pricing is always lower than listed. No reselling or third-party tools. Includes full support. DLCs can be requested separately.",
-    "image": "assets/Steam/spiderman2.jpg",
+    "long_description": "<h1>Spiderman 2</h1> is purchased through Steam and added directly to your account. No hacks, cracks, or key reselling. Just safe, official delivery. DLCs can be arranged if needed. Lower than official price.",
+    "image": "assets/steams-pic/spiderman2.jpg",
     "price": "$52",
-    "tags": ["Steam", "spiderman", "superhero", "action"],
+    "tags": [
+      "Steam",
+      "spiderman",
+      "superhero",
+      "action"
+    ],
     "release_date": "2025-04-01",
     "update_date": "2025-04-03",
     "contact": "telegram",
-    "keywords": ["spiderman", "Steam game", "cheaper", "dlc", "superhero"]
+    "keywords": [
+      "spiderman",
+      "Steam game",
+      "cheaper",
+      "dlc",
+      "superhero"
+    ]
+  },
+  {
+    "name": "Spider-Man Remastered (Steam)",
+    "type": "Steam",
+    "description": "🕸️ Get Spider-Man Remastered on Steam — fully legit and fast delivery.",
+    "long_description": "The remastered version of Marvel's Spider-Man delivered to your Steam account via key. Works globally. No hacks. No third-party tools. DLC options available.",
+    "image": "assets/steams-pic/spidermanremastered.jpg",
+    "price": "$25.48",
+    "tags": [
+      "Steam",
+      "spiderman",
+      "remastered",
+      "marvel"
+    ],
+    "release_date": "2025-04-05",
+    "update_date": "2025-04-05",
+    "contact": "telegram",
+    "keywords": [
+      "spiderman",
+      "remastered",
+      "Steam game",
+      "marvel"
+    ]
+  },
+  {
+    "name": "Spider-Man: Miles Morales (Steam)",
+    "type": "Steam",
+    "description": "⚡ Miles Morales Spider-Man on Steam at discount — direct key delivery.",
+    "long_description": "Play as Miles Morales in Marvel’s Spider-Man. Delivered through a global Steam key. Official game version, no account access needed. Fast support and optional DLCs.",
+    "image": "assets/steams-pic/spidermanmilesmorales.jpg",
+    "price": "$21.27",
+    "tags": [
+      "Steam",
+      "spiderman",
+      "miles",
+      "marvel",
+      "action"
+    ],
+    "release_date": "2025-04-05",
+    "update_date": "2025-04-05",
+    "contact": "telegram",
+    "keywords": [
+      "miles morales",
+      "spiderman",
+      "Steam game",
+      "marvel"
+    ]
   },
   {
     "name": "Black Myth: Wukong (Steam)",
     "type": "Steam",
-    "description": "🐉 Grab Black Myth Wukong at a better price — official and direct from Steam.",
-    "long_description": "This game will be purchased from Steam and added to your account. Message @fmpChatBot with your Steam ID to claim the deal. Secure, quick, and below official pricing. Can include upcoming DLCs upon request.",
-    "image": "assets/Steam/wukong.jpg",
-    "price": "$60",
-    "tags": ["Steam", "black myth", "wukong", "rpg"],
+    "description": "🐉 Grab Black Myth Wukong at a better price.",
+    "long_description": "<h1>Black Myth: Wukong</h1> will be delivered as a valid Steam key. Safe for most games unless they require third-party launchers or accounts. DLCs can be included if requested.",
+    "image": "assets/steams-pic/wukong.jpg",
+    "price": "$55\n",
+    "tags": [
+      "Steam",
+      "black myth",
+      "wukong",
+      "rpg"
+    ],
     "release_date": "2025-04-01",
     "update_date": "2025-04-03",
     "contact": "telegram",
-    "keywords": ["black myth", "wukong", "Steam game", "rpg", "cheap"]
+    "keywords": [
+      "black myth",
+      "wukong",
+      "Steam game",
+      "rpg",
+      "cheap"
+    ]
   },
   {
     "name": "WWE 2K24 (Steam)",
     "type": "Steam",
     "description": "🤼 Get WWE 2K24 added directly to your Steam account at a lower rate!",
-    "long_description": "Legit copy of WWE 2K24 added to your personal Steam account. No logins needed. You just share the game name and official Steam price — and you’ll get a cheaper quote and fast delivery. DLC options available too.",
-    "image": "assets/Steam/wwe2k24.jpg",
+    "long_description": "<h1>WWE 2K24</h1> is purchased from Steam and delivered to your personal account. No login sharing needed. You get a clean official game activation. Add-ons and DLCs available optionally.",
+    "image": "assets/steams-pic/wwe2k24.jpeg",
     "price": "$30",
-    "tags": ["Steam", "wwe", "wrestling", "sports"],
+    "tags": [
+      "Steam",
+      "wwe",
+      "wrestling",
+      "sports"
+    ],
     "release_date": "2025-04-01",
     "update_date": "2025-04-03",
     "contact": "telegram",
-    "keywords": ["wwe", "wwe 2k24", "Steam sports game", "cheap wwe"]
+    "keywords": [
+      "wwe",
+      "wwe 2k24",
+      "Steam sports game",
+      "cheap wwe"
+    ]
   },
   {
     "name": "WWE 2K25 (Steam)",
     "type": "Steam",
-    "description": "🤼‍♂️ Pre-order or get WWE 2K25 on your Steam account for less than official price.",
-    "long_description": "Latest WWE title delivered via official Steam purchase to your personal account. Expect a clean and direct game activation. Best for fans of wrestling and career/story modes. Newest patches and future DLCs also available.",
-    "image": "assets/Steam/wwe2k25.jpg",
-    "price": "$60",
-    "tags": ["Steam", "wwe", "wrestling", "sports"],
+    "description": "🤼‍♂️ WWE 2K25 on your Steam account for less than official price.",
+    "long_description": "<h1>WWE 2K25</h1> will be added to your Steam account through official store purchase. No account risks or third-party tricks. Full support and extra content like DLCs are also available if needed.",
+    "image": "assets/steams-pic/wwek2k25.jpg",
+    "price": "$53",
+    "tags": [
+      "Steam",
+      "wwe",
+      "wrestling",
+      "sports"
+    ],
     "release_date": "2025-04-01",
     "update_date": "2025-04-03",
     "contact": "telegram",
-    "keywords": ["wwe 2k25", "wrestling", "Steam game", "official deal"]
+    "keywords": [
+      "wwe 2k25",
+      "wrestling",
+      "Steam game",
+      "official deal"
+    ]
+  },
+  {
+    "name": "Minecraft: Java & Bedrock (Official Key)",
+    "type": "Steam",
+    "description": "⛏️ Official redeemable Minecraft Java + Bedrock key — legit and instant delivery.",
+    "long_description": "<h1>Minecraft: Java & Bedrock Edition (PC)</h1>\n- Global key that works in Nepal and worldwide.\n- Delivered instantly to your Telegram.\n- Redeem via official Minecraft or Microsoft website.\n- Full access to Java and Bedrock editions.\n- Microsoft account required to activate.\n\nNote: Make sure you redeem the correct version (Java + Bedrock) on official site. This key gives both Java & Bedrock. Be sure to redeem it at the official Minecraft site or Microsoft account page and select the Java + Bedrock bundle if prompted.\n",
+    "image": "assets/steams-pic/minecraftjavabedrock.jpg",
+    "price": "$16.88",
+    "tags": ["minecraft", "Steam", "key", "java", "bedrock", "windows"],
+    "release_date": "2025-04-03",
+    "update_date": "2025-04-03",
+    "contact": "telegram",
+    "keywords": ["minecraft", "java", "bedrock", "official key", "redeem", "steam", "mojang", "windows"]
   }
+  
 ]
