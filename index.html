@@ -1,159 +1,142 @@
-<!-- COPY AND REPLACE YOUR ENTIRE index.html FILE WITH THIS -->
 <!DOCTYPE html>
 <html lang="en">
  <head>
   <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <meta content="Discover and buy premium bots, tools, and automation scripts." name="description"/>
-  <meta content="#0d6efd" name="theme-color"/>
-  <link href="manifest.json" rel="manifest"/>
-  <link href="assets/icons/icon-192.png" rel="icon"/>
-  <link href="style.css" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
-  <title>
-   🛠️ My Tool Store
-  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Discover and buy premium bots, tools, and automation scripts."/>
+  <meta name="theme-color" content="#0d6efd"/>
+  <link rel="manifest" href="manifest.json"/>
+  <link rel="icon" href="assets/icons/icon-192.png"/>
+  <link rel="stylesheet" href="style.css"/>
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap"
+  />
+  <title>🛠️ My Tool Store</title>
  </head>
  <body>
   <!-- NAVBAR -->
   <nav class="navbar">
-   <div class="navbar-left">
-    <span class="logo">
-     🛠️ Tool Store
-    </span>
-   </div>
-   <button aria-label="Toggle menu" class="navbar-toggle" id="navbarToggle">
-    ☰
-   </button>
-   <div class="navbar-right" id="navbarMenu">
-    <a href="#" onclick="filterByType('all')">
-     Home
-    </a>
-    <a href="#" onclick="filterByType('tool')">
-     Tools
-    </a>
-    <a href="#" onclick="filterByType('bots')">
-     Bots
-    </a>
-    <a href="#" onclick="filterByType('checker')">
-     Checkers
-    </a>
-    <a href="#" onclick="filterByType('cookie')">
-     Cookies
-    </a>
-    <a href="#" onclick="filterByType('method')">
-     Methods
-    </a>
-    <a href="#contact">
-     Contact
-    </a>
-    <button id="darkToggle" title="Toggle Dark Mode">
-     💡
-    </button>
-   </div>
+    <div class="navbar-left">
+      <a class="logo" href="index.html">🛠️ Tool Store</a>
+    </div>
+    <button aria-label="Toggle menu" class="navbar-toggle" id="navbarToggle">☰</button>
+    <div class="navbar-right" id="navbarMenu">
+      <!-- Multi-page navigation links -->
+      <a href="index.html">Home</a>
+      <a href="reviews.html">Reviews</a>
+      <a href="contact.html">Contact</a>
+      <a href="faq.html">FAQ</a>
+      <!-- Dark Mode Toggle -->
+      <button id="darkToggle" title="Toggle Dark Mode">💡</button>
+    </div>
   </nav>
+
   <!-- OFFER BANNER -->
   <div class="banner hidden" id="announcement-banner">
-   <p>
-    🎁 Special Offer: 25% OFF on selected tools this week!
-    <a href="#">
-     Learn more
-    </a>
-   </p>
-   <button id="close-banner">
-    ✖
-   </button>
+    <p>
+      🎁 Special Offer: 25% OFF on selected tools this week!
+      <a href="#">Learn more</a>
+    </p>
+    <button id="close-banner">✖</button>
   </div>
+
   <!-- HEADER -->
   <header class="container">
-   <h1 class="title">
-    🚀 Browse &amp; Buy Custom Tools Instantly
-   </h1>
-   <p class="notice">
-    Static site — no direct payment system. Contact me on
-    <a href="https://t.me/fmpChatBot" target="_blank">
-     Telegram
-    </a>
-    for access.
-   </p>
-   <div class="controls">
-    <input id="searchInput" placeholder="Search by name, keyword..." type="text"/>
-    <select id="sortSelect">
-     <option value="name">
-      Name A → Z
-     </option>
-     <option value="release_date">
-      Newest
-     </option>
-     <option value="update_date">
-      Updated
-     </option>
-     <option value="discount">
-      Top Discount
-     </option>
-    </select>
-   </div>
-   <div class="filter-tags" id="filters">
-   </div>
+    <h1 class="title">🚀 Browse &amp; Buy Custom Tools Instantly</h1>
+    <p class="notice">
+      Static site — no direct payment system. Contact me on
+      <a href="https://t.me/fmpChatBot" target="_blank">Telegram</a>
+      for access.
+    </p>
+    <div class="controls">
+      <input
+        id="searchInput"
+        type="text"
+        placeholder="Search by name, keyword..."
+      />
+      <select id="sortSelect">
+        <option value="name">Name A → Z</option>
+        <option value="release_date">Newest</option>
+        <option value="update_date">Updated</option>
+        <option value="discount">Top Discount</option>
+      </select>
+    </div>
+    <div class="filter-tags" id="filters"></div>
   </header>
+
   <!-- MAIN TOOL LIST OR DETAIL -->
   <main class="container">
-   <section class="main-grid" id="main-tool-list">
-   </section>
+    <section class="main-grid" id="main-tool-list"></section>
   </main>
-  <!-- CONTACT SECTION -->
-  <section class="container" id="contact" style="margin-top: 3rem;">
-   <h2>
-    📬 Contact
-   </h2>
-   <p>
-    For purchases, support, or custom orders, contact me via:
-   </p>
-   <ul>
-    <li>
-     Telegram Bot:
-     <a href="https://t.me/fmpChatBot" target="_blank">
-      @fmpChatBot
-     </a>
-    </li>
-    <li>
-     Personal Telegram:
-     <a href="https://t.me/flamemodparadise" target="_blank">
-      @flamemodparadise
-     </a>
-    </li>
-   </ul>
-  </section>
+
   <!-- INSTALL PROMPT -->
   <div class="install-box hidden" id="install-prompt">
-   <p>
-    📲 Install Tool Store as an app?
-   </p>
-   <button id="install-now">
-    Install Now
-   </button>
-   <button id="install-later">
-    Later
-   </button>
+    <p>📲 Install Tool Store as an app?</p>
+    <button id="install-now">Install Now</button>
+    <button id="install-later">Later</button>
   </div>
+
   <!-- MODAL POPUP -->
   <div class="popup-box hidden" id="popupMessage">
-   <div class="popup-content">
-    <p id="popupText">
-    </p>
-    <button onclick="closePopup()">
-     Close
-    </button>
-   </div>
+    <div class="popup-content">
+      <p id="popupText"></p>
+      <button onclick="closePopup()">Close</button>
+    </div>
   </div>
-  <!-- Scroll To Top Button -->
+
+  <!-- SCROLL TO TOP BUTTON -->
   <button id="scrollToTopBtn" title="Go to top">
-   <img alt="⬆️" src="assets/icons/up-arrow.svg" width="24"/>
+    <img src="assets/icons/up-arrow.svg" alt="⬆️" width="24"/>
   </button>
-  <script src="script.js">
-  </script>
+
+  <!-- FOOTER SECTION (Contact + Footer combined, if desired on index) -->
+  <section id="contact" class="combined-contact-footer container">
+    <div class="contact-block">
+      <h2>
+        <!-- Example contact icon (replace with your own if needed) -->
+        <img
+          src="data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIGZpbGw9IiMwZDE2ZWZkIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCI+PHBhdGggZD0iTTIzLjI5OCAwLjcwMmwtMC43MjgtMC41NzZjLTAuMzUxLTAuMjc2LTAuODYyLTAuMjgzLTEuMjI2IDBsLTEuNDI3IDEuMTE3Yy0xLjQ2Ni0wLjgwNC0zLjA1LTAuOTgtNC41NTItMC4yMS0zLjA5NSAxLjQ4NS00LjI5NyA1LjE5Ni0zLjAzMiA4LjE3M2wuOTQgMy4wNjQgMi4xODEtMS44MDcgMy4xOTYgMi45MDVjMC4zNzEuMzM4IDAuODUzIDAuNTAxIDEuMzIyIDAuNTAxIDAuMTY3IDAgMC4zMzQtMC4wMjUgMC41LTEuMDQ4bDMuOTQ4LTE1LjAzNEMyMy43NjUgMS42NjQgMjMuNjQ1IDEuMjA2IDIzLjI5OCAwLjcwMnoiPjwvcGF0aD48L3N2Zz4="
+          alt="Contact Icon"
+          style="width:24px;vertical-align:middle;margin-right:8px;"
+        />
+        Contact
+      </h2>
+      <p>For purchases, support, or custom orders, contact me via:</p>
+      <ul>
+        <li>
+          <!-- Example Telegram icon; replace data URI if desired -->
+          <img
+            src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCA1NCA1NCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMjcuMDAxIDU0QzQyLjA2OCA1NCA1NCA0Mi4wNjggNTQgMjcuMDAxQzU0IDEyLjAwMyA0Mi4wNjggMCAyNy4wMDEgMEMxMi4wMDUgMCAwIDEyLjAwMyAwIDI3LjAwMUMwIDQyLjA2OCAxMi4wMDUgNTQgMjcuMDAxIDU0Wk0xOS42MTQgMzkuNTkxTDIwLjI0OCAyOS44MjIgNDUuMTgzIDEyLjc0OEM0Ni45MTUgMTEuNjgzIDQ3LjE1NSAxMi45NTkgNDUuODgzIDEzLjUxM0w5LjE2NzggMjYuNzM1QzguMzUzNSAyNy4wODYgOC4zNjEgMjcuNDEzIDkuMzMgMjcuNzYzTDE0LjY1NyAyOS41NjFMNDAuMjk1IDE3LjYyMUM0MS4yNjkgMTcuMDAyIDQxLjY3MiAxNy44NTMgNDAuMjk1IDE4LjQyTDE5LjYxNCAzOS41OTFaIiBmaWxsPSIjMGQ2ZWZkIi8+PC9zdmc="
+            alt="Telegram Icon"
+            style="width:18px;vertical-align:middle;margin-right:4px;"
+          />
+          Telegram Bot:
+          <a href="https://t.me/fmpChatBot" target="_blank">@fmpChatBot</a>
+        </li>
+        <li>
+          <img
+            src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCA1NCA1NCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMjcuMDAxIDU0QzQyLjA2OCA1NCA1NCA0Mi4wNjggNTQgMjcuMDAxQzU0IDEyLjAwMyA0Mi4wNjggMCAyNy4wMDEgMEMxMi4wMDUgMCAwIDEyLjAwMyAwIDI3LjAwMUMwIDQyLjA2OCAxMi4wMDUgNTQgMjcuMDAxIDU0Wk0xOS42MTQgMzkuNTkxTDIwLjI0OCAyOS44MjIgNDUuMTgzIDEyLjc0OEM0Ni45MTUgMTEuNjgzIDQ3LjE1NSAxMi45NTkgNDUuODgzIDEzLjUxM0w5LjE2NzggMjYuNzM1QzguMzUzNSAyNy4wODYgOC4zNjEgMjcuNDEzIDkuMzMgMjcuNzYzTDE0LjY1NyAyOS41NjFMNDAuMjk1IDE3LjYyMUM0MS4yNjkgMTcuMDAyIDQxLjY3MiAxNy44NTMgNDAuMjk1IDE4LjQyTDE5LjYxNCAzOS41OTFaIiBmaWxsPSIjMGQ2ZWZkIi8+PC9zdmc="
+            alt="Telegram Icon"
+            style="width:18px;vertical-align:middle;margin-right:4px;"
+          />
+          Personal Telegram:
+          <a href="https://t.me/flamemodparadise" target="_blank">@flamemodparadise</a>
+        </li>
+      </ul>
+    </div>
+    <hr/>
+    <div class="footer-block">
+      <p>© 2025 My Tool Store. All rights reserved.</p>
+      <p>Use these tools responsibly. No refunds for digital items.</p>
+    </div>
+  </section>
+
+  <!-- JS Scripts -->
+  <script src="script.js"></script>
   <script>
-   if ("serviceWorker" in navigator) {
+    // Register service worker if available
+    if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => {
         navigator.serviceWorker
           .register("/service-worker.js")
@@ -161,20 +144,11 @@
           .catch(err => console.error("❌ Service Worker error:", err));
       });
     }
-  </script>
-  <noscript>
-   <p>
-    Enable Java script for better site readability.
-    <br/>
-    Thank You.
-    <hr/>
-   </p>
-  </noscript>
-  <script>
-   document.addEventListener("DOMContentLoaded", () => {
+
+    // Simple image gallery logic if a tool detail page is opened
+    document.addEventListener("DOMContentLoaded", () => {
       const mainImg = document.querySelector(".tool-main-img");
       const galleryImgs = document.querySelectorAll(".tool-gallery img");
-
       galleryImgs.forEach(img => {
         img.addEventListener("click", () => {
           if (mainImg && img.src) {
@@ -184,5 +158,14 @@
       });
     });
   </script>
+
+  <noscript>
+    <p>
+      Enable JavaScript for better site readability.
+      <br/>
+      Thank You.
+      <hr/>
+    </p>
+  </noscript>
  </body>
 </html>

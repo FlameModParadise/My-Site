@@ -1,4 +1,4 @@
-/* ===== BASE RESET ===== */
+/* ================ BASE RESET ================ */
 * {
   margin: 0;
   padding: 0;
@@ -10,7 +10,7 @@ body {
   overflow-x: hidden;
 }
 
-/* ========= THEME ROOT ========= */
+/* ================ THEME VARIABLES ================ */
 :root {
   --font-body: "Inter", sans-serif;
   --font-size: 16px;
@@ -20,7 +20,7 @@ body {
   --dark-bg: #121212;
 
   --text-light: #1e1e1e;
-  --text-dark: #e0e0e0; /* Updated for better readability in dark mode */
+  --text-dark: #e0e0e0; /* updated for better readability in dark mode */
 
   --color-primary: #0d6efd;
   --color-accent: #6c757d;
@@ -32,7 +32,7 @@ body {
   --transition: 0.3s ease;
 }
 
-/* ========= BODY ========= */
+/* ================ BODY ================ */
 body {
   font-family: var(--font-body);
   font-size: var(--font-size);
@@ -40,7 +40,7 @@ body {
   background: var(--light-bg);
   color: var(--text-light);
   transition: background var(--transition), color var(--transition);
-  -webkit-font-smoothing: antialiased; /* Added for better font rendering */
+  -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 body.dark {
@@ -48,7 +48,7 @@ body.dark {
   color: var(--text-dark);
 }
 
-/* ========= GLOBAL ELEMENTS ========= */
+/* ================ GLOBAL ELEMENTS ================ */
 a {
   color: var(--color-primary);
 }
@@ -60,7 +60,7 @@ img {
   display: none !important;
 }
 
-/* === ENHANCED NAVBAR === */
+/* ================ ENHANCED NAVBAR ================ */
 .navbar {
   display: flex;
   align-items: center;
@@ -74,18 +74,15 @@ img {
   transition: background 0.3s ease;
   border-bottom: 1px solid #e5e5e5;
 }
-
 body.dark .navbar {
   background: #1f1f1f;
   border-bottom: 1px solid #333;
 }
-
 .logo {
   font-size: 1.3rem;
   font-weight: 700;
   color: var(--color-primary);
 }
-
 .navbar-toggle {
   display: none;
   font-size: 1.8rem;
@@ -94,13 +91,11 @@ body.dark .navbar {
   cursor: pointer;
   color: inherit;
 }
-
 .navbar-right {
   display: flex;
   align-items: center;
   gap: 1.2rem;
 }
-
 .navbar-right a,
 .navbar-right button {
   font-weight: 500;
@@ -111,18 +106,15 @@ body.dark .navbar {
   cursor: pointer;
   transition: color 0.2s ease;
 }
-
 .navbar-right a:hover,
 .navbar-right button:hover {
   color: var(--color-primary);
 }
-
 .navbar-right a.active {
   color: var(--color-primary);
   font-weight: 600;
   position: relative;
 }
-
 .navbar-right a.active::after {
   content: "";
   position: absolute;
@@ -132,22 +124,19 @@ body.dark .navbar {
   height: 2px;
   background-color: var(--color-primary);
 }
-
-/* Responsive Navbar */
+/* responsive navbar */
 @media (max-width: 768px) {
   .navbar {
     flex-direction: column;
     align-items: flex-start;
     padding: 1rem;
   }
-
   .navbar-toggle {
     display: block;
     align-self: flex-end;
     font-size: 2rem;
     margin-bottom: 0.5rem;
   }
-
   .navbar-right {
     display: none;
     flex-direction: column;
@@ -157,25 +146,22 @@ body.dark .navbar {
     padding: 0.75rem 0;
     border-top: 1px solid #eee;
   }
-
   .navbar-right.show-menu {
     display: flex;
   }
-
   .navbar-right a,
   .navbar-right button {
     width: 100%;
     text-align: left;
     padding: 0.6rem 1rem;
   }
-
   body.dark .navbar-right {
     background-color: #2c2c2c;
     border-top: 1px solid #444;
   }
 }
 
-/* ========= BANNER ========= */
+/* ================ BANNER ================ */
 .banner {
   background: #ffc107;
   padding: 0.75rem 1rem;
@@ -185,7 +171,7 @@ body.dark .navbar {
   transition: background var(--transition);
 }
 
-/* ========= CONTAINER & TITLES ========= */
+/* ================ CONTAINER & TITLES ================ */
 .container {
   max-width: 1350px;
   margin: auto;
@@ -202,7 +188,7 @@ body.dark .navbar {
   margin-top: 0.5rem;
 }
 
-/* ========= CONTROLS ========= */
+/* ================ CONTROLS ================ */
 .controls {
   display: flex;
   justify-content: center;
@@ -218,7 +204,7 @@ body.dark .navbar {
   min-width: 240px;
 }
 
-/* ========= FILTER TAGS ========= */
+/* ================ FILTER TAGS ================ */
 .filter-tags {
   display: flex;
   justify-content: center;
@@ -244,15 +230,14 @@ body.dark .filter-tags button:hover {
   background: #444;
 }
 
-/* ========= TOOL LIST GRID ========= */
+/* ================ TOOL LIST GRID ================ */
 .main-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1.5rem;
   margin-top: 2rem;
 }
-
-/* Add sliding & loading animations to tiles */
+/* add sliding & loading animations to tiles */
 @keyframes slideIn {
   from {
     opacity: 0;
@@ -271,7 +256,6 @@ body.dark .filter-tags button:hover {
     opacity: 1;
   }
 }
-
 .tool-card {
   background: #fff;
   padding: 1rem;
@@ -279,7 +263,7 @@ body.dark .filter-tags button:hover {
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
   cursor: pointer;
   transition: transform var(--transition), box-shadow var(--transition);
-  animation: slideIn 0.5s ease-in-out; /* Added loading slide animation */
+  animation: slideIn 0.5s ease-in-out;
 }
 .tool-card:hover {
   transform: translateY(-5px);
@@ -294,8 +278,6 @@ body.dark .filter-tags button:hover {
   overflow: hidden;
   border-radius: 8px;
 }
-
-
 .tool-title {
   font-weight: 600;
   font-size: 1rem;
@@ -323,7 +305,7 @@ body.dark .tool-card {
   color: var(--text-dark);
 }
 
-/* ========= DETAIL VIEW ========= */
+/* ================ DETAIL VIEW ================ */
 .detail-wrapper {
   margin-top: 2rem;
 }
@@ -335,7 +317,7 @@ body.dark .tool-card {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  animation: fadeIn 0.6s ease; /* Fade-in animation for details */
+  animation: fadeIn 0.6s ease;
 }
 .tool-detail-content {
   display: flex;
@@ -348,7 +330,7 @@ body.dark .tool-card {
 }
 .tool-detail-right {
   position: relative;
-  top: -70px; /* moved detail text a little higher */
+  top: -70px;
 }
 .tool-main-img {
   width: 100%;
@@ -364,7 +346,6 @@ body.dark .tool-card {
   transform: scale(1.1);
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
 }
-
 .tool-gallery {
   display: flex;
   gap: 0.5rem;
@@ -376,7 +357,7 @@ body.dark .tool-card {
   height: 64px;
   border-radius: 8px;
 }
-/* Enlarged preview on hover */
+/* enlarged preview on hover */
 .tool-gallery img:hover {
   position: absolute;
   width: 60vw;
@@ -397,13 +378,12 @@ body.dark .tool-card {
   font-size: 1rem;
   margin: 1rem 0;
 }
-/* Dark mode override for detail view */
 body.dark .tool-detail {
   background: #1f1f1f;
   color: var(--text-dark);
 }
 
-/* ========= BUTTONS & LINKS ========= */
+/* ================ BUTTONS & LINKS ================ */
 .back-btn {
   background: #ccc;
   border: none;
@@ -423,7 +403,7 @@ body.dark .tool-detail {
   transition: background var(--transition);
 }
 
-/* ========= BADGES ========= */
+/* ================ BADGES ================ */
 .badge {
   display: inline-block;
   font-size: 0.75rem;
@@ -433,19 +413,19 @@ body.dark .tool-detail {
   font-weight: bold;
 }
 .new-badge {
-  background: var(--badge-new);
+  background: #28a745;
 }
 .updated-badge {
-  background: var(--badge-updated);
+  background: #ffc107;
 }
 .discount-badge {
-  background: var(--badge-discount);
+  background: #6f42c1;
 }
 .offer-badge {
-  background: var(--badge-offer);
+  background: #d9534f;
 }
 
-/* ========= RECOMMENDED SECTION ========= */
+/* ================ RECOMMENDED SECTION ================ */
 .recommended-section {
   margin-top: 2rem;
 }
@@ -480,14 +460,13 @@ body.dark .tool-detail {
   border-radius: 6px;
   object-fit: cover;
 }
-/* Dark mode override for recommended section */
 body.dark .recommended-card {
   background: #1f1f1f;
   border-color: #333;
   color: var(--text-dark);
 }
 
-/* ===== INSTALL PROMPT BOX ===== */
+/* ================ INSTALL PROMPT BOX ================ */
 .install-box {
   position: fixed;
   bottom: 30px;
@@ -505,13 +484,11 @@ body.dark .recommended-card {
   max-width: 300px;
   transition: all 0.3s ease;
 }
-
 .install-box p {
   margin: 0;
   font-size: 1rem;
   font-weight: 500;
 }
-
 .install-box button {
   padding: 0.5rem 1rem;
   border: none;
@@ -520,44 +497,36 @@ body.dark .recommended-card {
   font-weight: 600;
   transition: background 0.3s ease;
 }
-
 #install-now {
   background: var(--color-primary);
   color: white;
 }
-
 #install-now:hover {
   background: #0b5ed7;
 }
-
 #install-later {
   background: #e0e0e0;
   color: #333;
 }
-
 #install-later:hover {
   background: #d0d0d0;
 }
-
 body.dark .install-box {
   background: #1f1f1f;
   border-color: #333;
 }
-
 body.dark .install-box p {
   color: var(--text-dark);
 }
-
 body.dark #install-later {
   background: #2c2c2c;
   color: #eee;
 }
-
 body.dark #install-later:hover {
   background: #3c3c3c;
 }
 
-/* ===== SCROLL TO TOP BUTTON (Consolidated) ===== */
+/* ================ SCROLL TO TOP BUTTON ================ */
 #scrollToTopBtn {
   position: fixed;
   bottom: 30px;
@@ -588,57 +557,112 @@ body.dark #scrollToTopBtn {
   display: block;
 }
 
-/* ===== CONTACT SECTION ===== */
+/* ================= CONTACT & FOOTER ================= */
 #contact {
   background: #ffffff;
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
   margin-bottom: 3rem;
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+  text-align: center;
+  position: relative;
+  animation: fadeSlideIn 0.8s ease forwards;
+  opacity: 0;
+  transform: translateY(20px);
 }
-
+#contact::before {
+  content: url("data:image/svg+xml,<svg ...>"); /* example icon (replace if needed) */
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 40px;
+}
 #contact h2 {
-  font-size: 1.5rem;
-  margin-bottom: 0.8rem;
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+  color: var(--color-primary);
 }
-
 #contact p {
   font-size: 1rem;
-  margin-bottom: 0.8rem;
+  margin-bottom: 1rem;
   color: var(--color-accent);
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
 }
-
 #contact ul {
   list-style: none;
-  padding-left: 0;
+  margin: 1rem 0 0 0;
+  padding: 0;
 }
-
 #contact li {
-  margin-bottom: 0.5rem;
   font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-light);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
 }
-
 #contact a {
   color: var(--color-primary);
   text-decoration: none;
-  word-break: break-all;
+  transition: color 0.2s ease, transform 0.2s ease;
+  font-weight: 600;
 }
-
 #contact a:hover {
   text-decoration: underline;
+  transform: scale(1.05);
 }
-
-/* ===== DARK MODE (Contact) ===== */
 body.dark #contact {
   background: #1f1f1f;
+  color: var(--text-dark);
 }
-
 body.dark #contact p,
 body.dark #contact li {
   color: var(--text-dark);
 }
 
-/* ========= RESPONSIVENESS ========= */
+/* ================ FOOTER SECTION ================ */
+footer.container {
+  margin-top: 4rem;
+  text-align: center;
+  padding: 2rem 1rem;
+  background: #fefefe;
+  border-top: 1px solid #eee;
+  border-radius: 8px 8px 0 0;
+  box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.02);
+  animation: fadeSlideIn 0.8s ease 0.2s forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+footer.container p {
+  font-size: 0.95rem;
+  color: #555;
+  margin: 0.4rem 0;
+}
+footer.container p:first-of-type {
+  font-weight: 600;
+}
+body.dark footer.container {
+  background: #1f1f1f;
+  border-top: 1px solid #333;
+  box-shadow: none;
+}
+body.dark footer.container p {
+  color: var(--text-dark);
+}
+
+/* ================ FADE + SLIDE ANIMATION ================ */
+@keyframes fadeSlideIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================ RESPONSIVENESS ================ */
 @media (max-width: 1024px) {
   .controls {
     flex-direction: column;
@@ -650,7 +674,6 @@ body.dark #contact li {
     max-width: 400px;
   }
 }
-
 @media (max-width: 768px) {
   .tool-detail-content {
     flex-direction: column;
@@ -666,7 +689,6 @@ body.dark #contact li {
     font-weight: 600;
   }
 }
-
 @media (max-width: 480px) {
   .navbar {
     padding: 0.6rem 1rem;
@@ -755,7 +777,6 @@ body.dark #contact li {
     height: 52px;
     border-radius: 6px;
   }
-
   .tool-video {
     height: 200px;
     border-radius: 8px;
@@ -820,6 +841,8 @@ body.dark #contact li {
     margin-bottom: 0.4rem;
   }
 }
+
+/* ================ POPUP BOX ================ */
 .popup-box {
   position: fixed;
   top: 20%;
@@ -850,7 +873,8 @@ body.dark .popup-box {
   background: #2a2a2a;
   color: white;
 }
-/* === POPUP BANNER STYLES === */
+
+/* ================ POPUP BANNER STYLES ================ */
 .popup-banner {
   position: fixed;
   bottom: 20px;
@@ -885,4 +909,39 @@ body.dark .popup-box {
   font-size: 1.1rem;
   cursor: pointer;
   margin-left: auto;
+}
+/* ================ REQUIREMENTS BUTTON ================ */
+.requirements-btn {
+  background: #ff9800;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background var(--transition);
+  margin-top: 1rem; /* or remove if you want it aligned with Contact */
+}
+.requirements-btn:hover {
+  background: #fb8c00;
+}
+/* In your CSS for the popup text */
+.popup-content p,
+#popupText {
+  text-align: left;  /* Make the text left-aligned */
+  margin: 0.5rem 0;  /* Some optional spacing if needed */
+  white-space: pre-wrap;  /* If you're using textContent with \n */
+}
+.popup-box {
+  /* Other existing styles... */
+  width: 400px;       /* Fixed width in px */
+  max-width: 90vw;    /* Ensures popup is never larger than 90% of viewport width */
+  min-height: 200px;  /* Optional minimum height */
+}
+
+/* or you can specifically target .popup-content if you prefer */
+.popup-content {
+  width: 100%;        /* or 80%, etc. to suit your design */
+  /* add padding or margin if needed for spacing */
+  padding: 1rem;
 }

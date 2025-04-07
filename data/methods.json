@@ -9,8 +9,10 @@
     "update_date": "2025-04-01",
     "price": "- Netflix C2P: $3\n- Netflix EM: $1\n- Manual Privatize: $1.5\n",
     "contact": "telegram",
+    "stock": "Always",
     "keywords": ["netflix", "Method", "c2p", "em", "privatize", "netflix method", "netflix c2p", "methods"],
-    "image": "assets/methods-pic/netflix.png"
+    "image": "assets/methods-pic/netflix.png",
+    "requirements": "✅ VPN recommended.\n✅ Basic familiarity with Netflix cookies."
   },
   {
     "name": "GPT Invite Trick",
@@ -22,8 +24,10 @@
     "update_date": "2025-04-01",
     "price": "Per Invite: $2\n",
     "contact": "telegram",
+    "stock": "Always",
     "keywords": ["gpt", "chatgpt", "invite", "trick"],
-    "image": "assets/methods-pic/chatgpt.png"
+    "image": "assets/methods-pic/chatgpt.png",
+    "requirements": "✅ Basic email account to receive invites.\n✅ Results may vary (luck-based)."
   },
   {
     "name": "Spotify Methods",
@@ -35,8 +39,10 @@
     "update_date": "2025-04-01",
     "price": "- Invite: $1,\n- C2P: $2\n",
     "contact": "telegram",
+    "stock": "Always",
     "keywords": ["spotify", "invite", "trick", "c2p", "spotify c2p"],
-    "image": "assets/methods-pic/spotify.png"
+    "image": "assets/methods-pic/spotify.png",
+    "requirements": "✅ Spotify account or mail access.\n✅ No advanced knowledge needed."
   },
   {
     "name": "Hotstar Method",
@@ -48,7 +54,9 @@
     "update_date": "2025-04-01",
     "price": "C2P: $2\n",
     "contact": "telegram",
+    "stock": "Always",
     "keywords": ["hotstar", "Method", "trick", "c2p", "hoststar c2p"],
-    "image": "assets/methods-pic/hotstar.png"
+    "image": "assets/methods-pic/hotstar.png",
+    "requirements": "✅ Hotstar region account.\n✅ Basic understanding of mail to phone conversion."
   }
 ]
