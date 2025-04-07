@@ -124,6 +124,7 @@ body.dark .navbar {
   height: 2px;
   background-color: var(--color-primary);
 }
+
 /* responsive navbar */
 @media (max-width: 768px) {
   .navbar {
@@ -553,94 +554,19 @@ body.dark #scrollToTopBtn {
   background: var(--color-primary);
   color: white;
 }
-/* Make sure the icon inside the button is sized nicely */
 #scrollToTopBtn img {
   width: 32px;
   height: auto;
   display: block;
 }
 
-/* ================= CONTACT & FOOTER ================= */
-#contact {
-  background: #ffffff;
-  margin-bottom: 3rem;
-  padding: 2.5rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
-  text-align: center;
-  position: relative;
-  animation: fadeSlideIn 0.8s ease forwards;
-  opacity: 0;
-  transform: translateY(20px);
-}
-#contact::before {
-  /* You can remove or replace this if you don't need the decorative top icon */
-  content: url("data:image/svg+xml,<svg ...>");
-  position: absolute;
-  top: -20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 40px;
-  height: 40px;
-}
-#contact h2 {
-  font-size: 1.75rem;
-  margin-bottom: 1rem;
-  color: var(--color-primary);
-}
-#contact p {
-  font-size: 1rem;
-  margin-bottom: 1rem;
-  color: var(--color-accent);
-  max-width: 650px;
-  margin-left: auto;
-  margin-right: auto;
-}
-#contact ul {
-  list-style: none;
-  margin: 1rem 0 0 0;
-  padding: 0;
-}
-#contact li {
-  font-size: 1rem;
-  margin-bottom: 0.5rem;
-  /* Use inline-flex to align icon and text better */
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  color: var(--text-light);
-}
-/* Style for icons in the contact list */
-#contact ul li img {
-  width: max-content;
-  height: auto;
-  vertical-align: middle;
-}
-#contact a {
-  color: var(--color-primary);
-  text-decoration: none;
-  transition: color 0.2s ease, transform 0.2s ease;
-  font-weight: 600;
-}
-#contact a:hover {
-  text-decoration: underline;
-  transform: scale(1.05);
-}
-body.dark #contact {
-  background: #1f1f1f;
-  color: var(--text-dark);
-}
-body.dark #contact p,
-body.dark #contact li {
-  color: var(--text-dark);
-}
-
-/* ================ FOOTER SECTION ================ */
-footer.container {
+/* ================ NEW FOOTER LAYOUT ================ */
+/* Main footer container */
+footer.footer.container {
+  background: #fff;
   margin-top: 4rem;
-  text-align: center;
-  padding: 2rem 1rem;
-  background: #fefefe;
+  padding: 2rem;
+  text-align: left; /* ensures columns are left-aligned */
   border-top: 1px solid #eee;
   border-radius: 8px 8px 0 0;
   box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.02);
@@ -648,20 +574,97 @@ footer.container {
   opacity: 0;
   transform: translateY(20px);
 }
-footer.container p {
-  font-size: 0.95rem;
-  color: #555;
-  margin: 0.4rem 0;
+
+/* Columns in the top part of the footer */
+.footer-top {
+  display: flex;
+  flex-wrap: wrap; /* ensures wrapping on smaller screens */
+  gap: 2rem;
+  margin-bottom: 2rem;
 }
-footer.container p:first-of-type {
+.footer-col {
+  flex: 1 1 200px; /* each column grows, min 200px wide */
+}
+
+/* Heading + icon in each column */
+.footer-col h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--color-primary);
+}
+.footer-icon {
+  width: 40px;
+  height: auto;
+}
+.footer-subicon {
+  width: 30px;
+  height: auto;
+  vertical-align: middle;
+}
+
+/* Basic text styling in the columns */
+.footer-col p {
+  margin-bottom: 1rem;
+  color: var(--color-accent);
+  max-width: 650px;
+}
+
+/* Footer lists */
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.footer-col li {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-light);
+}
+.footer-col li a {
+  color: var(--color-primary);
+  text-decoration: none;
   font-weight: 600;
+  transition: color 0.2s ease, transform 0.2s ease;
 }
-body.dark footer.container {
+.footer-col li a:hover {
+  text-decoration: underline;
+  transform: scale(1.05);
+}
+
+/* Divider between top columns and bottom disclaimers */
+.footer-divider {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 0 auto 2rem;
+  max-width: 100%;
+}
+
+/* Footer bottom disclaimers / text */
+.footer-bottom {
+  text-align: center;
+}
+.footer-bottom p {
+  margin: 0.4rem 0;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+/* Dark mode for the new footer */
+body.dark footer.footer.container {
   background: #1f1f1f;
   border-top: 1px solid #333;
   box-shadow: none;
+  color: var(--text-dark);
 }
-body.dark footer.container p {
+body.dark .footer-col li {
+  color: var(--text-dark);
+}
+body.dark .footer-bottom p {
   color: var(--text-dark);
 }
 
@@ -698,6 +701,14 @@ body.dark footer.container p {
   .title {
     font-size: 1.5rem;
     font-weight: 600;
+  }
+
+  /* Footer columns can stack on smaller devices */
+  .footer-top {
+    flex-direction: column;
+  }
+  .footer-col {
+    margin-bottom: 2rem;
   }
 }
 @media (max-width: 480px) {
@@ -837,52 +848,86 @@ body.dark footer.container p {
     font-size: 1.2rem;
     padding: 0.5rem 0.7rem;
   }
-  #contact {
-    padding: 1.2rem;
+  .footer-top {
+    flex-direction: column;
+  }
+  .footer-col {
     margin-bottom: 2rem;
-  }
-  #contact h2 {
-    font-size: 1.25rem;
-  }
-  #contact p,
-  #contact li {
-    font-size: 0.95rem;
-  }
-  #contact li {
-    margin-bottom: 0.4rem;
   }
 }
 
-/* ================ POPUP BOX ================ */
+/* ================ REQUIREMENTS BUTTON ================ */
+.requirements-btn {
+  background: #ff9800; /* bright orange */
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background var(--transition);
+  margin-top: 1rem; /* space above button */
+}
+.requirements-btn:hover {
+  background: #fb8c00; /* slightly darker on hover */
+}
+
+/* ================ POPUP BOX (REQUIREMENTS) ================ */
 .popup-box {
   position: fixed;
-  top: 20%;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
-  background: white;
+  transform: translate(-50%, -50%);
+  background: #fff;
   color: #222;
-  padding: 1rem 1.5rem;
-  border-radius: 8px;
+  padding: 2rem;
+  border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   z-index: 9999;
-  max-width: 300px;
-  text-align: center;
+  max-width: 400px;   /* a bit wider than default for readability */
+  width: 90vw;        /* ensure it’s responsive */
+  min-height: 200px;  /* optional min height */
+  text-align: left;   /* left-align text for reading */
 }
 .popup-box.hidden {
   display: none;
 }
-.popup-box button {
-  margin-top: 1rem;
-  padding: 0.4rem 0.8rem;
-  background: #0d6efd;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+.popup-content {
+  width: 100%;
+  /* additional spacing inside if desired */
 }
+.popup-content h3 {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  font-size: 1.3rem;
+  color: var(--color-primary);
+}
+.popup-content p,
+#popupText {
+  margin: 0.5rem 0;
+  line-height: 1.5;
+  white-space: pre-wrap; /* if you’re using \n for line breaks */
+}
+.close-popup-btn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.6rem 1.2rem;
+  background: #ff9800;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.close-popup-btn:hover {
+  background: #fb8c00;
+}
+
+/* Dark mode for popup */
 body.dark .popup-box {
   background: #2a2a2a;
-  color: white;
+  color: #e0e0e0;
 }
 
 /* ================ POPUP BANNER STYLES ================ */
@@ -920,38 +965,4 @@ body.dark .popup-box {
   font-size: 1.1rem;
   cursor: pointer;
   margin-left: auto;
-}
-/* ================ REQUIREMENTS BUTTON ================ */
-.requirements-btn {
-  background: #ff9800;
-  color: #fff;
-  border: none;
-  padding: 0.5rem 1.2rem;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: background var(--transition);
-  margin-top: 1rem; /* or remove if you want it aligned with Contact */
-}
-.requirements-btn:hover {
-  background: #fb8c00;
-}
-/* In your CSS for the popup text */
-.popup-content p,
-#popupText {
-  text-align: left;  /* Make the text left-aligned */
-  margin: 0.5rem 0;  /* Some optional spacing if needed */
-  white-space: pre-wrap;  /* If you're using textContent with \n */
-}
-.popup-box {
-  /* Other existing styles... */
-  width: 400px;       /* Fixed width in px */
-  max-width: 90vw;    /* Ensures popup is never larger than 90% of viewport width */
-  min-height: 200px;  /* Optional minimum height */
-}
-/* or you can specifically target .popup-content if you prefer */
-.popup-content {
-  width: 100%;        /* or 80%, etc. to suit your design */
-  /* add padding or margin if needed for spacing */
-  padding: 1rem;
 }

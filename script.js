@@ -9,6 +9,7 @@ const DATA_FILES = [
   "data/methods.json",
 ];
 
+// DOM references
 const container = document.getElementById("main-tool-list");
 const filtersContainer = document.getElementById("filters");
 const searchInput = document.getElementById("searchInput");
@@ -48,18 +49,31 @@ if (banner && closeBanner && !localStorage.getItem("hideBanner")) {
 async function loadData() {
   container.innerHTML = "<p>Loading...</p>";
 
+  /* 
+    Optional improvement: More verbose error handling when fetching each file.
+    This way you can see in the console if a particular JSON fails to load 
+  */
   const data = await Promise.all(
     DATA_FILES.map(url =>
       fetch(url)
-        .then(res => (res.ok ? res.json() : []))
-        .catch(() => [])
+        .then(res => {
+          if (!res.ok) {
+            throw new Error(`Fetch failed: ${res.status} ${res.statusText}`);
+          }
+          return res.json();
+        })
+        .catch(err => {
+          console.error(`Failed to load ${url}:`, err);
+          return []; // fallback to empty array
+        })
     )
   );
 
+  // Merge all arrays
   const merged = data.flatMap(arr => (Array.isArray(arr) ? arr : []));
   const seen = new Set();
 
-  // Filter out duplicates and invalid items
+  // Filter out duplicates and invalid items (must have both 'name' and 'type')
   allTools = merged.filter(tool => {
     const nameKey = (tool.name || "").toLowerCase();
     const valid = tool.name && tool.type;
@@ -85,9 +99,7 @@ function applyURLState() {
   const savedSort = sessionStorage.getItem("sort") || "name";
   const savedFilter = sessionStorage.getItem("filter") || "all";
 
-  searchInput.value = savedSearch;
-  sortSelect.value = savedSort;
-
+  // Real-time filtering
   let filtered = allTools.filter(
     t => typeof t.name === "string" && typeof t.type === "string"
   );
@@ -102,7 +114,7 @@ function applyURLState() {
     );
   }
 
-  // FILTER
+  // FILTER BY TYPE
   if (savedFilter !== "all") {
     filtered = filtered.filter(t => t.type?.toLowerCase() === savedFilter);
   }
@@ -113,9 +125,13 @@ function applyURLState() {
       a.name?.toLowerCase().localeCompare(b.name?.toLowerCase())
     );
   } else if (savedSort === "release_date") {
-    filtered.sort((a, b) => new Date(b.release_date) - new Date(a.release_date));
+    filtered.sort(
+      (a, b) => new Date(b.release_date) - new Date(a.release_date)
+    );
   } else if (savedSort === "update_date") {
-    filtered.sort((a, b) => new Date(b.update_date) - new Date(a.update_date));
+    filtered.sort(
+      (a, b) => new Date(b.update_date) - new Date(a.update_date)
+    );
   } else if (savedSort === "discount") {
     filtered.sort((a, b) => (b.discount || 0) - (a.discount || 0));
   }
@@ -180,7 +196,7 @@ function showToolDetail(tool, isInitial = false) {
 
   container.className = "detail-wrapper";
 
-  // Stock status using getStockStatus()
+  // Stock status
   const stockStatus = getStockStatus(tool.stock);
 
   container.innerHTML = `
@@ -200,13 +216,11 @@ function showToolDetail(tool, isInitial = false) {
             onerror="this.src='assets/placeholder.jpg'"
             class="tool-main-img"
           />
-
           <div class="tool-gallery">
             ${(tool.images || [])
               .map(img => `<img src="${img}" alt="gallery" />`)
               .join("")}
           </div>
-
           ${
             tool.video
               ? `<iframe src="${tool.video}" class="tool-video" allowfullscreen></iframe>`
@@ -225,7 +239,6 @@ function showToolDetail(tool, isInitial = false) {
               }
             </p>
             <br>
-
             ${
               tool.pricing
                 ? `<p><strong>Pricing:</strong></p>
@@ -242,19 +255,16 @@ function showToolDetail(tool, isInitial = false) {
                    </p><br>`
                 : ""
             }
-
             ${
               tool.discount
                 ? `<p><strong>Discount:</strong> ${tool.discount}%</p><br>`
                 : ""
             }
-
             ${
               tool.offer_expiry
                 ? `<p>⏳ Offer ends in ${daysLeft(tool.offer_expiry)} days</p><br>`
                 : ""
             }
-
             <!-- Stock display -->
             <p><strong>Stock:</strong><br>${stockStatus}</p><br>
 
@@ -278,7 +288,6 @@ function showToolDetail(tool, isInitial = false) {
         </div>
       </div>
     </div>
-
     ${renderRecommendations(tool)}
   `;
 
@@ -300,21 +309,16 @@ function getStockStatus(value) {
     if (value === 0) {
       return "Not in stock";
     }
-    // e.g. "10 in stock"
     return value + " in stock";
   }
-
   // string
   if (typeof value === "string") {
     const lower = value.toLowerCase();
     if (lower === "unlimited") return "Unlimited";
     if (lower === "very limited") return "Very limited";
-    // fallback for any other string
-    return value;
+    return value; // fallback for any other string
   }
-
-  // anything else (null, undefined, etc.)
-  return "Need to contact owner";
+  return "Need to contact owner"; // fallback
 }
 
 // === POPUP FOR REQUIREMENTS BTN ===
@@ -324,7 +328,6 @@ function showRequirementsPopup(productName) {
     ? tool.requirements
     : `Requirements for ${productName}...\n\nPlease contact the owner.`;
 
-  // Convert `\n` to `<br>`
   message = message.replace(/\n/g, "<br>");
 
   const popupBox = document.getElementById("popupMessage");
@@ -334,16 +337,21 @@ function showRequirementsPopup(productName) {
   popupText.innerHTML = message;
 
   popupBox.classList.remove("hidden");
+
+  // auto-hide after 4 seconds
   setTimeout(() => popupBox.classList.add("hidden"), 4000);
 }
 
 // === CLOSE POPUP ===
 function closePopup() {
-  const popupBox = document.getElementById("popupMessage");
-  popupBox.classList.add("hidden");
+  document.getElementById("popupMessage").classList.add("hidden");
 }
 
 // === CLEAR HASH ===
+// Optional improvement: go back in history instead of just clearing hash
+function clearHash() {
+  history.back();
+}
 function clearHash() {
   location.hash = "";
   window.scrollTo({ top: 0, behavior: "smooth" });
@@ -354,7 +362,9 @@ function clearHash() {
 function renderRecommendations(tool) {
   const recs = allTools
     .filter(
-      t => t.name !== tool.name && t.type?.toLowerCase() === tool.type?.toLowerCase()
+      t =>
+        t.name !== tool.name &&
+        t.type?.toLowerCase() === tool.type?.toLowerCase()
     )
     .slice(0, 6);
 
@@ -387,7 +397,9 @@ function renderRecommendations(tool) {
 // === UTILS ===
 function getShortDescription(tool) {
   if (tool.description) return tool.description;
-  if (tool.long_description) return tool.long_description.split("\n")[0] + "...";
+  if (tool.long_description) {
+    return tool.long_description.split("\n")[0] + "...";
+  }
   return "No description available.";
 }
 function getBadges(tool) {
@@ -397,19 +409,20 @@ function getBadges(tool) {
   const offerEnd = tool.offer_expiry ? new Date(tool.offer_expiry) : null;
 
   const badges = [];
-  // NEW if released in last 7 days
+
+  // "NEW" if released in last 7 days
   if ((now - release) / (1000 * 60 * 60 * 24) <= 7) {
     badges.push('<span class="badge new-badge">NEW</span>');
   }
-  // UPDATED if updated in last 7 days
+  // "UPDATED" if updated in last 7 days
   if ((now - update) / (1000 * 60 * 60 * 24) <= 7) {
     badges.push('<span class="badge updated-badge">UPDATED</span>');
   }
-  // DISCOUNT if discount != null and offer not expired
+  // "DISCOUNT" if discount != null and offer not expired
   if (tool.discount && offerEnd && offerEnd > now) {
     badges.push('<span class="badge discount-badge">DISCOUNT</span>');
   }
-  // OFFER if tool.offer != null and not expired
+  // "OFFER" if tool.offer != null and not expired
   if (tool.offer && offerEnd && offerEnd > now) {
     badges.push('<span class="badge offer-badge">OFFER</span>');
   }
@@ -421,8 +434,12 @@ function getRecentTags(tool) {
   const update = new Date(tool.update_date);
 
   const tags = [];
-  if ((now - release) / (1000 * 60 * 60 * 24) <= 7) tags.push(`<span class="tag">new</span>`);
-  if ((now - update) / (1000 * 60 * 60 * 24) <= 7) tags.push(`<span class="tag">updated</span>`);
+  if ((now - release) / (1000 * 60 * 60 * 24) <= 7) {
+    tags.push(`<span class="tag">new</span>`);
+  }
+  if ((now - update) / (1000 * 60 * 60 * 24) <= 7) {
+    tags.push(`<span class="tag">updated</span>`);
+  }
   return tags.join(" ");
 }
 function daysLeft(date) {
@@ -430,6 +447,7 @@ function daysLeft(date) {
   return diff > 0 ? Math.ceil(diff / (1000 * 60 * 60 * 24)) : 0;
 }
 function getContactLink(type) {
+  // map contact type to actual URL
   const links = {
     telegram: "https://t.me/fmpChatBot",
     discord: "https://discord.gg/kfJfP3aNwC",
@@ -440,7 +458,14 @@ function getContactLink(type) {
 
 // === FILTER BUTTONS ===
 function generateFilterButtons() {
-  const types = [...new Set(allTools.map(t => t.type?.toLowerCase()))];
+  // Make sure to filter out falsy or undefined types
+  const types = [
+    ...new Set(
+      allTools
+        .map(t => (t.type || "").toLowerCase())
+        .filter(Boolean)
+    ),
+  ];
   filtersContainer.innerHTML = "";
 
   // 'All' Button
@@ -449,10 +474,8 @@ function generateFilterButtons() {
 
   // Type-based Buttons
   types.forEach(type => {
-    if (type) {
-      const btn = createFilterBtn(type, () => filterByType(type));
-      filtersContainer.appendChild(btn);
-    }
+    const btn = createFilterBtn(type, () => filterByType(type));
+    filtersContainer.appendChild(btn);
   });
 }
 function createFilterBtn(label, fn) {
@@ -494,6 +517,14 @@ if (navbarToggle && navbarMenu) {
   });
 }
 
+// ===  Real-time search as the user types ===
+searchInput.addEventListener("input", () => {
+  sessionStorage.setItem("search", searchInput.value);
+  applyURLState();
+});
+
 // === INIT ===
 loadData();
+
+// Listen for changes in the URL hash (tool detail)
 window.addEventListener("hashchange", applyURLState);

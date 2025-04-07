@@ -77,74 +77,89 @@
     <button id="install-later">Later</button>
   </div>
 
-  <!-- MODAL POPUP -->
+  <!-- POPUP BOX FOR REQUIREMENTS -->
   <div class="popup-box hidden" id="popupMessage">
+    <!-- optional overlay if you want a dim background (uncomment in CSS) -->
+    <!-- <div class="popup-overlay" id="popupOverlay"></div> -->
+    
     <div class="popup-content">
+      <h3 id="popupTitle">Requirements</h3>
       <p id="popupText"></p>
-      <button onclick="closePopup()">Close</button>
+      <button class="close-popup-btn" onclick="closePopup()">Close</button>
     </div>
   </div>
 
   <!-- SCROLL TO TOP BUTTON -->
   <button id="scrollToTopBtn" title="Go to top">
-    <!-- Using the path you mentioned for the "up" icon -->
-    <img src="assets/icons/up.png" alt="🔝" width="24"/>
+    <img src="assets/icons/turn-up.gif" alt="🔝"/>
   </button>
 
-  <!-- FOOTER SECTION (Contact + Footer) -->
-  <section id="contact" class="combined-contact-footer container">
-    <div class="contact-block">
-      <h2>
-        <!-- Contact icon -->
-        <img
-          src="assets/icons/contact.gif"
-          alt="Contact Icon"
-          style="width:80px; vertical-align:middle; margin-right:8px;"
-        />
-        Contact
-      </h2>
-      <p>For purchases, support, or custom orders, contact me via:</p>
-      <ul>
-        <li>
-          <!-- Telegram icon -->
+  <!-- FOOTER SECTION -->
+  <footer class="footer container" id="contact">
+    <div class="footer-top">
+      <!-- CONTACT COLUMN -->
+      <div class="footer-col">
+        <h2>
           <img
-            src="assets/icons/bot.gif"
-            alt="Telegram Icon"
-            style="width:30px; vertical-align:middle; margin-right:4px;"
+            src="assets/icons/contact.gif"
+            alt="Contact Icon"
+            class="footer-icon"
           />
-          Telegram Bot:
-          <a href="https://t.me/fmpChatBot" target="_blank">@fmpChatBot</a>
-        </li>
-        <li>
-          <!-- Personal icon -->
-          <img
-            src="assets/icons/add.gif"
-            alt="Personal Icon"
-            style="width:30px; vertical-align:middle; margin-right:4px;"
-          />
-          Personal Telegram:
-          <a href="https://t.me/flamemodparadise" target="_blank">@flamemodparadise</a>
-        </li>
-        <li>
-          <!-- Discord icon -->
-          <img
-            src="assets/icons/discord.png"
-            alt="Discord Icon"
-            style="width:30px; vertical-align:middle; margin-right:4px;"
-          />
-          Discord:
-          <a href="#" target="_blank">YourDiscordHandle</a>
-        </li>
-      </ul>
+          Contact
+        </h2>
+        <p>For purchases, support, or custom orders, contact me via:</p>
+        <ul>
+          <li>
+            <img
+              src="assets/icons/bot.gif"
+              alt="Telegram Bot Icon"
+              class="footer-subicon"
+            />
+            Telegram Bot:
+            <a href="https://t.me/fmpChatBot" target="_blank">@fmpChatBot</a>
+          </li>
+          <li>
+            <img
+              src="assets/icons/add.gif"
+              alt="Personal Telegram Icon"
+              class="footer-subicon"
+            />
+            Personal Telegram:
+            <a href="https://t.me/flamemodparadise" target="_blank">@flamemodparadise</a>
+          </li>
+          <li>
+            <img
+              src="assets/icons/discord.png"
+              alt="Discord Icon"
+              class="footer-subicon"
+            />
+            Discord:
+            <a href="#" target="_blank">YourDiscordHandle</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- OPTIONAL QUICK LINKS COLUMN -->
+      <div class="footer-col">
+        <h2>Quick Links</h2>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="reviews.html">Reviews</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </div>
     </div>
-    <hr/>
-    <div class="footer-block">
+
+    <hr class="footer-divider" />
+
+    <div class="footer-bottom">
       <p>© 2025 My Tool Store. All rights reserved.</p>
       <p>Use these tools responsibly. No refunds for digital items after bought.</p>
     </div>
-  </section>
+  </footer>
 
-  <!-- JS Scripts -->
+  <!-- SCRIPTS -->
   <script src="script.js"></script>
   <script>
     // Register service worker if available
@@ -157,7 +172,7 @@
       });
     }
 
-    // Simple image gallery logic if a tool detail page is opened
+    // Example: Simple image gallery logic if a tool detail page is opened
     document.addEventListener("DOMContentLoaded", () => {
       const mainImg = document.querySelector(".tool-main-img");
       const galleryImgs = document.querySelectorAll(".tool-gallery img");
