@@ -1,103 +1,159 @@
 <!-- COPY AND REPLACE YOUR ENTIRE index.html FILE WITH THIS -->
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Discover and buy premium bots, tools, and automation scripts." />
-  <meta name="theme-color" content="#0d6efd" />
-  <link rel="manifest" href="manifest.json" />
-  <link rel="icon" href="assets/icons/icon-192.png" />
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <title>🛠️ My Tool Store</title>
-</head>
-
-<body>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta content="Discover and buy premium bots, tools, and automation scripts." name="description"/>
+  <meta content="#0d6efd" name="theme-color"/>
+  <link href="manifest.json" rel="manifest"/>
+  <link href="assets/icons/icon-192.png" rel="icon"/>
+  <link href="style.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+  <title>
+   🛠️ My Tool Store
+  </title>
+ </head>
+ <body>
   <!-- NAVBAR -->
   <nav class="navbar">
-    <div class="navbar-left">
-      <span class="logo">🛠️ Tool Store</span>
-    </div>
-    <button class="navbar-toggle" id="navbarToggle" aria-label="Toggle menu">☰</button>
-    <div class="navbar-right" id="navbarMenu">
-      <a href="#" onclick="filterByType('all')">Home</a>
-      <a href="#" onclick="filterByType('tool')">Tools</a>
-      <a href="#" onclick="filterByType('bots')">Bots</a>
-      <a href="#" onclick="filterByType('checker')">Checkers</a>
-      <a href="#" onclick="filterByType('cookie')">Cookies</a>
-      <a href="#" onclick="filterByType('method')">Methods</a>
-      <a href="#contact">Contact</a>
-      <button id="darkToggle" title="Toggle Dark Mode">💡</button>
-    </div>
+   <div class="navbar-left">
+    <span class="logo">
+     🛠️ Tool Store
+    </span>
+   </div>
+   <button aria-label="Toggle menu" class="navbar-toggle" id="navbarToggle">
+    ☰
+   </button>
+   <div class="navbar-right" id="navbarMenu">
+    <a href="#" onclick="filterByType('all')">
+     Home
+    </a>
+    <a href="#" onclick="filterByType('tool')">
+     Tools
+    </a>
+    <a href="#" onclick="filterByType('bots')">
+     Bots
+    </a>
+    <a href="#" onclick="filterByType('checker')">
+     Checkers
+    </a>
+    <a href="#" onclick="filterByType('cookie')">
+     Cookies
+    </a>
+    <a href="#" onclick="filterByType('method')">
+     Methods
+    </a>
+    <a href="#contact">
+     Contact
+    </a>
+    <button id="darkToggle" title="Toggle Dark Mode">
+     💡
+    </button>
+   </div>
   </nav>
-
   <!-- OFFER BANNER -->
-  <div id="announcement-banner" class="banner hidden">
-    <p>🎁 Special Offer: 25% OFF on selected tools this week! <a href="#">Learn more</a></p>
-    <button id="close-banner">✖</button>
+  <div class="banner hidden" id="announcement-banner">
+   <p>
+    🎁 Special Offer: 25% OFF on selected tools this week!
+    <a href="#">
+     Learn more
+    </a>
+   </p>
+   <button id="close-banner">
+    ✖
+   </button>
   </div>
-
   <!-- HEADER -->
   <header class="container">
-    <h1 class="title">🚀 Browse & Buy Custom Tools Instantly</h1>
-    <p class="notice">
-      Static site — no direct payment system. Contact me on
-      <a href="https://t.me/fmpChatBot" target="_blank">Telegram</a> for access.
-    </p>
-
-    <div class="controls">
-      <input type="text" id="searchInput" placeholder="Search by name, keyword..." />
-      <select id="sortSelect">
-        <option value="name">Name A → Z</option>
-        <option value="release_date">Newest</option>
-        <option value="update_date">Updated</option>
-        <option value="discount">Top Discount</option>
-      </select>
-    </div>
-
-    <div id="filters" class="filter-tags"></div>
+   <h1 class="title">
+    🚀 Browse &amp; Buy Custom Tools Instantly
+   </h1>
+   <p class="notice">
+    Static site — no direct payment system. Contact me on
+    <a href="https://t.me/fmpChatBot" target="_blank">
+     Telegram
+    </a>
+    for access.
+   </p>
+   <div class="controls">
+    <input id="searchInput" placeholder="Search by name, keyword..." type="text"/>
+    <select id="sortSelect">
+     <option value="name">
+      Name A → Z
+     </option>
+     <option value="release_date">
+      Newest
+     </option>
+     <option value="update_date">
+      Updated
+     </option>
+     <option value="discount">
+      Top Discount
+     </option>
+    </select>
+   </div>
+   <div class="filter-tags" id="filters">
+   </div>
   </header>
-
   <!-- MAIN TOOL LIST OR DETAIL -->
   <main class="container">
-    <section id="main-tool-list" class="main-grid"></section>
+   <section class="main-grid" id="main-tool-list">
+   </section>
   </main>
-
   <!-- CONTACT SECTION -->
-  <section id="contact" class="container" style="margin-top: 3rem;">
-    <h2>📬 Contact</h2>
-    <p>For purchases, support, or custom orders, contact me via:</p>
-    <ul>
-      <li>Telegram Bot: <a href="https://t.me/fmpChatBot" target="_blank">@fmpChatBot</a></li>
-      <li>Personal Telegram: <a href="https://t.me/flamemodparadise" target="_blank">@flamemodparadise</a></li>
-    </ul>
+  <section class="container" id="contact" style="margin-top: 3rem;">
+   <h2>
+    📬 Contact
+   </h2>
+   <p>
+    For purchases, support, or custom orders, contact me via:
+   </p>
+   <ul>
+    <li>
+     Telegram Bot:
+     <a href="https://t.me/fmpChatBot" target="_blank">
+      @fmpChatBot
+     </a>
+    </li>
+    <li>
+     Personal Telegram:
+     <a href="https://t.me/flamemodparadise" target="_blank">
+      @flamemodparadise
+     </a>
+    </li>
+   </ul>
   </section>
-
   <!-- INSTALL PROMPT -->
-  <div id="install-prompt" class="install-box hidden">
-    <p>📲 Install Tool Store as an app?</p>
-    <button id="install-now">Install Now</button>
-    <button id="install-later">Later</button>
+  <div class="install-box hidden" id="install-prompt">
+   <p>
+    📲 Install Tool Store as an app?
+   </p>
+   <button id="install-now">
+    Install Now
+   </button>
+   <button id="install-later">
+    Later
+   </button>
   </div>
-
   <!-- MODAL POPUP -->
-  <div id="popupMessage" class="popup-box hidden">
-    <div class="popup-content">
-      <p id="popupText"></p>
-      <button onclick="closePopup()">Close</button>
-    </div>
+  <div class="popup-box hidden" id="popupMessage">
+   <div class="popup-content">
+    <p id="popupText">
+    </p>
+    <button onclick="closePopup()">
+     Close
+    </button>
+   </div>
   </div>
-
   <!-- Scroll To Top Button -->
   <button id="scrollToTopBtn" title="Go to top">
-    <img src="assets/icons/up-arrow.svg" alt="⬆️" width="24" />
+   <img alt="⬆️" src="assets/icons/up-arrow.svg" width="24"/>
   </button>
-
-  <script src="script.js"></script>
+  <script src="script.js">
+  </script>
   <script>
-    if ("serviceWorker" in navigator) {
+   if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => {
         navigator.serviceWorker
           .register("/service-worker.js")
@@ -107,12 +163,15 @@
     }
   </script>
   <noscript>
-    <p>Enable Java script for better site readability. <br>Thank You.
-      <hr>
-    </p>
+   <p>
+    Enable Java script for better site readability.
+    <br/>
+    Thank You.
+    <hr/>
+   </p>
   </noscript>
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
+   document.addEventListener("DOMContentLoaded", () => {
       const mainImg = document.querySelector(".tool-main-img");
       const galleryImgs = document.querySelectorAll(".tool-gallery img");
 
@@ -125,7 +184,5 @@
       });
     });
   </script>
-
-</body>
-
+ </body>
 </html>

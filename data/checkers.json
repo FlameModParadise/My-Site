@@ -6,14 +6,25 @@
     "long_description": "✅ Full slot details captured\n🌐 VPN recommended for IP restrictions\n⚙️ Works with all cookie types\n⏱️ Fast and reliable output",
     "image": "assets/checkers-pic/netflix.png",
     "video": "",
-    "images": ["assets/checkers-pic/netflix.png", "assets/checkers-pic/checking.png" ],
+    "images": [
+      "assets/checkers-pic/netflix.png",
+      "assets/checkers-pic/checking.png"
+    ],
     "discount": null,
     "offer": null,
     "offer_expiry": null,
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
-    "tags": ["netflix", "checker", "cookie"],
-    "keywords": ["netflix", "cookie", "checker"],
+    "tags": [
+      "netflix",
+      "checker",
+      "cookie"
+    ],
+    "keywords": [
+      "netflix",
+      "cookie",
+      "checker"
+    ],
     "contact": "telegram",
     "pricing": {
       "1 Month": "$8 or 20 TP Cookies",
@@ -29,7 +40,7 @@
     "name": "Netflix Cookie Privatizer",
     "description": "Privatizes cookies safely and reliably.",
     "long_description": "🔐 Privatizes any Netflix cookies\n🚫 No negotiation or modification\n🌍 VPN support required for smooth experience",
-    "image": "",
+    "image": "assets/checkers-pic/netflix.png",
     "video": "",
     "images": [],
     "discount": null,
@@ -37,8 +48,16 @@
     "offer_expiry": null,
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
-    "tags": ["netflix", "privatizer", "cookie"],
-    "keywords": ["netflix", "privatizer", "checker"],
+    "tags": [
+      "netflix",
+      "privatizer",
+      "cookie"
+    ],
+    "keywords": [
+      "netflix",
+      "privatizer",
+      "checker"
+    ],
     "contact": "telegram",
     "pricing": {
       "1 Month": "$10 or 25 Cookies",
@@ -52,7 +71,7 @@
     "name": "GPT Cookie Checker",
     "description": "Validates GPT+ cookies and captures access status.",
     "long_description": "🤖 Supports GPT+ cookies\n🟢 Detects valid, invalid, and expired cookies\n⚡ Optimized and proxyless\n📈 Useful for bulk validation",
-    "image": "",
+    "image": "assets/checkers-pic/chatgpt.jpg",
     "video": "",
     "images": [],
     "discount": null,
@@ -60,8 +79,17 @@
     "offer_expiry": null,
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
-    "tags": ["gpt", "checker", "cookie"],
-    "keywords": ["gpt", "chatgpt", "cookie", "checker"],
+    "tags": [
+      "gpt",
+      "checker",
+      "cookie"
+    ],
+    "keywords": [
+      "gpt",
+      "chatgpt",
+      "cookie",
+      "checker"
+    ],
     "contact": "telegram",
     "pricing": {
       "1 Day": "$1",
@@ -77,7 +105,7 @@
     "name": "Spotify Cookie Checker",
     "description": "Detects free, premium, and mixed cookies.",
     "long_description": "🎵 Checks Spotify cookies for access level\n🔍 Finds free vs premium accounts\n📦 Captures region and subscription info\n🛡️ Proxyless and efficient",
-    "image": "",
+    "image": "assets/checkers-pic/spotify.jpg",
     "video": "",
     "images": [],
     "discount": null,
@@ -85,8 +113,16 @@
     "offer_expiry": null,
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
-    "tags": ["spotify", "checker", "cookie"],
-    "keywords": ["spotify", "cookie", "checker"],
+    "tags": [
+      "spotify",
+      "checker",
+      "cookie"
+    ],
+    "keywords": [
+      "spotify",
+      "cookie",
+      "checker"
+    ],
     "contact": "telegram",
     "pricing": {
       "1 Day": "$1",
@@ -101,7 +137,7 @@
     "name": "Hotstar Cookie Checker",
     "description": "Validates Hotstar cookies instantly.",
     "long_description": "📺 Validates active Hotstar cookies\n📍 Shows region and package info\n⚙️ Clean UI, proxyless, fast response",
-    "image": "",
+    "image": "assets/checkers-pic/hotstar.png",
     "video": "",
     "images": [],
     "discount": null,
@@ -109,8 +145,16 @@
     "offer_expiry": null,
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
-    "tags": ["hotstar", "checker", "cookie"],
-    "keywords": ["hotstar", "cookie", "checker"],
+    "tags": [
+      "hotstar",
+      "checker",
+      "cookie"
+    ],
+    "keywords": [
+      "hotstar",
+      "cookie",
+      "checker"
+    ],
     "contact": "telegram",
     "pricing": {
       "1 Day": "$1",
@@ -125,7 +169,7 @@
     "name": "Prime Video Cookie Checker",
     "description": "Checks validity of Amazon Prime cookies.",
     "long_description": "🎥 Works globally to detect Prime Video cookies\n✅ Highlights valid, invalid, region-based data\n💡 Minimal setup required",
-    "image": "",
+    "image": "assets/checkers-pic/primevideo.jpg",
     "video": "",
     "images": [],
     "discount": null,
@@ -133,8 +177,18 @@
     "offer_expiry": null,
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
-    "tags": ["prime", "video", "checker", "cookie"],
-    "keywords": ["prime", "amazon", "checker", "cookie"],
+    "tags": [
+      "prime",
+      "video",
+      "checker",
+      "cookie"
+    ],
+    "keywords": [
+      "prime",
+      "amazon",
+      "checker",
+      "cookie"
+    ],
     "contact": "telegram",
     "pricing": {
       "1 Day": "$1",
@@ -149,7 +203,7 @@
     "name": "Crunchyroll Cookie Checker",
     "description": "Detects valid anime streaming cookies.",
     "long_description": "📺 Designed for Crunchyroll logins\n🔍 Auto captcha solver, proxyless\n🧠 Captures session, subscription, region info\n🎯 Organized cookie sorting",
-    "image": "",
+    "image": "assets/checkers-pic/crunchyroll.png",
     "video": "",
     "images": [],
     "discount": null,
@@ -157,8 +211,17 @@
     "offer_expiry": null,
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
-    "tags": ["anime", "crunchyroll", "cookie", "checker"],
-    "keywords": ["crunchyroll", "checker", "cookie"],
+    "tags": [
+      "anime",
+      "crunchyroll",
+      "cookie",
+      "checker"
+    ],
+    "keywords": [
+      "crunchyroll",
+      "checker",
+      "cookie"
+    ],
     "contact": "telegram",
     "pricing": {
       "1 Day": "$1",
@@ -173,7 +236,7 @@
     "name": "Hulu Cookie Checker",
     "description": "Auto-categorizes Hulu cookies with ease.",
     "long_description": "📺 Automatically detects and validates Hulu cookies\n🔄 Sorts based on access level\n🟢 Proxyless and fast",
-    "image": "",
+    "image": "assets/checkers-pic/hulu.jpg",
     "video": "",
     "images": [],
     "discount": null,
@@ -181,8 +244,16 @@
     "offer_expiry": null,
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
-    "tags": ["hulu", "cookie", "checker"],
-    "keywords": ["hulu", "checker", "cookie"],
+    "tags": [
+      "hulu",
+      "cookie",
+      "checker"
+    ],
+    "keywords": [
+      "hulu",
+      "checker",
+      "cookie"
+    ],
     "contact": "telegram",
     "pricing": {
       "1 Day": "$1",
@@ -197,7 +268,7 @@
     "name": "Instagram Cookie Checker",
     "description": "Classifies Insta cookies by type and status.",
     "long_description": "📸 Detects business, creator, personal, or expired\n🧠 Identifies duplicates\n⚙️ Proxyless with clean result display",
-    "image": "",
+    "image": "assets/checkers-pic/instagram.jpg",
     "video": "",
     "images": [],
     "discount": null,
@@ -205,8 +276,16 @@
     "offer_expiry": null,
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
-    "tags": ["instagram", "cookie", "checker"],
-    "keywords": ["instagram", "checker", "cookie"],
+    "tags": [
+      "instagram",
+      "cookie",
+      "checker"
+    ],
+    "keywords": [
+      "instagram",
+      "checker",
+      "cookie"
+    ],
     "contact": "telegram",
     "pricing": {
       "1 Day": "$1",
@@ -221,7 +300,7 @@
     "name": "Blackbox AI Cookie Checker",
     "description": "Detects free & paid Blackbox AI cookies.",
     "long_description": "🤖 Shows valid, expired, and duplicate cookies\n📊 Captures email, subscription ID\n🚀 Proxyless and smooth",
-    "image": "",
+    "image": "assets/checkers-pic/blackboxai.png",
     "video": "",
     "images": [],
     "discount": null,
@@ -229,8 +308,16 @@
     "offer_expiry": null,
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
-    "tags": ["blackbox", "cookie", "checker"],
-    "keywords": ["blackbox", "ai", "checker"],
+    "tags": [
+      "blackbox",
+      "cookie",
+      "checker"
+    ],
+    "keywords": [
+      "blackbox",
+      "ai",
+      "checker"
+    ],
     "contact": "telegram",
     "pricing": {
       "1 Day": "$1",
@@ -245,7 +332,7 @@
     "name": "2Captcha Cookie Checker",
     "description": "Checks API keys, balance, and token validity.",
     "long_description": "🔑 Extracts API Key & Balance\n🧩 Proxyless & stable tool\n📊 Fast checker for token-based access",
-    "image": "",
+    "image": "assets/checkers-pic/2captcha.png",
     "video": "",
     "images": [],
     "discount": null,
@@ -253,8 +340,17 @@
     "offer_expiry": null,
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
-    "tags": ["captcha", "2captcha", "checker"],
-    "keywords": ["2captcha", "checker", "api", "balance"],
+    "tags": [
+      "captcha",
+      "2captcha",
+      "checker"
+    ],
+    "keywords": [
+      "2captcha",
+      "checker",
+      "api",
+      "balance"
+    ],
     "contact": "telegram",
     "pricing": {
       "1 Day": "$1",
@@ -269,7 +365,7 @@
     "name": "Perplexity AI Cookie Checker",
     "description": "Detects free, paid, and duplicate cookies.",
     "long_description": "🤯 Optimized for Perplexity.ai\n🧠 Auto-detects plan type, region, and status\n🌍 Fast & simple interface",
-    "image": "",
+    "image": "assets/checkers-pic/perplexityai.jpg",
     "video": "",
     "images": [],
     "discount": null,
@@ -277,8 +373,18 @@
     "offer_expiry": null,
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
-    "tags": ["perplexity", "ai", "cookie", "checker"],
-    "keywords": ["perplexity", "ai", "cookie", "checker"],
+    "tags": [
+      "perplexity",
+      "ai",
+      "cookie",
+      "checker"
+    ],
+    "keywords": [
+      "perplexity",
+      "ai",
+      "cookie",
+      "checker"
+    ],
     "contact": "telegram",
     "pricing": {
       "1 Day": "$1",
@@ -293,7 +399,7 @@
     "name": "Eneba Cookie Checker",
     "description": "Validates Eneba accounts, points, balance.",
     "long_description": "💰 Displays account balance, loyalty points\n🎯 Great for log sorting & selling\n✅ Proxyless and real-time results",
-    "image": "",
+    "image": "assets/checkers-pic/eneba.png",
     "video": "",
     "images": [],
     "discount": null,
@@ -301,8 +407,17 @@
     "offer_expiry": null,
     "release_date": "2025-03-25",
     "update_date": "2025-04-01",
-    "tags": ["eneba", "cookie", "checker"],
-    "keywords": ["eneba", "bank", "points", "checker"],
+    "tags": [
+      "eneba",
+      "cookie",
+      "checker"
+    ],
+    "keywords": [
+      "eneba",
+      "bank",
+      "points",
+      "checker"
+    ],
     "contact": "telegram",
     "pricing": {
       "1 Day": "$1",

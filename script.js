@@ -4,7 +4,6 @@ const DATA_FILES = [
   "data/bots.json",
   "data/checkers.json",
   "data/steam.json",
-  "data/offers.json",
   "data/others.json",
   "data/cookies.json",
   "data/methods.json",
@@ -50,11 +49,14 @@ async function loadData() {
       fetch(url).then(res => (res.ok ? res.json() : [])).catch(() => [])
     )
   );
-  const flatData = data.flat();
+
+  const flatData = data.flatMap(d => Array.isArray(d) ? d : []);  // Ignore non-arrays
   const seen = new Set();
+
   allTools = flatData.filter(tool => {
     const nameKey = (tool.name || "").toLowerCase();
-    if (seen.has(nameKey)) return false;
+    const isValid = tool.name && tool.type;
+    if (!isValid || seen.has(nameKey)) return false;
     seen.add(nameKey);
     return true;
   });
@@ -79,7 +81,8 @@ function applyURLState() {
   searchInput.value = savedSearch;
   sortSelect.value = savedSort;
 
-  let filtered = [...allTools];
+  // let filtered = [...allTools];
+  let filtered = allTools.filter(t => typeof t.name === "string" && typeof t.type === "string");
   if (savedSearch) {
     const q = savedSearch.toLowerCase();
     filtered = filtered.filter(t =>
@@ -91,7 +94,7 @@ function applyURLState() {
     filtered = filtered.filter(t => t.type?.toLowerCase() === savedFilter);
   }
   if (savedSort === "name")
-    filtered.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
+    filtered.sort((a, b) => a.name?.toLowerCase().localeCompare(b.name?.toLowerCase()));
   if (savedSort === "release_date")
     filtered.sort((a, b) => new Date(b.release_date) - new Date(a.release_date));
   if (savedSort === "update_date")
@@ -106,6 +109,7 @@ function applyURLState() {
     if (b.textContent.toLowerCase() === savedFilter) b.classList.add("active");
   });
 }
+
 
 function renderTools(data) {
   container.className = "main-grid";
@@ -186,7 +190,6 @@ function showToolDetail(tool, isInitial = false) {
     ${renderRecommendations(tool)}
   `;
 
-  // Set up gallery click event to update the main image
   const mainImg = document.querySelector(".tool-main-img");
   document.querySelectorAll(".tool-gallery img").forEach(img => {
     img.addEventListener("click", () => {
@@ -268,53 +271,30 @@ function getPrice(tool) {
   return "$1";
 }
 
-// === POPUP MESSAGE ===
-const messages = {
-  all: "Showing all tools in the store.\nExplore freely!",
-  tools: "General or automation tools.\nSome may include scripts, uploaders, etc.",
-  bots: "Custom bots for Discord, Telegram, etc.\nAuto tasks, scraping, moderation.",
-  checker: "Auto cookie checkers.\nPlatforms like GPT+, Netflix, and more.",
-  steam: "Legit Steam games.\nDelivered to your own account.",
-  cookie: "Cookies like Netflix, GPT, Spotify, etc.\nNo replacement unless told.",
-  method: "Conversion or trick-based methods.\nUse at your own risk."
-};
-function showPopup(type) {
-  const popup = document.createElement("div");
-  popup.className = "popup-banner";
-
-  // Create close button
-  const closeBtn = document.createElement("button");
-  closeBtn.className = "popup-close";
-  closeBtn.innerText = "✖";
-  closeBtn.onclick = () => popup.remove();
-
-  // Add text
-  const msgText = document.createElement("div");
-  msgText.className = "popup-text";
-  msgText.innerText = messages[type] || "Info not available.";
-
-  popup.appendChild(msgText);
-  popup.appendChild(closeBtn);
-
-  document.body.appendChild(popup);
-  setTimeout(() => popup.classList.add("visible"), 10);
-  setTimeout(() => {
-    popup.classList.remove("visible");
-    setTimeout(() => popup.remove(), 400);
-  }, 3000);
-}
-
 // === FILTER BUTTONS ===
 function generateFilterButtons() {
   const types = [...new Set(allTools.map(t => t.type?.toLowerCase()))];
+  console.log('Types:', types);  // Log the types array to inspect its contents
   filtersContainer.innerHTML = "";
+
+  if (types.length === 0) {
+    console.error('No valid types found in tools data.');
+    return;
+  }
+
   const allBtn = createFilterBtn("All", () => filterByType("all"));
   filtersContainer.appendChild(allBtn);
+
   types.forEach(type => {
-    const btn = createFilterBtn(type, () => filterByType(type));
-    filtersContainer.appendChild(btn);
+    if (type) {
+      const btn = createFilterBtn(type, () => filterByType(type));
+      filtersContainer.appendChild(btn);
+    } else {
+      console.warn('Skipping invalid filter type:', type);
+    }
   });
 }
+
 function createFilterBtn(label, fn) {
   const btn = document.createElement("button");
   btn.textContent = label.charAt(0).toUpperCase() + label.slice(1);
@@ -343,12 +323,14 @@ if (navbarToggle && navbarMenu) {
     navbarMenu.classList.toggle("show-menu");
   });
 }
+
 function highlightActiveNav(type) {
   document.querySelectorAll(".navbar-right a").forEach(link => {
     link.classList.remove("active");
     if (link.textContent.toLowerCase() === type) link.classList.add("active");
   });
 }
+
 function filterByType(type) {
   sessionStorage.setItem("filter", type.toLowerCase());
   highlightActiveNav(type.toLowerCase());
