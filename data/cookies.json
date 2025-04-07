@@ -10,7 +10,7 @@
     "price": "- HD: $0.30\n- UHD: $0.33\n- Country-Based: $0.40\n- TP: $0.50\n- EM: $0.70\n",
     "contact": "telegram",
     "keywords": ["netflix", "cookie", "hd", "uhd", "tp", "em"],
-    "image": "assets/icons/netflix.png",
+    "image": "assets/images/netflix.png",
     "stock": "300 in stock (cc-based)"
   },
   {
@@ -24,7 +24,7 @@
     "price": "- Solo: $0.35\n- Bulk: $0.30 (10+)\n- 10d R: $0.50\n- 15d R: $1.00\n",
     "contact": "telegram",
     "keywords": ["gpt+", "cookie", "bulk", "chatgpt"],
-    "image": "assets/icons/chatgpt.png",
+    "image": "assets/images/chatgpt.png",
     "stock": "Always"
   },
   {
@@ -38,11 +38,11 @@
     "price": "- Mixed: $1 per 10\n- Country-Based: $1 per 8",
     "contact": "telegram",
     "keywords": ["spotify", "cookie", "country", "music"],
-    "image": "assets/icons/spotify.png",
+    "image": "assets/images/spotify.png",
     "stock": "unlimited"
   },
   {
-    "name": "Hotstar Cookies",
+    "name": "Jio Hotstar Cookies",
     "type": "Cookie",
     "description": "Mixed region Hotstar cookies in 10-pack bundles.",
     "long_description": "📺 Hotstar Cookies\n- Mixed: General access, works for multiple countries",
@@ -52,7 +52,7 @@
     "price": "- Mixed: $1 per 10",
     "contact": "telegram",
     "keywords": ["hotstar", "cookie", "streaming"],
-    "image": "assets/icons/hotstar.png",
+    "image": "assets/images/hotstar.png",
     "stock": "Always"
   },
   {
@@ -66,7 +66,7 @@
     "price": "- Mixed: $1 per 10\n- Country-Based: $1 per 8",
     "contact": "telegram",
     "keywords": ["prime", "amazon", "cookie"],
-    "image": "assets/icons/primevideo.png",
+    "image": "assets/images/primevideo.png",
     "stock": "unlimited"
   }
 ]

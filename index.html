@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="style.css"/>
   <link
     rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
   />
   <title>🛠️ My Tool Store</title>
  </head>
@@ -87,48 +87,60 @@
 
   <!-- SCROLL TO TOP BUTTON -->
   <button id="scrollToTopBtn" title="Go to top">
-    <img src="assets/icons/up-arrow.svg" alt="⬆️" width="24"/>
+    <!-- Using the path you mentioned for the "up" icon -->
+    <img src="assets/icons/up.png" alt="🔝" width="24"/>
   </button>
 
-  <!-- FOOTER SECTION (Contact + Footer combined, if desired on index) -->
+  <!-- FOOTER SECTION (Contact + Footer) -->
   <section id="contact" class="combined-contact-footer container">
     <div class="contact-block">
       <h2>
-        <!-- Example contact icon (replace with your own if needed) -->
+        <!-- Contact icon -->
         <img
-          src="data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIGZpbGw9IiMwZDE2ZWZkIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCI+PHBhdGggZD0iTTIzLjI5OCAwLjcwMmwtMC43MjgtMC41NzZjLTAuMzUxLTAuMjc2LTAuODYyLTAuMjgzLTEuMjI2IDBsLTEuNDI3IDEuMTE3Yy0xLjQ2Ni0wLjgwNC0zLjA1LTAuOTgtNC41NTItMC4yMS0zLjA5NSAxLjQ4NS00LjI5NyA1LjE5Ni0zLjAzMiA4LjE3M2wuOTQgMy4wNjQgMi4xODEtMS44MDcgMy4xOTYgMi45MDVjMC4zNzEuMzM4IDAuODUzIDAuNTAxIDEuMzIyIDAuNTAxIDAuMTY3IDAgMC4zMzQtMC4wMjUgMC41LTEuMDQ4bDMuOTQ4LTE1LjAzNEMyMy43NjUgMS42NjQgMjMuNjQ1IDEuMjA2IDIzLjI5OCAwLjcwMnoiPjwvcGF0aD48L3N2Zz4="
+          src="assets/icons/contact.gif"
           alt="Contact Icon"
-          style="width:24px;vertical-align:middle;margin-right:8px;"
+          style="width:80px; vertical-align:middle; margin-right:8px;"
         />
         Contact
       </h2>
       <p>For purchases, support, or custom orders, contact me via:</p>
       <ul>
         <li>
-          <!-- Example Telegram icon; replace data URI if desired -->
+          <!-- Telegram icon -->
           <img
-            src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCA1NCA1NCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMjcuMDAxIDU0QzQyLjA2OCA1NCA1NCA0Mi4wNjggNTQgMjcuMDAxQzU0IDEyLjAwMyA0Mi4wNjggMCAyNy4wMDEgMEMxMi4wMDUgMCAwIDEyLjAwMyAwIDI3LjAwMUMwIDQyLjA2OCAxMi4wMDUgNTQgMjcuMDAxIDU0Wk0xOS42MTQgMzkuNTkxTDIwLjI0OCAyOS44MjIgNDUuMTgzIDEyLjc0OEM0Ni45MTUgMTEuNjgzIDQ3LjE1NSAxMi45NTkgNDUuODgzIDEzLjUxM0w5LjE2NzggMjYuNzM1QzguMzUzNSAyNy4wODYgOC4zNjEgMjcuNDEzIDkuMzMgMjcuNzYzTDE0LjY1NyAyOS41NjFMNDAuMjk1IDE3LjYyMUM0MS4yNjkgMTcuMDAyIDQxLjY3MiAxNy44NTMgNDAuMjk1IDE4LjQyTDE5LjYxNCAzOS41OTFaIiBmaWxsPSIjMGQ2ZWZkIi8+PC9zdmc="
+            src="assets/icons/bot.gif"
             alt="Telegram Icon"
-            style="width:18px;vertical-align:middle;margin-right:4px;"
+            style="width:30px; vertical-align:middle; margin-right:4px;"
           />
           Telegram Bot:
           <a href="https://t.me/fmpChatBot" target="_blank">@fmpChatBot</a>
         </li>
         <li>
+          <!-- Personal icon -->
           <img
-            src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCA1NCA1NCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMjcuMDAxIDU0QzQyLjA2OCA1NCA1NCA0Mi4wNjggNTQgMjcuMDAxQzU0IDEyLjAwMyA0Mi4wNjggMCAyNy4wMDEgMEMxMi4wMDUgMCAwIDEyLjAwMyAwIDI3LjAwMUMwIDQyLjA2OCAxMi4wMDUgNTQgMjcuMDAxIDU0Wk0xOS42MTQgMzkuNTkxTDIwLjI0OCAyOS44MjIgNDUuMTgzIDEyLjc0OEM0Ni45MTUgMTEuNjgzIDQ3LjE1NSAxMi45NTkgNDUuODgzIDEzLjUxM0w5LjE2NzggMjYuNzM1QzguMzUzNSAyNy4wODYgOC4zNjEgMjcuNDEzIDkuMzMgMjcuNzYzTDE0LjY1NyAyOS41NjFMNDAuMjk1IDE3LjYyMUM0MS4yNjkgMTcuMDAyIDQxLjY3MiAxNy44NTMgNDAuMjk1IDE4LjQyTDE5LjYxNCAzOS41OTFaIiBmaWxsPSIjMGQ2ZWZkIi8+PC9zdmc="
-            alt="Telegram Icon"
-            style="width:18px;vertical-align:middle;margin-right:4px;"
+            src="assets/icons/add.gif"
+            alt="Personal Icon"
+            style="width:30px; vertical-align:middle; margin-right:4px;"
           />
           Personal Telegram:
           <a href="https://t.me/flamemodparadise" target="_blank">@flamemodparadise</a>
+        </li>
+        <li>
+          <!-- Discord icon -->
+          <img
+            src="assets/icons/discord.png"
+            alt="Discord Icon"
+            style="width:30px; vertical-align:middle; margin-right:4px;"
+          />
+          Discord:
+          <a href="#" target="_blank">YourDiscordHandle</a>
         </li>
       </ul>
     </div>
     <hr/>
     <div class="footer-block">
       <p>© 2025 My Tool Store. All rights reserved.</p>
-      <p>Use these tools responsibly. No refunds for digital items.</p>
+      <p>Use these tools responsibly. No refunds for digital items after bought.</p>
     </div>
   </section>
 
