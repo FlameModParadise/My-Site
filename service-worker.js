@@ -1,4 +1,4 @@
-const CACHE_NAME = "toolstore-v3.2";
+const CACHE_NAME = "toolstore-v3";
 
 const ASSETS_TO_CACHE = [
   "/", 
