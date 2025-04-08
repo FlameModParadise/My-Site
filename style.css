@@ -82,28 +82,48 @@ body.dark .navbar {
 }
 
 .logo {
-  /* 
-     The `.logo` was repurposed for a circular wrapper with an image inside;
-     If you want a plain text logo, remove the width/height references below.
-   */
-  display: inline-block;  
-  width: 45px;
-  height: 45px;
+  display: inline-block;
+  width: 55px;
+  height: 55px;
   border-radius: 50%;
   overflow: hidden;
   position: relative;
   font-size: 1.3rem;
   font-weight: 700;
   color: var(--color-primary);
+
+  /* Add a transition so the .logo container smoothly scales on hover */
+  transition: transform 0.3s ease;
 }
+
 .logo img {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 65px;
-  height: 65px;
-  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;   /* Fill the circle while maintaining aspect ratio */
+  border-radius: 50%;  /* Ensures it remains circular if the image is larger */
   transform: translate(-50%, -50%);
+}
+
+/* Scale up slightly on hover */
+.logo:hover {
+  transform: scale(1.05);
+}
+
+/* Dark mode adjustments */
+body.dark .logo {
+  color: #fff;
+}
+
+body.dark .logo img {
+  filter: brightness(0.8);
+}
+
+/* Scale up in dark mode as well */
+body.dark .logo:hover {
+  transform: scale(1.05);
 }
 
 .navbar-toggle {
@@ -311,7 +331,6 @@ body.dark .filter-tags button:hover {
   font-size: 0.9rem;
   color: #555;
 }
-/* Dark mode fix for description text */
 body.dark .tool-desc {
   color: #ccc;
 }
@@ -329,7 +348,6 @@ body.dark .tool-desc {
   background: #e0e0e0;
   color: #333;
 }
-/* Dark mode for tags */
 body.dark .tag {
   background: #333;
   color: #eee;
@@ -601,7 +619,7 @@ footer.footer.container {
   padding: 2rem;
   text-align: left;
   border-top: 1px solid #eee;
-  border-radius: 0; 
+  border-radius: 0;
   box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.05);
   animation: fadeSlideIn 0.9s ease-in-out 0.2s forwards;
   opacity: 0;
@@ -616,7 +634,7 @@ footer.footer.container {
   flex-wrap: wrap;
   gap: 2rem;
   margin-bottom: 2rem;
-  padding-left: 10rem; 
+  padding-left: 10rem;
 }
 .footer-col {
   min-width: 200px;
@@ -745,7 +763,7 @@ body.dark .footer-bottom p {
   .logo {
     font-size: 1rem;
     font-weight: 700;
-    width: auto; /* allow text-based logo if desired */
+    width: auto; 
     height: auto;
     border-radius: 0;
     overflow: visible;
@@ -1001,6 +1019,7 @@ body.dark #popupText {
 /* ================ OLD FOOTER (IF STILL USED) ================ */
 .footer {
   background: #fff;
+  position: relative;
   padding: 2rem;
   border-top: 1px solid #eee;
   box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.05);
@@ -1106,5 +1125,55 @@ body.dark .footer-bottom {
   .footer-section.links,
   .footer-section.resources {
     margin-left: 0 !important;
+  }
+}
+
+.footer-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;   /* makes it circular */
+  object-fit: cover;    /* ensures the icon fills the circle */
+  border: 2px solid #fff; /* optional border for styling */
+}
+.footer-icon:hover {
+  border-color: var(--color-primary); /* change border color on hover */
+}
+.footer-icon img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%; /* makes it a circle */
+  object-fit: cover;  /* ensures the image fills the circle */
+}
+.footer-subicon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%; /* makes it a circle */
+  object-fit: cover;  /* ensures the image fills the circle */
+  border: 2px solid #eee; /* optional visible border */
+  margin-right: 8px;       /* space before the text link */
+}
+.footer-subicon:hover {
+  border-color: var(--color-primary); /* change border color on hover */
+}
+.footer-subicon img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%; /* makes it a circle */
+  object-fit: cover;  /* ensures the image fills the circle */
+}
+/* Make the anchor an inline-flex container. */
+.footer-section ul li a {
+  display: inline-flex;
+  align-items: center; /* vertically center icon + text */
+  gap: 0.5rem;         /* space between icon and text */
+  text-decoration: none; /* remove underline, if desired */
+}
+@media (max-width: 480px) {
+  .logo {
+    width: 55px !important;
+    height: 55px !important;
+    border-radius: 50% !important;
+    overflow: hidden !important;
+    position: relative !important;
   }
 }
