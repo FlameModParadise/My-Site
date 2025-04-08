@@ -1,24 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
- <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Discover and buy premium bots, tools, and automation scripts."/>
-  <meta name="theme-color" content="#0d6efd"/>
-  <link rel="manifest" href="manifest.json"/>
-  <link rel="icon" href="assets/icons/icon-192.png"/>
-  <link rel="stylesheet" href="style.css"/>
-  <link
-    rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
-  />
-  <title>🛠️ My Tool Store</title>
- </head>
- <body>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Flame Mod Paradise: The premier destination for premium mods and tools curated by Phoenix and Lucifer. Enjoy top-quality mods and secure downloads." />
+  <meta name="keywords" content="Flame Mod Paradise, Phoenix, Lucifer, premium mods, automation scripts, tool store" />
+  <meta name="theme-color" content="#0d6efd" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="assets/icons/icon-192.png" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
+  <title>Flame Mod Paradise - Premium Mods &amp; Tools | Phoenix &amp; Lucifer</title>
+</head>
+
+<body>
   <!-- NAVBAR -->
   <nav class="navbar">
     <div class="navbar-left">
-      <a class="logo" href="index.html">🛠️ Tool Store</a>
+      <a class="logo" href="index.html">
+        <img src="assets/icons/fmp-icon.gif" alt="Flame Mod Paradise Logo" />
+      </a>
     </div>
     <button aria-label="Toggle menu" class="navbar-toggle" id="navbarToggle">☰</button>
     <div class="navbar-right" id="navbarMenu">
@@ -50,11 +53,7 @@
       for access.
     </p>
     <div class="controls">
-      <input
-        id="searchInput"
-        type="text"
-        placeholder="Search by name, keyword..."
-      />
+      <input id="searchInput" type="text" placeholder="Search by name, keyword..." />
       <select id="sortSelect">
         <option value="name">Name A → Z</option>
         <option value="release_date">Newest</option>
@@ -79,9 +78,6 @@
 
   <!-- POPUP BOX FOR REQUIREMENTS -->
   <div class="popup-box hidden" id="popupMessage">
-    <!-- optional overlay if you want a dim background (uncomment in CSS) -->
-    <!-- <div class="popup-overlay" id="popupOverlay"></div> -->
-    
     <div class="popup-content">
       <h3 id="popupTitle">Requirements</h3>
       <p id="popupText"></p>
@@ -91,56 +87,37 @@
 
   <!-- SCROLL TO TOP BUTTON -->
   <button id="scrollToTopBtn" title="Go to top">
-    <img src="assets/icons/turn-up.gif" alt="🔝"/>
+    <img src="assets/icons/turn-up.gif" alt="🔝" />
   </button>
 
   <!-- FOOTER SECTION -->
-  <footer class="footer container" id="contact">
-    <div class="footer-top">
-      <!-- CONTACT COLUMN -->
-      <div class="footer-col">
+  <footer class="footer" id="contact">
+    <div class="footer-content">
+      <!-- CONTACT SECTION -->
+      <div class="footer-section contact">
         <h2>
-          <img
-            src="assets/icons/contact.gif"
-            alt="Contact Icon"
-            class="footer-icon"
-          />
+          <img src="assets/icons/contact.gif" alt="Contact Icon" class="footer-icon" />
           Contact
         </h2>
-        <p>For purchases, support, or custom orders, contact me via:</p>
+        <p>For purchases, support, or custom orders, reach out via:</p>
         <ul>
           <li>
-            <img
-              src="assets/icons/bot.gif"
-              alt="Telegram Bot Icon"
-              class="footer-subicon"
-            />
-            Telegram Bot:
-            <a href="https://t.me/fmpChatBot" target="_blank">@fmpChatBot</a>
+            <img src="assets/icons/bot.gif" alt="Telegram Bot Icon" class="footer-subicon" />
+            <a href="https://t.me/fmpChatBot" target="_blank">Telegram Bot: @fmpChatBot</a>
           </li>
           <li>
-            <img
-              src="assets/icons/add.gif"
-              alt="Personal Telegram Icon"
-              class="footer-subicon"
-            />
-            Personal Telegram:
-            <a href="https://t.me/flamemodparadise" target="_blank">@flamemodparadise</a>
+            <img src="assets/icons/add.gif" alt="Personal Telegram Icon" class="footer-subicon" />
+            <a href="https://t.me/flamemodparadise" target="_blank">Personal Telegram: @flamemodparadise</a>
           </li>
           <li>
-            <img
-              src="assets/icons/discord.png"
-              alt="Discord Icon"
-              class="footer-subicon"
-            />
-            Discord:
-            <a href="#" target="_blank">YourDiscordHandle</a>
+            <img src="assets/icons/discord.png" alt="Discord Icon" class="footer-subicon" />
+            <a href="#" target="_blank">Discord: YourDiscordHandle</a>
           </li>
         </ul>
       </div>
 
-      <!-- OPTIONAL QUICK LINKS COLUMN -->
-      <div class="footer-col">
+      <!-- QUICK LINKS SECTION -->
+      <div class="footer-section links">
         <h2>Quick Links</h2>
         <ul>
           <li><a href="index.html">Home</a></li>
@@ -149,18 +126,34 @@
           <li><a href="faq.html">FAQ</a></li>
         </ul>
       </div>
+
+      <!-- RESOURCES SECTION -->
+      <div class="footer-section resources">
+        <h2>Resources</h2>
+        <ul>
+          <li><a href="terms.html">Terms &amp; Conditions</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="cookies.html">Cookie Policy</a></li>
+          <li><a href="disclaimer.html">Disclaimer</a></li>
+          <li><a href="dmca.html">DMCA Policy</a></li>
+          <li><a href="refund.html">Refund Policy</a></li>
+          <li><a href="support.html">Support</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="sitemap.html">Sitemap</a></li>
+        </ul>
+      </div>
     </div>
 
     <hr class="footer-divider" />
 
     <div class="footer-bottom">
-      <p>© 2025 My Tool Store. All rights reserved.</p>
-      <p>Use these tools responsibly. No refunds for digital items after bought.</p>
+      <p>© 2025 Flame Mod Paradise. All rights reserved.</p>
+      <p>Use these tools responsibly. No refunds for digital items after purchase.</p>
     </div>
   </footer>
 
   <!-- SCRIPTS -->
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
   <script>
     // Register service worker if available
     if ("serviceWorker" in navigator) {
@@ -189,10 +182,11 @@
   <noscript>
     <p>
       Enable JavaScript for better site readability.
-      <br/>
+      <br />
       Thank You.
-      <hr/>
+      <hr />
     </p>
   </noscript>
- </body>
+</body>
+
 </html>

@@ -20,7 +20,7 @@ body {
   --dark-bg: #121212;
 
   --text-light: #1e1e1e;
-  --text-dark: #e0e0e0; /* updated for better readability in dark mode */
+  --text-dark: #e0e0e0;
 
   --color-primary: #0d6efd;
   --color-accent: #6c757d;
@@ -29,7 +29,7 @@ body {
   --badge-discount: #6f42c1;
   --badge-offer: #d9534f;
 
-  --transition: 0.3s ease;
+  --transition: 0.4s ease-in-out; /* slightly increased for smoother transitions */
 }
 
 /* ================ BODY ================ */
@@ -45,7 +45,7 @@ body {
 }
 body.dark {
   background: var(--dark-bg);
-  color: var(--text-dark);
+  color: #f0f0f0; /* fallback text color for dark mode */
 }
 
 /* ================ GLOBAL ELEMENTS ================ */
@@ -66,23 +66,46 @@ img {
   align-items: center;
   justify-content: space-between;
   background: #ffffff;
-  padding: 1rem 2rem;
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.04);
+  padding: 0.5rem 2.5rem;
+  box-shadow: -3px 3px 12px rgba(0, 0, 0, 0.04);
   position: sticky;
   top: 0;
   z-index: 100;
   transition: background 0.3s ease;
   border-bottom: 1px solid #e5e5e5;
+  border-radius: 0 0px 0 12px;
 }
 body.dark .navbar {
   background: #1f1f1f;
   border-bottom: 1px solid #333;
+  box-shadow: -3px 3px 12px rgba(255, 255, 255, 0.1);
 }
+
 .logo {
+  /* 
+     The `.logo` was repurposed for a circular wrapper with an image inside;
+     If you want a plain text logo, remove the width/height references below.
+   */
+  display: inline-block;  
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
   font-size: 1.3rem;
   font-weight: 700;
   color: var(--color-primary);
 }
+.logo img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 65px;
+  height: 65px;
+  object-fit: cover;
+  transform: translate(-50%, -50%);
+}
+
 .navbar-toggle {
   display: none;
   font-size: 1.8rem;
@@ -130,7 +153,7 @@ body.dark .navbar {
   .navbar {
     flex-direction: column;
     align-items: flex-start;
-    padding: 1rem;
+    padding: 1.2rem;
   }
   .navbar-toggle {
     display: block;
@@ -238,7 +261,7 @@ body.dark .filter-tags button:hover {
   gap: 1.5rem;
   margin-top: 2rem;
 }
-/* add sliding & loading animations to tiles */
+/* animations */
 @keyframes slideIn {
   from {
     opacity: 0;
@@ -264,7 +287,7 @@ body.dark .filter-tags button:hover {
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
   cursor: pointer;
   transition: transform var(--transition), box-shadow var(--transition);
-  animation: slideIn 0.5s ease-in-out;
+  animation: slideIn 0.6s ease-in-out;
 }
 .tool-card:hover {
   transform: translateY(-5px);
@@ -288,6 +311,11 @@ body.dark .filter-tags button:hover {
   font-size: 0.9rem;
   color: #555;
 }
+/* Dark mode fix for description text */
+body.dark .tool-desc {
+  color: #ccc;
+}
+
 .tool-tags {
   display: flex;
   flex-wrap: wrap;
@@ -301,6 +329,12 @@ body.dark .filter-tags button:hover {
   background: #e0e0e0;
   color: #333;
 }
+/* Dark mode for tags */
+body.dark .tag {
+  background: #333;
+  color: #eee;
+}
+
 body.dark .tool-card {
   background: #1f1f1f;
   color: var(--text-dark);
@@ -318,7 +352,11 @@ body.dark .tool-card {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  animation: fadeIn 0.6s ease;
+  animation: fadeIn 0.7s ease-out;
+}
+body.dark .tool-detail {
+  background: #1f1f1f;
+  color: var(--text-dark);
 }
 .tool-detail-content {
   display: flex;
@@ -358,7 +396,6 @@ body.dark .tool-card {
   height: 64px;
   border-radius: 8px;
 }
-/* enlarged preview on hover */
 .tool-gallery img:hover {
   position: absolute;
   width: 60vw;
@@ -378,10 +415,7 @@ body.dark .tool-card {
 .tool-detail-right .desc {
   font-size: 1rem;
   margin: 1rem 0;
-}
-body.dark .tool-detail {
-  background: #1f1f1f;
-  color: var(--text-dark);
+  margin-top: 1.2rem !important;
 }
 
 /* ================ BUTTONS & LINKS ================ */
@@ -414,16 +448,16 @@ body.dark .tool-detail {
   font-weight: bold;
 }
 .new-badge {
-  background: #28a745;
+  background: var(--badge-new);
 }
 .updated-badge {
-  background: #ffc107;
+  background: var(--badge-updated);
 }
 .discount-badge {
-  background: #6f42c1;
+  background: var(--badge-discount);
 }
 .offer-badge {
-  background: #d9534f;
+  background: var(--badge-offer);
 }
 
 /* ================ RECOMMENDED SECTION ================ */
@@ -561,32 +595,32 @@ body.dark #scrollToTopBtn {
 }
 
 /* ================ NEW FOOTER LAYOUT ================ */
-/* Main footer container */
 footer.footer.container {
   background: #fff;
-  margin-top: 4rem;
+  margin: 3.5rem 0 0 0; /* top spacing kept, sides flush */
   padding: 2rem;
-  text-align: left; /* ensures columns are left-aligned */
+  text-align: left;
   border-top: 1px solid #eee;
-  border-radius: 8px 8px 0 0;
-  box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.02);
-  animation: fadeSlideIn 0.8s ease 0.2s forwards;
+  border-radius: 0; 
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.05);
+  animation: fadeSlideIn 0.9s ease-in-out 0.2s forwards;
   opacity: 0;
   transform: translateY(20px);
+  width: 100%;
+  max-width: 100%;
 }
 
-/* Columns in the top part of the footer */
+/* The columns in the top part of the footer */
 .footer-top {
   display: flex;
-  flex-wrap: wrap; /* ensures wrapping on smaller screens */
+  flex-wrap: wrap;
   gap: 2rem;
   margin-bottom: 2rem;
+  padding-left: 10rem; 
 }
 .footer-col {
-  flex: 1 1 200px; /* each column grows, min 200px wide */
+  min-width: 200px;
 }
-
-/* Heading + icon in each column */
 .footer-col h2 {
   display: flex;
   align-items: center;
@@ -604,15 +638,11 @@ footer.footer.container {
   height: auto;
   vertical-align: middle;
 }
-
-/* Basic text styling in the columns */
 .footer-col p {
   margin-bottom: 1rem;
   color: var(--color-accent);
   max-width: 650px;
 }
-
-/* Footer lists */
 .footer-col ul {
   list-style: none;
   padding: 0;
@@ -635,16 +665,12 @@ footer.footer.container {
   text-decoration: underline;
   transform: scale(1.05);
 }
-
-/* Divider between top columns and bottom disclaimers */
 .footer-divider {
   border: none;
   border-top: 1px solid #ddd;
   margin: 0 auto 2rem;
   max-width: 100%;
 }
-
-/* Footer bottom disclaimers / text */
 .footer-bottom {
   text-align: center;
 }
@@ -654,7 +680,7 @@ footer.footer.container {
   font-size: 0.95rem;
 }
 
-/* Dark mode for the new footer */
+/* Dark mode for new footer */
 body.dark footer.footer.container {
   background: #1f1f1f;
   border-top: 1px solid #333;
@@ -695,29 +721,35 @@ body.dark .footer-bottom p {
   .navbar-right {
     flex-direction: column;
   }
-  .tool-thumb {
-    height: 140px;
-  }
   .title {
     font-size: 1.5rem;
-    font-weight: 600;
   }
 
   /* Footer columns can stack on smaller devices */
   .footer-top {
     flex-direction: column;
+    padding-left: 1rem !important; /* reset the large left padding */
   }
   .footer-col {
     margin-bottom: 2rem;
   }
+  body.dark {
+    /* Slight bump in line-height for readability on small screens in dark mode */
+    line-height: 1.7;
+  }
 }
 @media (max-width: 480px) {
   .navbar {
-    padding: 0.6rem 1rem;
+    padding: 0.8rem 1.2rem;
   }
   .logo {
     font-size: 1rem;
     font-weight: 700;
+    width: auto; /* allow text-based logo if desired */
+    height: auto;
+    border-radius: 0;
+    overflow: visible;
+    position: static;
   }
   .navbar-toggle {
     font-size: 1.3rem;
@@ -734,13 +766,12 @@ body.dark .footer-bottom p {
   }
   .title {
     font-size: 1.3rem;
-    font-weight: 600;
   }
   .notice {
     font-size: 0.85rem;
   }
   .container {
-    padding: 1.5rem 1rem;
+    padding: 2rem 1.5rem;
   }
   .controls {
     flex-direction: column;
@@ -749,7 +780,7 @@ body.dark .footer-bottom p {
   }
   .controls input,
   .controls select {
-    padding: 0.5rem;
+    padding: 0.7rem;
     min-width: 100%;
     font-size: 0.9rem;
   }
@@ -769,7 +800,7 @@ body.dark .footer-bottom p {
     padding: 1rem;
     border-radius: 8px;
   }
-  .tool-thumb {
+  .tool-thumb-wrapper {
     height: 130px;
     border-radius: 6px;
   }
@@ -806,10 +837,7 @@ body.dark .footer-bottom p {
   .tool-detail-right .desc {
     font-size: 0.95rem;
     margin: 0.8rem 0;
-  }
-  .pricing-list li {
-    font-size: 0.9rem;
-    margin-bottom: 0.3rem;
+    margin-top: 1.2rem !important; 
   }
   .back-btn,
   .contact-btn {
@@ -826,7 +854,7 @@ body.dark .footer-bottom p {
   }
   .recommended-card {
     flex: 0 0 90%;
-    padding: 0.6rem;
+    padding: 0.8rem;
     border-radius: 8px;
   }
   .recommended-card img {
@@ -850,6 +878,7 @@ body.dark .footer-bottom p {
   }
   .footer-top {
     flex-direction: column;
+    padding-left: 1rem !important; 
   }
   .footer-col {
     margin-bottom: 2rem;
@@ -858,7 +887,7 @@ body.dark .footer-bottom p {
 
 /* ================ REQUIREMENTS BUTTON ================ */
 .requirements-btn {
-  background: #ff9800; /* bright orange */
+  background: #ff9800;
   color: #fff;
   border: none;
   padding: 0.6rem 1.2rem;
@@ -866,10 +895,10 @@ body.dark .footer-bottom p {
   cursor: pointer;
   font-weight: 600;
   transition: background var(--transition);
-  margin-top: 1rem; /* space above button */
+  margin-top: 1rem;
 }
 .requirements-btn:hover {
-  background: #fb8c00; /* slightly darker on hover */
+  background: #fb8c00;
 }
 
 /* ================ POPUP BOX (REQUIREMENTS) ================ */
@@ -884,17 +913,16 @@ body.dark .footer-bottom p {
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   z-index: 9999;
-  max-width: 400px;   /* a bit wider than default for readability */
-  width: 90vw;        /* ensure it’s responsive */
-  min-height: 200px;  /* optional min height */
-  text-align: left;   /* left-align text for reading */
+  max-width: 400px;
+  width: 90vw;
+  min-height: 200px;
+  text-align: left;
 }
 .popup-box.hidden {
   display: none;
 }
 .popup-content {
   width: 100%;
-  /* additional spacing inside if desired */
 }
 .popup-content h3 {
   margin-top: 0;
@@ -906,7 +934,7 @@ body.dark .footer-bottom p {
 #popupText {
   margin: 0.5rem 0;
   line-height: 1.5;
-  white-space: pre-wrap; /* if you’re using \n for line breaks */
+  white-space: pre-wrap;
 }
 .close-popup-btn {
   display: inline-block;
@@ -923,11 +951,14 @@ body.dark .footer-bottom p {
 .close-popup-btn:hover {
   background: #fb8c00;
 }
-
 /* Dark mode for popup */
 body.dark .popup-box {
   background: #2a2a2a;
   color: #e0e0e0;
+}
+body.dark .popup-content p,
+body.dark #popupText {
+  color: #ddd;
 }
 
 /* ================ POPUP BANNER STYLES ================ */
@@ -942,7 +973,7 @@ body.dark .popup-box {
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
   opacity: 0;
   transform: translateY(20px);
-  transition: all 0.4s ease;
+  transition: all 0.5s ease-in-out;
   max-width: 300px;
   z-index: 1000;
   display: flex;
@@ -965,4 +996,115 @@ body.dark .popup-box {
   font-size: 1.1rem;
   cursor: pointer;
   margin-left: auto;
+}
+
+/* ================ OLD FOOTER (IF STILL USED) ================ */
+.footer {
+  background: #fff;
+  padding: 2rem;
+  border-top: 1px solid #eee;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.05);
+  color: var(--text-light);
+}
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+  justify-content: space-between;
+  padding-left: 10rem;
+}
+.footer-section {
+  flex: 1px;
+  min-width: 200px;
+}
+.footer-section h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.3rem;
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+}
+.footer-section p {
+  margin-bottom: 1rem;
+}
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.footer-section li {
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.footer-section a {
+  text-decoration: none;
+  color: var(--color-primary);
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+.footer-section a:hover {
+  color: var(--color-accent);
+}
+.footer-divider {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 2rem 0;
+}
+.footer-bottom {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #555;
+}
+.footer-section.links {
+  margin-left: 15rem; /* Adjust as needed */
+}
+.footer-section.resources {
+  margin-left: 5rem; /* Adjust as needed */
+}
+
+/* Dark mode for the "old" footer section */
+body.dark .footer {
+  background: #1f1f1f;
+  border-top: 1px solid #333;
+  box-shadow: none;
+  color: var(--text-dark);
+}
+body.dark .footer-content,
+body.dark .footer-section {
+  color: var(--text-dark);
+}
+body.dark .footer-section a {
+  color: var(--color-primary);
+}
+body.dark .footer-section a:hover {
+  color: var(--color-accent);
+}
+body.dark .footer-section li {
+  color: var(--text-dark);
+}
+body.dark .footer-bottom {
+  color: var(--text-dark);
+}
+
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    gap: 1rem;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  .footer-section {
+    width: 100%;
+    margin: 0 0 2rem 0;
+    text-align: left;
+  }
+  .footer-section.links,
+  .footer-section.resources {
+    margin-left: 0 !important;
+  }
 }
