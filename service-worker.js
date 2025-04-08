@@ -1,4 +1,4 @@
-const CACHE_NAME = "toolstore-v2"; // Bump version when you update cache logic or core files
+const CACHE_NAME = "toolstore-v3";
 
 const ASSETS_TO_CACHE = [
   "/", 
