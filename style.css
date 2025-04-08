@@ -1187,3 +1187,155 @@ body.dark .footer-bottom {
     position: relative !important;
   }
 }
+@media (max-width: 480px) {
+  #scrollToTopBtn {
+    bottom: 15px;       /* slightly closer to the bottom */
+    right: 15px;        /* slightly closer to the right edge */
+    width: 35px;        /* reduced width from 50px */
+    height: 35px;       /* reduced height from 50px */
+    font-size: 1.5rem;    /* adjust icon/text size if necessary */
+    padding: 0.3rem;    /* reduce internal spacing */
+  }
+}
+@media (max-width: 480px) {
+  /* Ensure the navbar container arranges its children in a row */
+  .navbar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    /* Adjust the padding for a more compact layout */
+    padding: 0.8rem 1.2rem;
+  }
+  
+  /* Adjust the logo GIF size and add a margin to separate it from the line */
+  .logo {
+    width: 55px;   /* or another value that suits your design */
+    height: 55px;
+    margin-right: 1rem;  /* adds space between the logo and the nav bar line */
+  }
+  
+  /* Create or adjust the navbar line element */
+  .navbar-line {
+    flex-grow: 1;  /* makes the line expand to fill remaining horizontal space */
+    height: 2px;   /* thickness of the line */
+    background-color: var(--color-primary);  /* uses your primary theme color */
+    /* You can also adjust margins if needed */
+    margin-left: 1rem;
+  }
+}
+@media (max-width: 480px) {
+  /* Arrange navbar children in a row */
+  .navbar {
+    position: relative; /* Needed for absolute positioning of the dropdown */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.8rem 1.2rem;
+  }
+  
+  /* Adjust the logo GIF size and add spacing */
+  .logo {
+    width: 55px;   /* Adjust as needed */
+    height: 55px;
+    margin-right: 1rem;  /* Space between the logo and the nav bar line */
+  }
+  
+  /* Create or adjust the navbar line element */
+  .navbar-line {
+    flex-grow: 1;          /* Expand to fill remaining horizontal space */
+    height: 2px;           /* Thickness of the line */
+    background-color: var(--color-primary);  /* Use the primary theme color */
+    margin-left: 1rem;
+  }
+  
+  /* Dropdown navigation list styling */
+  .navbar-right {
+    position: absolute;
+    top: 100%;  /* Position immediately below the navbar */
+    left: 0;
+    right: 0;
+    display: none;  /* Hidden by default */
+    flex-direction: column;
+    gap: 0.75rem;
+    background-color: #fff;
+    padding: 0.75rem 0;
+    border-top: 1px solid #eee;
+    transform: translateY(-20px);  /* Start slightly upward */
+    opacity: 0;  /* Fully transparent initially */
+    transition: transform 0.3s ease, opacity 0.3s ease;  /* Smooth drop down */
+    z-index: 200;
+  }
+  
+  /* When the navbar toggle is clicked, add the .show-menu class */
+  .navbar-right.show-menu {
+    display: flex;
+    transform: translateY(0);  /* Drop down into view */
+    opacity: 1;
+  }
+  
+  .navbar-right a,
+  .navbar-right button {
+    width: 100%;
+    text-align: left;
+    padding: 0.6rem 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Ensure the navbar is positioned relative so that the dropdown positions correctly */
+  .navbar {
+    position: relative;
+    /* You can choose row or column layout as needed; below we opt for a more compact row layout */
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.8rem 1.2rem;
+  }
+  
+  .navbar-toggle {
+    display: block;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Position the navigation list as an absolute dropdown below the navbar */
+  .navbar-right {
+    position: absolute;
+    top: 100%;  /* positions the list immediately below the navbar */
+    left: 0;
+    right: 0;
+    display: none;  /* hidden by default */
+    flex-direction: column;
+    gap: 0.75rem;
+    background-color: #fff;
+    padding: 0.75rem 0;
+    border-top: 1px solid #eee;
+    /* Start off slightly translated upward and hidden */
+    transform: translateY(-20px);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    z-index: 200;
+  }
+
+  /* When the toggle is clicked, show the menu with a downwards slide */
+  .navbar-right.show-menu {
+    display: flex;
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .navbar-right a,
+  .navbar-right button {
+    width: 100%;
+    text-align: left;
+    padding: 0.6rem 1rem;
+  }
+
+  /* Dark mode adjustments for dropdown */
+  body.dark .navbar-right {
+    background-color: #2c2c2c;
+    border-top: 1px solid #444;
+  }
+}
