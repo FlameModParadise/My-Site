@@ -2,12 +2,13 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  box-sizing: border-box
 }
+
 html,
 body {
   max-width: 100%;
-  overflow-x: hidden;
+  overflow-x: hidden
 }
 
 /* ================ THEME VARIABLES ================ */
@@ -29,7 +30,7 @@ body {
   --badge-discount: #6f42c1;
   --badge-offer: #d9534f;
 
-  --transition: 0.4s ease-in-out; /* slightly increased for smoother transitions */
+  --transition: .4s ease-in-out
 }
 
 /* ================ BODY ================ */
@@ -41,23 +42,26 @@ body {
   color: var(--text-light);
   transition: background var(--transition), color var(--transition);
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: grayscale
 }
+
 body.dark {
   background: var(--dark-bg);
-  color: #f0f0f0; /* fallback text color for dark mode */
+  color: #f0f0f0
 }
 
 /* ================ GLOBAL ELEMENTS ================ */
 a {
-  color: var(--color-primary);
+  color: var(--color-primary)
 }
+
 img {
   max-width: 100%;
-  display: block;
+  display: block
 }
+
 .hidden {
-  display: none !important;
+  display: none !important
 }
 
 /* ================ ENHANCED NAVBAR ================ */
@@ -65,20 +69,21 @@ img {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #ffffff;
-  padding: 0.5rem 2.5rem;
-  box-shadow: -3px 3px 12px rgba(0, 0, 0, 0.04);
+  background: #fff;
+  padding: .5rem 2.5rem;
+  box-shadow: -3px 3px 12px rgba(0, 0, 0, .04);
   position: sticky;
   top: 0;
   z-index: 100;
-  transition: background 0.3s ease;
+  transition: background .3s ease;
   border-bottom: 1px solid #e5e5e5;
-  border-radius: 0 0px 0 12px;
+  border-radius: 0 0 0 12px
 }
+
 body.dark .navbar {
   background: #1f1f1f;
   border-bottom: 1px solid #333;
-  box-shadow: -3px 3px 12px rgba(255, 255, 255, 0.1);
+  box-shadow: -3px 3px 12px rgba(255, 255, 255, .1)
 }
 
 .logo {
@@ -91,9 +96,7 @@ body.dark .navbar {
   font-size: 1.3rem;
   font-weight: 700;
   color: var(--color-primary);
-
-  /* Add a transition so the .logo container smoothly scales on hover */
-  transition: transform 0.3s ease;
+  transition: transform .3s ease
 }
 
 .logo img {
@@ -102,28 +105,25 @@ body.dark .navbar {
   left: 50%;
   width: 100%;
   height: 100%;
-  object-fit: cover;   /* Fill the circle while maintaining aspect ratio */
-  border-radius: 50%;  /* Ensures it remains circular if the image is larger */
-  transform: translate(-50%, -50%);
+  object-fit: cover;
+  border-radius: 50%;
+  transform: translate(-50%, -50%)
 }
 
-/* Scale up slightly on hover */
 .logo:hover {
-  transform: scale(1.05);
+  transform: scale(1.05)
 }
 
-/* Dark mode adjustments */
 body.dark .logo {
-  color: #fff;
+  color: #fff
 }
 
 body.dark .logo img {
-  filter: brightness(0.8);
+  filter: brightness(.8)
 }
 
-/* Scale up in dark mode as well */
 body.dark .logo:hover {
-  transform: scale(1.05);
+  transform: scale(1.05)
 }
 
 .navbar-toggle {
@@ -132,13 +132,15 @@ body.dark .logo:hover {
   background: none;
   border: none;
   cursor: pointer;
-  color: inherit;
+  color: inherit
 }
+
 .navbar-right {
   display: flex;
   align-items: center;
-  gap: 1.2rem;
+  gap: 1.2rem
 }
+
 .navbar-right a,
 .navbar-right button {
   font-weight: 500;
@@ -147,17 +149,20 @@ body.dark .logo:hover {
   background: transparent;
   border: none;
   cursor: pointer;
-  transition: color 0.2s ease;
+  transition: color .2s ease
 }
+
 .navbar-right a:hover,
 .navbar-right button:hover {
-  color: var(--color-primary);
+  color: var(--color-primary)
 }
+
 .navbar-right a.active {
   color: var(--color-primary);
   font-weight: 600;
-  position: relative;
+  position: relative
 }
+
 .navbar-right a.active::after {
   content: "";
   position: absolute;
@@ -165,71 +170,88 @@ body.dark .logo:hover {
   bottom: -4px;
   width: 100%;
   height: 2px;
-  background-color: var(--color-primary);
+  background: var(--color-primary)
 }
 
-/* responsive navbar */
-@media (max-width: 768px) {
+/* responsive navbar (single deduped block) */
+@media (max-width:768px) {
   .navbar {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 1.2rem;
+    position: relative;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: .8rem 1.2rem
   }
+
   .navbar-toggle {
     display: block;
-    align-self: flex-end;
     font-size: 2rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: .5rem
   }
+
   .navbar-right {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
     display: none;
     flex-direction: column;
-    width: 100%;
-    gap: 0.75rem;
-    background-color: #fff;
-    padding: 0.75rem 0;
+    gap: .75rem;
+    background: #fff;
+    padding: .75rem 0;
     border-top: 1px solid #eee;
+    transform: translateY(-20px);
+    opacity: 0;
+    transition: transform .3s ease, opacity .3s ease;
+    z-index: 200
   }
+
   .navbar-right.show-menu {
     display: flex;
+    transform: none;
+    opacity: 1
   }
+
   .navbar-right a,
   .navbar-right button {
     width: 100%;
     text-align: left;
-    padding: 0.6rem 1rem;
+    padding: .6rem 1rem
   }
+
   body.dark .navbar-right {
-    background-color: #2c2c2c;
-    border-top: 1px solid #444;
+    background: #2c2c2c;
+    border-top: 1px solid #444
   }
 }
 
 /* ================ BANNER ================ */
 .banner {
   background: #ffc107;
-  padding: 0.75rem 1rem;
+  padding: .75rem 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: background var(--transition);
+  transition: background var(--transition)
 }
 
 /* ================ CONTAINER & TITLES ================ */
 .container {
   max-width: 1350px;
   margin: auto;
-  padding: 2rem 1rem;
+  padding: 2rem 1rem
 }
+
 .title {
   text-align: center;
   font-size: 2rem;
-  font-weight: 600;
+  font-weight: 600
 }
+
 .notice {
   text-align: center;
   color: var(--color-accent);
-  margin-top: 0.5rem;
+  margin-top: .5rem
 }
 
 /* ================ CONTROLS ================ */
@@ -238,40 +260,54 @@ body.dark .logo:hover {
   justify-content: center;
   gap: 1rem;
   flex-wrap: wrap;
-  margin: 1rem 0;
+  margin: 1rem 0
 }
+
 .controls input,
 .controls select {
-  padding: 0.6rem;
+  padding: .6rem;
   border-radius: 6px;
   border: 1px solid #ccc;
-  min-width: 240px;
+  min-width: 240px
 }
 
 /* ================ FILTER TAGS ================ */
 .filter-tags {
   display: flex;
   justify-content: center;
-  gap: 0.5rem;
-  flex-wrap: wrap;
+  gap: .5rem;
+  flex-wrap: wrap
 }
+
 .filter-tags button {
-  padding: 0.5rem 1rem;
+  padding: .5rem 1rem;
   border-radius: 20px;
   background: var(--color-accent);
-  color: white;
+  color: #fff;
   border: none;
   cursor: pointer;
-  transition: background var(--transition);
+  transition: background var(--transition)
 }
+
 .filter-tags button.active {
-  background: var(--color-primary);
+  background: var(--color-primary)
 }
+
 body.dark .filter-tags button {
-  background: #2c2c2c;
+  background: #2c2c2c
 }
+
 body.dark .filter-tags button:hover {
-  background: #444;
+  background: #444
+}
+
+/* dotted‑border hover (deduped) */
+.filter-tags button:hover {
+  background: transparent;
+  border: 2px dotted #007bff;
+  color: #007bff;
+  box-shadow: none;
+  transition: border-color .3s ease
 }
 
 /* ================ TOOL LIST GRID ================ */
@@ -279,40 +315,36 @@ body.dark .filter-tags button:hover {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1.5rem;
-  margin-top: 2rem;
+  margin-top: 2rem
 }
-/* animations */
+
 @keyframes slideIn {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(20px)
   }
+
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: none
   }
 }
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
+
 .tool-card {
   background: #fff;
   padding: 1rem;
   border-radius: 10px;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, .05);
   cursor: pointer;
   transition: transform var(--transition), box-shadow var(--transition);
-  animation: slideIn 0.6s ease-in-out;
+  animation: slideIn .6s ease-in-out
 }
+
 .tool-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .08)
 }
+
 .tool-thumb-wrapper {
   width: 100%;
   height: 160px;
@@ -320,100 +352,125 @@ body.dark .filter-tags button:hover {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  border-radius: 8px;
+  border-radius: 8px
 }
+
 .tool-title {
   font-weight: 600;
   font-size: 1rem;
-  margin: 0.5rem 0;
+  margin: .5rem 0
 }
+
 .tool-desc {
-  font-size: 0.9rem;
-  color: #555;
+  font-size: .9rem;
+  color: #555
 }
+
 body.dark .tool-desc {
-  color: #ccc;
+  color: #ccc
 }
 
 .tool-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.3rem;
-  margin-top: 0.5rem;
+  gap: .3rem;
+  margin-top: .5rem
 }
+
 .tag {
-  font-size: 0.75rem;
+  font-size: .75rem;
   padding: 4px 10px;
   border-radius: 20px;
   background: #e0e0e0;
-  color: #333;
+  color: #333
 }
+
 body.dark .tag {
   background: #333;
-  color: #eee;
+  color: #eee
 }
 
 body.dark .tool-card {
   background: #1f1f1f;
-  color: var(--text-dark);
+  color: var(--text-dark)
 }
 
 /* ================ DETAIL VIEW ================ */
-.detail-wrapper {
-  margin-top: 2rem;
+@keyframes fadeIn {
+  from {
+    opacity: 0
+  }
+
+  to {
+    opacity: 1
+  }
 }
+
+.detail-wrapper {
+  margin-top: 2rem
+}
+
 .tool-detail {
   background: #fff;
   padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, .08);
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  animation: fadeIn 0.7s ease-out;
+  animation: fadeIn .7s ease-out
 }
+
 body.dark .tool-detail {
   background: #1f1f1f;
-  color: var(--text-dark);
+  color: var(--text-dark)
 }
+
 .tool-detail-content {
   display: flex;
   gap: 2rem;
-  flex-wrap: wrap;
+  flex-wrap: wrap
 }
+
 .tool-detail-left,
 .tool-detail-right {
-  flex: 1 1 400px;
+  flex: 1 1 400px
 }
+
 .tool-detail-right {
   position: relative;
-  top: -70px;
+  top: -70px
 }
+
 .tool-main-img {
   width: 100%;
   max-height: 420px;
   object-fit: contain;
   border-radius: 16px;
-  background-color: #f0f0f0;
+  background: #f0f0f0;
   padding: 8px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, .08);
+  transition: transform .3s ease, box-shadow .3s ease
 }
+
 .tool-main-img:hover {
   transform: scale(1.1);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, .15)
 }
+
 .tool-gallery {
   display: flex;
-  gap: 0.5rem;
+  gap: .5rem;
   margin-top: 1rem;
-  overflow-x: auto;
+  overflow-x: auto
 }
+
 .tool-gallery img {
   width: 64px;
   height: 64px;
-  border-radius: 8px;
+  border-radius: 8px
 }
+
 .tool-gallery img:hover {
   position: absolute;
   width: 60vw;
@@ -422,101 +479,113 @@ body.dark .tool-detail {
   z-index: 999;
   transform: scale(1.1);
   border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .3)
 }
+
 .tool-video {
   width: 100%;
   height: 250px;
   border-radius: 10px;
-  margin-top: 1rem;
+  margin-top: 1rem
 }
+
 .tool-detail-right .desc {
   font-size: 1rem;
-  margin: 1rem 0;
-  margin-top: 1.2rem !important;
+  margin: 1.2rem 0
 }
 
 /* ================ BUTTONS & LINKS ================ */
 .back-btn {
   background: #ccc;
   border: none;
-  padding: 0.5rem 1rem;
+  padding: .5rem 1rem;
   border-radius: 6px;
-  cursor: pointer;
+  cursor: pointer
 }
+
 .contact-btn {
   background: var(--color-primary);
-  color: white;
-  padding: 0.6rem 1.2rem;
+  color: #fff;
+  padding: .6rem 1.2rem;
   border-radius: 6px;
   display: inline-block;
   margin-top: 1rem;
   text-align: center;
   text-decoration: none;
-  transition: background var(--transition);
+  transition: background var(--transition)
 }
 
 /* ================ BADGES ================ */
 .badge {
   display: inline-block;
-  font-size: 0.75rem;
+  font-size: .75rem;
   padding: 2px 6px;
   border-radius: 4px;
-  color: white;
-  font-weight: bold;
+  color: #fff;
+  font-weight: 700
 }
+
 .new-badge {
-  background: var(--badge-new);
+  background: var(--badge-new)
 }
+
 .updated-badge {
-  background: var(--badge-updated);
+  background: var(--badge-updated)
 }
+
 .discount-badge {
-  background: var(--badge-discount);
+  background: var(--badge-discount)
 }
+
 .offer-badge {
-  background: var(--badge-offer);
+  background: var(--badge-offer)
 }
 
 /* ================ RECOMMENDED SECTION ================ */
 .recommended-section {
-  margin-top: 2rem;
+  margin-top: 2rem
 }
+
 .recommended-scroll {
   display: flex;
   gap: 1rem;
   overflow-x: auto;
-  scroll-snap-type: x mandatory;
+  scroll-snap-type: x mandatory
 }
+
 @keyframes slideInLeft {
   from {
     transform: translateX(-30px);
-    opacity: 0;
+    opacity: 0
   }
+
   to {
-    transform: translateX(0);
-    opacity: 1;
+    transform: none;
+    opacity: 1
   }
 }
+
 .recommended-card {
   flex: 0 0 200px;
   background: #fff;
   border-radius: 10px;
-  padding: 0.75rem;
+  padding: .75rem;
   border: 1px solid #ddd;
   cursor: pointer;
-  transition: 0.2s;
+  transition: .2s
 }
+
 .recommended-card img {
   width: 100%;
   height: 120px;
   border-radius: 6px;
-  object-fit: cover;
+  object-fit: cover
 }
+
 body.dark .recommended-card {
   background: #1f1f1f;
   border-color: #333;
-  color: var(--text-dark);
+  color: var(--text-dark)
 }
 
 /* ================ INSTALL PROMPT BOX ================ */
@@ -524,412 +593,381 @@ body.dark .recommended-card {
   position: fixed;
   bottom: 30px;
   right: 30px;
-  background: #ffffff;
+  background: #fff;
   border: 1px solid #ddd;
   padding: 1rem 1.5rem;
   border-radius: 10px;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, .1);
   z-index: 1000;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.75rem;
+  gap: .75rem;
   max-width: 300px;
-  transition: all 0.3s ease;
+  transition: all .3s ease
 }
+
 .install-box p {
   margin: 0;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 500
 }
+
 .install-box button {
-  padding: 0.5rem 1rem;
+  padding: .5rem 1rem;
   border: none;
   border-radius: 6px;
   cursor: pointer;
   font-weight: 600;
-  transition: background 0.3s ease;
+  transition: background .3s ease
 }
+
 #install-now {
   background: var(--color-primary);
-  color: white;
+  color: #fff
 }
+
 #install-now:hover {
-  background: #0b5ed7;
+  background: #0b5ed7
 }
+
 #install-later {
   background: #e0e0e0;
-  color: #333;
+  color: #333
 }
+
 #install-later:hover {
-  background: #d0d0d0;
+  background: #d0d0d0
 }
+
 body.dark .install-box {
   background: #1f1f1f;
-  border-color: #333;
+  border-color: #333
 }
+
 body.dark .install-box p {
-  color: var(--text-dark);
+  color: var(--text-dark)
 }
+
 body.dark #install-later {
   background: #2c2c2c;
-  color: #eee;
+  color: #eee
 }
+
 body.dark #install-later:hover {
-  background: #3c3c3c;
+  background: #3c3c3c
 }
 
 /* ================ SCROLL TO TOP BUTTON ================ */
-/* Scroll to Top (Circle + Blue Ring) */
 #scrollToTopBtn {
   position: fixed;
   bottom: 20px;
   right: 20px;
   width: 50px;
   height: 50px;
-  background: transparent;        /* make inside transparent */
-  border-radius: 50%;             /* circular shape */
-  display: none;                  /* hidden by default */
+  background: transparent;
+  border-radius: 50%;
+  display: none;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, opacity 0.3s ease;
-  z-index: 999;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .1);
+  transition: transform .3s ease, opacity .3s ease;
+  z-index: 999
 }
 
-/* Show/Hide Button */
 #scrollToTopBtn.show {
-  display: flex;  /* visible when scrolled past threshold */
+  display: flex
 }
 
-/* Hover: Slight Scale-Up */
 #scrollToTopBtn:hover {
-  transform: scale(1.08);
+  transform: scale(1.08)
 }
 
-/* Icon/Image Inside the Circle */
 #scrollToTopBtn img {
-  width: 60%;          /* scale image within the circle */
+  width: 60%;
   height: auto;
-  border-radius: 50%;  /* make the image itself circular */
-  /* removed object-fit: cover as per your request */
+  border-radius: 50%
 }
 
-/* Optional Dark Mode Override (if desired) */
 body.dark #scrollToTopBtn {
-  /* keep the outer blue ring; just change inner background if you prefer */
-  background: #1f1f1f; 
+  background: #1f1f1f
 }
 
 /* ================ NEW FOOTER LAYOUT ================ */
+@keyframes fadeSlideIn {
+  to {
+    opacity: 1;
+    transform: none
+  }
+}
+
 footer.footer.container {
   background: #fff;
-  margin: 3.5rem 0 0 0; /* top spacing kept, sides flush */
+  margin: 3.5rem 0 0;
   padding: 2rem;
   text-align: left;
   border-top: 1px solid #eee;
   border-radius: 0;
-  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.05);
-  animation: fadeSlideIn 0.9s ease-in-out 0.2s forwards;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, .05);
+  animation: fadeSlideIn .9s ease-in-out .2s forwards;
   opacity: 0;
   transform: translateY(20px);
   width: 100%;
-  max-width: 100%;
+  max-width: 100%
 }
 
-/* The columns in the top part of the footer */
 .footer-top {
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
   margin-bottom: 2rem;
-  padding-left: 10rem;
+  padding-left: 10rem
 }
+
 .footer-col {
-  min-width: 200px;
+  min-width: 200px
 }
+
 .footer-col h2 {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: .5rem;
   font-size: 1.5rem;
   margin-bottom: 1rem;
-  color: var(--color-primary);
+  color: var(--color-primary)
 }
+
 .footer-icon {
   width: 40px;
-  height: auto;
+  height: auto
 }
+
 .footer-subicon {
   width: 30px;
   height: auto;
-  vertical-align: middle;
+  vertical-align: middle
 }
+
 .footer-col p {
   margin-bottom: 1rem;
   color: var(--color-accent);
-  max-width: 650px;
+  max-width: 650px
 }
+
 .footer-col ul {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 0
 }
+
 .footer-col li {
   display: flex;
   align-items: center;
-  gap: 0.4rem;
-  margin-bottom: 0.5rem;
-  color: var(--text-light);
+  gap: .4rem;
+  margin-bottom: .5rem;
+  color: var(--text-light)
 }
+
 .footer-col li a {
   color: var(--color-primary);
   text-decoration: none;
   font-weight: 600;
-  transition: color 0.2s ease, transform 0.2s ease;
+  transition: color .2s ease, transform .2s ease
 }
+
 .footer-col li a:hover {
   text-decoration: underline;
-  transform: scale(1.05);
+  transform: scale(1.05)
 }
+
 .footer-divider {
   border: none;
   border-top: 1px solid #ddd;
   margin: 0 auto 2rem;
-  max-width: 100%;
-}
-.footer-bottom {
-  text-align: center;
-}
-.footer-bottom p {
-  margin: 0.4rem 0;
-  color: #555;
-  font-size: 0.95rem;
+  max-width: 100%
 }
 
-/* Dark mode for new footer */
+.footer-bottom {
+  text-align: center
+}
+
+.footer-bottom p {
+  margin: .4rem 0;
+  color: #555;
+  font-size: .95rem
+}
+
 body.dark footer.footer.container {
   background: #1f1f1f;
   border-top: 1px solid #333;
   box-shadow: none;
-  color: var(--text-dark);
+  color: var(--text-dark)
 }
-body.dark .footer-col li {
-  color: var(--text-dark);
-}
+
+body.dark .footer-col li,
 body.dark .footer-bottom p {
-  color: var(--text-dark);
+  color: var(--text-dark)
 }
 
-/* ================ FADE + SLIDE ANIMATION ================ */
-@keyframes fadeSlideIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* ================ OLD FOOTER (IF STILL USED) ================ */
+.footer {
+  background: #fff;
+  position: relative;
+  padding: 2rem;
+  border-top: 1px solid #eee;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, .05);
+  color: var(--text-light)
 }
 
-/* ================ RESPONSIVENESS ================ */
-@media (max-width: 1024px) {
-  .controls {
-    flex-direction: column;
-    align-items: center;
-  }
-  .controls input,
-  .controls select {
-    width: 100%;
-    max-width: 400px;
-  }
-}
-@media (max-width: 768px) {
-  .tool-detail-content {
-    flex-direction: column;
-  }
-  .navbar-right {
-    flex-direction: column;
-  }
-  .title {
-    font-size: 1.5rem;
-  }
-
-  /* Footer columns can stack on smaller devices */
-  .footer-top {
-    flex-direction: column;
-    padding-left: 1rem !important; /* reset the large left padding */
-  }
-  .footer-col {
-    margin-bottom: 2rem;
-  }
-  body.dark {
-    /* Slight bump in line-height for readability on small screens in dark mode */
-    line-height: 1.7;
-  }
-}
-@media (max-width: 480px) {
-  .navbar {
-    padding: 0.8rem 1.2rem;
-  }
-  .logo {
-    font-size: 1rem;
-    font-weight: 700;
-    width: auto; 
-    height: auto;
-    border-radius: 0;
-    overflow: visible;
-    position: static;
-  }
-  .navbar-toggle {
-    font-size: 1.3rem;
-  }
-  .navbar-right a,
-  .navbar-right button {
-    padding: 0.5rem 0.8rem;
-    font-size: 0.95rem;
-    font-weight: 500;
-  }
-  .banner {
-    padding: 0.6rem 0.8rem;
-    font-size: 0.85rem;
-  }
-  .title {
-    font-size: 1.3rem;
-  }
-  .notice {
-    font-size: 0.85rem;
-  }
-  .container {
-    padding: 2rem 1.5rem;
-  }
-  .controls {
-    flex-direction: column;
-    gap: 0.6rem;
-    margin: 1rem 0;
-  }
-  .controls input,
-  .controls select {
-    padding: 0.7rem;
-    min-width: 100%;
-    font-size: 0.9rem;
-  }
-  .filter-tags {
-    gap: 0.4rem;
-  }
-  .filter-tags button {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.8rem;
-  }
-  .main-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-    margin-top: 1.5rem;
-  }
-  .tool-card {
-    padding: 1rem;
-    border-radius: 8px;
-  }
-  .tool-thumb-wrapper {
-    height: 130px;
-    border-radius: 6px;
-  }
-  .tool-title {
-    font-size: 0.95rem;
-  }
-  .tool-desc {
-    font-size: 0.85rem;
-  }
-  .tag {
-    font-size: 0.7rem;
-    padding: 3px 8px;
-  }
-  .tool-detail {
-    padding: 1.2rem;
-    gap: 1.2rem;
-  }
-  .tool-detail-left,
-  .tool-detail-right {
-    flex: 1 1 100%;
-  }
-  .tool-main-img {
-    border-radius: 8px;
-  }
-  .tool-gallery img {
-    width: 52px;
-    height: 52px;
-    border-radius: 6px;
-  }
-  .tool-video {
-    height: 200px;
-    border-radius: 8px;
-  }
-  .tool-detail-right .desc {
-    font-size: 0.95rem;
-    margin: 0.8rem 0;
-    margin-top: 1.2rem !important; 
-  }
-  .back-btn,
-  .contact-btn {
-    width: 100%;
-    padding: 0.5rem;
-    font-size: 0.95rem;
-    margin-top: 0.6rem;
-  }
-  .recommended-section {
-    margin-top: 1.5rem;
-  }
-  .recommended-scroll {
-    gap: 0.8rem;
-  }
-  .recommended-card {
-    flex: 0 0 90%;
-    padding: 0.8rem;
-    border-radius: 8px;
-  }
-  .recommended-card img {
-    height: 100px;
-    border-radius: 6px;
-  }
-  .recommended-card h4 {
-    font-size: 0.9rem;
-  }
-  .recommended-card p {
-    font-size: 0.8rem;
-  }
-  .recommended-card .price {
-    font-size: 0.85rem;
-  }
-  #scrollToTopBtn {
-    bottom: 20px;
-    right: 20px;
-    font-size: 1.2rem;
-    padding: 0.5rem 0.7rem;
-  }
-  .footer-top {
-    flex-direction: column;
-    padding-left: 1rem !important; 
-  }
-  .footer-col {
-    margin-bottom: 2rem;
-  }
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+  justify-content: space-between;
+  padding-left: 10rem
 }
 
-/* ================ REQUIREMENTS BUTTON ================ */
+.footer-section {
+  flex: 1;
+  min-width: 200px
+}
+
+.footer-section h2 {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  font-size: 1.3rem;
+  color: var(--color-primary);
+  margin-bottom: 1rem
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0
+}
+
+.footer-section li {
+  margin-bottom: .5rem;
+  display: flex;
+  align-items: center;
+  gap: .5rem
+}
+
+.footer-section a {
+  text-decoration: none;
+  color: var(--color-primary);
+  font-weight: 500;
+  transition: color .2s ease
+}
+
+.footer-section a:hover {
+  color: var(--color-accent)
+}
+
+.footer-divider {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 2rem 0
+}
+
+.footer-bottom {
+  font-size: .9rem;
+  color: #555;
+  text-align: center
+}
+
+.footer-section.links {
+  margin-left: 15rem
+}
+
+.footer-section.resources {
+  margin-left: 5rem
+}
+
+body.dark .footer {
+  background: #1f1f1f;
+  border-top: 1px solid #333;
+  box-shadow: none;
+  color: var(--text-dark)
+}
+
+body.dark .footer-section a:hover {
+  color: var(--color-accent)
+}
+
+body.dark .footer-section li,
+body.dark .footer-bottom {
+  color: var(--text-dark)
+}
+
+/* ================ SEARCH GROUP ================ */
+.search-bar-true-right {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem
+}
+
+.search-group {
+  display: flex;
+  gap: 2rem;
+  padding-right: 65px
+}
+
+.search-group input,
+.search-group select {
+  padding: .5rem .9rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  background: #fff;
+  color: #111
+}
+
+body.dark .search-group input,
+body.dark .search-group select {
+  background: #1f1f1f;
+  color: #eee;
+  border: 1px solid #444
+}
+
+.search-group input::placeholder {
+  color: #aaa
+}
+
+.search-group input:focus,
+.search-group select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 6px rgba(13, 110, 253, .35)
+}
+
+body.dark .search-group input:focus,
+body.dark .search-group select:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 6px rgba(13, 110, 253, .25)
+}
+
+/* ================ REQUIREMENTS POPUP ================ */
 .requirements-btn {
   background: #ff9800;
   color: #fff;
   border: none;
-  padding: 0.6rem 1.2rem;
+  padding: .6rem 1.2rem;
   border-radius: 6px;
   cursor: pointer;
   font-weight: 600;
   transition: background var(--transition);
-  margin-top: 1rem;
-}
-.requirements-btn:hover {
-  background: #fb8c00;
+  margin-top: 1rem
 }
 
-/* ================ POPUP BOX (REQUIREMENTS) ================ */
+.requirements-btn:hover {
+  background: #fb8c00
+}
+
 .popup-box {
   position: fixed;
   top: 50%;
@@ -939,57 +977,59 @@ body.dark .footer-bottom p {
   color: #222;
   padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .2);
   z-index: 9999;
   max-width: 400px;
   width: 90vw;
   min-height: 200px;
-  text-align: left;
+  text-align: left
 }
+
 .popup-box.hidden {
-  display: none;
+  display: none
 }
-.popup-content {
-  width: 100%;
-}
+
 .popup-content h3 {
-  margin-top: 0;
-  margin-bottom: 0.75rem;
+  margin: 0 0 .75rem;
   font-size: 1.3rem;
-  color: var(--color-primary);
+  color: var(--color-primary)
 }
+
 .popup-content p,
 #popupText {
-  margin: 0.5rem 0;
+  margin: .5rem 0;
   line-height: 1.5;
-  white-space: pre-wrap;
+  white-space: pre-wrap
 }
+
 .close-popup-btn {
   display: inline-block;
   margin-top: 1rem;
-  padding: 0.6rem 1.2rem;
+  padding: .6rem 1.2rem;
   background: #ff9800;
   color: #fff;
   border: none;
   border-radius: 6px;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.3s ease;
-}
-.close-popup-btn:hover {
-  background: #fb8c00;
-}
-/* Dark mode for popup */
-body.dark .popup-box {
-  background: #2a2a2a;
-  color: #e0e0e0;
-}
-body.dark .popup-content p,
-body.dark #popupText {
-  color: #ddd;
+  transition: background .3s ease
 }
 
-/* ================ POPUP BANNER STYLES ================ */
+.close-popup-btn:hover {
+  background: #fb8c00
+}
+
+body.dark .popup-box {
+  background: #2a2a2a;
+  color: #e0e0e0
+}
+
+body.dark .popup-content p,
+body.dark #popupText {
+  color: #ddd
+}
+
+/* ================ POPUP BANNER ================ */
 .popup-banner {
   position: fixed;
   bottom: 20px;
@@ -998,425 +1038,428 @@ body.dark #popupText {
   color: #fff;
   padding: 1rem 1.25rem;
   border-radius: 10px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, .2);
   opacity: 0;
   transform: translateY(20px);
-  transition: all 0.5s ease-in-out;
+  transition: all .5s ease-in-out;
   max-width: 300px;
   z-index: 1000;
   display: flex;
   align-items: flex-start;
-  gap: 0.75rem;
+  gap: .75rem
 }
+
 .popup-banner.visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: none
 }
+
 .popup-text {
-  font-size: 0.95rem;
+  font-size: .95rem;
   line-height: 1.4;
-  white-space: pre-line;
+  white-space: pre-line
 }
+
 .popup-close {
   background: none;
   border: none;
   color: #fff;
   font-size: 1.1rem;
   cursor: pointer;
-  margin-left: auto;
+  margin-left: auto
 }
 
-/* ================ OLD FOOTER (IF STILL USED) ================ */
-.footer {
-  background: #fff;
-  position: relative;
-  padding: 2rem;
-  border-top: 1px solid #eee;
-  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.05);
-  color: var(--text-light);
-}
-.footer-content {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2.5rem;
-  justify-content: space-between;
-  padding-left: 10rem;
-}
-.footer-section {
-  flex: 1px;
-  min-width: 200px;
-}
-.footer-section h2 {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 1.3rem;
-  color: var(--color-primary);
-  margin-bottom: 1rem;
-}
-.footer-section p {
-  margin-bottom: 1rem;
-}
-.footer-section ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.footer-section li {
-  margin-bottom: 0.5rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-.footer-section a {
-  text-decoration: none;
-  color: var(--color-primary);
-  font-weight: 500;
-  transition: color 0.2s ease;
-}
-.footer-section a:hover {
-  color: var(--color-accent);
-}
-.footer-divider {
-  border: none;
-  border-top: 1px solid #ddd;
-  margin: 2rem 0;
-}
-.footer-bottom {
-  text-align: center;
-  font-size: 0.9rem;
-  color: #555;
-}
-.footer-section.links {
-  margin-left: 15rem; /* Adjust as needed */
-}
-.footer-section.resources {
-  margin-left: 5rem; /* Adjust as needed */
+/* ================ ICON HELPERS ================ */
+.footer-icon,
+.footer-subicon {
+  border-radius: 50%;
+  object-fit: cover
 }
 
-/* Dark mode for the "old" footer section */
-body.dark .footer {
-  background: #1f1f1f;
-  border-top: 1px solid #333;
-  box-shadow: none;
-  color: var(--text-dark);
+.footer-icon {
+  width: 50px;
+  height: 50px;
+  border: 2px solid #fff
 }
-body.dark .footer-content,
-body.dark .footer-section {
-  color: var(--text-dark);
+
+.footer-icon:hover {
+  border-color: var(--color-primary)
 }
-body.dark .footer-section a {
-  color: var(--color-primary);
+
+.footer-subicon {
+  width: 30px;
+  height: 30px;
+  border: 2px solid #eee;
+  margin-right: 8px
 }
-body.dark .footer-section a:hover {
-  color: var(--color-accent);
+
+.footer-subicon:hover {
+  border-color: var(--color-primary)
 }
-body.dark .footer-section li {
-  color: var(--text-dark);
+
+.footer-section ul li a {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  text-decoration: none
 }
-body.dark .footer-bottom {
-  color: var(--text-dark);
+
+/* ================ RESPONSIVENESS (deduped) ================ */
+@media (max-width:1024px) {
+  .controls {
+    flex-direction: column;
+    align-items: center
+  }
+
+  .controls input,
+  .controls select {
+    width: 100%;
+    max-width: 400px
+  }
+}
+
+@media (max-width:768px) {
+  .tool-detail-content {
+    flex-direction: column
+  }
+
+  .title {
+    font-size: 1.5rem
+  }
+
+  .footer-top {
+    flex-direction: column;
+    padding-left: 1rem !important;
+  }
+
+  body.dark {
+    line-height: 1.7
+  }
+
+  .search-group {
+    padding-right: 20px;
+    gap: .75rem
+  }
+}
+
+@media (max-width:480px) {
+  .banner {
+    padding: .6rem .8rem;
+    font-size: .85rem
+  }
+
+  .title {
+    font-size: 1.3rem
+  }
+
+  .notice {
+    font-size: .85rem
+  }
+
+  .container {
+    padding: 2rem 1.5rem
+  }
+
+  .controls {
+    flex-direction: column;
+    gap: .6rem;
+    margin: 1rem 0
+  }
+
+  .controls input,
+  .controls select {
+    padding: .7rem;
+    min-width: 100%;
+    font-size: .9rem
+  }
+
+  .filter-tags {
+    gap: .4rem
+  }
+
+  .filter-tags button {
+    padding: .4rem .8rem;
+    font-size: .8rem
+  }
+
+  .main-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 1.5rem
+  }
+
+  .tool-thumb-wrapper {
+    height: 130px
+  }
+
+  .tool-title {
+    font-size: .95rem
+  }
+
+  .tool-desc {
+    font-size: .85rem
+  }
+
+  .tag {
+    font-size: .7rem;
+    padding: 3px 8px
+  }
+
+  .tool-detail {
+    padding: 1.2rem;
+    gap: 1.2rem
+  }
+
+  .tool-main-img {
+    border-radius: 8px
+  }
+
+  .tool-gallery img {
+    width: 52px;
+    height: 52px;
+    border-radius: 6px
+  }
+
+  .tool-video {
+    height: 200px;
+    border-radius: 8px
+  }
+
+  .back-btn,
+  .contact-btn {
+    width: 100%;
+    padding: .5rem;
+    font-size: .95rem;
+    margin-top: .6rem
+  }
+
+  .recommended-section {
+    margin-top: 1.5rem
+  }
+
+  .recommended-scroll {
+    gap: .8rem
+  }
+
+  .recommended-card {
+    flex: 0 0 90%;
+    padding: .8rem;
+    border-radius: 8px
+  }
+
+  .recommended-card img {
+    height: 100px
+  }
+
+  #scrollToTopBtn {
+    bottom: 15px;
+    right: 15px;
+    width: 35px;
+    height: 35px;
+    font-size: 1.5rem;
+    padding: .3rem
+  }
+
+  .footer-top {
+    flex-direction: column;
+    padding-left: 0 !important;
+  }
+
+  .footer-col {
+    margin-bottom: 2rem;
+    width: 100%;
+    min-width: auto;
+  }
+
+}
+
+/* =========================================================
+   ⬇⬇⬇  OPTIMISATION & ANIMATION ADD‑ON (kept)  ⬇⬇⬇
+   ========================================================= */
+
+:root {
+  --ease-out: cubic-bezier(.22, .61, .36, 1);
+  --ease-in-out: cubic-bezier(.45, 0, .55, 1);
+  --dur-fast: .25s;
+  --dur-med: .45s;
+  --dur-slow: .8s;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px)
+  }
+
+  to {
+    opacity: 1;
+    transform: none
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(.85)
+  }
+
+  to {
+    opacity: 1;
+    transform: none
+  }
+}
+
+@keyframes flipY {
+  from {
+    transform: rotateY(90deg)
+  }
+
+  to {
+    transform: none
+  }
+}
+
+@keyframes shimmerBG {
+  0% {
+    background-position: -200% 0
+  }
+
+  100% {
+    background-position: 200% 0
+  }
+}
+
+.fade-up {
+  animation: fadeUp var(--dur-med) var(--ease-out) both
+}
+
+.zoom-in {
+  animation: zoomIn var(--dur-med) var(--ease-out) both
+}
+
+.flip-y {
+  animation: flipY var(--dur-slow) var(--ease-out) both
+}
+
+.shimmer {
+  background: linear-gradient(90deg, #eee 0, #f5f5f5 40%, #eee 80%);
+  background-size: 200% 100%;
+  animation: shimmerBG 1.5s linear infinite
+}
+
+.tool-card,
+.tool-main-img,
+#scrollToTopBtn {
+  will-change: transform
+}
+
+.lazy-container {
+  content-visibility: auto;
+  contain-intrinsic-size: 600px 400px
+}
+
+@media (prefers-reduced-motion:reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important
+  }
+}
+
+:where(.controls input, .controls select, .search-group input, .search-group select) {
+  padding-block: .6rem;
+  padding-inline: .9rem
+}
+
+@media (max-width:480px) {
+  :where(.navbar-right a, .navbar-right button) {
+    font-size: .95rem;
+    padding-block: .5rem
+  }
+}
+
+:root {
+  accent-color: var(--color-primary)
+}
+
+::-webkit-scrollbar {
+  width: 10px
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 6px
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-primary) transparent
 }
 
 @media (max-width: 768px) {
+
+  .container {
+    max-width: 100% !important;
+  }
+
+  /* footer columns */
+  .footer-top,
   .footer-content {
-    flex-direction: column;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    gap: 1rem;
-    align-items: flex-start;
-    justify-content: flex-start;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
   }
-  .footer-section {
-    width: 100%;
-    margin: 0 0 2rem 0;
-    text-align: left;
-  }
+
+  /* kill the desktop offsets on those two special columns */
   .footer-section.links,
   .footer-section.resources {
     margin-left: 0 !important;
   }
 }
 
-.footer-icon {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;   /* makes it circular */
-  object-fit: cover;    /* ensures the icon fills the circle */
-  border: 2px solid #fff; /* optional border for styling */
-}
-.footer-icon:hover {
-  border-color: var(--color-primary); /* change border color on hover */
-}
-.footer-icon img {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%; /* makes it a circle */
-  object-fit: cover;  /* ensures the image fills the circle */
-}
-.footer-subicon {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%; /* makes it a circle */
-  object-fit: cover;  /* ensures the image fills the circle */
-  border: 2px solid #eee; /* optional visible border */
-  margin-right: 8px;       /* space before the text link */
-}
-.footer-subicon:hover {
-  border-color: var(--color-primary); /* change border color on hover */
-}
-.footer-subicon img {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%; /* makes it a circle */
-  object-fit: cover;  /* ensures the image fills the circle */
-}
-/* Make the anchor an inline-flex container. */
-.footer-section ul li a {
-  display: inline-flex;
-  align-items: center; /* vertically center icon + text */
-  gap: 0.5rem;         /* space between icon and text */
-  text-decoration: none; /* remove underline, if desired */
-}
-@media (max-width: 480px) {
-  .logo {
-    width: 55px !important;
-    height: 55px !important;
-    border-radius: 50% !important;
-    overflow: hidden !important;
-    position: relative !important;
-  }
-}
-@media (max-width: 480px) {
-  #scrollToTopBtn {
-    bottom: 15px;       /* slightly closer to the bottom */
-    right: 15px;        /* slightly closer to the right edge */
-    width: 35px;        /* reduced width from 50px */
-    height: 35px;       /* reduced height from 50px */
-    font-size: 1.5rem;    /* adjust icon/text size if necessary */
-    padding: 0.3rem;    /* reduce internal spacing */
-  }
-}
-@media (max-width: 480px) {
-  /* Ensure the navbar container arranges its children in a row */
-  .navbar {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    /* Adjust the padding for a more compact layout */
-    padding: 0.8rem 1.2rem;
-  }
-  
-  /* Adjust the logo GIF size and add a margin to separate it from the line */
-  .logo {
-    width: 55px;   /* or another value that suits your design */
-    height: 55px;
-    margin-right: 1rem;  /* adds space between the logo and the nav bar line */
-  }
-  
-  /* Create or adjust the navbar line element */
-  .navbar-line {
-    flex-grow: 1;  /* makes the line expand to fill remaining horizontal space */
-    height: 2px;   /* thickness of the line */
-    background-color: var(--color-primary);  /* uses your primary theme color */
-    /* You can also adjust margins if needed */
-    margin-left: 1rem;
-  }
-}
-@media (max-width: 480px) {
-  /* Arrange navbar children in a row */
-  .navbar {
-    position: relative; /* Needed for absolute positioning of the dropdown */
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.8rem 1.2rem;
-  }
-  
-  /* Adjust the logo GIF size and add spacing */
-  .logo {
-    width: 55px;   /* Adjust as needed */
-    height: 55px;
-    margin-right: 1rem;  /* Space between the logo and the nav bar line */
-  }
-  
-  /* Create or adjust the navbar line element */
-  .navbar-line {
-    flex-grow: 1;          /* Expand to fill remaining horizontal space */
-    height: 2px;           /* Thickness of the line */
-    background-color: var(--color-primary);  /* Use the primary theme color */
-    margin-left: 1rem;
-  }
-  
-  /* Dropdown navigation list styling */
-  .navbar-right {
-    position: absolute;
-    top: 100%;  /* Position immediately below the navbar */
-    left: 0;
-    right: 0;
-    display: none;  /* Hidden by default */
-    flex-direction: column;
-    gap: 0.75rem;
-    background-color: #fff;
-    padding: 0.75rem 0;
-    border-top: 1px solid #eee;
-    transform: translateY(-20px);  /* Start slightly upward */
-    opacity: 0;  /* Fully transparent initially */
-    transition: transform 0.3s ease, opacity 0.3s ease;  /* Smooth drop down */
-    z-index: 200;
-  }
-  
-  /* When the navbar toggle is clicked, add the .show-menu class */
-  .navbar-right.show-menu {
-    display: flex;
-    transform: translateY(0);  /* Drop down into view */
-    opacity: 1;
-  }
-  
-  .navbar-right a,
-  .navbar-right button {
-    width: 100%;
-    text-align: left;
-    padding: 0.6rem 1rem;
-  }
-}
-
+/* === LAST‑MILE FOOTER MOBILE FIX === */
 @media (max-width: 768px) {
-  /* Ensure the navbar is positioned relative so that the dropdown positions correctly */
-  .navbar {
-    position: relative;
-    /* You can choose row or column layout as needed; below we opt for a more compact row layout */
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.8rem 1.2rem;
-  }
-  
-  .navbar-toggle {
-    display: block;
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
+
+  /* let the footer stretch edge‑to‑edge */
+  .footer,
+  footer.footer.container {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
   }
 
-  /* Position the navigation list as an absolute dropdown below the navbar */
-  .navbar-right {
-    position: absolute;
-    top: 100%;  /* positions the list immediately below the navbar */
-    left: 0;
-    right: 0;
-    display: none;  /* hidden by default */
-    flex-direction: column;
-    gap: 0.75rem;
-    background-color: #fff;
-    padding: 0.75rem 0;
-    border-top: 1px solid #eee;
-    /* Start off slightly translated upward and hidden */
-    transform: translateY(-20px);
-    opacity: 0;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-    z-index: 200;
+  /* internal wrapper columns */
+  .footer-content,
+  .footer-top {
+    padding-left: 0 !important;
+    /* already handled above */
+    padding-right: 0 !important;
   }
 
-  /* When the toggle is clicked, show the menu with a downwards slide */
-  .navbar-right.show-menu {
-    display: flex;
-    transform: translateY(0);
-    opacity: 1;
+  /* kill desktop column offsets */
+  .footer-section.links,
+  .footer-section.resources {
+    margin-left: 0 !important;
   }
 
-  .navbar-right a,
-  .navbar-right button {
-    width: 100%;
-    text-align: left;
-    padding: 0.6rem 1rem;
-  }
-
-  /* Dark mode adjustments for dropdown */
-  body.dark .navbar-right {
-    background-color: #2c2c2c;
-    border-top: 1px solid #444;
+  /* copyright block still centred */
+  .footer-bottom {
+    text-align: center;
   }
 }
-.search-bar-true-right {
-  position: relative;
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 1rem;
-}
 
-.search-group {
-  display: flex;
-  gap: 2rem;
-  padding-right: 65px; /* 👈 The sweet spot: adjust between 4px–10px */
-}
-
-.search-group input,
-.search-group select {
-  padding: 0.5rem 0.9rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 14px;
-  background-color: #fff;   /* 👈 Light mode background */
-  color: #111;              /* 👈 Light text */
-}
-
-/* Keep this for dark mode only */
-body.dark .search-group input,
-body.dark .search-group select {
-  background-color: #1f1f1f;
-  color: #eee;
-  border: 1px solid #444;
-}
-
-
-.search-group input::placeholder {
-  color: #aaa;
-}
-.search-group input:focus,
-.search-group select:focus {
-  outline: none;
-  border-color: var(--color-primary); /* Uses your existing accent */
-  box-shadow: 0 0 6px rgba(13, 110, 253, 0.35); /* Soft primary glow */
-}
-body.dark .search-group input:focus,
-body.dark .search-group select:focus {
-  border-color: var(--color-primary); /* Same primary color */
-  box-shadow: 0 0 6px rgba(13, 110, 253, 0.25); /* Less aggressive glow */
-}
-
+/* === kill the footer’s internal scrollbars on mobile === */
+/* === footer‑corner leakage fix === */
 @media (max-width: 768px) {
-  .search-group {
-    padding-right: 20px;
-    gap: 0.75rem;
+
+  .footer-content,
+  .footer-top {
+    box-sizing: border-box;
+    /* include padding in width calc   */
+    max-width: 100vw;
+    /* never wider than the viewport   */
+    overflow: hidden;
+    /* suppress internal scrollbars    */
   }
-}
-/* For active button in light and dark mode */
-.filter-tags button.active {
-  background: var(--color-primary);  /* Light mode active color */
-  color: #fff;  /* White text when active */
-  transition: background 0.3s ease, box-shadow 0.3s ease;  /* Faster transition */
-}
-
-/* Active state for dark mode */
-body.dark .filter-tags button.active {
-  background: #0d6efd;  /* Adjust the active background color in dark mode */
-  color: #fff;  /* Ensures the text remains white */
-  box-shadow: 0 0 10px rgba(13, 110, 253, 0.8);  /* Stronger glowing effect */
-}
-
-/* Hover effect for the button */
-.filter-tags button:hover {
-  background: #28a745; /* Green color for hover in light mode */
-  box-shadow: 0 0 8px rgba(40, 167, 69, 0.6);  /* Green glow */
-  transition: background 0.2s ease, box-shadow 0.2s ease;  /* Faster hover transition */
-}
-
-/* Hover effect in dark mode */
-body.dark .filter-tags button:hover {
-  background: #5cb85c; /* Darker green for hover in dark mode */
-  box-shadow: 0 0 8px rgba(40, 167, 69, 0.6);  /* Green glow */
-  transition: background 0.2s ease, box-shadow 0.2s ease;  /* Faster hover transition */
 }
