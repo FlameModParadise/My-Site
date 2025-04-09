@@ -1339,3 +1339,84 @@ body.dark .footer-bottom {
     border-top: 1px solid #444;
   }
 }
+.search-bar-true-right {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.search-group {
+  display: flex;
+  gap: 2rem;
+  padding-right: 65px; /* 👈 The sweet spot: adjust between 4px–10px */
+}
+
+.search-group input,
+.search-group select {
+  padding: 0.5rem 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  background-color: #fff;   /* 👈 Light mode background */
+  color: #111;              /* 👈 Light text */
+}
+
+/* Keep this for dark mode only */
+body.dark .search-group input,
+body.dark .search-group select {
+  background-color: #1f1f1f;
+  color: #eee;
+  border: 1px solid #444;
+}
+
+
+.search-group input::placeholder {
+  color: #aaa;
+}
+.search-group input:focus,
+.search-group select:focus {
+  outline: none;
+  border-color: var(--color-primary); /* Uses your existing accent */
+  box-shadow: 0 0 6px rgba(13, 110, 253, 0.35); /* Soft primary glow */
+}
+body.dark .search-group input:focus,
+body.dark .search-group select:focus {
+  border-color: var(--color-primary); /* Same primary color */
+  box-shadow: 0 0 6px rgba(13, 110, 253, 0.25); /* Less aggressive glow */
+}
+
+@media (max-width: 768px) {
+  .search-group {
+    padding-right: 20px;
+    gap: 0.75rem;
+  }
+}
+/* For active button in light and dark mode */
+.filter-tags button.active {
+  background: var(--color-primary);  /* Light mode active color */
+  color: #fff;  /* White text when active */
+  transition: background 0.3s ease, box-shadow 0.3s ease;  /* Faster transition */
+}
+
+/* Active state for dark mode */
+body.dark .filter-tags button.active {
+  background: #0d6efd;  /* Adjust the active background color in dark mode */
+  color: #fff;  /* Ensures the text remains white */
+  box-shadow: 0 0 10px rgba(13, 110, 253, 0.8);  /* Stronger glowing effect */
+}
+
+/* Hover effect for the button */
+.filter-tags button:hover {
+  background: #28a745; /* Green color for hover in light mode */
+  box-shadow: 0 0 8px rgba(40, 167, 69, 0.6);  /* Green glow */
+  transition: background 0.2s ease, box-shadow 0.2s ease;  /* Faster hover transition */
+}
+
+/* Hover effect in dark mode */
+body.dark .filter-tags button:hover {
+  background: #5cb85c; /* Darker green for hover in dark mode */
+  box-shadow: 0 0 8px rgba(40, 167, 69, 0.6);  /* Green glow */
+  transition: background 0.2s ease, box-shadow 0.2s ease;  /* Faster hover transition */
+}
