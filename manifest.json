@@ -1,6 +1,6 @@
 {
-  "name": "My Tool Store",
-  "short_name": "ToolStore",
+  "name": "FMP - Store",
+  "short_name": "FMP - Store",
   "description": "Discover and explore premium bots, custom tools, checkers, and automation scripts.",
   "start_url": "/?source=pwa",
   "scope": "/",
