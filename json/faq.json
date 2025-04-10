@@ -1,0 +1,42 @@
+[
+  {
+    "question": "What is this site for?",
+    "answer": "This static site allows you to browse all the tools, offers, and Steam game keys Phoenix (the FMP owner) has in stock. You can see prices, check for any discounts or notices, and find links to our Telegram, Discord, and YouTube. However, there is no direct checkout system here."
+  },
+  {
+    "question": "How do I buy items or tools if the site is static?",
+    "answer": "Since there is no built-in payment system, you can’t purchase directly on this site. Instead, contact us via Telegram (@fmpChatBot or @flamemodparadise) or Discord to complete your purchase. We’ll provide the necessary details and finalize the transaction there."
+  },
+  {
+    "question": "Are the Steam keys and other offers legitimate?",
+    "answer": "Yes. We source all our Steam keys and similar offers from reputable suppliers. You can redeem them on official platforms without issue. If you have any concerns about a key’s authenticity, contact us directly."
+  },
+  {
+    "question": "Do you offer refunds on purchased items?",
+    "answer": "No refunds are provided once digital items (like keys, cookies, or tools) have been delivered. Please review each product’s description carefully and ask any questions before buying."
+  },
+  {
+    "question": "How quickly will I receive my purchased item or tool?",
+    "answer": "Delivery is typically immediate after we confirm payment, especially for keys or cookies. For custom tools, we’ll give you an estimated timeframe depending on the complexity of your request."
+  },
+  {
+    "question": "Can I use your cookies or checkers for anything I want?",
+    "answer": "All cookies, checkers, and automation tools are provided for educational and personal use only. Using them for unlawful or harmful activities is strictly discouraged, and you assume full responsibility for any misuse."
+  },
+  {
+    "question": "Do you offer any warranty on the tools or cookies?",
+    "answer": "We ensure everything is functional at the time of delivery, but ongoing reliability can depend on many factors outside our control (service updates, user actions, etc.). We do our best to keep cookies, tools, and other resources updated."
+  },
+  {
+    "question": "Why can’t I add items to a cart or check out on this site?",
+    "answer": "This is a static site with no e-commerce backend. We prefer direct interaction for purchases, which allows us to offer personalized deals, answer questions, and avoid automated payment fees."
+  },
+  {
+    "question": "Are there any discounts or special promotions?",
+    "answer": "Yes! We occasionally run promotions or offer discounted bundles. Keep an eye on our announcements banner here or our Telegram channel to get the latest deals."
+  },
+  {
+    "question": "What if I have issues after purchasing a tool or key?",
+    "answer": "If you encounter any problems, contact us through the same channel where you made the purchase. We’ll work with you to troubleshoot or guide you on usage. Remember, we cannot refund digital items, but we’ll do our best to help."
+  }
+]

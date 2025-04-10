@@ -23,7 +23,7 @@
   <meta name="twitter:title" content="Flame Mod Paradise - Premium Mods & Tools for Automation" />
   <meta name="twitter:description" content="Discover premium mods, automation tools, and exclusive free offers like Netflix cookies, Spotify cookies, and more at Flame Mod Paradise." />
   <meta name="twitter:image" content="assets/icons/fmp-icon.gif" />
-  <meta name="twitter:creator" content="@FMP_ToolStore" /> <!-- Add your Twitter handle for better social interaction -->
+  <meta name="twitter:creator" content="@FMP_ToolStore" />
 
   <!-- Link to Web Manifest (for PWA support) -->
   <link rel="manifest" href="manifest.json" />
@@ -55,7 +55,6 @@
   </script>
 </head>
 
-
 <body>
   <!-- NAVBAR -->
   <nav class="navbar">
@@ -66,15 +65,16 @@
     </div>
     <button aria-label="Toggle menu" class="navbar-toggle" id="navbarToggle">☰</button>
     <div class="navbar-right" id="navbarMenu">
+      <!-- Updated paths to pages folder -->
       <a href="index.html">Home</a>
-      <a href="reviews.html">Reviews</a>
-      <a href="contact.html">Contact</a>
-      <a href="faq.html">FAQ</a>
+      <a href="pages/reviews.html">Reviews</a>
+      <a href="pages/contact.html">Contact</a>
+      <a href="pages/faq.html">FAQ</a>
       <button id="darkToggle" title="Toggle Dark Mode">💡</button>
     </div>
   </nav>
 
-  <!-- SEARCH BAR (Moved above header for increased visibility) -->
+  <!-- SEARCH BAR -->
   <div class="search-bar-true-right">
     <div class="search-group">
       <input id="searchInput" type="text" placeholder="Search..." />
@@ -109,7 +109,9 @@
 
   <!-- MAIN TOOL LIST OR DETAIL -->
   <main class="container">
-    <section class="main-grid" id="main-tool-list"></section>
+    <section class="main-grid" id="main-tool-list">
+      <!-- Tools will be displayed here by script.js -->
+    </section>
   </main>
 
   <!-- INSTALL PROMPT -->
@@ -133,6 +135,7 @@
     <img src="assets/icons/turn-up.gif" alt="🔝" />
   </button>
 
+  <!-- FOOTER -->
   <footer class="footer" id="contact">
     <div class="footer-content">
       <!-- CONTACT SECTION -->
@@ -168,6 +171,7 @@
       <div class="footer-section links">
         <h2>Quick Links</h2>
         <ul>
+          <!-- Updated links to pages folder -->
           <li>
             <a href="index.html">
               <img src="assets/icons/footers-icons/house.png" alt="Home Icon" class="footer-subicon" />
@@ -175,19 +179,19 @@
             </a>
           </li>
           <li>
-            <a href="reviews.html">
+            <a href="pages/reviews.html">
               <img src="assets/icons/footers-icons/reviews.png" alt="Reviews Icon" class="footer-subicon" />
               Reviews
             </a>
           </li>
           <li>
-            <a href="contact.html">
+            <a href="pages/contact.html">
               <img src="assets/icons/footers-icons/phone.png" alt="Contact Icon" class="footer-subicon" />
               Contact
             </a>
           </li>
           <li>
-            <a href="faq.html">
+            <a href="pages/faq.html">
               <img src="assets/icons/footers-icons/faq.png" alt="FAQ Icon" class="footer-subicon" />
               FAQ
             </a>
@@ -241,7 +245,7 @@
     // Register service worker if available
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => {
-        navigator.serviceWorker.register("/service-worker.js")
+        navigator.serviceWorker.register("./service-worker.js")
           .then((reg) => console.log("✅ Service Worker registered:", reg.scope))
           .catch((err) => console.error("❌ Service Worker error:", err));
       });
