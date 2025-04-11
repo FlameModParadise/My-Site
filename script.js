@@ -592,7 +592,10 @@ window.addEventListener("hashchange", () => {
 });
 
 document.getElementById("imageModal").addEventListener("click", (e) => {
-  if (e.target.id === "imageModal") {
+  const modalContent = document.querySelector(".image-modal-content");
+
+  // Close only if clicked outside the modal content
+  if (!modalContent.contains(e.target)) {
     closeImageModal();
   }
 });
