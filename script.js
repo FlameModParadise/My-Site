@@ -281,6 +281,7 @@ function showToolDetail(tool, isInitial = false) {
             src="${tool.image || "assets/placeholder.jpg"}"
             onerror="this.src='assets/placeholder.jpg'"
             class="tool-main-img"
+            onclick="openImageModal(this.src)"
           />
           <div class="tool-gallery">
             ${(tool.images || []).map((img) => `<img src="${img}" alt="gallery" />`).join("")}
