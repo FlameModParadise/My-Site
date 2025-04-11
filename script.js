@@ -1,6 +1,4 @@
-// ==============================
-//         CONFIGURATION
-// ==============================
+//CONFIGURATION
 const DATA_FILES = [
   "data/tools.json",
   "data/bots.json",
@@ -18,9 +16,7 @@ const SORT_KEY = "sort";
 const FILTER_KEY = "filter";
 const BANNER_KEY = "hideBanner";
 
-// ==============================
-//        DOM REFERENCES
-// ==============================
+//DOM REFERENCES
 const container = document.getElementById("main-tool-list");
 const filtersContainer = document.getElementById("filters");
 const searchInput = document.getElementById("searchInput");
@@ -31,12 +27,50 @@ const banner = document.getElementById("announcement-banner");
 const closeBanner = document.getElementById("close-banner");
 const navbarToggle = document.getElementById("navbarToggle");
 const navbarMenu = document.getElementById("navbarMenu");
+const imageModal = document.getElementById("imageModal");
 
 let allTools = [];
 
-// ==============================
+//HELPER FUNCTIONS
+
+// Debounce for search
+function debounce(func, delay) {
+  let timer;
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => func(...args), delay);
+  };
+}
+
+// Escape HTML to prevent XSS
+function escapeHTML(str = "") {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+// Highlight matched text in a search query
+function highlightMatch(text, keyword) {
+  if (!keyword) return escapeHTML(text);
+  const safeKeyword = keyword.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); // escape special chars
+  const regex = new RegExp(`(${safeKeyword})`, "gi");
+  return escapeHTML(text).replace(regex, `<mark>$1</mark>`);
+}
+
+// Return short or fallback description, with optional highlighting
+function getShortDescription(tool, query = "") {
+  let raw = tool.description
+    ? tool.description
+    : tool.long_description
+    ? tool.long_description.split("\n")[0] + "..."
+    : "No description available.";
+
+  return highlightMatch(raw, query);
+}
+
 //          DARK MODE
-// ==============================
 if (darkToggle) {
   darkToggle.addEventListener("click", () => {
     document.body.classList.toggle("dark");
@@ -52,9 +86,7 @@ if (localStorage.getItem(THEME_KEY) === "dark") {
   document.body.classList.add("dark");
 }
 
-// ==============================
-//      BANNER VISIBILITY
-// ==============================
+//BANNER VISIBILITY
 if (banner && closeBanner && !localStorage.getItem(BANNER_KEY)) {
   // Show banner after short delay
   setTimeout(() => banner.classList.remove("hidden"), 500);
@@ -65,9 +97,7 @@ if (banner && closeBanner && !localStorage.getItem(BANNER_KEY)) {
   });
 }
 
-// ==============================
-//       LOAD ALL JSON DATA
-// ==============================
+//LOAD ALL JSON DATA
 async function loadData() {
   container.innerHTML = "<p>Loading...</p>";
 
@@ -116,9 +146,7 @@ async function loadData() {
   }
 }
 
-// ==============================
-//   APPLY CURRENT SEARCH/FILTER
-// ==============================
+//APPLY CURRENT SEARCH/FILTER
 function applyFiltersAndRender() {
   const savedSearch = sessionStorage.getItem(SEARCH_KEY) || "";
   const savedSort = sessionStorage.getItem(SORT_KEY) || "name";
@@ -130,17 +158,16 @@ function applyFiltersAndRender() {
   if (savedSearch) {
     const query = savedSearch.toLowerCase();
     filtered = filtered.filter((t) => {
-      return (
-        t.name?.toLowerCase().includes(query) ||
-        (t.keywords || []).some((k) => k.toLowerCase().includes(query))
-      );
+      const n = t.name?.toLowerCase() || "";
+      const kw = t.keywords?.join(" ").toLowerCase() || "";
+      return n.includes(query) || kw.includes(query);
     });
   }
 
   // 2) FILTER BY TYPE
   if (savedFilter !== "all") {
     filtered = filtered.filter(
-      (t) => t.type?.toLowerCase() === savedFilter.toLowerCase()
+      (t) => (t.type || "").toLowerCase() === savedFilter.toLowerCase()
     );
   }
 
@@ -158,7 +185,7 @@ function applyFiltersAndRender() {
     default:
       // "name"
       filtered.sort((a, b) =>
-        a.name?.toLowerCase().localeCompare(b.name?.toLowerCase())
+        (a.name || "").toLowerCase().localeCompare((b.name || "").toLowerCase())
       );
       break;
   }
@@ -168,17 +195,12 @@ function applyFiltersAndRender() {
 
   // Update active filter button styles
   document.querySelectorAll("#filters button").forEach((btn) => {
-    btn.classList.remove("active");
     const btnTxt = btn.textContent.toLowerCase();
-    if (btnTxt === savedFilter.toLowerCase()) {
-      btn.classList.add("active");
-    }
+    btn.classList.toggle("active", btnTxt === savedFilter.toLowerCase());
   });
 }
 
-// ==============================
-//     RENDER TOOL CARDS
-// ==============================
+//RENDER TOOL CARDS
 function renderTools(data) {
   container.className = "main-grid";
   container.innerHTML = "";
@@ -188,28 +210,37 @@ function renderTools(data) {
     return;
   }
 
+  // Get search query for highlight
+  const searchQuery = (sessionStorage.getItem(SEARCH_KEY) || "").trim();
+
   data.forEach((tool) => {
     const card = document.createElement("div");
     card.className = "tool-card fade-in";
+    // Lazy load images + highlight name/desc
+    const shortDesc = getShortDescription(tool, searchQuery);
+    const safeName = highlightMatch(tool.name || "Unnamed Tool", searchQuery);
+
     card.innerHTML = `
       <img
+        loading="lazy"
         src="${tool.image || "assets/placeholder.jpg"}"
         onerror="this.src='assets/placeholder.jpg'"
-        alt="${tool.name || "Tool"}"
+        alt="${escapeHTML(tool.name || "Tool")}"
         class="tool-thumb"
       />
       <div class="tool-card-body">
-        <h3 class="tool-title">${tool.name || "Unnamed Tool"}</h3>
-        <p class="tool-desc">${getShortDescription(tool)}</p>
+        <h3 class="tool-title">${safeName}</h3>
+        <p class="tool-desc">${shortDesc}</p>
         <div class="tool-tags">
-          ${(tool.tags || []).map((tag) => `<span class="tag">${tag}</span>`).join("")}
+          ${(tool.tags || [])
+            .map((tag) => `<span class="tag">${escapeHTML(tag)}</span>`)
+            .join("")}
           ${tool.popular ? `<span class="tag">popular</span>` : ""}
           ${getRecentTags(tool)}
         </div>
       </div>
     `;
 
-    // Click => show detail
     card.onclick = () => {
       location.hash = `tool=${encodeURIComponent(tool.name)}`;
       showToolDetail(tool);
@@ -218,9 +249,7 @@ function renderTools(data) {
   });
 }
 
-// ==============================
-//   GENERATE FILTER BUTTONS
-// ==============================
+//GENERATE FILTER BUTTONS
 function generateFilterButtons() {
   // Collect unique types
   const types = [
@@ -244,20 +273,13 @@ function createFilterBtn(label) {
   const btn = document.createElement("button");
   btn.textContent = label.charAt(0).toUpperCase() + label.slice(1);
   btn.addEventListener("click", () => {
-    // Mark active
-    document.querySelectorAll("#filters button").forEach((b) => b.classList.remove("active"));
-    btn.classList.add("active");
-
-    // Save filter to session, re-apply
     sessionStorage.setItem(FILTER_KEY, label.toLowerCase());
     applyFiltersAndRender();
   });
   return btn;
 }
 
-// ==============================
-//     SHOW DETAIL PAGE
-// ==============================
+//SHOW DETAIL PAGE
 function showToolDetail(tool, isInitial = false) {
   // Scroll to top when opening tool details
   window.scrollTo({ top: 320, behavior: "smooth" });
@@ -273,7 +295,7 @@ function showToolDetail(tool, isInitial = false) {
       <div class="tool-detail-top">
         <button class="back-btn" onclick="clearHash()">← Back</button>
         <h2>
-          ${tool.name || "Unnamed Tool"} 
+          ${escapeHTML(tool.name || "Unnamed Tool")}
           ${getBadges(tool)}
         </h2>
       </div>
@@ -281,13 +303,25 @@ function showToolDetail(tool, isInitial = false) {
       <div class="tool-detail-content">
         <div class="tool-detail-left">
           <img
+            loading="lazy"
             src="${tool.image || "assets/placeholder.jpg"}"
             onerror="this.src='assets/placeholder.jpg'"
             class="tool-main-img"
+            alt="${escapeHTML(tool.name || "Tool")}"
             onclick="openImageModal(this.src)"
           />
           <div class="tool-gallery">
-            ${(tool.images || []).map((img) => `<img src="${img}" alt="gallery" />`).join("")}
+            ${(tool.images || [])
+              .map(
+                (img) => `
+                  <img
+                    loading="lazy"
+                    src="${img}"
+                    alt="gallery"
+                  />
+                `
+              )
+              .join("")}
           </div>
           ${
             tool.video
@@ -301,7 +335,7 @@ function showToolDetail(tool, isInitial = false) {
             <p class="desc">
               <strong>Description:</strong><br>
               ${
-                (tool.long_description || tool.description || "No description available.")
+                escapeHTML(tool.long_description || tool.description || "No description available.")
                   .replace(/\n/g, "<br>")
                   .replace(/(<br>\s*)$/, "<br>&nbsp;")
               }
@@ -319,8 +353,8 @@ function showToolDetail(tool, isInitial = false) {
                 : ""
             }
             <p><strong>Stock:</strong><br>${stockStatus}</p><br>
-            <p><strong>Released:</strong><br>${tool.release_date || "N/A"}</p><br>
-            <p><strong>Updated:</strong><br>${tool.update_date || "N/A"}</p><br>
+            <p><strong>Released:</strong><br>${escapeHTML(tool.release_date || "N/A")}</p><br>
+            <p><strong>Updated:</strong><br>${escapeHTML(tool.update_date || "N/A")}</p><br>
 
             <!-- Contact & Requirements Buttons -->
             <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
@@ -331,7 +365,9 @@ function showToolDetail(tool, isInitial = false) {
               >
                 💬 Contact
               </a>
-              <button class="requirements-btn" onclick="showRequirementsPopup('${tool.name}')">
+              <button class="requirements-btn" onclick="showRequirementsPopup('${escapeHTML(
+                tool.name
+              )}')">
                 Requirements
               </button>
             </div>
@@ -353,25 +389,32 @@ function showToolDetail(tool, isInitial = false) {
   });
 }
 
-// ==============================
-//      SUPPORT FUNCTIONS
-// ==============================
+//SUPPORT FUNCTIONS
 function applyURLHash() {
   const hash = decodeURIComponent(location.hash || "").replace("#", "");
   if (hash.startsWith("tool=")) {
     const name = hash.replace("tool=", "").toLowerCase();
-    const matched = allTools.find((t) => t.name?.toLowerCase() === name);
+    const matched = allTools.find((t) => (t.name || "").toLowerCase() === name);
     if (matched) showToolDetail(matched, true);
   }
 }
 
-// Return short or fallback description
-function getShortDescription(tool) {
-  if (tool.description) return tool.description;
-  if (tool.long_description) {
-    return tool.long_description.split("\n")[0] + "...";
+// For "new"/"updated" tag chips under each card
+function getRecentTags(tool) {
+  const now = new Date();
+  const release = new Date(tool.release_date);
+  const update = new Date(tool.update_date);
+
+  const tags = [];
+  // show "new" if within 7 days of release
+  if ((now - release) / (1000 * 60 * 60 * 24) <= 7) {
+    tags.push('<span class="tag">new</span>');
   }
-  return "No description available.";
+  // show "updated" if within 7 days
+  if ((now - update) / (1000 * 60 * 60 * 24) <= 7) {
+    tags.push('<span class="tag">updated</span>');
+  }
+  return tags.join(" ");
 }
 
 // Return a "stock" string
@@ -417,24 +460,6 @@ function getBadges(tool) {
   return badges.join(" ");
 }
 
-// For "new"/"updated" tag chips under each card
-function getRecentTags(tool) {
-  const now = new Date();
-  const release = new Date(tool.release_date);
-  const update = new Date(tool.update_date);
-
-  const tags = [];
-  // show "new" if within 7 days of release
-  if ((now - release) / (1000 * 60 * 60 * 24) <= 7) {
-    tags.push('<span class="tag">new</span>');
-  }
-  // show "updated" if within 7 days
-  if ((now - update) / (1000 * 60 * 60 * 24) <= 7) {
-    tags.push('<span class="tag">updated</span>');
-  }
-  return tags.join(" ");
-}
-
 // Return days left before an offer expires
 function daysLeft(date) {
   const diff = new Date(date) - new Date();
@@ -456,32 +481,33 @@ function renderPricing(tool) {
   if (tool.pricing) {
     // If "pricing" is an object with multiple tiers
     const list = Object.entries(tool.pricing)
-      .map(([k, v]) => `<li>${k}: ${v}</li>`)
+      .map(([k, v]) => `<li>${escapeHTML(k)}: ${escapeHTML(v)}</li>`)
       .join("");
     return `<p><strong>Pricing:</strong></p>
             <ul class="pricing-list">${list}</ul><br>`;
   } else if (tool.price) {
     // Single price
-    return `<p><strong>Price:</strong><br>
-              ${tool.price.replace(/\n/g, "<br>").replace(/(<br>\s*)$/, "<br>&nbsp;")}
-            </p><br>`;
+    const safePrice = escapeHTML(tool.price)
+      .replace(/\n/g, "<br>")
+      .replace(/(<br>\s*)$/, "<br>&nbsp;");
+    return `<p><strong>Price:</strong><br>${safePrice}</p><br>`;
   }
   return "";
 }
 
-// ==============================
-//       RECOMMENDATIONS
-// ==============================
+//RECOMMENDATIONS
 function renderRecommendations(tool) {
   // find up to 6 "related" tools of the same type
   const recs = allTools
     .filter(
-      (t) => t.name !== tool.name && t.type?.toLowerCase() === tool.type?.toLowerCase()
+      (t) => (t.name || "") !== (tool.name || "") &&
+             (t.type || "").toLowerCase() === (tool.type || "").toLowerCase()
     )
     .slice(0, 6);
 
   if (!recs.length) return "";
 
+  // highlight search not needed here, just showing related
   const cardsHTML = recs
     .map(
       (r) => `
@@ -489,11 +515,15 @@ function renderRecommendations(tool) {
           r.name
         )}"'>
           <img
+            loading="lazy"
             src="${r.image || "assets/placeholder.jpg"}"
             onerror="this.src='assets/placeholder.jpg'"
           />
-          <h4>${r.name}</h4>
-          <p>${getShortDescription(r)}</p>
+          <h4>${escapeHTML(r.name)}</h4>
+          <p>${escapeHTML(
+            r.description ||
+              (r.long_description || "No description").split("\n")[0] + "..."
+          )}</p>
         </div>
       `
     )
@@ -509,21 +539,18 @@ function renderRecommendations(tool) {
   `;
 }
 
-// ==============================
-//     REQUIREMENTS POPUP
-// ==============================
+//REQUIREMENTS POPUP
 function showRequirementsPopup(productName) {
   const popupBox = document.getElementById("popupMessage");
   const popupText = document.getElementById("popupText");
-
   const tool = allTools.find((t) => t.name === productName);
 
   let message = tool && tool.requirements
     ? tool.requirements
     : `Requirements for ${productName}...\n\nPlease contact the owner.`;
 
-  // Insert HTML line breaks
-  message = message.replace(/\n/g, "<br>");
+  // Insert HTML line breaks + escape
+  message = escapeHTML(message).replace(/\n/g, "<br>");
   popupText.innerHTML = message;
 
   popupBox.classList.remove("hidden");
@@ -537,9 +564,7 @@ function closePopup() {
   document.getElementById("popupMessage").classList.add("hidden");
 }
 
-// ==============================
-//     CLEAR HASH (BACK BTN)
-// ==============================
+//CLEAR HASH (BACK BTN)
 function clearHash() {
   location.hash = "";
   window.scrollTo({ top: 0, behavior: "smooth" });
@@ -547,18 +572,14 @@ function clearHash() {
   applyFiltersAndRender();
 }
 
-// ==============================
-//    NAVBAR TOGGLE (MOBILE)
-// ==============================
+//NAVBAR TOGGLE (MOBILE)
 if (navbarToggle && navbarMenu) {
   navbarToggle.addEventListener("click", () => {
     navbarMenu.classList.toggle("show-menu");
   });
 }
 
-// ==============================
-//   SCROLL TO TOP BUTTON
-// ==============================
+//SCROLL TO TOP BUTTON
 window.addEventListener("scroll", () => {
   scrollToTopBtn.classList.toggle("show", window.scrollY > 300);
 });
@@ -567,25 +588,21 @@ scrollToTopBtn?.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
-// ==============================
-//       LIVE SEARCH
-// ==============================
-searchInput?.addEventListener("input", () => {
+//DEBOUNCED SEARCH
+const debouncedSearchHandler = debounce(() => {
   sessionStorage.setItem(SEARCH_KEY, searchInput.value);
   applyFiltersAndRender();
-});
+}, 300);
 
-// ==============================
-//         SORT SELECT
-// ==============================
+searchInput?.addEventListener("input", debouncedSearchHandler);
+
+//SORT SELECT
 sortSelect?.addEventListener("change", () => {
   sessionStorage.setItem(SORT_KEY, sortSelect.value);
   applyFiltersAndRender();
 });
 
-// ==============================
-//         INIT
-// ==============================
+//INIT
 loadData();
 
 // If user changes #hash manually, or navigates back/forward
@@ -594,9 +611,14 @@ window.addEventListener("hashchange", () => {
   applyURLHash();
 });
 
-document.getElementById("imageModal").addEventListener("click", function (e) {
-  if (e.target === this) {
+//ESC KEY FOR IMAGE MODAL
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") closeImageModal();
+});
+
+// imageModal click outside to close
+imageModal?.addEventListener("click", (e) => {
+  if (e.target === imageModal) {
     closeImageModal();
   }
 });
-
