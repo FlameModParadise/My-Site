@@ -590,3 +590,9 @@ window.addEventListener("hashchange", () => {
   // Check if a "tool=" hash is present, otherwise show main list
   applyURLHash();
 });
+
+document.getElementById("imageModal").addEventListener("click", (e) => {
+  if (e.target.id === "imageModal") {
+    closeImageModal();
+  }
+});
