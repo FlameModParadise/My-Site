@@ -1535,3 +1535,28 @@ body.dark .image-close-btn {
   background: #333;
   color: #fff;
 }
+@media (max-width: 768px) {
+  .image-modal-content img {
+    max-width: 95%;
+    max-height: 70vh;
+  }
+
+  .image-close-btn {
+    top: -8px;
+    right: -8px;
+    font-size: 1rem;
+    padding: 0.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .image-modal-content img {
+    max-width: 90%;
+    max-height: 60vh;
+  }
+
+  .image-close-btn {
+    font-size: 0.95rem;
+    padding: 0.3rem;
+  }
+}
