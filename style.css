@@ -1505,9 +1505,12 @@ body.dark #popupText {
 
 .image-modal-content img {
   max-width: 100%;
-  max-height: 100%;
+  max-height: 80vh;
+  width: auto;
+  height: auto;
   border-radius: 10px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  object-fit: contain;
 }
 
 .image-close-btn {
