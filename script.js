@@ -591,11 +591,9 @@ window.addEventListener("hashchange", () => {
   applyURLHash();
 });
 
-document.getElementById("imageModal").addEventListener("click", (e) => {
-  const modalContent = document.querySelector(".image-modal-content");
-
-  // Close only if clicked outside the modal content
-  if (!modalContent.contains(e.target)) {
+document.getElementById("imageModal").addEventListener("click", function (e) {
+  if (e.target === this) {
     closeImageModal();
   }
 });
+
