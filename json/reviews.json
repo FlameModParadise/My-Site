@@ -1,0 +1,27 @@
+[
+  {
+    "category": "Cookies Sold",
+    "image": "../assets/reviews/cookies1.jpg",
+    "text": "A genuine cookies photo..."
+  },
+  {
+    "category": "Cookies Sold",
+    "image": "../assets/reviews/cookies2.jpg",
+    "text": "Cookies sold image #2..."
+  },
+  {
+    "category": "Cookies Sold",
+    "image": "../assets/reviews/cookies3.jpg",
+    "text": "Cookies sold image #3..."
+  },
+  {
+    "category": "Checker Sold",
+    "image": "../assets/reviews/checker1.jpg",
+    "text": "A real checker tool photo..."
+  },
+  {
+    "category": "Checker Sold",
+    "image": "../assets/reviews/checker2.jpg",
+    "text": "Another checker sold image..."
+  }
+]

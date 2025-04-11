@@ -1,0 +1,133 @@
+/* GLOBAL RESET: removes all default browser margins, padding, and other quirks */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ==================== */
+/* LIGHT MODE (BASE)    */
+/* ==================== */
+
+/* Container for the entire Terms section */
+#termsContainer.terms-page {
+  max-width: 900px;         /* Adjust or remove if you want full width */
+  margin: 1rem auto;        /* Centers container and gives top/bottom spacing */
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  line-height: 1.7;         /* Larger line spacing for easier reading */
+  color: #333;
+}
+
+/* Heading/Intro Section */
+.terms-heading h2 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;    /* Slight gap below heading */
+}
+
+.terms-heading p {
+  margin-bottom: 1rem;
+  color: var(--text-light);
+  line-height: 1.7;         /* Match container line-height */
+}
+
+/* Main Terms Content */
+.terms-content {
+  background-color: transparent;
+}
+
+/* Numbered list, flush left, no bullets */
+.terms-content .terms-list {
+  list-style: none;
+  counter-reset: termIndex;
+  margin: 0;
+  padding: 0;
+}
+
+/* Each list item with a bit of spacing at the bottom */
+.terms-content .terms-list .terms-item {
+  counter-increment: termIndex;
+  margin-bottom: 1rem;   /* Space between items */
+}
+
+/* Inline numbering & heading on one line, flush left
+   Example: "1. Site Purpose" */
+.terms-content .terms-list .terms-item::before {
+  content: counter(termIndex) ". ";
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.terms-content .terms-list .terms-item-heading {
+  display: inline;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+/* Paragraph: starts on the next line, no indent, extra line spacing */
+.terms-content .terms-list .terms-item-paragraph {
+  display: block;
+  margin-top: 0.3rem;      /* Tiny gap from heading above */
+  margin-bottom: 0;        /* No extra space below (unless you want it) */
+  color: #333;
+  line-height: 1.7;        /* Match container line-height */
+  text-indent: 0;          /* Ensures no first-line indent */
+  white-space: normal;     /* Normal text wrapping */
+}
+
+/* ==================== */
+/* DARK MODE OVERRIDES   */
+/* ==================== */
+
+/* Dark mode styles for the heading */
+body.dark .terms-heading h2,
+body.dark .terms-heading p {
+  color: #ccc;
+}
+
+/* Dark mode styles for the main terms content */
+body.dark .terms-content .terms-list .terms-item-heading,
+body.dark .terms-content .terms-list .terms-item-paragraph {
+  color: #ccc;
+}
+
+/* ==================== */
+/* MEDIA QUERY: Mobile   */
+/* ==================== */
+
+@media (max-width: 480px) {
+  #termsContainer.terms-page {
+    max-width: 100%;
+    margin: 1rem;
+    font-size: 0.9rem;  /* Slightly smaller font for small screens */
+    line-height: 1.6;
+  }
+  .terms-heading h2 {
+    font-size: 1.1rem;
+  }
+  .terms-heading p {
+    font-size: 0.95rem;
+  }
+  .terms-content .terms-list .terms-item {
+    margin-bottom: 0.8rem;
+  }
+  .terms-content .terms-list .terms-item-heading {
+    font-size: 1rem;
+  }
+  .terms-content .terms-list .terms-item-paragraph {
+    font-size: 0.95rem;
+  }
+}
+.logo img {
+  height: 100% !important;
+  /* or whatever consistent height you want */
+  width: 100% !important;
+  /* maintain aspect ratio */
+}
+
+.flip-card-inner.flipped {
+  transform: rotateY(180deg);
+}

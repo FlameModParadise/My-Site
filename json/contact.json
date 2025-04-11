@@ -1,22 +1,34 @@
-{
-  "contact_methods": [
-    {
-      "label": "Telegram",
-      "url": "https://t.me/fmpChatBot",
-      "icon": "assets/icons/telegram.png",
-      "note": "Fastest support. Reach me directly here."
-    },
-    {
-      "label": "Discord",
-      "url": "https://discord.gg/kfJfP3aNwC",
-      "icon": "assets/icons/discord.png",
-      "note": "Join the community or contact for bot help."
-    },
-    {
-      "label": "Email",
-      "url": "mailto:flamemodparadiscord@gmail.com",
-      "icon": "assets/icons/email.png",
-      "note": "For formal support or inquiries."
-    }
-  ]
-}
+[
+  {
+    "type": "Telegram",
+    "icon": "../assets/icons/telegram.png",
+    "title": "Telegram",
+    "description": "Connect with our Telegram Bot or join our channel for immediate support and updates.",
+    "link": "https://t.me/fmpChatBot",
+    "buttonText": "Connect Now"
+  },
+  {
+    "type": "Discord",
+    "icon": "../assets/icons/footers-icons/discord.png",
+    "title": "Discord",
+    "description": "Join our Discord community to get real-time support, share ideas, and stay updated.",
+    "link": "https://discord.gg/28P77Dp99H",
+    "buttonText": "Join Discord"
+  },
+  {
+    "type": "Email",
+    "icon": "../assets/icons/footers-icons/gmail.png",
+    "title": "Email",
+    "description": "Send us an email for any inquiries or support. We're here to help!",
+    "link": "mailto:support@flamemodparadise.com",
+    "buttonText": "Email Us"
+  },
+  {
+    "type": "YouTube",
+    "icon": "../assets/icons/footers-icons/youtube.png",
+    "title": "YouTube",
+    "description": "Visit our YouTube channel for tutorials, reviews, and more.",
+    "link": "https://www.youtube.com/@FMP-yt",
+    "buttonText": "Visit Channel"
+  }
+]
