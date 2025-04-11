@@ -1,17 +1,25 @@
 [
   {
     "type": "Telegram",
+    "icon": "../assets/icons/tgbot.png",
+    "title": "Telegram Bot",
+    "description": "Connect with our Telegram Bot for immediate support.",
+    "link": "https://t.me/fmpChatBot",
+    "buttonText": "Connect Now"
+  },
+  {
+    "type": "Telegram",
     "icon": "../assets/icons/telegram.png",
-    "title": "Telegram",
-    "description": "Connect with our Telegram Bot or join our channel for immediate support and updates.",
+    "title": "Telegram Channel",
+    "description": "Join our channel for support.",
     "link": "https://t.me/fmpChatBot",
     "buttonText": "Connect Now"
   },
   {
     "type": "Discord",
     "icon": "../assets/icons/footers-icons/discord.png",
-    "title": "Discord",
-    "description": "Join our Discord community to get real-time support, share ideas, and stay updated.",
+    "title": "Discord Server",
+    "description": "Join our Discord community share ideas, and stay updated.",
     "link": "https://discord.gg/28P77Dp99H",
     "buttonText": "Join Discord"
   },
@@ -20,7 +28,7 @@
     "icon": "../assets/icons/footers-icons/gmail.png",
     "title": "Email",
     "description": "Send us an email for any inquiries or support. We're here to help!",
-    "link": "mailto:support@flamemodparadise.com",
+    "link": "mailto:flamemodparadisediscord@gmail.com",
     "buttonText": "Email Us"
   },
   {
