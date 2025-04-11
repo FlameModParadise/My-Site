@@ -259,6 +259,9 @@ function createFilterBtn(label) {
 //     SHOW DETAIL PAGE
 // ==============================
 function showToolDetail(tool, isInitial = false) {
+  // Scroll to top when opening tool details
+  window.scrollTo({ top: 320, behavior: "smooth" });
+
   if (!isInitial) {
     location.hash = `tool=${encodeURIComponent(tool.name)}`;
   }
