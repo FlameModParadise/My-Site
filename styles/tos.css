@@ -1,4 +1,6 @@
-/* GLOBAL RESET: removes all default browser margins, padding, and other quirks */
+/* ==================== */
+/* GLOBAL RESET         */
+/* ==================== */
 * {
   margin: 0;
   padding: 0;
@@ -8,101 +10,110 @@
 /* ==================== */
 /* LIGHT MODE (BASE)    */
 /* ==================== */
-
-/* Container for the entire Terms section */
 #termsContainer.terms-page {
-  max-width: 900px;         /* Adjust or remove if you want full width */
-  margin: 1rem auto;        /* Centers container and gives top/bottom spacing */
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #fff;
   font-family: "Inter", sans-serif;
   font-size: 1rem;
-  line-height: 1.7;         /* Larger line spacing for easier reading */
+  line-height: 1.7;
   color: #333;
+  border-left: 5px solid var(--color-primary);
+  border-radius: 8px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
-/* Heading/Intro Section */
+/* Heading Section */
 .terms-heading h2 {
-  font-size: 1.3rem;
-  font-weight: 600;
+  font-size: 1.5rem;
+  font-weight: 700;
   color: var(--color-primary);
-  margin-bottom: 0.5rem;    /* Slight gap below heading */
+  margin-bottom: 0.75rem;
 }
-
 .terms-heading p {
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
   color: var(--text-light);
-  line-height: 1.7;         /* Match container line-height */
+  line-height: 1.7;
 }
 
-/* Main Terms Content */
+/* Terms Content */
 .terms-content {
   background-color: transparent;
 }
 
-/* Numbered list, flush left, no bullets */
-.terms-content .terms-list {
+/* Numbered List */
+.terms-list {
   list-style: none;
   counter-reset: termIndex;
   margin: 0;
   padding: 0;
 }
-
-/* Each list item with a bit of spacing at the bottom */
-.terms-content .terms-list .terms-item {
+.terms-item {
   counter-increment: termIndex;
-  margin-bottom: 1rem;   /* Space between items */
+  margin-bottom: 1.2rem;
 }
-
-/* Inline numbering & heading on one line, flush left
-   Example: "1. Site Purpose" */
-.terms-content .terms-list .terms-item::before {
+.terms-item::before {
   content: counter(termIndex) ". ";
   font-weight: 700;
   color: var(--color-primary);
 }
-
-.terms-content .terms-list .terms-item-heading {
+.terms-item-heading {
   display: inline;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   font-weight: 700;
   color: var(--color-primary);
 }
-
-/* Paragraph: starts on the next line, no indent, extra line spacing */
-.terms-content .terms-list .terms-item-paragraph {
+.terms-item-paragraph {
   display: block;
-  margin-top: 0.3rem;      /* Tiny gap from heading above */
-  margin-bottom: 0;        /* No extra space below (unless you want it) */
+  margin-top: 0.4rem;
+  margin-bottom: 0;
   color: #333;
-  line-height: 1.7;        /* Match container line-height */
-  text-indent: 0;          /* Ensures no first-line indent */
-  white-space: normal;     /* Normal text wrapping */
+  line-height: 1.7;
+  white-space: normal;
+  text-indent: 0;
 }
 
 /* ==================== */
-/* DARK MODE OVERRIDES   */
+/* DARK MODE OVERRIDES  */
 /* ==================== */
-
-/* Dark mode styles for the heading */
+body.dark #termsContainer.terms-page {
+  background: #1f1f1f;
+  color: #ccc;
+}
 body.dark .terms-heading h2,
 body.dark .terms-heading p {
   color: #ccc;
 }
-
-/* Dark mode styles for the main terms content */
-body.dark .terms-content .terms-list .terms-item-heading,
-body.dark .terms-content .terms-list .terms-item-paragraph {
+body.dark .terms-item-heading,
+body.dark .terms-item-paragraph {
   color: #ccc;
 }
 
 /* ==================== */
-/* MEDIA QUERY: Mobile   */
+/* RESPONSIVENESS       */
 /* ==================== */
-
+@media (max-width: 768px) {
+  #termsContainer.terms-page {
+    padding: 1.5rem;
+    font-size: 0.95rem;
+    line-height: 1.65;
+  }
+  .terms-heading h2 {
+    font-size: 1.3rem;
+  }
+  .terms-heading p {
+    font-size: 1rem;
+  }
+  .terms-item-heading {
+    font-size: 1.05rem;
+  }
+}
 @media (max-width: 480px) {
   #termsContainer.terms-page {
-    max-width: 100%;
-    margin: 1rem;
-    font-size: 0.9rem;  /* Slightly smaller font for small screens */
+    padding: 1rem;
+    font-size: 0.9rem;
     line-height: 1.6;
   }
   .terms-heading h2 {
@@ -111,23 +122,22 @@ body.dark .terms-content .terms-list .terms-item-paragraph {
   .terms-heading p {
     font-size: 0.95rem;
   }
-  .terms-content .terms-list .terms-item {
-    margin-bottom: 0.8rem;
-  }
-  .terms-content .terms-list .terms-item-heading {
+  .terms-item-heading {
     font-size: 1rem;
   }
-  .terms-content .terms-list .terms-item-paragraph {
+  .terms-item-paragraph {
     font-size: 0.95rem;
   }
 }
+
+/* ==================== */
+/* GLOBAL FIXES         */
+/* ==================== */
 .logo img {
   height: 100% !important;
-  /* or whatever consistent height you want */
   width: 100% !important;
-  /* maintain aspect ratio */
+  object-fit: contain;
 }
-
 .flip-card-inner.flipped {
   transform: rotateY(180deg);
 }

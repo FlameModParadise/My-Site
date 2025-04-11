@@ -9,12 +9,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Fetch reviews data from json/reviews.json
   fetch("../json/reviews.json")
-    .then(response => {
-      if (!response.ok) throw new Error("Failed to load reviews data.");
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`Failed to load reviews data. Status: ${response.status}`);
+      }
       return response.json();
     })
-    .then(data => {
-      // Group reviews by category
+    .then((data) => {
+      if (!Array.isArray(data) || data.length === 0) {
+        categoryOverview.innerHTML = "<p>No reviews available at this time.</p>";
+        return;
+      }
+
+      // Group reviews by category (defaulting to 'Others' if missing)
       groupedReviews = data.reduce((acc, review) => {
         const cat = review.category || "Others";
         if (!acc[cat]) acc[cat] = [];
@@ -24,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       buildCategoryOverview();
     })
-    .catch(error => {
+    .catch((error) => {
       console.error("Error loading reviews:", error);
       categoryOverview.innerHTML = "<p>Sorry, no reviews are available at this time.</p>";
     });
@@ -32,8 +39,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // Build the category overview (stacked collage)
   function buildCategoryOverview() {
     categoryOverview.innerHTML = "";
-    for (const category in groupedReviews) {
-      const reviewsArray = groupedReviews[category];
+    Object.keys(groupedReviews).forEach((category) => {
+      const reviewsArray = groupedReviews[category] || [];
 
       const catCard = document.createElement("div");
       catCard.classList.add("category-card");
@@ -45,9 +52,11 @@ document.addEventListener("DOMContentLoaded", () => {
       const coverReviews = reviewsArray.slice(0, 3);
       coverReviews.forEach((review, idx) => {
         const img = document.createElement("img");
-        img.src = review.image;
+        img.src = review.image || "../assets/placeholder.jpg";
         img.alt = `${category} cover ${idx + 1}`;
-        img.onerror = () => { img.src = "../assets/placeholder.jpg"; };
+        img.onerror = () => {
+          img.src = "../assets/placeholder.jpg";
+        };
         img.classList.add(`stacked-${idx + 1}`);
         collage.appendChild(img);
       });
@@ -55,14 +64,16 @@ document.addEventListener("DOMContentLoaded", () => {
       const label = document.createElement("h3");
       label.textContent = category;
 
+      catCard.appendChild(collage);
+      catCard.appendChild(label);
+
+      // Click event => show detail for this category
       catCard.addEventListener("click", () => {
         showCategoryDetail(category);
       });
 
-      catCard.appendChild(collage);
-      catCard.appendChild(label);
       categoryOverview.appendChild(catCard);
-    }
+    });
   }
 
   // Show full detail gallery for a selected category
@@ -72,12 +83,19 @@ document.addEventListener("DOMContentLoaded", () => {
     detailTitle.textContent = category;
     detailPhotosDiv.innerHTML = "";
 
-    const items = groupedReviews[category];
-    items.forEach(review => {
+    const items = groupedReviews[category] || [];
+    if (items.length === 0) {
+      detailPhotosDiv.innerHTML = "<p>No images found for this category.</p>";
+      return;
+    }
+
+    items.forEach((review) => {
       const img = document.createElement("img");
-      img.src = review.image;
+      img.src = review.image || "../assets/placeholder.jpg";
       img.alt = `${category} full image`;
-      img.onerror = () => { img.src = "../assets/placeholder.jpg"; };
+      img.onerror = () => {
+        img.src = "../assets/placeholder.jpg";
+      };
       detailPhotosDiv.appendChild(img);
     });
   }
@@ -109,14 +127,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const largeImg = document.createElement("img");
     largeImg.src = src;
     largeImg.alt = alt;
-    largeImg.onerror = () => { largeImg.src = "../assets/placeholder.jpg"; };
+    largeImg.onerror = () => {
+      largeImg.src = "../assets/placeholder.jpg";
+    };
 
     // Append the image to modal content, then to modal
     modalContent.appendChild(largeImg);
     modal.appendChild(modalContent);
     document.body.appendChild(modal);
 
-    // Close modal when clicking the close button (if you want to add one) or clicking outside the image
+    // Close modal when clicking outside the image
     modal.addEventListener("click", (event) => {
       if (event.target === modal) {
         document.body.removeChild(modal);

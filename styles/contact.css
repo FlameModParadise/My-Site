@@ -46,7 +46,6 @@
         opacity: 0;
         transform: translateY(20px);
     }
-
     100% {
         opacity: 1;
         transform: translateY(0);
@@ -76,12 +75,10 @@
         opacity: 0;
         transform: scale(0.95);
     }
-
     60% {
         opacity: 1;
         transform: scale(1.05);
     }
-
     100% {
         transform: scale(1);
     }
@@ -97,7 +94,19 @@
     transform-style: preserve-3d;
 }
 
-.flip-card:hover .flip-card-inner {
+/* 
+   By default, we use hover to flip on desktops that support hover.
+   If you have click-based flipping in JS for mobile, this won't conflict:
+   the .flipped class also triggers transform. 
+*/
+@media (hover: hover) {
+    .flip-card:hover .flip-card-inner {
+        transform: rotateY(180deg);
+    }
+}
+
+/* Manual toggle class if you want to handle clicks: */
+.flip-card-inner.flipped {
     transform: rotateY(180deg);
 }
 
@@ -214,26 +223,21 @@ body.dark .flip-card-back a:hover {
     .contact-hero {
         height: 250px;
     }
-
     .hero-content h1 {
         font-size: 2.2rem;
     }
-
     .hero-content p {
         font-size: 1rem;
     }
-
     .contact-card-wrapper {
         gap: 1.5rem;
         margin: 1.5rem 0;
     }
-
     .flip-card {
         width: 90%;
         max-width: 320px;
         height: auto;
     }
-
     .flip-card-inner {
         min-height: 320px;
     }
@@ -244,49 +248,39 @@ body.dark .flip-card-back a:hover {
     .contact-hero {
         height: 200px;
     }
-
     .hero-content h1 {
         font-size: 1.8rem;
     }
-
     .hero-content p {
         font-size: 0.9rem;
     }
-
     .contact-card-wrapper {
         gap: 1rem;
         margin: 1.2rem 0;
     }
-
     .flip-card {
         width: 100%;
         max-width: 300px;
         height: auto;
     }
-
     .flip-card-inner {
         min-height: 300px;
     }
-
     .flip-card-front h3,
     .flip-card-back h3 {
         font-size: 1.3rem;
     }
-
     .flip-card-front p,
     .flip-card-back p {
         font-size: 0.9rem;
     }
 }
 
-/* temporary override in contact.css */
+/* ============== LOGO OVERRIDE ================= */
+/* (temporary override in contact.css) */
 .logo img {
     height: 100% !important;
-    /* or whatever consistent height you want */
     width: 100% !important;
-    /* maintain aspect ratio */
-}
-
-.flip-card-inner.flipped {
-    transform: rotateY(180deg);
+    /* maintain aspect ratio if needed with object-fit */
+    object-fit: contain;
 }

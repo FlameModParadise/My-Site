@@ -37,10 +37,12 @@
 }
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-/* CATEGORY OVERVIEW GRID */
+/* ========================= */
+/*   CATEGORY OVERVIEW GRID  */
+/* ========================= */
 #categoryOverview {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -100,7 +102,9 @@
   transform: scale(1.07);
 }
 
-/* DETAIL VIEW */
+/* ========================= */
+/*      DETAIL VIEW          */
+/* ========================= */
 #categoryDetail.hidden {
   display: none;
 }
@@ -143,7 +147,7 @@
 }
 
 /* ========================= */
-/*   IMAGE MODAL (Popup)     */
+/*     IMAGE MODAL (Popup)   */
 /* ========================= */
 .image-modal {
   position: fixed;
@@ -188,7 +192,9 @@
   transform: scale(1.05);
 }
 
-/* DARK MODE OVERRIDES */
+/* ========================= */
+/*      DARK MODE            */
+/* ========================= */
 body.dark .category-card h3 {
   color: #66cfff;
 }
@@ -216,8 +222,13 @@ body.dark .image-modal .close-btn {
   color: #aaa;
 }
 
-/* RESPONSIVE STYLES */
+/* ========================= */
+/*      RESPONSIVE STYLES    */
+/* ========================= */
 @media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2rem;
+  }
   #categoryOverview {
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   }
@@ -239,6 +250,9 @@ body.dark .image-modal .close-btn {
   }
 }
 @media (max-width: 480px) {
+  .hero-content h1 {
+    font-size: 1.7rem;
+  }
   #categoryOverview {
     grid-template-columns: 1fr;
   }
@@ -262,13 +276,20 @@ body.dark .image-modal .close-btn {
     height: 140px;
   }
 }
-.logo img {
-  height: 100% !important;
-  /* or whatever consistent height you want */
-  width: 100% !important;
-  /* maintain aspect ratio */
+
+/* Optional: Smooth transitions for body colors on theme switch */
+body {
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
+/* Force the logo to fill container properly */
+.logo img {
+  height: 100% !important;
+  width: 100% !important;
+  object-fit: contain;
+}
+
+/* If you also use flip-card logic in the same project: */
 .flip-card-inner.flipped {
   transform: rotateY(180deg);
 }
