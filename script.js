@@ -154,13 +154,26 @@ function applyFiltersAndRender() {
 
   let filtered = [...allTools];
 
-  // 1) SEARCH
+  // 1) SEARCH (enhanced with partial and plural matching)
   if (savedSearch) {
-    const query = savedSearch.toLowerCase();
+    const query = savedSearch.toLowerCase().trim();
+    const altQuery = query.endsWith("s") ? query.slice(0, -1) : query + "s";
+
     filtered = filtered.filter((t) => {
-      const n = t.name?.toLowerCase() || "";
-      const kw = t.keywords?.join(" ").toLowerCase() || "";
-      return n.includes(query) || kw.includes(query);
+      const name = t.name?.toLowerCase() || "";
+      const keywords = t.keywords?.join(" ").toLowerCase() || "";
+      const tags = (t.tags || []).join(" ").toLowerCase();
+      const type = (t.type || "").toLowerCase();
+      const desc = (t.description || t.long_description || "").toLowerCase();
+
+      // Match if any field contains the search or plural/singular alternative
+      return (
+        name.includes(query) || name.includes(altQuery) ||
+        keywords.includes(query) || keywords.includes(altQuery) ||
+        tags.includes(query) || tags.includes(altQuery) ||
+        type.includes(query) || type.includes(altQuery) ||
+        desc.includes(query) || desc.includes(altQuery)
+      );
     });
   }
 
