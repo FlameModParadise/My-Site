@@ -232,6 +232,10 @@ function applyFiltersAndRender() {
     const btnTxt = btn.textContent.toLowerCase();
     btn.classList.toggle("active", btnTxt === savedFilter.toLowerCase());
   });
+
+  // ✅ FIX: Sync UI input and select dropdown with saved state
+  if (searchInput) searchInput.value = savedSearch;
+  if (sortSelect) sortSelect.value = savedSort;
 }
 
 function getCardBadges(tool) {
@@ -407,11 +411,8 @@ function showToolDetail(tool, isInitial = false) {
           <div class="tool-info">
             <p class="desc">
               <strong>Description:</strong><br>
-              ${
-                escapeHTML(tool.long_description || tool.description || "No description available.")
-                  .replace(/\n/g, "<br>")
-                  .replace(/(<br>\s*)$/, "<br>&nbsp;")
-              }
+              <!-- This will be replaced by HTML below -->
+              ${escapeHTML(tool.long_description || tool.description || "No description available.")}
             </p>
             <br>
             ${renderPricing(tool)}
@@ -450,6 +451,12 @@ function showToolDetail(tool, isInitial = false) {
     </div>
     ${renderRecommendations(tool)}
   `;
+
+  // ✅ Fix: render raw HTML from description using innerHTML
+  const descContainer = document.querySelector(".tool-detail-right .tool-info .desc");
+  if (descContainer && tool.description) {
+    descContainer.innerHTML = `<strong>Description:</strong><br>` + tool.description;
+  }
 
   // Swap main image from the gallery
   const mainImg = document.querySelector(".tool-main-img");
