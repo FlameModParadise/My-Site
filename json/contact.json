@@ -36,7 +36,7 @@
     "icon": "../assets/icons/footers-icons/youtube.png",
     "title": "YouTube",
     "description": "Visit our YouTube channel for tutorials, reviews, and more.",
-    "link": "https://www.youtube.com/@FMP-yt",
+    "link": "https://www.youtube.com/@FMP-yt?sub_confirmation=1",
     "buttonText": "Visit Channel"
   }
 ]
