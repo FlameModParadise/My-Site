@@ -21,13 +21,12 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // Group reviews by category (defaulting to 'Others' if missing)
-      groupedReviews = data.reduce((acc, review) => {
-        const cat = review.category || "Others";
-        if (!acc[cat]) acc[cat] = [];
-        acc[cat].push(review);
-        return acc;
-      }, {});
+      // New compact format: each category contains an array of images
+      groupedReviews = {};
+      data.forEach((item) => {
+        const cat = item.category || "Others";
+        groupedReviews[cat] = item.images || [];
+      });
 
       buildCategoryOverview();
     })
@@ -40,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function buildCategoryOverview() {
     categoryOverview.innerHTML = "";
     Object.keys(groupedReviews).forEach((category) => {
-      const reviewsArray = groupedReviews[category] || [];
+      const images = groupedReviews[category] || [];
 
       const catCard = document.createElement("div");
       catCard.classList.add("category-card");
@@ -49,10 +48,10 @@ document.addEventListener("DOMContentLoaded", () => {
       collage.classList.add("stacked-collage");
 
       // Use up to 3 images for the collage
-      const coverReviews = reviewsArray.slice(0, 3);
-      coverReviews.forEach((review, idx) => {
+      const coverImages = images.slice(0, 3);
+      coverImages.forEach((imgSrc, idx) => {
         const img = document.createElement("img");
-        img.src = review.image || "../assets/placeholder.jpg";
+        img.src = imgSrc || "../assets/placeholder.jpg";
         img.alt = `${category} cover ${idx + 1}`;
         img.onerror = () => {
           img.src = "../assets/placeholder.jpg";
@@ -83,15 +82,15 @@ document.addEventListener("DOMContentLoaded", () => {
     detailTitle.textContent = category;
     detailPhotosDiv.innerHTML = "";
 
-    const items = groupedReviews[category] || [];
-    if (items.length === 0) {
+    const images = groupedReviews[category] || [];
+    if (images.length === 0) {
       detailPhotosDiv.innerHTML = "<p>No images found for this category.</p>";
       return;
     }
 
-    items.forEach((review) => {
+    images.forEach((src) => {
       const img = document.createElement("img");
-      img.src = review.image || "../assets/placeholder.jpg";
+      img.src = src || "../assets/placeholder.jpg";
       img.alt = `${category} full image`;
       img.onerror = () => {
         img.src = "../assets/placeholder.jpg";

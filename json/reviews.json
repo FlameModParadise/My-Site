@@ -1,27 +1,65 @@
 [
   {
     "category": "Cookies Sold",
-    "image": "../assets/reviews/cookies1.jpg",
-    "text": "A genuine cookies photo..."
+    "images": [
+      "../assets/reviews/nfcookies1.png",
+      "../assets/reviews/nfcookies2.png",
+      "../assets/reviews/nfcookies3.png",
+      "../assets/reviews/nfcookies4.png",
+      "../assets/reviews/nfcookies5.png",
+      "../assets/reviews/nfcookies6.png",
+      "../assets/reviews/nfcookies7.png",
+      "../assets/reviews/hotstarcookies1.png",
+      "../assets/reviews/gptcookie1.png"
+    ]
   },
   {
-    "category": "Cookies Sold",
-    "image": "../assets/reviews/cookies2.jpg",
-    "text": "Cookies sold image #2..."
+    "category": "Netflix Cookie Checker Sold",
+    "images": [
+      "../assets/reviews/nfchecker1.png",
+      "../assets/reviews/nfchecker2.png",
+      "../assets/reviews/nfchecker3.png"
+    ]
   },
   {
-    "category": "Cookies Sold",
-    "image": "../assets/reviews/cookies3.jpg",
-    "text": "Cookies sold image #3..."
+    "category": "Netflix Cookie Privatzing Sold",
+    "images": [
+      "../assets/reviews/nfprivatizer1.png",
+      "../assets/reviews/nfprivatizer2.png",
+      "../assets/reviews/nfprivatizer3.png"
+    ]
   },
   {
-    "category": "Checker Sold",
-    "image": "../assets/reviews/checker1.jpg",
-    "text": "A real checker tool photo..."
+    "category": "Gpt Cookie Checker Sold",
+    "images": [
+      "../assets/reviews/gptchecker1.png",
+      "../assets/reviews/gptchecker2.png",
+      "../assets/reviews/gptchecker3.png",
+      "../assets/reviews/gptchecker4.png"
+    ]
   },
   {
-    "category": "Checker Sold",
-    "image": "../assets/reviews/checker2.jpg",
-    "text": "Another checker sold image..."
+    "category": "Hotstar Cookie Checker Sold",
+    "images": [
+      "../assets/reviews/hotstarchecker1.png"
+    ]
+  },
+  {
+    "category": "Hulu Checker Sold",
+    "images": [
+      "../assets/reviews/hulucookiechecker1.png"
+    ]
+  },
+  {
+    "category": "2cpatcha Cookie Checker Sold",
+    "images": [
+      "../assets/reviews/2captchacookiechecker1.png"
+    ]
+  },
+  {
+    "category": "Log Extractor Sold",
+    "images": [
+      "../assets/reviews/logextractor1.png"
+    ]
   }
 ]
