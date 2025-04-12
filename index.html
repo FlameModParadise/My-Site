@@ -60,8 +60,10 @@
 
     <!-- Search bar -->
     <div class="search-bar-true-right">
-      <div class="search-group">
+      <div class="search-group" style="position: relative;">
         <input id="searchInput" type="text" placeholder="Search..." />
+        <!-- 🔽 Autocomplete dropdown here -->
+        <div id="autocompleteBox" class="autocomplete-box hidden"></div>
         <select id="sortSelect">
           <option value="name">Name A → Z</option>
           <option value="release_date">Newest</option>
@@ -220,6 +222,7 @@
       document.getElementById("popupMessage").classList.add("hidden");
     }
   </script>
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
   <noscript>
     <p>Enable JavaScript for better site readability.<br />Thank You.<hr /></p>
   </noscript>

@@ -1425,3 +1425,83 @@ body.dark .image-close-btn {
     padding: 0.3rem;
   }
 }
+/* 🔍 Base Autocomplete Styles */
+.autocomplete-box {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  max-height: 240px;
+  overflow-y: auto;
+  z-index: 99;
+  padding: 0.5rem;
+  font-size: 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 6px;
+  transition: all 0.2s ease-in-out;
+}
+
+/* 🌕 Light Theme */
+body:not(.dark) .autocomplete-box {
+  background: #fff;
+  border: 1px solid #ddd;
+  color: #222;
+}
+body:not(.dark) .autocomplete-box div {
+  background: transparent;
+}
+body:not(.dark) .autocomplete-box div:hover {
+  background: #f3f3f3;
+}
+body:not(.dark) .autocomplete-box div.active {
+  background: #e0e0e0;
+}
+body:not(.dark) .autocomplete-box div.selected {
+  background: #d0d0d0;
+}
+body:not(.dark) .autocomplete-box div.selected:hover {
+  background: #c0c0c0;
+}
+
+/* 🌑 Dark Theme */
+body.dark .autocomplete-box {
+  background: #1e1e1e;
+  border: 1px solid #444;
+  color: #eee;
+}
+body.dark .autocomplete-box div {
+  background: transparent;
+}
+body.dark .autocomplete-box div:hover {
+  background: #2a2a2a;
+}
+body.dark .autocomplete-box div.active {
+  background: #333;
+}
+body.dark .autocomplete-box div.selected {
+  background: #3a3a3a;
+}
+body.dark .autocomplete-box div.selected:hover {
+  background: #444;
+}
+
+/* ⚙️ Shared Styles for Items */
+.autocomplete-box div {
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+/* ❌ Not Active (hidden) */
+.autocomplete-box.hidden {
+  display: none !important;
+}
+
+/* 📱 Responsive Adjustment */
+@media (max-width: 600px) {
+  .autocomplete-box {
+    font-size: 13px;
+    max-height: 180px;
+  }
+}

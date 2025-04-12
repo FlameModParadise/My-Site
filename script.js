@@ -52,11 +52,21 @@ function escapeHTML(str = "") {
 }
 
 // Highlight matched text in a search query
-function highlightMatch(text, keyword) {
-  if (!keyword) return escapeHTML(text);
-  const safeKeyword = keyword.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); // escape special chars
-  const regex = new RegExp(`(${safeKeyword})`, "gi");
-  return escapeHTML(text).replace(regex, `<mark>$1</mark>`);
+function highlightMatch(text, matches, key) {
+  const match = matches?.find((m) => m.key === key);
+  if (!match || !match.indices.length) return escapeHTML(text);
+
+  let result = "";
+  let lastIndex = 0;
+
+  match.indices.forEach(([start, end]) => {
+    result += escapeHTML(text.slice(lastIndex, start));
+    result += "<mark>" + escapeHTML(text.slice(start, end + 1)) + "</mark>";
+    lastIndex = end + 1;
+  });
+
+  result += escapeHTML(text.slice(lastIndex));
+  return result;
 }
 
 // Return short or fallback description, with optional highlighting
@@ -154,27 +164,27 @@ function applyFiltersAndRender() {
 
   let filtered = [...allTools];
 
-  // 1) SEARCH (enhanced with partial and plural matching)
+  // 1) SEARCH (using Fuse.js for smart fuzzy matching)
+  let searchedTools = [...allTools];
+
   if (savedSearch) {
-    const query = savedSearch.toLowerCase().trim();
-    const altQuery = query.endsWith("s") ? query.slice(0, -1) : query + "s";
-
-    filtered = filtered.filter((t) => {
-      const name = t.name?.toLowerCase() || "";
-      const keywords = t.keywords?.join(" ").toLowerCase() || "";
-      const tags = (t.tags || []).join(" ").toLowerCase();
-      const type = (t.type || "").toLowerCase();
-      const desc = (t.description || t.long_description || "").toLowerCase();
-
-      // Match if any field contains the search or plural/singular alternative
-      return (
-        name.includes(query) || name.includes(altQuery) ||
-        keywords.includes(query) || keywords.includes(altQuery) ||
-        tags.includes(query) || tags.includes(altQuery) ||
-        type.includes(query) || type.includes(altQuery) ||
-        desc.includes(query) || desc.includes(altQuery)
-      );
+    const fuse = new Fuse(allTools, {
+      includeScore: true,
+      threshold: 0.4,
+      ignoreLocation: true,
+      minMatchCharLength: 2,
+      keys: [
+        { name: "name", weight: 0.4 },
+        { name: "keywords", weight: 0.3 },
+        { name: "tags", weight: 0.1 },
+        { name: "type", weight: 0.1 },
+        { name: "description", weight: 0.3 },
+        { name: "long_description", weight: 0.2 },
+      ]
     });
+
+    const fuseResults = fuse.search(savedSearch);
+    searchedTools = fuseResults.map(r => ({ ...r.item, _matches: r.matches }));
   }
 
   // 2) FILTER BY TYPE
@@ -303,8 +313,8 @@ function renderTools(data) {
       tool.offer &&
       (!tool.offer_expiry || new Date(tool.offer_expiry) > new Date());
 
-    const shortDesc = getShortDescription(tool, searchQuery);
-    const safeName = highlightMatch(tool.name || "Unnamed Tool", searchQuery);
+      const shortDesc = highlightMatch(tool.description || "", tool._matches || [], "description");
+      const safeName = highlightMatch(tool.name || "Unnamed Tool", tool._matches || [], "name");      
 
     card.innerHTML = `
       <div class="tool-thumb-wrapper">
@@ -738,6 +748,49 @@ sortSelect?.addEventListener("change", () => {
 
 //INIT
 loadData();
+
+const autocompleteBox = document.getElementById("autocompleteBox");
+
+searchInput.addEventListener("input", () => {
+  const query = searchInput.value.trim();
+  if (!query) {
+    autocompleteBox.classList.add("hidden");
+    autocompleteBox.innerHTML = "";
+    return;
+  }
+
+  const fuse = new Fuse(allTools, {
+    includeScore: true,
+    shouldSort: true,
+    threshold: 0.4,
+    ignoreLocation: true,
+    minMatchCharLength: 2,
+    keys: ["name", "keywords", "tags", "type"]
+  });
+
+  const results = fuse.search(query).slice(0, 5);
+  if (!results.length) {
+    autocompleteBox.classList.add("hidden");
+    return;
+  }
+
+  autocompleteBox.innerHTML = results.map(({ item }) => `<div>${escapeHTML(item.name)}</div>`).join("");
+  autocompleteBox.classList.remove("hidden");
+
+  autocompleteBox.querySelectorAll("div").forEach((div, i) => {
+    div.addEventListener("click", () => {
+      searchInput.value = results[i].item.name;
+      sessionStorage.setItem(SEARCH_KEY, results[i].item.name);
+      applyFiltersAndRender();
+      autocompleteBox.classList.add("hidden");
+    });
+  });
+});
+
+searchInput.addEventListener("blur", () => {
+  setTimeout(() => autocompleteBox.classList.add("hidden"), 150);
+});
+
 
 // If user changes #hash manually, or navigates back/forward
 window.addEventListener("hashchange", () => {
