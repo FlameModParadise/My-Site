@@ -337,7 +337,10 @@ body.dark .filter-tags button:hover {
   justify-content: center;
   overflow: hidden;
   border-radius: 8px;
+  position: relative; /* ✨ Needed for badge positioning */
+  flex-direction: column;
 }
+
 .tool-title {
   font-weight: 600;
   font-size: 1rem;
@@ -477,26 +480,129 @@ body.dark .tool-detail {
   transition: background var(--transition);
 }
 
-/* ================ BADGES ================ */
-.badge {
+/* ============ BADGES (Main List & Detail) ============ */
+.tool-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
   display: inline-block;
-  font-size: 0.75rem;
-  padding: 2px 6px;
-  border-radius: 4px;
+  font-size: 0.72rem;
+  font-weight: 600;
   color: #fff;
-  font-weight: 700;
+  background: var(--badge-default, #6f42c1);
+  padding: 5px 12px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  white-space: nowrap;
+  z-index: 2;
+  backdrop-filter: blur(6px);
+  transition: all 0.3s ease;
 }
-.new-badge {
-  background: var(--badge-new);
+
+/* Stacked badges spacing */
+.tool-badge + .tool-badge {
+  margin-top: 32px;
 }
-.updated-badge {
-  background: var(--badge-updated);
+
+/* Inline smaller badge (e.g. in modal or card footer) */
+.badge {
+  padding: 4px 10px;
+  margin-left: 6px;
+  font-size: 0.75rem;
+  border-radius: 12px;
+  font-weight: 600;
+  color: #fff;
+  display: inline-block;
+  transition: background 0.3s ease;
 }
-.discount-badge {
-  background: var(--badge-discount);
+
+/* === BADGE COLORS: Light/Dark Dynamic Using CSS Vars === */
+.tool-badge.discount-badge {
+  background: var(--badge-discount, #dc3545);
 }
-.offer-badge {
-  background: var(--badge-offer);
+.tool-badge.offer-badge {
+  background: var(--badge-offer, #ff9800);
+}
+.tool-badge.lifetime-badge {
+  background: var(--badge-lifetime, #6f42c1);
+}
+.tool-badge.new-badge {
+  background: var(--badge-new, #28a745);
+}
+.tool-badge.updated-badge {
+  background: var(--badge-updated, #17a2b8);
+}
+
+/* Last-of-type special style for compact discount labels */
+.badge.discount-badge:last-of-type {
+  background: #333;
+  font-size: 0.65rem;
+  opacity: 0.9;
+}
+
+/* === DARK MODE SUPPORT === */
+body.dark .tool-badge,
+body.dark .badge {
+  color: #fff;
+  box-shadow: 0 1px 4px rgba(255, 255, 255, 0.2);
+}
+
+body.dark .discount-badge {
+  background-color: var(--badge-discount-dark, #c82333) !important;
+}
+body.dark .offer-badge {
+  background-color: var(--badge-offer-dark, #fb8c00) !important;
+}
+body.dark .new-badge {
+  background-color: var(--badge-new-dark, #28d17a) !important;
+}
+body.dark .updated-badge {
+  background-color: var(--badge-updated-dark, #17d3e1) !important;
+}
+body.dark .lifetime-badge {
+  background-color: var(--badge-lifetime-dark, #8e44ad) !important;
+}
+
+/* === LIGHT MODE: Improve Contrast Using Overrides === */
+body:not(.dark) .tool-badge,
+body:not(.dark) .badge {
+  color: #fff !important;
+  background-color: #333 !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Optional light-specific overrides via variables */
+body:not(.dark) .discount-badge {
+  background-color: var(--badge-discount-light, #dc3545) !important;
+}
+body:not(.dark) .offer-badge {
+  background-color: var(--badge-offer-light, #ff9800) !important;
+}
+body:not(.dark) .new-badge {
+  background-color: var(--badge-new-light, #28a745) !important;
+}
+body:not(.dark) .updated-badge {
+  background-color: var(--badge-updated-light, #17a2b8) !important;
+}
+body:not(.dark) .lifetime-badge {
+  background-color: var(--badge-lifetime-light, #6f42c1) !important;
+}
+
+/* ============ Responsive Badge Fixes ============ */
+@media (max-width: 480px) {
+  .tool-badge {
+    top: 8px;
+    right: 8px;
+    font-size: 0.65rem;
+    padding: 3px 8px;
+    border-radius: 10px;
+  }
+
+  .badge {
+    font-size: 0.7rem;
+    padding: 3px 8px;
+    border-radius: 10px;
+  }
 }
 
 /* ================ RECOMMENDED SECTION ================ */

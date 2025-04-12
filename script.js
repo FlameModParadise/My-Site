@@ -70,7 +70,7 @@ function getShortDescription(tool, query = "") {
   return highlightMatch(raw, query);
 }
 
-//          DARK MODE
+//DARK MODE
 if (darkToggle) {
   darkToggle.addEventListener("click", () => {
     document.body.classList.toggle("dark");
@@ -171,33 +171,99 @@ function applyFiltersAndRender() {
     );
   }
 
-  // 3) SORT
+  // 3) SORT / SPECIAL FILTER
   switch (savedSort) {
     case "release_date":
       filtered.sort((a, b) => new Date(b.release_date) - new Date(a.release_date));
       break;
+
     case "update_date":
       filtered.sort((a, b) => new Date(b.update_date) - new Date(a.update_date));
       break;
+
     case "discount":
-      filtered.sort((a, b) => (b.discount || 0) - (a.discount || 0));
+      const now = new Date();
+
+      // Filter: only tools with active discount or offer
+      filtered = filtered.filter((tool) => {
+        const hasActiveDiscount =
+          tool.discount &&
+          (!tool.discount_expiry || new Date(tool.discount_expiry) > now);
+        const hasActiveOffer =
+          tool.offer &&
+          (!tool.offer_expiry || new Date(tool.offer_expiry) > now);
+        return hasActiveDiscount || hasActiveOffer;
+      });
+
+      // Sort priority: numeric discount > label discount > offer
+      filtered.sort((a, b) => {
+        const parseDiscount = (tool) => {
+          const val = parseFloat(tool.discount);
+          return !isNaN(val) && isFinite(val) ? val : 0;
+        };
+
+        const discountA = parseDiscount(a);
+        const discountB = parseDiscount(b);
+
+        if (discountA !== discountB) return discountB - discountA;
+
+        const hasDiscountA = a.discount ? 1 : 0;
+        const hasDiscountB = b.discount ? 1 : 0;
+
+        if (hasDiscountA !== hasDiscountB) return hasDiscountB - hasDiscountA;
+
+        return (a.name || "").localeCompare(b.name || "");
+      });
       break;
+
     default:
-      // "name"
+      // Default: Sort by name
       filtered.sort((a, b) =>
         (a.name || "").toLowerCase().localeCompare((b.name || "").toLowerCase())
       );
       break;
   }
 
-  // Actually render
+  // Render final result
   renderTools(filtered);
 
-  // Update active filter button styles
+  // Update active filter button styling
   document.querySelectorAll("#filters button").forEach((btn) => {
     const btnTxt = btn.textContent.toLowerCase();
     btn.classList.toggle("active", btnTxt === savedFilter.toLowerCase());
   });
+}
+
+function getCardBadges(tool) {
+  const now = new Date();
+  const offerEnd = tool.offer_expiry ? new Date(tool.offer_expiry) : null;
+  const discountEnd = tool.discount_expiry ? new Date(tool.discount_expiry) : null;
+
+  const isOfferActive = tool.offer && (!offerEnd || offerEnd > now);
+  const isDiscountActive = tool.discount && (!discountEnd || discountEnd > now);
+  const isNumericDiscount = !isNaN(parseFloat(tool.discount)) && isFinite(tool.discount);
+
+  const badges = [];
+
+  if (isDiscountActive) {
+    if (isNumericDiscount) {
+      badges.push(`<span class="tool-badge discount-badge">-${tool.discount}%</span>`);
+      if (discountEnd) {
+        const left = formatTimeRemaining(tool.discount_expiry);
+        if (left) {
+          badges.push(`<span class="tool-badge discount-badge">${left}</span>`);
+        }
+      }
+    } else {
+      badges.push(`<span class="tool-badge discount-badge">${escapeHTML(tool.discount)}</span>`);
+    }
+  }
+
+  if (isOfferActive) {
+    badges.push(`<span class="tool-badge offer-badge">${escapeHTML(tool.offer)}</span>`);
+  }
+
+  return badges.join("\n");
 }
 
 //RENDER TOOL CARDS
@@ -210,24 +276,30 @@ function renderTools(data) {
     return;
   }
 
-  // Get search query for highlight
   const searchQuery = (sessionStorage.getItem(SEARCH_KEY) || "").trim();
 
   data.forEach((tool) => {
     const card = document.createElement("div");
     card.className = "tool-card fade-in";
-    // Lazy load images + highlight name/desc
+
+    const isOfferActive =
+      tool.offer &&
+      (!tool.offer_expiry || new Date(tool.offer_expiry) > new Date());
+
     const shortDesc = getShortDescription(tool, searchQuery);
     const safeName = highlightMatch(tool.name || "Unnamed Tool", searchQuery);
 
     card.innerHTML = `
-      <img
-        loading="lazy"
-        src="${tool.image || "assets/placeholder.jpg"}"
-        onerror="this.src='assets/placeholder.jpg'"
-        alt="${escapeHTML(tool.name || "Tool")}"
-        class="tool-thumb"
-      />
+      <div class="tool-thumb-wrapper">
+        ${getCardBadges(tool)}
+        <img
+          loading="lazy"
+          src="${tool.image || "assets/placeholder.jpg"}"
+          onerror="this.src='assets/placeholder.jpg'"
+          alt="${escapeHTML(tool.name || "Tool")}"
+          class="tool-thumb"
+        />
+      </div>
       <div class="tool-card-body">
         <h3 class="tool-title">${safeName}</h3>
         <p class="tool-desc">${shortDesc}</p>
@@ -245,6 +317,7 @@ function renderTools(data) {
       location.hash = `tool=${encodeURIComponent(tool.name)}`;
       showToolDetail(tool);
     };
+
     container.appendChild(card);
   });
 }
@@ -432,34 +505,75 @@ function getStockStatus(value) {
   return "Need to contact owner";
 }
 
+function formatTimeRemaining(dateStr) {
+  const now = new Date();
+  const end = new Date(dateStr);
+  const diffMs = end - now;
+
+  if (diffMs <= 0) return null;
+
+  const totalMinutes = Math.floor(diffMs / 60000);
+  const days = Math.floor(totalMinutes / 1440);
+  const hours = Math.floor((totalMinutes % 1440) / 60);
+  const minutes = totalMinutes % 60;
+
+  let result = "⏳ ";
+  if (days) result += `${days}d `;
+  if (hours) result += `${hours}h `;
+  result += `${minutes}m left`;
+
+  return result.trim();
+}
+
+
 // Collect relevant badges (NEW, UPDATED, DISCOUNT, OFFER)
 function getBadges(tool) {
   const now = new Date();
   const release = new Date(tool.release_date);
   const update = new Date(tool.update_date);
   const offerEnd = tool.offer_expiry ? new Date(tool.offer_expiry) : null;
+  const discountEnd = tool.discount_expiry ? new Date(tool.discount_expiry) : null;
 
   const badges = [];
 
-  // "NEW" if released in last 7 days
+  // NEW (within 7 days)
   if ((now - release) / (1000 * 60 * 60 * 24) <= 7) {
     badges.push('<span class="badge new-badge">NEW</span>');
   }
-  // "UPDATED" if updated in last 7 days
+
+  // UPDATED (within 7 days)
   if ((now - update) / (1000 * 60 * 60 * 24) <= 7) {
     badges.push('<span class="badge updated-badge">UPDATED</span>');
   }
-  // "DISCOUNT" if tool has discount and the offer isn't expired
-  if (tool.discount && offerEnd && offerEnd > now) {
-    badges.push('<span class="badge discount-badge">DISCOUNT</span>');
+
+  // DISCOUNT (active only if no expiry or future expiry)
+  const isDiscountActive = tool.discount && (!discountEnd || discountEnd > now);
+  if (isDiscountActive) {
+    const isNumeric = !isNaN(parseFloat(tool.discount)) && isFinite(tool.discount);
+    const label = isNumeric ? `-${tool.discount}%` : escapeHTML(tool.discount);
+
+    // Main badge
+    badges.push(`<span class="badge discount-badge">${label}</span>`);
+
+    // Countdown badge (only for numeric)
+    if (isNumeric && discountEnd) {
+      const countdown = formatTimeRemaining(tool.discount_expiry);
+      if (countdown) {
+        badges.push(`<span class="badge discount-badge">${countdown}</span>`);
+      }
+    }
   }
-  // "OFFER" if tool.offer is set and not expired
-  if (tool.offer && offerEnd && offerEnd > now) {
-    badges.push('<span class="badge offer-badge">OFFER</span>');
+
+  // OFFER (just a static label, no countdown)
+  const isOfferActive = tool.offer && (!offerEnd || offerEnd > now);
+  if (isOfferActive) {
+    badges.push(`<span class="badge offer-badge">${escapeHTML(tool.offer)}</span>`);
   }
+
   return badges.join(" ");
 }
 
+//-------------------------------------------------
 // Return days left before an offer expires
 function daysLeft(date) {
   const diff = new Date(date) - new Date();
