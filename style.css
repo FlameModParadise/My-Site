@@ -430,24 +430,19 @@ body.dark .tool-detail {
 }
 .tool-gallery {
   display: flex;
-  gap: 0.5rem;
-  margin-top: 1rem;
+  gap: 0.7rem;
+  margin-top: 1.2rem;
   overflow-x: auto;
 }
 .tool-gallery img {
   width: 64px;
   height: 64px;
   border-radius: 8px;
+  object-fit: cover;
 }
+
 .tool-gallery img:hover {
-  position: absolute;
-  width: 60vw;
-  height: auto;
-  max-height: 60vh;
-  z-index: 999;
   transform: scale(1.1);
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 .tool-video {
   width: 100%;

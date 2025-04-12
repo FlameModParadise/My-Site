@@ -1,47 +1,48 @@
 [
   {
-    "name": "Log Extractor",
+    "name": "Discord Nitro (Full)",
     "type": "Others",
-    "description": "Extract cookies from logs quickly and cleanly.",
-    "long_description": "🔧 **LOG EXTRACTOR (Cookies Only)**\n\n• Quickly parses log files and extracts usable cookies.\n• Automatically skips corrupt/invalid lines.\n• No network required — fully proxyless.\n• Fast, stable, optimized performance.\n\n💰 **Pricing:**\n- 1 Day: $0.5\n- 1 Month: $2\n- Lifetime (No Update): $5\n- Lifetime (With Updates): $8\n- Source Code: $10\n\n🔁 *Includes speed improvements & UI tweaks.*",
-    "image": "assets/tools/log-extractor.jpg",
+    "description": "Get Discord Nitro with Boost — available as both trial and full versions.",
+    "long_description": "Enjoy the full experience of Discord Nitro with Boost. Choose between a trial option or full-length subscription. Fast delivery and simple setup guaranteed.",
+    "image": "assets/others/discordnitrofull.jpg",
+    "requirements": "1. Your Discord account must be at least 1 month old.\n2. If selecting a trial, you must not have used Discord Nitro before and must have a working payment method.",
     "images": [],
     "video": "",
-    "tags": ["logs", "extractor", "cookies", "bots"],
+    "tags": ["discord", "nitro", "boost", "subscription", "premium"],
     "release_date": "2025-03-25",
     "update_date": "2025-04-01",
     "pricing": {
-      "1 Day": "$0.5",
-      "1 Month": "$2",
-      "Lifetime (No Update)": "$5",
-      "Lifetime (With Updates)": "$8",
-      "Source Code": "$10"
+      "1 Month (Full)": "$8",
+      "3 Months (Trial)": "$3",
+      "3 Months (Full)": "$24",
+      "1 Year (Full)": "$75"
     },
     "discount": null,
     "offer": null,
     "offer_expiry": "",
     "contact": "telegram",
-    "keywords": ["log", "extract", "cookies", "debug"]
+    "keywords": ["discord", "nitro", "boost", "trial", "subscription", "premium", "full version"]
   },
   {
-    "name": "ULP Working Tool",
+    "name": "Discord Nitro (Basic)",
     "type": "Others",
-    "description": "Create ULP combos with ease. Stable and fast automation tool.",
-    "long_description": "🛠️ **ULP Combo Maker Tool**\n\n• Automates generation of ULP combo lists.\n• Reliable formatting and consistent output.\n• Suitable for bulk operations.\n• Fast, clean and lifetime stable.\n\n💰 **Pricing:**\n- Lifetime: $10\n- Source Code: $15\n\n💬 For demo or bulk orders: Contact @fmpChatBot",
-    "image": "assets/tools/ulp-tool.jpg",
+    "description": "Affordable full version of Discord Nitro for eligible accounts.",
+    "long_description": "If your Discord account has never used Nitro, you're eligible to get the full version at the cheapest rate. Perfect for first-time Nitro users.",
+    "image": "assets/others/discordnitrobasic.png",
+    "requirements": "1. Your Discord account must be at least 1 month old.\n2. You must not have previously activated Discord Nitro.",
     "images": [],
     "video": "",
-    "tags": ["ulp", "combo", "maker", "automation"],
-    "release_date": "2025-02-10",
-    "update_date": "2025-03-28",
+    "tags": ["discord", "nitro", "basic", "full", "subscription"],
+    "release_date": "2025-03-25",
+    "update_date": "2025-04-01",
     "pricing": {
-      "Lifetime": "$10",
-      "Source Code": "$15"
+      "1 Month (Full)": "$2.75",
+      "1 Year (Full)": "$24"
     },
     "discount": null,
     "offer": null,
     "offer_expiry": "",
     "contact": "telegram",
-    "keywords": ["ulp", "combo", "task", "script"]
+    "keywords": ["discord", "nitro", "basic", "full version", "subscription", "first time"]
   }
 ]

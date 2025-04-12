@@ -11,7 +11,7 @@ const urlsToCache = [
   "/data/tools.json",
   "/data/bots.json",
   "/data/checkers.json",
-  "/data/steam.json",
+  "/data/game.json",
   "/data/others.json",
   "/data/cookies.json",
   "/data/methods.json"

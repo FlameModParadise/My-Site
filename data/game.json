@@ -1,7 +1,7 @@
 [
   {
     "name": "Mortal Kombat 11 (Steam)",
-    "type": "Steam",
+    "type": "Game",
     "description": "💥 MK11 Steam key at ultra-low price. Legit and safe delivery.",
     "long_description": "<h1>Mortal Kombat 11 </h1> is delivered as a valid Steam key. Fully safe. Direct delivery to your Steam account. No risk. DLCs available if needed.",
     "image": "assets/steams-pic/mk11.jpg",
@@ -24,7 +24,7 @@
   },
   {
     "name": "Mortal Kombat 1 (Steam)",
-    "type": "Steam",
+    "type": "Game",
     "description": "🔥 Get MK1 with standard or premium edition on Steam. Safe and direct.",
     "long_description": "<h1>Mortal Kombat 1 (Standard or Premium)</h1> is delivered via Steam key. You can choose your edition. Fast delivery. Works globally. DLC or bonus versions available if requested.",
     "image": "assets/steams-pic/mk1.png",
@@ -48,7 +48,7 @@
   },
   {
     "name": "Spiderman 2 (Steam)",
-    "type": "Steam",
+    "type": "Game",
     "description": "🕷 Own Spiderman 2 legit on your Steam — cheaper than official price, no hacks!",
     "long_description": "<h1>Spiderman 2</h1> is purchased through Steam and added directly to your account. No hacks, cracks, or key reselling. Just safe, official delivery. DLCs can be arranged if needed. Lower than official price.",
     "image": "assets/steams-pic/spiderman2.jpg",
@@ -72,7 +72,7 @@
   },
   {
     "name": "Spider-Man Remastered (Steam)",
-    "type": "Steam",
+    "type": "Game",
     "description": "🕸️ Get Spider-Man Remastered on Steam — fully legit and fast delivery.",
     "long_description": "The remastered version of Marvel's Spider-Man delivered to your Steam account via key. Works globally. No hacks. No third-party tools. DLC options available.",
     "image": "assets/steams-pic/spidermanremastered.jpg",
@@ -95,7 +95,7 @@
   },
   {
     "name": "Spider-Man: Miles Morales (Steam)",
-    "type": "Steam",
+    "type": "Game",
     "description": "⚡ Miles Morales Spider-Man on Steam at discount — direct key delivery.",
     "long_description": "Play as Miles Morales in Marvel’s Spider-Man. Delivered through a global Steam key. Official game version, no account access needed. Fast support and optional DLCs.",
     "image": "assets/steams-pic/spidermanmilesmorales.jpg",
@@ -119,7 +119,7 @@
   },
   {
     "name": "Black Myth: Wukong (Steam)",
-    "type": "Steam",
+    "type": "Game",
     "description": "🐉 Grab Black Myth Wukong at a better price.",
     "long_description": "<h1>Black Myth: Wukong</h1> will be delivered as a valid Steam key. Safe for most games unless they require third-party launchers or accounts. DLCs can be included if requested.",
     "image": "assets/steams-pic/wukong.jpg",
@@ -143,7 +143,7 @@
   },
   {
     "name": "WWE 2K24 (Steam)",
-    "type": "Steam",
+    "type": "Game",
     "description": "🤼 Get WWE 2K24 added directly to your Steam account at a lower rate!",
     "long_description": "<h1>WWE 2K24</h1> is purchased from Steam and delivered to your personal account. No login sharing needed. You get a clean official game activation. Add-ons and DLCs available optionally.",
     "image": "assets/steams-pic/wwe2k24.jpeg",
@@ -166,7 +166,7 @@
   },
   {
     "name": "WWE 2K25 (Steam)",
-    "type": "Steam",
+    "type": "Game",
     "description": "🤼‍♂️ WWE 2K25 on your Steam account for less than official price.",
     "long_description": "<h1>WWE 2K25</h1> will be added to your Steam account through official store purchase. No account risks or third-party tricks. Full support and extra content like DLCs are also available if needed.",
     "image": "assets/steams-pic/wwek2k25.jpg",
@@ -188,17 +188,122 @@
     ]
   },
   {
+    "name": "Tekken 7 (Steam)",
+    "type": "Game",
+    "description": "🤼‍♂️ Tekken 7 on your Steam account for less than official price.",
+    "long_description": "Tekken 7 will be added to your Steam account through official store purchase. No account risks or third-party tricks. Full support and extra content like DLCs are also available if needed.",
+    "image": "assets/steams-pic/tekken7.jpg",
+    "price": "$8",
+    "tags": [
+      "Steam",
+      "tekken 7",
+      "fighting"
+    ],
+    "release_date": "2025-04-01",
+    "update_date": "2025-04-03",
+    "contact": "telegram",
+    "keywords": [
+      "tekken 7",
+      "fighting",
+      "Steam game"
+    ]
+  },
+  {
     "name": "Minecraft: Java & Bedrock (Official Key)",
-    "type": "Steam",
+    "type": "Game",
     "description": "⛏️ Official redeemable Minecraft Java + Bedrock key — legit and instant delivery.",
     "long_description": "<h1>Minecraft: Java & Bedrock Edition (PC)</h1>\n- Global key that works in Nepal and worldwide.\n- Delivered instantly to your Telegram.\n- Redeem via official Minecraft or Microsoft website.\n- Full access to Java and Bedrock editions.\n- Microsoft account required to activate.\n\nNote: Make sure you redeem the correct version (Java + Bedrock) on official site. This key gives both Java & Bedrock. Be sure to redeem it at the official Minecraft site or Microsoft account page and select the Java + Bedrock bundle if prompted.\n",
     "image": "assets/steams-pic/minecraftjavabedrock.jpg",
     "price": "$16.88",
-    "tags": ["minecraft", "Steam", "key", "java", "bedrock", "windows"],
+    "tags": [
+      "minecraft",
+      "Steam",
+      "key",
+      "java",
+      "bedrock",
+      "windows"
+    ],
     "release_date": "2025-04-03",
     "update_date": "2025-04-03",
     "contact": "telegram",
-    "keywords": ["minecraft", "java", "bedrock", "official key", "redeem", "steam", "mojang", "windows"]
-  }
-  
+    "keywords": [
+      "minecraft",
+      "java",
+      "bedrock",
+      "official key",
+      "redeem",
+      "steam",
+      "mojang",
+      "windows"
+    ]
+  },
+  {
+    "name": "GTA V (Steam)",
+    "type": "Game",
+    "description": "▶️ GTA V Premium Online Edition for Steam and Xbox — safe delivery, massive discount.",
+    "long_description": "<h1>GTA V: Premium Online Edition</h1> includes full base game and Criminal Enterprise Starter Pack. Available on both Steam and Xbox platforms with multiple editions and pricing. Delivered instantly via Telegram with no login sharing.",
+    "requirements": "Xbox version only works in countries with Xbox Live: https://www.xbox.com/en-US/live/countries. Ensure your region supports it.",
+    "image": "assets/steams-pic/gtav.jpg",
+    "price": "$8.5",
+    "tags": ["gta", "rockstar", "open world", "xbox", "steam"],
+    "release_date": "2025-04-03",
+    "update_date": "2025-04-10",
+    "contact": "telegram",
+    "keywords": ["gta", "gta 5", "grand theft auto", "steam", "rockstar", "xbox", "discount"],
+    "pricing": {
+      "Rockstar Launcher": "$15",
+      "Rockstar Launcher (Ultimate Edition)": "$17",
+      "Xbox One": "$8.5",
+      "Xbox One & Xbox Series X|S": "$25"
+    }
+  },  
+  {
+    "name": "RDR 2 (Xbox and PC)",
+    "type": "Game",
+    "description": "🐎 Red Dead Redemption 2 available on Xbox and Rockstar Launcher — discounted and secure.",
+    "long_description": "<h1>Red Dead Redemption 2</h1> — An epic western experience now available with multiple editions. You can choose Xbox or Rockstar PC version. All editions come from official stores. No hacks or risky resells.",
+    "requirements": "For Xbox, ensure your account and IP is in a region supported by Xbox Live: https://www.xbox.com/en-US/live/countries",
+    "image": "assets/steams-pic/rdr2.jpg",
+    "images": [
+      "assets/steams-pic/rdr2-ulitmate.jpg",
+      "assets/steams-pic/rdr2-rockstar.png",
+      "assets/steams-pic/rdr2-xbox.jpg"
+    ],
+    "price": "Starting at $6.09",
+    "tags": ["rdr2", "rockstar", "xbox", "pc", "open world"],
+    "release_date": "2025-04-03",
+    "update_date": "2025-04-10",
+    "contact": "telegram",
+    "keywords": ["rdr2", "red dead redemption", "xbox one", "rockstar", "open world", "cowboy"],
+    "pricing": {
+      "Rockstar Launcher": "$15",
+      "Rockstar Launcher (Ultimate Edition)": "$17",
+      "Xbox One": "$24.5",
+      "Xbox One (Ultimate Edition)": "$26"
+    }
+  },  
+  {
+    "name": "Far Cry 6 (Xbox and Ubisoft)",
+    "type": "Game",
+    "description": "🔥 Far Cry 6 available on Xbox and Ubisoft — multiple editions with instant delivery.",
+    "long_description": "<h1>Far Cry 6</h1> brings the revolution to your console or PC. Choose between Ubisoft PC version or Xbox key. Gold and Ultimate editions available. Delivered securely and instantly.",
+    "requirements": "For Xbox, ensure your account and IP is in a region supported by Xbox Live: https://www.xbox.com/en-US/live/countries",
+    "image": "assets/steams-pic/farcry6.jpg",
+    "images": [
+      "assets/steams-pic/farcry6-gold.jpg",
+      "assets/steams-pic/farcry6-ultimate.jpg",
+      "assets/steams-pic/farcry6-xbox.jpg"
+    ],
+    "price": "Starting at $6.09",
+    "tags": ["far cry", "ubisoft", "xbox", "fps", "action"],
+    "release_date": "2025-04-03",
+    "update_date": "2025-04-10",
+    "contact": "telegram",
+    "keywords": ["far cry 6", "ubisoft", "xbox one", "fps", "revolution"],
+    "pricing": {
+      "Ubisoft (Gold Edition)": "$25.5",
+      "XBOX LIVE": "$40",
+      "XBOX LIVE (Ultimate Edition)": "$55"
+    }
+  } 
 ]
