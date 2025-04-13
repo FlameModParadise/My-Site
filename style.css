@@ -1163,7 +1163,14 @@ body.dark #popupText {
     margin-top: 1.5rem;
   }
   .tool-thumb-wrapper {
-    height: 130px;
+    width: 100%;
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 8px;
+    background: #f0f0f0;
   }
   .tool-title {
     font-size: 0.95rem;
@@ -1503,5 +1510,31 @@ body.dark .autocomplete-box div.selected:hover {
   .autocomplete-box {
     font-size: 13px;
     max-height: 180px;
+  }
+}
+/* ---------------------------- */
+@media (max-width: 480px) {
+  .tool-badge {
+    font-size: 0.68rem;
+    padding: 4px 8px;
+    line-height: 1.2;
+    max-width: 90%;
+    word-wrap: break-word;
+    white-space: nowrap;
+    position: absolute;
+    left: 8px;
+    right: auto;
+  }
+
+  .tool-badge:first-child {
+    top: 6px;
+  }
+
+  .tool-badge:nth-child(2) {
+    top: 100px; /* or adjust based on height of first badge */
+  }
+
+  .tool-badge:nth-child(3) {
+    top: 50px; /* if you have 3 stacked */
   }
 }
