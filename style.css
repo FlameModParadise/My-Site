@@ -408,7 +408,7 @@ body.dark .tool-detail {
 }
 .tool-detail-left,
 .tool-detail-right {
-  flex: 1 1 400px;
+  flex: 1 1 285px;
 }
 .tool-detail-right {
   position: relative;
@@ -473,6 +473,9 @@ body.dark .tool-detail {
   text-align: center;
   text-decoration: none;
   transition: background var(--transition);
+}
+.contact-btn:hover {
+  background: #0b5ed7;
 }
 
 /* ============ BADGES (Main List & Detail) ============ */
@@ -960,7 +963,7 @@ body.dark .search-group select:focus {
 
 /* ================ REQUIREMENTS POPUP ================ */
 .requirements-btn {
-  background: #ff9800;
+  background: #ff9800; /* vivid orange */
   color: #fff;
   border: none;
   padding: 0.6rem 1.2rem;
@@ -970,9 +973,21 @@ body.dark .search-group select:focus {
   transition: background var(--transition);
   margin-top: 1rem;
 }
+
 .requirements-btn:hover {
-  background: #fb8c00;
+  background: #c0392b !important; /* bold red-orange */
+  color: #fff !important;
+  box-shadow: 0 0 12px rgba(192, 57, 43, 0.5); /* glowing edge */
+  transform: scale(1.03);
 }
+
+body.dark .requirements-btn:hover {
+  background: #f1c40f !important; /* strong yellow */
+  color: #000 !important;
+  box-shadow: 0 0 12px rgba(241, 196, 15, 0.5); /* glowing yellow */
+  transform: scale(1.03);
+}
+
 .popup-box {
   position: fixed;
   top: 50%;
