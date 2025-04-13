@@ -44,5 +44,27 @@
     "offer_expiry": "",
     "contact": "telegram",
     "keywords": ["discord", "nitro", "basic", "full version", "subscription", "first time"]
+  },
+  {
+    "name": "Surfshark VPN ",
+    "type": "Others",
+    "description": "Affordable surfshark vpn.",
+    "long_description": "Want to surf the web securely and privately? Get Surfshark VPN at a discounted rate. Fast delivery and easy setup.\n All are unlimited devices.",
+    "image": "assets/others/discordnitrobasic.png",
+    "requirements": "1.If you are buying trial only 1 time it can be activated and need card.",
+    "images": [],
+    "video": "",
+    "tags": ["discord", "nitro", "basic", "full", "subscription"],
+    "release_date": "2025-03-25",
+    "update_date": "2025-04-01",
+    "pricing": {
+      "1 Month": "$10.5",
+      "3 Months (Trail | Starter)": "$1"
+    },
+    "discount": null,
+    "offer": null,
+    "offer_expiry": "",
+    "contact": "telegram",
+    "keywords": ["discord", "nitro", "basic", "full version", "subscription", "first time"]
   }
 ]
