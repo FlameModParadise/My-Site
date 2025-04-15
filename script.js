@@ -164,9 +164,7 @@ function applyFiltersAndRender() {
 
   let filtered = [...allTools];
 
-  // 1) SEARCH (using Fuse.js for smart fuzzy matching)
-  let searchedTools = [...allTools];
-
+  // 1) SEARCH
   if (savedSearch) {
     const fuse = new Fuse(allTools, {
       includeScore: true,
@@ -180,11 +178,13 @@ function applyFiltersAndRender() {
         { name: "type", weight: 0.1 },
         { name: "description", weight: 0.3 },
         { name: "long_description", weight: 0.2 },
-      ]
+      ],
     });
-
     const fuseResults = fuse.search(savedSearch);
-    searchedTools = fuseResults.map(r => ({ ...r.item, _matches: r.matches }));
+    filtered = fuseResults.map((r) => ({
+      ...r.item,
+      _matches: r.matches,
+    }));
   }
 
   // 2) FILTER BY TYPE
@@ -197,17 +197,22 @@ function applyFiltersAndRender() {
   // 3) SORT / SPECIAL FILTER
   switch (savedSort) {
     case "release_date":
-      filtered.sort((a, b) => new Date(b.release_date) - new Date(a.release_date));
+      // Sort by release_date descending (newest first)
+      filtered.sort(
+        (a, b) => new Date(b.release_date) - new Date(a.release_date)
+      );
       break;
 
     case "update_date":
-      filtered.sort((a, b) => new Date(b.update_date) - new Date(a.update_date));
+      // Sort by update_date descending (most recently updated first)
+      filtered.sort(
+        (a, b) => new Date(b.update_date) - new Date(a.update_date)
+      );
       break;
 
     case "discount":
+      // Filter to only those with an active discount or offer
       const now = new Date();
-
-      // Filter: only tools with active discount or offer
       filtered = filtered.filter((tool) => {
         const hasActiveDiscount =
           tool.discount &&
@@ -218,45 +223,69 @@ function applyFiltersAndRender() {
         return hasActiveDiscount || hasActiveOffer;
       });
 
-      // Sort priority: numeric discount > label discount > offer
+      // Sort discount items
       filtered.sort((a, b) => {
         const parseDiscount = (tool) => {
           const val = parseFloat(tool.discount);
           return !isNaN(val) && isFinite(val) ? val : 0;
         };
-
         const discountA = parseDiscount(a);
         const discountB = parseDiscount(b);
 
+        // Higher numeric discount first
         if (discountA !== discountB) return discountB - discountA;
 
+        // Then any discount vs no discount
         const hasDiscountA = a.discount ? 1 : 0;
         const hasDiscountB = b.discount ? 1 : 0;
-
         if (hasDiscountA !== hasDiscountB) return hasDiscountB - hasDiscountA;
 
+        // Finally alphabetically
         return (a.name || "").localeCompare(b.name || "");
       });
       break;
 
     default:
-      // Default: Sort by name
-      filtered.sort((a, b) =>
-        (a.name || "").toLowerCase().localeCompare((b.name || "").toLowerCase())
-      );
+      // ======================
+      // YOUR CUSTOM "All" SORT:
+      // Show new/updated items first, then alphabetical
+      // ======================
+
+      // Helper to check if a tool is "recent" (new or updated within 7 days)
+      const isRecent = (tool) => {
+        const now = Date.now();
+        const ONE_WEEK = 7 * 24 * 60 * 60 * 1000;
+        const released = new Date(tool.release_date).getTime() || 0;
+        const updated = new Date(tool.update_date).getTime() || 0;
+        return (now - released <= ONE_WEEK) || (now - updated <= ONE_WEEK);
+      };
+
+      filtered.sort((a, b) => {
+        // Sort by "recent" status first
+        const aRecent = isRecent(a) ? 1 : 0;
+        const bRecent = isRecent(b) ? 1 : 0;
+
+        // If one is recent and the other isn’t, put the recent one first
+        if (bRecent !== aRecent) {
+          return bRecent - aRecent; 
+        }
+
+        // Otherwise, sort alphabetically
+        return (a.name || "")
+          .toLowerCase()
+          .localeCompare((b.name || "").toLowerCase());
+      });
       break;
   }
 
-  // Render final result
+  // Finally, render
   renderTools(filtered);
 
-  // Update active filter button styling
+  // Update filter buttons, inputs, and dropdowns
   document.querySelectorAll("#filters button").forEach((btn) => {
     const btnTxt = btn.textContent.toLowerCase();
     btn.classList.toggle("active", btnTxt === savedFilter.toLowerCase());
   });
-
-  // ✅ FIX: Sync UI input and select dropdown with saved state
   if (searchInput) searchInput.value = savedSearch;
   if (sortSelect) sortSelect.value = savedSort;
 }
