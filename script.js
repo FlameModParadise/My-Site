@@ -410,15 +410,13 @@ function createFilterBtn(label) {
 
 //SHOW DETAIL PAGE
 function showToolDetail(tool, isInitial = false) {
-  // Scroll to top when opening tool details
-  window.scrollTo({ top: 320, behavior: "smooth" });
-
+  // If this is not the initial load, update the hash
   if (!isInitial) {
     location.hash = `tool=${encodeURIComponent(tool.name)}`;
   }
-  container.className = "detail-wrapper";
 
-  const stockStatus = getStockStatus(tool.stock);
+  // Change the layout class and inject the new detail HTML
+  container.className = "detail-wrapper";
   container.innerHTML = `
     <div class="tool-detail fade-in">
       <div class="tool-detail-top">
@@ -478,7 +476,7 @@ function showToolDetail(tool, isInitial = false) {
                 ? `<p>⏳ Offer ends in ${daysLeft(tool.offer_expiry)} days</p><br>`
                 : ""
             }
-            <p><strong>Stock:</strong><br>${stockStatus}</p><br>
+            <p><strong>Stock:</strong><br>${getStockStatus(tool.stock)}</p><br>
             <p><strong>Released:</strong><br>${escapeHTML(tool.release_date || "N/A")}</p><br>
             <p><strong>Updated:</strong><br>${escapeHTML(tool.update_date || "N/A")}</p><br>
 
@@ -504,13 +502,13 @@ function showToolDetail(tool, isInitial = false) {
     ${renderRecommendations(tool)}
   `;
 
-  // ✅ Fix: render raw HTML from description using innerHTML
+  // ✅ Render raw HTML from tool.description, if available
   const descContainer = document.querySelector(".tool-detail-right .tool-info .desc");
   if (descContainer && tool.description) {
     descContainer.innerHTML = `<strong>Description:</strong><br>` + tool.description;
   }
 
-  // Swap main image from the gallery
+  // Swap main image from the gallery if clicked
   const mainImg = document.querySelector(".tool-main-img");
   document.querySelectorAll(".tool-gallery img").forEach((img) => {
     img.addEventListener("click", () => {
@@ -519,6 +517,19 @@ function showToolDetail(tool, isInitial = false) {
       }
     });
   });
+
+  // After content is rendered, scroll to the top (delay for layout)
+  setTimeout(() => {
+    const detail = document.querySelector(".tool-detail");
+    if (!detail) return;
+  
+    // Get where .tool-detail starts on the page
+    const detailTop = detail.getBoundingClientRect().top + window.scrollY;
+  
+    // Subtract however many pixels you want as padding (e.g., 100)
+    window.scrollTo({ top: detailTop - 100, behavior: "smooth" });
+  }, 0);
+  
 }
 
 //SUPPORT FUNCTIONS
