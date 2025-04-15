@@ -258,7 +258,7 @@
     "name": "Hulu Cookie Checker",
     "description": "Auto-categorizes Hulu cookies with ease.",
     "long_description": "\ud83d\udcfa Automatically detects and validates Hulu cookies\n\ud83d\udd04 Sorts based on access level\n\ud83d\udfe2 Proxyless and fast",
-    "requirements": "\u2705 No requirement.",
+    "requirements": "\u2705 No requirement. But it is very hard to find hulu cookies due to less user and less demand.",
     "image": "assets/checkers-pic/hulu.jpg",
     "video": "",
     "images": [
@@ -433,7 +433,7 @@
   {
     "type": "Checker",
     "name": "Eneba Cookie Checker",
-    "description": "Validates Eneba accounts, points, balance.",
+    "description": "Validates Eneba cookies, points, balance.",
     "long_description": "\ud83d\udcb0 Displays account balance, loyalty points\n\ud83c\udfaf Great for log sorting & selling\n\u2705 Proxyless and real-time results",
     "requirements": "\u2705 No requirement.",
     "image": "assets/checkers-pic/eneba.png",
@@ -465,6 +465,44 @@
       "Lifetime (No Patch)": "$20",
       "Lifetime (Inc Patch)": "$25",
       "Source Code": "$30"
+    }
+  },
+  {
+    "type": "Checker",
+    "name": "Nord Cookie Checker",
+    "description": "Validates nord vpn cookies",
+    "long_description": "\n Checks cookies of nord vpn site and find out and capture all details of that account including payment details, services etc.\n And you can login in browser using valid cookie then login in app (in case of pc)",
+    "requirements": "\n No requirement but very hard to find cookies so get good logs.",
+    "image": "assets/checkers-pic/nordvpn.png",
+    "video": "",
+    "images": [
+      "assets/checkers-pic/checking/nordvpn1.png"
+    ],
+    "discount": null,
+    "offer": null,
+    "offer_expiry": null,
+    "release_date": "2025-04-16",
+    "update_date": "2025-04-16",
+    "tags": [
+      "nordvpn",
+      "vpn"
+    ],
+    "keywords": [
+      "nordvpn cookie checker",
+      "check nordvpn cookies",
+      "nordvpn account status",
+      "slot capture nordvpn",
+      "nordvpn cookies tool"
+    ],
+    "contact": "telegram",
+    "stock": "unlimited",
+    "pricing": {
+      "1 Day": "$1",
+      "1 Week": "$4",
+      "30 Days": "$8",
+      "2 Months": "$10",
+      "Lifetime (Inc Patch)": "$12",
+      "Source Code": "$15"
     }
   }
 ]
