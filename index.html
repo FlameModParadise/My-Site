@@ -17,6 +17,7 @@
   <meta name="twitter:image" content="assets/icons/fmp-icon.gif" />
   <meta name="twitter:creator" content="@FMP_ToolStore" />
   <link rel="canonical" href="https://flamemodparadise.github.io/My-Site/" />
+  <link rel="manifest" href="manifest.json" />
   <link rel="icon" href="assets/icons/icon-192.png" sizes="192x192" />
   <link rel="icon" href="assets/icons/icon-512.png" sizes="512x512" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -24,7 +25,6 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
   <title>Flame Mod Paradise - Premium Mods, Tools, and Free Offers</title>
-  <link rel="manifest" href="/My-Site/manifest.json">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -82,8 +82,6 @@
         for access.
       </p>
       <div class="filter-tags" id="filters"></div>
-      <!-- Manual PWA Install Button -->
-      <button id="manual-install-btn" class="install-trigger-btn hidden">📲 Install App</button>
     </header>
 
     <!-- Announcement Banner -->
@@ -101,17 +99,11 @@
     </main>
 
     <!-- Install Prompt -->
-    <!-- 📲 Install Button + Fallback -->
-    <div id="install-wrapper" class="install-wrapper hidden">
-      <button id="manual-install-btn" class="install-trigger-btn">📲 Install App</button>
-      <button id="close-install-tip" title="Dismiss">✖</button>
-      <p id="install-help" class="install-help hidden">
-        Not supported in this browser. You can manually install this site:
-        <br />Mobile: Use browser menu → "Add to Home screen" <br />
-        Desktop: Bookmark or pin this page.
-      </p>
+    <div class="install-box hidden" id="install-prompt">
+      <p>📲 Install Tool Store as an app?</p>
+      <button id="install-now">Install Now</button>
+      <button id="install-later">Later</button>
     </div>
-
 
     <!-- Image Modal -->
     <div class="image-modal hidden" id="imageModal">
@@ -202,10 +194,6 @@
           .catch((err) => console.error("❌ Service Worker error:", err));
       });
     }
-    document.getElementById("close-install-tip")?.addEventListener("click", () => {
-      localStorage.setItem(INSTALL_DISMISSED_KEY, "true");
-      installWrapper.classList.add("hidden");
-    });
 
     document.addEventListener("DOMContentLoaded", () => {
       const mainImg = document.querySelector(".tool-main-img");
