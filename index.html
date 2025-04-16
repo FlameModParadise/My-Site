@@ -104,6 +104,7 @@
     <!-- 📲 Install Button + Fallback -->
     <div id="install-wrapper" class="install-wrapper hidden">
       <button id="manual-install-btn" class="install-trigger-btn">📲 Install App</button>
+      <button id="close-install-tip" title="Dismiss">✖</button>
       <p id="install-help" class="install-help hidden">
         Not supported in this browser. You can manually install this site:
         <br />Mobile: Use browser menu → "Add to Home screen" <br />
@@ -201,6 +202,10 @@
           .catch((err) => console.error("❌ Service Worker error:", err));
       });
     }
+    document.getElementById("close-install-tip")?.addEventListener("click", () => {
+      localStorage.setItem(INSTALL_DISMISSED_KEY, "true");
+      installWrapper.classList.add("hidden");
+    });
 
     document.addEventListener("DOMContentLoaded", () => {
       const mainImg = document.querySelector(".tool-main-img");

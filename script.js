@@ -855,34 +855,50 @@ const installWrapper = document.getElementById("install-wrapper");
 const installBtn = document.getElementById("manual-install-btn");
 const installHelp = document.getElementById("install-help");
 
-// Show install button only when supported
-window.addEventListener("beforeinstallprompt", (e) => {
-  e.preventDefault();
-  deferredPrompt = e;
-  installWrapper.classList.remove("hidden");
-  installHelp.classList.add("hidden"); // hide fallback help
-});
+// Use this key to remember if user dismissed or saw it already
+const INSTALL_DISMISSED_KEY = "manualInstallDismissed";
 
-// If button is clicked
-installBtn?.addEventListener("click", async () => {
-  if (deferredPrompt) {
-    deferredPrompt.prompt();
-    const { outcome } = await deferredPrompt.userChoice;
-    console.log("User response:", outcome);
-    deferredPrompt = null;
-    installBtn.classList.add("hidden");
-  } else {
-    // Show fallback instructions if not supported
-    installHelp.classList.remove("hidden");
-  }
-});
+// Check if user dismissed it before
+const installDismissed = localStorage.getItem(INSTALL_DISMISSED_KEY) === "true";
 
-// If not supported at all, show fallback after DOM loaded
-document.addEventListener("DOMContentLoaded", () => {
-  const isSupported = "onbeforeinstallprompt" in window;
-  if (!isSupported) {
+// Skip showing if already dismissed
+if (!installDismissed) {
+  // Listen for browser's install prompt support
+  window.addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
     installWrapper.classList.remove("hidden");
-    installHelp.classList.remove("hidden");
-  }
-});
+    installHelp.classList.add("hidden"); // hide fallback help
+  });
+
+  // If button is clicked
+  installBtn?.addEventListener("click", async () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      console.log("User response:", outcome);
+
+      // User saw prompt: don't show again
+      localStorage.setItem(INSTALL_DISMISSED_KEY, "true");
+      installWrapper.classList.add("hidden");
+    } else {
+      // Not supported, show fallback once
+      installHelp.classList.remove("hidden");
+      localStorage.setItem(INSTALL_DISMISSED_KEY, "true");
+    }
+  });
+
+  // Show fallback if not supported at all (once only)
+  document.addEventListener("DOMContentLoaded", () => {
+    const isSupported = "onbeforeinstallprompt" in window;
+    if (!isSupported) {
+      installWrapper.classList.remove("hidden");
+      installHelp.classList.remove("hidden");
+      localStorage.setItem(INSTALL_DISMISSED_KEY, "true");
+    }
+  });
+} else {
+  // If previously dismissed, keep hidden
+  installWrapper?.classList.add("hidden");
+}
 
