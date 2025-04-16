@@ -849,3 +849,30 @@ imageModal?.addEventListener("click", (e) => {
     closeImageModal();
   }
 });
+
+let deferredPrompt = null;
+const manualInstallBtn = document.getElementById("manual-install-btn");
+
+// Listen for the beforeinstallprompt event
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault(); // Prevent the default mini-banner
+  deferredPrompt = e;
+  manualInstallBtn.classList.remove("hidden");
+});
+
+// Show the install prompt on button click
+manualInstallBtn?.addEventListener("click", async () => {
+  if (!deferredPrompt) {
+    alert("Sorry, install is not available on your browser right now.");
+    return;
+  }
+
+  deferredPrompt.prompt();
+
+  const { outcome } = await deferredPrompt.userChoice;
+  console.log(`User response: ${outcome}`);
+
+  // Clear the prompt so it can't be reused
+  deferredPrompt = null;
+  manualInstallBtn.classList.add("hidden");
+});
