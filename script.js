@@ -851,28 +851,38 @@ imageModal?.addEventListener("click", (e) => {
 });
 
 let deferredPrompt = null;
-const manualInstallBtn = document.getElementById("manual-install-btn");
+const installWrapper = document.getElementById("install-wrapper");
+const installBtn = document.getElementById("manual-install-btn");
+const installHelp = document.getElementById("install-help");
 
-// Listen for the beforeinstallprompt event
+// Show install button only when supported
 window.addEventListener("beforeinstallprompt", (e) => {
-  e.preventDefault(); // Prevent the default mini-banner
+  e.preventDefault();
   deferredPrompt = e;
-  manualInstallBtn.classList.remove("hidden");
+  installWrapper.classList.remove("hidden");
+  installHelp.classList.add("hidden"); // hide fallback help
 });
 
-// Show the install prompt on button click
-manualInstallBtn?.addEventListener("click", async () => {
-  if (!deferredPrompt) {
-    alert("Sorry, install is not available on your browser right now.");
-    return;
+// If button is clicked
+installBtn?.addEventListener("click", async () => {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    console.log("User response:", outcome);
+    deferredPrompt = null;
+    installBtn.classList.add("hidden");
+  } else {
+    // Show fallback instructions if not supported
+    installHelp.classList.remove("hidden");
   }
-
-  deferredPrompt.prompt();
-
-  const { outcome } = await deferredPrompt.userChoice;
-  console.log(`User response: ${outcome}`);
-
-  // Clear the prompt so it can't be reused
-  deferredPrompt = null;
-  manualInstallBtn.classList.add("hidden");
 });
+
+// If not supported at all, show fallback after DOM loaded
+document.addEventListener("DOMContentLoaded", () => {
+  const isSupported = "onbeforeinstallprompt" in window;
+  if (!isSupported) {
+    installWrapper.classList.remove("hidden");
+    installHelp.classList.remove("hidden");
+  }
+});
+

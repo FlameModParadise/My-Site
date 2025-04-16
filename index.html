@@ -101,11 +101,16 @@
     </main>
 
     <!-- Install Prompt -->
-    <div class="install-box hidden" id="install-prompt">
-      <p>📲 Install Tool Store as an app?</p>
-      <button id="install-now">Install Now</button>
-      <button id="install-later">Later</button>
+    <!-- 📲 Install Button + Fallback -->
+    <div id="install-wrapper" class="install-wrapper hidden">
+      <button id="manual-install-btn" class="install-trigger-btn">📲 Install App</button>
+      <p id="install-help" class="install-help hidden">
+        Not supported in this browser. You can manually install this site:
+        <br />Mobile: Use browser menu → "Add to Home screen" <br />
+        Desktop: Bookmark or pin this page.
+      </p>
     </div>
+
 
     <!-- Image Modal -->
     <div class="image-modal hidden" id="imageModal">

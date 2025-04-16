@@ -1556,16 +1556,64 @@ body.dark .autocomplete-box div.selected:hover {
     top: 50px; /* if you have 3 stacked */
   }
 }
+/* 🔧 Desktop and Tablet Default Style */
+.install-wrapper {
+  margin-top: 1.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+.install-wrapper.hidden {
+  display: none !important;
+}
+
 .install-trigger-btn {
-  padding: 0.6rem 1.2rem;
-  background: #0d6efd;
+  padding: 0.65rem 1.4rem;
+  font-size: 1rem;
+  background-color: #0d6efd;
   color: #fff;
   border: none;
   border-radius: 8px;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background-color 0.3s ease;
 }
 .install-trigger-btn:hover {
-  background: #0b5ed7;
+  background-color: #0b5ed7;
+}
+
+.install-help {
+  font-size: 0.9rem;
+  color: var(--color-accent, #555);
+  text-align: center;
+  line-height: 1.4;
+  max-width: 90%;
+}
+.install-help.hidden {
+  display: none;
+}
+
+/* 🌐 DARK MODE SUPPORT */
+body.dark .install-help {
+  color: #ccc;
+}
+
+/* 📱 Small screen adjustments */
+@media (max-width: 600px) {
+  .install-wrapper {
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .install-trigger-btn {
+    padding: 0.5rem 1.1rem;
+    font-size: 0.95rem;
+  }
+
+  .install-help {
+    font-size: 0.85rem;
+    max-width: 95%;
+  }
 }
