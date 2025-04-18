@@ -1,42 +1,69 @@
 {
-  "id": "/My-Site/?source=pwa",
+  "id": "/?source=pwa",
   "name": "FMP – Store",
   "short_name": "FMP Store",
   "description": "Discover premium bots, custom tools, checkers and automation scripts.",
-  "start_url": "/My-Site/?source=pwa",
-  "scope": "/My-Site/",
+  "start_url": "/?source=pwa",
+  "scope": "/",
   "display": "standalone",
-  "display_override": [
-    "standalone",
-    "minimal-ui"
-  ],
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "portrait-primary",
+
   "background_color": "#121212",
   "theme_color": "#0d6efd",
-  "orientation": "portrait-primary",
+
   "categories": ["utilities", "productivity"],
+
   "icons": [
     {
-      "src": "/My-Site/assets/icons/icon-192.png",
+      "src": "/assets/icons/icon-192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/My-Site/assets/icons/icon-512.png",
+      "src": "/assets/icons/icon-512.png",
       "sizes": "512x512",
       "type": "image/png"
+    },
+    {
+      "src": "/assets/icons/icon-192-maskable.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/assets/icons/icon-512-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ],
+
   "shortcuts": [
     {
       "name": "Browse Tools",
       "short_name": "Tools",
-      "url": "/My-Site/#tools"
+      "url": "/#tools"
     },
     {
       "name": "Contact",
-      "url": "/My-Site/#contact"
+      "url": "/#contact"
     }
   ],
+
+  "screenshots": [
+    {
+      "src": "/assets/screenshots/home.jpg",
+      "sizes": "1080x1920",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "/assets/screenshots/detail.jpg",
+      "sizes": "1080x1920",
+      "type": "image/jpeg"
+    }
+  ],
+
   "lang": "en",
   "dir": "ltr"
 }

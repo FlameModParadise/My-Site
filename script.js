@@ -262,7 +262,13 @@ function getCardBadges(tool) {
       out.push(`<span class="tool-badge discount-badge">-${tool.discount}%</span>`);
       if (discountEnd) {
         const left = formatTimeRemaining(tool.discount_expiry);
-        if (left) out.push(`<span class="tool-badge discount-badge">${left}</span>`);
+        if (left) {
+          out.push(
+            `<span class="tool-badge discount-badge" data-expiry="${tool.discount_expiry}">
+              ${left}
+            </span>`
+          );
+        }
       }
     } else {
       out.push(`<span class="tool-badge discount-badge">${escapeHTML(tool.discount)}</span>`);
@@ -633,6 +639,26 @@ searchInput.addEventListener("focus", () => {
   if (!searchInput.value.trim()) showRecentSearches();
 });
 searchInput.addEventListener("blur", () => setTimeout(() => autocompleteBox.classList.add("hidden"), 150));
+
+/* ================= LIVE COUNTDOWN ================= */
+function updateBadges() {
+  const now = Date.now();
+  document.querySelectorAll('[data-expiry]').forEach(el => {
+    const expiry = Date.parse(el.dataset.expiry);
+    if (isNaN(expiry)) return;                // bad date → ignore
+
+    const diff = expiry - now;
+    if (diff <= 0) {                          // time’s up
+      el.remove();                            // drop expired badge
+      return;
+    }
+
+    el.textContent = formatTimeRemaining(el.dataset.expiry);  // refresh text
+  });
+}
+
+// refresh every 60 seconds
+setInterval(updateBadges, 60_000);
 
 /* ----------  HASH & MODAL ---------- */
 window.addEventListener("hashchange", applyURLHash);

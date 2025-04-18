@@ -39,7 +39,7 @@ html, body {
 
   --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
   --ease-in-out: cubic-bezier(0.45, 0, 0.55, 1);
-  --dur-fast: 0.25s;
+  --dur-fast: 0.4s;
   --dur-med: 0.45s;
   --dur-slow: 0.8s;
 
@@ -335,7 +335,7 @@ body.dark .filter-tags button:hover {
 .tool-thumb-wrapper {
   width: 100%;
   height: 160px;
-  display: flex;
+  display: grid;
   align-items: center;
   justify-content: center;
   overflow: hidden;
@@ -498,6 +498,7 @@ body.dark .tool-detail {
   z-index: 2;
   backdrop-filter: blur(6px);
   transition: all 0.3s ease;
+  justify-self: start;
 }
 
 /* Stacked badges spacing */
@@ -1559,4 +1560,34 @@ body.dark .autocomplete-box div.selected:hover {
 #autocompleteBox div.selected {
   background: #444;
   color: #fff;
+}
+/* ============ FADE‑IN ANIMATION ============ */
+.fade-in {
+  animation: fadeIn var(--dur-fast) var(--ease-out);
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ============ MOBILE‑ONLY OVERRIDES ============ */
+@media (max-width: 767px) {
+
+  /* navbar */
+  .navbar-toggle { display: block; font-size: 2rem; margin-bottom: 0.5rem; }
+  .navbar-right  { display: flex;  gap: 0.75rem; }
+
+  /* headings / text */
+  .title        { font-size: 1.5rem; }
+  .tool-title   { font-size: 0.95rem; }
+  .tool-desc    { font-size: 0.9rem; }
+  .tag          { font-size: 0.75rem; padding: 3px 8px; }
+
+  /* buttons */
+  .filter-tags button { padding: 0.4rem 0.8rem; }
+
+  /* tool card layout tweaks */
+  .tool-detail   { padding: 1.2rem; gap: 1.2rem; }
+  .tool-main-img { border-radius: 12px; }       /* consistent on all sizes */
+  .tool-gallery img { width: 52px; height: 52px; border-radius: 6px; }
 }
