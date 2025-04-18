@@ -21,7 +21,7 @@ const DATA_FILES = [
   "data/game.json",
   "data/others.json",
   "data/cookies.json",
-  "data/methods.json",
+  "data/methods.json"
 ];
 
 const THEME_KEY   = "theme";
@@ -45,6 +45,10 @@ const navbarToggle     = document.getElementById("navbarToggle");
 const navbarMenu       = document.getElementById("navbarMenu");
 const imageModal       = document.getElementById("imageModal");
 const autocompleteBox  = document.getElementById("autocompleteBox");
+
+const offersList      = document.getElementById("offers-list");
+const recommendedList = document.getElementById("recommended-list");
+const limitedList     = document.getElementById("limited-list");
 
 let allTools = [];
 
@@ -97,16 +101,13 @@ const io = new IntersectionObserver(
   { rootMargin: "100px" }
 );
 
-/*  ❱❱  the ONLY safe helper to create thumbs  ❰❰  */
 function smartImg(src, alt = "") {
-  /* returns a literal <img> string so we can inject with innerHTML */
   return `<img loading="lazy"
                data-src="${src}"
                src="assets/placeholder.jpg"
                alt="${escapeHTML(alt)}">`;
 }
 
-/* call after injecting HTML so the observer can hook the nodes */
 function activateLazyImages(root = document) {
   root.querySelectorAll("img[data-src]").forEach((img) => io.observe(img));
 }
@@ -117,14 +118,20 @@ if (darkToggle) {
   darkToggle.setAttribute("title", "Toggle dark mode (D)");
   darkToggle.addEventListener("click", () => {
     document.body.classList.toggle("dark");
-    localStorage.setItem(THEME_KEY, document.body.classList.contains("dark") ? "dark" : "light");
+    localStorage.setItem(
+      THEME_KEY,
+      document.body.classList.contains("dark") ? "dark" : "light"
+    );
   });
 }
-if (localStorage.getItem(THEME_KEY) === "dark") document.body.classList.add("dark");
+if (localStorage.getItem(THEME_KEY) === "dark")
+  document.body.classList.add("dark");
 
-/* keyboard “D” toggles dark mode */
 document.addEventListener("keydown", (e) => {
-  if (e.key.toLowerCase() === "d" && !e.target.matches("input,textarea,[contenteditable]"))
+  if (
+    e.key.toLowerCase() === "d" &&
+    !e.target.matches("input,textarea,[contenteditable]")
+  )
     darkToggle?.click();
 });
 
@@ -137,10 +144,67 @@ if (banner && closeBanner && !localStorage.getItem(BANNER_KEY)) {
   });
 }
 
+/* --------------------------------------------------
+     RENDER UTIL THAT WORKS FOR *ANY* CONTAINER
+   -------------------------------------------------- */
+function renderTools(list, target = container) {
+  target.className = "main-grid";
+  target.innerHTML = "";
+
+  if (!list.length) {
+    target.innerHTML = "<p>No tools found.</p>";
+    return;
+  }
+
+  list.forEach((tool) => {
+    const card = document.createElement("div");
+    card.className = "tool-card fade-in";
+    card.dataset.toolName = tool.name;
+
+    const desc = highlightMatch(
+      tool.description || "",
+      tool._matches || [],
+      "description"
+    );
+    const name = highlightMatch(
+      tool.name || "Unnamed",
+      tool._matches || [],
+      "name"
+    );
+
+    card.innerHTML = `
+      <div class="tool-thumb-wrapper">
+        ${getCardBadges(tool)}
+        ${smartImg(tool.image || "assets/placeholder.jpg", tool.name).trim()}
+      </div>
+      <div class="tool-card-body">
+        <h3 class="tool-title">${name}</h3>
+        <p class="tool-desc">${desc}</p>
+        <div class="tool-tags">
+          ${(tool.tags || [])
+            .map((t) => `<span class="tag">${escapeHTML(t)}</span>`)
+            .join("")}
+          ${tool.popular ? `<span class="tag">popular</span>` : ""}
+          ${getRecentTags(tool)}
+        </div>
+      </div>`;
+    target.appendChild(card);
+  });
+
+  activateLazyImages(target);
+}
+
+/* helper: render a list into any selector */
+function renderInto(selector, list) {
+  const el = document.querySelector(selector);
+  if (el) renderTools(list, el);
+}
+
 /* ----------  LOAD DATA  ---------- */
 async function loadData() {
   container.className = "main-grid";
-  container.innerHTML = "<div class='tool-card skeleton'></div>".repeat(12);
+  container.innerHTML =
+    "<div class='tool-card skeleton'></div>".repeat(12);
 
   try {
     const data = await Promise.all(
@@ -155,8 +219,8 @@ async function loadData() {
     );
 
     const merged = data.flat();
-    const seen   = new Set();
-    allTools     = merged.filter((t) => {
+    const seen = new Set();
+    allTools = merged.filter((t) => {
       if (!t.name || !t.type) return false;
       const k = t.name.toLowerCase();
       if (seen.has(k)) return false;
@@ -165,6 +229,7 @@ async function loadData() {
     });
 
     generateFilterButtons();
+    populateSpecialSections();        // << fill the new sections
     applyFiltersAndRender();
     applyURLHash();
   } catch (err) {
@@ -172,6 +237,98 @@ async function loadData() {
     container.innerHTML = "<p>Error loading data.</p>";
   }
 }
+
+function renderOrHide(list, wrapper, section) {
+  if (list.length) {
+    renderTools(list, wrapper);
+    section.classList.remove("hidden");
+  } else {
+    section.classList.add("hidden");
+  }
+}
+
+function populateSpecialSections() {
+  const now = Date.now();
+
+  /* OFFERS & DISCOUNTS */
+  const offers = allTools.filter(t => {
+    const disc = t.discount && (!t.discount_expiry || new Date(t.discount_expiry) > now);
+    const off  = t.offer    && (!t.offer_expiry    || new Date(t.offer_expiry)    > now);
+    return disc || off;
+  });
+  renderOrHide(offers, offersList, offersList.parentElement);
+
+  /* RECOMMENDED */
+  /* RECOMMENDED — tag only */
+  const recommended = allTools.filter(t =>
+    (t.tags || []).some(x => x.toLowerCase() === "recommended")
+  );
+  renderOrHide(recommended, recommendedList, recommendedList.parentElement);
+
+  /* LIMITED‑TIME */
+  const limited = allTools.filter(t => t.stock === 1);
+  renderOrHide(limited, limitedList, limitedList.parentElement);
+}
+
+/* allow clicking cards in the extra lists */
+["offers-list","recommended-list","limited-list"].forEach(id=>{
+  const el = document.getElementById(id);
+  el?.addEventListener("click", e=>{
+    const c = e.target.closest(".tool-card");
+    if(!c) return;
+    const tool = allTools.find(t=>t.name===c.dataset.toolName);
+    if(tool) showToolDetail(tool);
+  });
+});
+
+/* =========  MOBILE SWIPE HINT  ========= */
+function addSwipeHint(wrapperId){
+  const list   = document.getElementById(wrapperId);
+  const parent = list?.parentElement;
+  if(!list || !parent) return;
+
+  // show the hint initially
+  parent.classList.add("has-scroll-hint");
+
+  // hide after the user scrolls a bit (or after 6s as fallback)
+  const hide = () => parent.classList.remove("has-scroll-hint");
+  list.addEventListener("scroll", () => {
+    if (list.scrollLeft > 24) hide();
+  }, { passive: true });
+
+  setTimeout(hide, 6000);   // auto‑fade in case they don't scroll
+}
+
+/* call once, right after we’ve populated the special lists */
+["offers-list","recommended-list","limited-list"].forEach(addSwipeHint);
+
+/* ========  arrow button scrolling  ======== */
+function initArrowControls(sectionId){
+  const list   = document.getElementById(sectionId);
+  if(!list) return;
+  const leftBtn  = list.parentElement.querySelector(".arrow.left");
+  const rightBtn = list.parentElement.querySelector(".arrow.right");
+  if(!leftBtn || !rightBtn) return;
+
+  const SCROLL = () => {
+    const amount = list.clientWidth * 0.8;          // scroll 80 % of view
+    return (dir) => list.scrollBy({ left: dir*amount, behavior:"smooth" });
+  };
+  const scrollBy = SCROLL();
+
+  leftBtn .addEventListener("click", () => scrollBy(-1));
+  rightBtn.addEventListener("click", () => scrollBy(+1));
+
+  const toggleDisabled = () => {
+    leftBtn .disabled = list.scrollLeft < 8;
+    rightBtn.disabled = list.scrollLeft + list.clientWidth >= list.scrollWidth - 8;
+  };
+  list.addEventListener("scroll", toggleDisabled, { passive:true });
+  toggleDisabled();           // run once on load
+}
+
+/* activate on all three lists */
+["offers-list","recommended-list","limited-list"].forEach(initArrowControls);
 
 /* ----------  SEARCH / FILTER / SORT  ---------- */
 function runSearch(raw = "") {
@@ -185,7 +342,10 @@ function applyFiltersAndRender() {
   const typeKey   = sessionStorage.getItem(FILTER_KEY) || "all";
 
   let list = [...allTools];
-  if (typeKey !== "all") list = list.filter((t) => (t.type || "").toLowerCase() === typeKey);
+  if (typeKey !== "all")
+    list = list.filter(
+      (t) => (t.type || "").toLowerCase() === typeKey
+    );
 
   if (searchRaw.trim()) {
     const fuse = new Fuse(getWeightedFuseList(), {
@@ -195,42 +355,62 @@ function applyFiltersAndRender() {
       distance: 100,
       ignoreLocation: true,
       keys: [
-        { name: "name",            weight: 1.0 },  // primary
-        { name: "keywords",        weight: 0.6 },  // good but weaker
-        { name: "tags",            weight: 0.5 },
-        { name: "description",     weight: 0.3 },
-        { name: "long_description",weight: 0.2 },
-        { name: "type",            weight: 0.1 },
-        { name: "_boost",          weight: 0.8 }   // recent‑search booster
+        { name: "name", weight: 1.0 },
+        { name: "keywords", weight: 0.6 },
+        { name: "tags", weight: 0.5 },
+        { name: "description", weight: 0.3 },
+        { name: "long_description", weight: 0.2 },
+        { name: "type", weight: 0.1 },
+        { name: "_boost", weight: 0.8 }
       ]
-    });    
-    list = fuse.search(searchRaw.trim()).map(({ item, matches }) => ({ ...item, _matches: matches }));
+    });
+    list = fuse
+      .search(searchRaw.trim())
+      .map(({ item, matches }) => ({ ...item, _matches: matches }));
   }
 
   switch (sortKey) {
     case "release_date":
-      list.sort((a, b) => new Date(b.release_date) - new Date(a.release_date));
+      list.sort(
+        (a, b) =>
+          new Date(b.release_date) - new Date(a.release_date)
+      );
       break;
     case "update_date":
-      list.sort((a, b) => new Date(b.update_date) - new Date(a.update_date));
+      list.sort(
+        (a, b) =>
+          new Date(b.update_date) - new Date(a.update_date)
+      );
       break;
     case "discount": {
       const now = Date.now();
       list = list
         .filter(
           (t) =>
-            (t.discount && (!t.discount_expiry || new Date(t.discount_expiry) > now)) ||
-            (t.offer && (!t.offer_expiry || new Date(t.offer_expiry) > now))
+            (t.discount &&
+              (!t.discount_expiry ||
+                new Date(t.discount_expiry) > now)) ||
+            (t.offer &&
+              (!t.offer_expiry ||
+                new Date(t.offer_expiry) > now))
         )
-        .sort((a, b) => (parseFloat(b.discount) || 0) - (parseFloat(a.discount) || 0));
+        .sort(
+          (a, b) =>
+            (parseFloat(b.discount) || 0) -
+            (parseFloat(a.discount) || 0)
+        );
       break;
     }
     default: {
       const wk = 6048e5,
         now = Date.now();
       list.sort((a, b) => {
-        const ar = now - new Date(a.release_date) < wk || now - new Date(a.update_date) < wk;
-        const br = now - new Date(b.release_date) < wk || now - new Date(b.update_date) < wk;
+        const ar =
+          now - new Date(a.release_date) < wk ||
+          now - new Date(a.update_date) < wk;
+        const br =
+          now - new Date(b.release_date) < wk ||
+          now - new Date(b.update_date) < wk;
         if (ar !== br) return br - ar;
         return (a.name || "").localeCompare(b.name || "");
       });
@@ -239,14 +419,19 @@ function applyFiltersAndRender() {
 
   renderTools(list);
 
-  document.querySelectorAll("#filters button").forEach((b) =>
-    b.classList.toggle("active", b.textContent.toLowerCase() === typeKey)
-  );
+  document
+    .querySelectorAll("#filters button")
+    .forEach((b) =>
+      b.classList.toggle(
+        "active",
+        b.textContent.toLowerCase() === typeKey
+      )
+    );
   searchInput.value = searchRaw;
-  sortSelect.value  = sortKey;
+  sortSelect.value = sortKey;
 }
 
-/* ----------  CARD RENDERING  ---------- */
+/* ----------  BADGE HELPERS & CARD MARKUP ---------- */
 function getCardBadges(tool) {
   const now = new Date();
   const offerEnd    = tool.offer_expiry    ? new Date(tool.offer_expiry)    : null;
@@ -278,45 +463,7 @@ function getCardBadges(tool) {
   return out.join("");
 }
 
-function renderTools(list) {
-  container.className = "main-grid";
-  container.innerHTML = "";
-
-  if (!list.length) {
-    container.innerHTML = "<p>No tools found.</p>";
-    return;
-  }
-
-  list.forEach((tool) => {
-    const card = document.createElement("div");
-    card.className = "tool-card fade-in";
-    card.dataset.toolName = tool.name;
-
-    const desc = highlightMatch(tool.description || "", tool._matches || [], "description");
-    const name = highlightMatch(tool.name || "Unnamed", tool._matches || [], "name");
-
-    card.innerHTML = `
-      <div class="tool-thumb-wrapper">
-        ${getCardBadges(tool)}
-        ${smartImg(tool.image || "assets/placeholder.jpg", tool.name).trim()}
-      </div>
-      <div class="tool-card-body">
-        <h3 class="tool-title">${name}</h3>
-        <p class="tool-desc">${desc}</p>
-        <div class="tool-tags">
-          ${(tool.tags || []).map((t) => `<span class="tag">${escapeHTML(t)}</span>`).join("")}
-          ${tool.popular ? `<span class="tag">popular</span>` : ""}
-          ${getRecentTags(tool)}
-        </div>
-      </div>`;
-    container.appendChild(card);
-  });
-
-  /* Observe the new images */
-  activateLazyImages(container);
-}
-
-/* click‑through via delegation */
+/* ----------  MAIN LIST CLICK‑THROUGH ---------- */
 container.addEventListener("click", (e) => {
   const c = e.target.closest(".tool-card");
   if (!c) return;
@@ -331,7 +478,8 @@ function generateFilterButtons() {
   filtersContainer.appendChild(createFilterBtn("All"));
   types.forEach((t) => filtersContainer.appendChild(createFilterBtn(t)));
 }
-const createFilterBtn = (label) => {
+
+function createFilterBtn(label) {
   const b = document.createElement("button");
   b.textContent = label.charAt(0).toUpperCase() + label.slice(1);
   b.addEventListener("click", () => {
@@ -339,11 +487,16 @@ const createFilterBtn = (label) => {
     applyFiltersAndRender();
   });
   return b;
-};
+}
 
 /* ----------  DETAIL VIEW ---------- */
 function showToolDetail(tool, initial = false) {
-  if (!initial) location.hash = `tool=${encodeURIComponent(tool.name)}`;
+  if (!initial) {
+    // update the hash…
+    location.hash = `tool=${encodeURIComponent(tool.name)}`;
+    // …and enter “detail” mode
+    document.body.classList.add("detail-mode");
+  }
 
   container.className = "detail-wrapper";
   container.innerHTML = `
@@ -387,25 +540,41 @@ function showToolDetail(tool, initial = false) {
     ${renderRecommendations(tool)}
   `;
 
-  /* if description contains HTML, overwrite safely */
+  // fix up description override
   const d = document.querySelector(".tool-detail-right .tool-info .desc");
-  if (d && tool.description) d.innerHTML = `<strong>Description:</strong><br>` + tool.description;
+  if (d && tool.description) {
+    d.innerHTML = `<strong>Description:</strong><br>` + tool.description;
+  }
 
-  /* gallery swap */
+  // gallery → main image switch
   const main = document.querySelector(".tool-main-img");
-  document.querySelectorAll(".tool-gallery img").forEach((img) =>
+  document.querySelectorAll(".tool-gallery img").forEach((img) => {
     img.addEventListener("click", () => {
       if (main) main.src = img.src;
-    })
-  );
+    });
+  });
 
-  /* Observe detail images */
   activateLazyImages(container);
 
+  // ensure we scroll the detail into view
   setTimeout(() => {
     const detail = document.querySelector(".tool-detail");
-    if (detail) window.scrollTo({ top: detail.getBoundingClientRect().top + scrollY - 100 });
+    if (detail) {
+      window.scrollTo({ top: detail.getBoundingClientRect().top + window.scrollY - 100 });
+    }
   }, 0);
+}
+
+function clearHash() {
+  // leave “detail” mode
+  document.body.classList.remove("detail-mode");
+
+  // reset the URL & scroll
+  location.hash = "";
+  window.scrollTo(0, 0);
+
+  // back to grid
+  applyFiltersAndRender();
 }
 
 /* ----------  HASH UTILS ---------- */
@@ -506,7 +675,7 @@ function renderRecommendations(tool) {
         ${rec
           .map(
             (r) => `
-          <div class="recommended-card" onclick='location.hash="tool=${encodeURIComponent(r.name)}"'>
+          <div class="recommended-card" onclick='location.hash="tool=${encodeURIComponent(r.name)}"'}>
             ${smartImg(r.image || "assets/placeholder.jpg", r.name)}
             <h4>${escapeHTML(r.name)}</h4>
             <p>${escapeHTML((r.description || r.long_description || "")
@@ -608,8 +777,8 @@ searchInput.addEventListener("input", () => {
       { name: "type", weight: 0.1 },
       { name: "description", weight: 0.3 },
       { name: "long_description", weight: 0.2 },
-      { name: "_boost", weight: 0.8 },
-    ],
+      { name: "_boost", weight: 0.8 }
+    ]
   });
   const res = fuse.search(q).slice(0, 5);
   res.length ? renderAutocomplete(res) : autocompleteBox.classList.add("hidden");
@@ -643,21 +812,17 @@ searchInput.addEventListener("blur", () => setTimeout(() => autocompleteBox.clas
 /* ================= LIVE COUNTDOWN ================= */
 function updateBadges() {
   const now = Date.now();
-  document.querySelectorAll('[data-expiry]').forEach(el => {
+  document.querySelectorAll("[data-expiry]").forEach((el) => {
     const expiry = Date.parse(el.dataset.expiry);
-    if (isNaN(expiry)) return;                // bad date → ignore
-
+    if (isNaN(expiry)) return;
     const diff = expiry - now;
-    if (diff <= 0) {                          // time’s up
-      el.remove();                            // drop expired badge
+    if (diff <= 0) {
+      el.remove();
       return;
     }
-
-    el.textContent = formatTimeRemaining(el.dataset.expiry);  // refresh text
+    el.textContent = formatTimeRemaining(el.dataset.expiry);
   });
 }
-
-// refresh every 60 seconds
 setInterval(updateBadges, 60_000);
 
 /* ----------  HASH & MODAL ---------- */

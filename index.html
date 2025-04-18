@@ -11,20 +11,20 @@
   <meta property="og:image" content="assets/icons/fmp-icon.gif" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Flame Mod Paradise" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Flame Mod Paradise - Premium Mods & Tools for Automation" />
-  <meta name="twitter:description" content="Discover premium mods, automation tools, and exclusive free offers like Netflix cookies, Spotify cookies, and more at Flame Mod Paradise." />
-  <meta name="twitter:image" content="assets/icons/fmp-icon.gif" />
-  <meta name="twitter:creator" content="@FMP_ToolStore" />
+
   <link rel="canonical" href="https://flamemodparadise.github.io/My-Site/" />
   <link rel="manifest" href="manifest.json" />
   <link rel="icon" href="assets/icons/icon-192.png" sizes="192x192" />
   <link rel="icon" href="assets/icons/icon-512.png" sizes="512x512" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
+
   <title>Flame Mod Paradise - Premium Mods, Tools, and Free Offers</title>
+
+  <!-- Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -62,8 +62,6 @@
     <div class="search-bar-true-right">
       <div class="search-group" style="position: relative;">
         <input id="searchInput" type="text" placeholder="Search..." />
-        <!-- 🔽 Autocomplete dropdown here -->
-        <!-- <div id="autocompleteBox" class="autocomplete-box hidden"></div> -->
         <div id="autocompleteBox" class="autocomplete-box hidden" role="listbox"></div>
         <select id="sortSelect">
           <option value="name">Name A → Z</option>
@@ -94,9 +92,34 @@
       <button id="close-banner">✖</button>
     </div>
 
-    <!-- Tool list -->
+    <!-- Main Content -->
     <main class="container">
+      <!-- Master tool list (populated by script.js) -->
+      <!-- ===== NEW SECTIONS ===== -->
+      <section id="offers-section">
+        <h2 class="section-title">🔥 Offers &amp; Discounts</h2>
+      
+        <!-- list only -->
+        <div id="offers-list" class="main-grid"></div>
+      
+        <!-- arrows are siblings, not inside the grid -->
+        <button class="arrow left"  aria-label="scroll left">‹</button>
+        <button class="arrow right" aria-label="scroll right">›</button>
+      </section>
+      
+
+      <section id="recommended-section">
+        <h2 class="section-title">⭐ Recommended</h2>
+        <div id="recommended-list" class="main-grid"></div>
+      </section>
+
+      <section id="limited-section">
+        <h2 class="section-title">⏰ Limited‑Time Item</h2>
+        <div id="limited-list" class="main-grid"></div>
+      </section>
+      <!-- ======================== -->
       <section class="main-grid" id="main-tool-list"></section>
+
     </main>
 
     <!-- Install Prompt -->

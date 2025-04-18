@@ -98,6 +98,47 @@ Use the provided tools and scripts responsibly. No refunds after digital deliver
 
 ---
 
+### How to make items appear in the new sections
+
+All three blocks are filled automatically from *the same JSON files* you already use (`tools.json`, `bots.json`, etc.).  
+Just tweak or add the fields below—**no extra file, no new arrays**—and hit *Save → Refresh*.
+
+| Section | What the JavaScript looks for | Exactly what to put in the item object |
+|---------|------------------------------|-----------------------------------------|
+| **🔥 Offers & Discounts** | ‑ `discount` **or** `offer` is **present and not expired** | ```json {  
+  "name": "Combo Splitter",  
+  "discount": "30",               // % off (string or number)  
+  "discount_expiry": "2025‑05‑05T23:59:00Z"  
+} ```<br>or<br>```json {  
+  "name": "Log Extractor Pro",  
+  "offer": "Buy 1 Get 1",         // any text works  
+  "offer_expiry": "2025‑04‑30T18:00:00Z"  
+} ``` |
+| **⭐ Recommended** | 1) item has the tag **`"recommended"`** **OR**<br>2) its `release_date` is within the last 14 days | **Option A (best):**<br>```json  
+"tags": ["extractor","recommended"]  
+```<br>**Option B:** (no tag needed)<br>Set `"release_date"` to a date ≤ 14 days ago, e.g. `"2025‑04‑10"` |
+| **⏰ Limited‑Time Item** | `stock` equals **1** | ```json  
+"stock": 1  
+``` |
+
+*(You can combine them—an item with `discount` **and** `stock:1` will show in both relevant sections.)*
+
+---
+
+#### Step‑by‑step
+
+1. **Open** the JSON file that contains the product (for example `data/tools.json`).  
+2. **Find** the object for that tool, or create a new one.  
+3. **Add / edit** the fields shown above.  
+4. **Save** the file.  
+5. **Hard‑refresh** the site (Ctrl/⌘‑Shift‑R) so the service‑worker grabs the new data.
+
+That’s it—the JavaScript already watches those fields and shows or hides each block automatically. If none of the tools meet a block’s criteria, that section stays hidden.
+
+Need a hand with anything else—like a helper UI to toggle discounts—or validation rules? Just let me know.
+
+
 ## 📄 License
 
 This project is licensed for educational and showcase purposes only.
+
