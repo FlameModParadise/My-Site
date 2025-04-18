@@ -1,63 +1,70 @@
-const CACHE_NAME = "fmp-cache-v1";
+/* ========= Flame Mod Paradise – sw.js (v2) ========= */
+
+const PRECACHE        = "fmp-precache-v1";   // install‑time assets
+const RUNTIME_IMG     = "fmp-img-v1";        // runtime images
+const RUNTIME_JSON    = "fmp-json-v1";       // runtime data
 const urlsToCache = [
-  "/",
-  "/index.html",
-  "/styles/main.css",
-  "/scripts/main.js",
+  "/", "/index.html", "/styles/main.css", "/scripts/main.js",
   "/manifest.json",
-  "/assets/logo.png",
-  "/assets/icons/icon-192.png",
-  "/assets/icons/icon-512.png",
-  "/data/tools.json",
-  "/data/bots.json",
-  "/data/checkers.json",
-  "/data/game.json",
-  "/data/others.json",
-  "/data/cookies.json",
-  "/data/methods.json"
+  "/assets/logo.png", "/assets/icons/icon-192.png", "/assets/icons/icon-512.png",
+  "/data/tools.json", "/data/bots.json", "/data/checkers.json",
+  "/data/game.json", "/data/others.json", "/data/cookies.json", "/data/methods.json"
 ];
 
-// Install service worker and cache assets
-self.addEventListener("install", (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(urlsToCache);
-    })
-  );
-  self.skipWaiting(); // Activate the worker immediately
+/* ---------- INSTALL (pre‑cache shell) ---------- */
+self.addEventListener("install", (e) => {
+  e.waitUntil(caches.open(PRECACHE).then((c) => c.addAll(urlsToCache)));
+  self.skipWaiting();
 });
 
-// Activate worker and clean old caches
-self.addEventListener("activate", (event) => {
-  event.waitUntil(
-    caches.keys().then((cacheNames) =>
-      Promise.all(
-        cacheNames.map((cache) => {
-          if (cache !== CACHE_NAME) {
-            return caches.delete(cache);
-          }
-        })
-      )
+/* ---------- ACTIVATE (clean old) ---------- */
+self.addEventListener("activate", (e) => {
+  const keep = [PRECACHE, RUNTIME_IMG, RUNTIME_JSON];
+  e.waitUntil(
+    caches.keys().then((keys) =>
+      Promise.all(keys.filter((k) => !keep.includes(k)).map((k) => caches.delete(k)))
     )
   );
   self.clients.claim();
 });
 
-// Fetch and serve from cache
-self.addEventListener("fetch", (event) => {
-  if (event.request.method !== "GET") return;
+/* ---------- FETCH ---------- */
+self.addEventListener("fetch", (e) => {
+  const req = e.request;
+  const url = new URL(req.url);
 
-  event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      return (
-        cachedResponse ||
-        fetch(event.request).then((response) => {
-          // Optionally cache new requests dynamically:
-          const clone = response.clone();
-          caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
-          return response;
-        })
-      );
-    })
+  if (req.method !== "GET") return;                 // ignore POST/PUT …
+
+  /* 1 IMAGES – cache‑FIRST */
+  if (/\.(png|jpe?g|webp|gif|svg)$/i.test(url.pathname)) {
+    e.respondWith(
+      caches.open(RUNTIME_IMG).then(async (cache) => {
+        const cached = await cache.match(req);
+        if (cached) return cached;                  // hit
+        const fresh = await fetch(req);             // miss
+        cache.put(req, fresh.clone());              // store
+        return fresh;
+      })
+    );
+    return;                                         // stop here
+  }
+
+  /* 2 JSON – stale‑while‑revalidate */
+  if (url.pathname.endsWith(".json")) {
+    e.respondWith(
+      caches.open(RUNTIME_JSON).then(async (cache) => {
+        const cached = await cache.match(req);
+        const network = fetch(req)
+          .then((resp) => { cache.put(req, resp.clone()); return resp; })
+          .catch(() => cached);
+        return cached || network;                   // prefer cache, update in bg
+      })
+    );
+    return;
+  }
+
+  /* 3 Everything else – try network, fall back to cache */
+  e.respondWith(
+    fetch(req).catch(() => caches.match(req))
   );
 });

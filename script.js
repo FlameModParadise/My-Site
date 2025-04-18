@@ -1,4 +1,19 @@
-//CONFIGURATION
+/* === CSS PATCHES (auto‑injected) === */
+(() => {
+  const css = `
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+html{scroll-behavior:smooth;}
+.tool-card.skeleton{animation:pulse 1.2s infinite ease-in-out;background:var(--skeleton-bg);border-radius:.75rem;height:180px;}
+@keyframes pulse{0%,100%{opacity:.6}50%{opacity:1}}
+.tool-thumb-wrapper{aspect-ratio:16/9;position:relative;}
+.tool-thumb-wrapper img{object-fit:cover;width:100%;height:100%;}
+`;
+  const style = document.createElement("style");
+  style.textContent = css;
+  document.head.appendChild(style);
+})();
+
+/* ----------  CONSTANTS & DOM REFS  ---------- */
 const DATA_FILES = [
   "data/tools.json",
   "data/bots.json",
@@ -9,489 +24,353 @@ const DATA_FILES = [
   "data/methods.json",
 ];
 
-// Constants for local/session storage keys
-const THEME_KEY = "theme";
-const SEARCH_KEY = "search";
-const SORT_KEY = "sort";
-const FILTER_KEY = "filter";
-const BANNER_KEY = "hideBanner";
+const THEME_KEY   = "theme";
+const SEARCH_KEY  = "search";
+const SORT_KEY    = "sort";
+const FILTER_KEY  = "filter";
+const BANNER_KEY  = "hideBanner";
+const RECENT_KEY  = "recentSearches";
+const MAX_RECENTS = 5;
 
-//DOM REFERENCES
-const container = document.getElementById("main-tool-list");
+/* DOM */
+const container        = document.getElementById("main-tool-list");
 const filtersContainer = document.getElementById("filters");
-const searchInput = document.getElementById("searchInput");
-const sortSelect = document.getElementById("sortSelect");
-const scrollToTopBtn = document.getElementById("scrollToTopBtn");
-const darkToggle = document.getElementById("darkToggle");
-const banner = document.getElementById("announcement-banner");
-const closeBanner = document.getElementById("close-banner");
-const navbarToggle = document.getElementById("navbarToggle");
-const navbarMenu = document.getElementById("navbarMenu");
-const imageModal = document.getElementById("imageModal");
+const searchInput      = document.getElementById("searchInput");
+const sortSelect       = document.getElementById("sortSelect");
+const scrollToTopBtn   = document.getElementById("scrollToTopBtn");
+const darkToggle       = document.getElementById("darkToggle");
+const banner           = document.getElementById("announcement-banner");
+const closeBanner      = document.getElementById("close-banner");
+const navbarToggle     = document.getElementById("navbarToggle");
+const navbarMenu       = document.getElementById("navbarMenu");
+const imageModal       = document.getElementById("imageModal");
+const autocompleteBox  = document.getElementById("autocompleteBox");
 
 let allTools = [];
 
-//HELPER FUNCTIONS
-
-// Debounce for search
-function debounce(func, delay) {
-  let timer;
-  return (...args) => {
-    clearTimeout(timer);
-    timer = setTimeout(() => func(...args), delay);
+/* ----------  HELPERS  ---------- */
+const debounce = (fn, delay) => {
+  let t;
+  return (...a) => {
+    clearTimeout(t);
+    t = setTimeout(() => fn(...a), delay);
   };
-}
+};
 
-// Escape HTML to prevent XSS
-function escapeHTML(str = "") {
-  return str
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
-}
+const escapeHTML = (s = "") =>
+  s.replace(/&/g, "&amp;")
+   .replace(/</g, "&lt;")
+   .replace(/>/g, "&gt;")
+   .replace(/"/g, "&quot;");
 
-// Highlight matched text in a search query
 function highlightMatch(text, matches, key) {
-  const match = matches?.find((m) => m.key === key);
-  if (!match || !match.indices.length) return escapeHTML(text);
-
-  let result = "";
-  let lastIndex = 0;
-
-  match.indices.forEach(([start, end]) => {
-    result += escapeHTML(text.slice(lastIndex, start));
-    result += "<mark>" + escapeHTML(text.slice(start, end + 1)) + "</mark>";
-    lastIndex = end + 1;
+  const m = matches?.find((x) => x.key === key);
+  if (!m || !m.indices.length) return escapeHTML(text);
+  let out = "", last = 0;
+  m.indices.forEach(([start, end]) => {
+    out += escapeHTML(text.slice(last, start));
+    out += "<mark>" + escapeHTML(text.slice(start, end + 1)) + "</mark>";
+    last = end + 1;
   });
-
-  result += escapeHTML(text.slice(lastIndex));
-  return result;
+  return out + escapeHTML(text.slice(last));
 }
 
-// Return short or fallback description, with optional highlighting
 function getShortDescription(tool, query = "") {
-  let raw = tool.description
-    ? tool.description
-    : tool.long_description
-    ? tool.long_description.split("\n")[0] + "..."
-    : "No description available.";
-
-  return highlightMatch(raw, query);
+  const raw =
+    tool.description ||
+    (tool.long_description
+      ? tool.long_description.split("\n")[0] + "…"
+      : "No description available.");
+  return query ? highlightMatch(raw, query) : escapeHTML(raw);
 }
 
-//DARK MODE
+/* ----------  LAZY‑IMAGE SYSTEM ---------- */
+const io = new IntersectionObserver(
+  (entries) => {
+    entries.forEach(({ target, isIntersecting }) => {
+      if (isIntersecting) {
+        target.src = target.dataset.src;
+        io.unobserve(target);
+      }
+    });
+  },
+  { rootMargin: "100px" }
+);
+
+/*  ❱❱  the ONLY safe helper to create thumbs  ❰❰  */
+function smartImg(src, alt = "") {
+  /* returns a literal <img> string so we can inject with innerHTML */
+  return `<img loading="lazy"
+               data-src="${src}"
+               src="assets/placeholder.jpg"
+               alt="${escapeHTML(alt)}">`;
+}
+
+/* call after injecting HTML so the observer can hook the nodes */
+function activateLazyImages(root = document) {
+  root.querySelectorAll("img[data-src]").forEach((img) => io.observe(img));
+}
+
+/* ----------  DARK MODE  ---------- */
 if (darkToggle) {
+  darkToggle.setAttribute("aria-label", "Toggle dark mode");
+  darkToggle.setAttribute("title", "Toggle dark mode (D)");
   darkToggle.addEventListener("click", () => {
     document.body.classList.toggle("dark");
-    localStorage.setItem(
-      THEME_KEY,
-      document.body.classList.contains("dark") ? "dark" : "light"
-    );
+    localStorage.setItem(THEME_KEY, document.body.classList.contains("dark") ? "dark" : "light");
   });
 }
+if (localStorage.getItem(THEME_KEY) === "dark") document.body.classList.add("dark");
 
-// Restore theme from localStorage
-if (localStorage.getItem(THEME_KEY) === "dark") {
-  document.body.classList.add("dark");
-}
+/* keyboard “D” toggles dark mode */
+document.addEventListener("keydown", (e) => {
+  if (e.key.toLowerCase() === "d" && !e.target.matches("input,textarea,[contenteditable]"))
+    darkToggle?.click();
+});
 
-//BANNER VISIBILITY
+/* ----------  BANNER  ---------- */
 if (banner && closeBanner && !localStorage.getItem(BANNER_KEY)) {
-  // Show banner after short delay
   setTimeout(() => banner.classList.remove("hidden"), 500);
-
   closeBanner.addEventListener("click", () => {
     banner.classList.add("hidden");
     localStorage.setItem(BANNER_KEY, true);
   });
 }
 
-//LOAD ALL JSON DATA
+/* ----------  LOAD DATA  ---------- */
 async function loadData() {
-  container.innerHTML = "<p>Loading...</p>";
+  container.className = "main-grid";
+  container.innerHTML = "<div class='tool-card skeleton'></div>".repeat(12);
 
   try {
-    // Fetch all JSON files in parallel
     const data = await Promise.all(
-      DATA_FILES.map((url) =>
-        fetch(url)
-          .then((res) => {
-            if (!res.ok) {
-              throw new Error(`Fetch failed: ${res.status} ${res.statusText}`);
-            }
-            return res.json();
-          })
-          .catch((err) => {
-            console.error(`Failed to load ${url}:`, err);
-            // Return empty array if this particular file fails
+      DATA_FILES.map((u) =>
+        fetch(u)
+          .then((r) => (r.ok ? r.json() : Promise.reject(r.statusText)))
+          .catch((e) => {
+            console.error("failed", u, e);
             return [];
           })
       )
     );
 
-    // Flatten all arrays from the multiple files
-    const merged = data.flatMap((arr) => (Array.isArray(arr) ? arr : []));
-    const seen = new Set();
-
-    // Deduplicate by "name" and ensure each tool has name + type
-    allTools = merged.filter((tool) => {
-      if (!tool.name || !tool.type) return false;
-      const nameKey = tool.name.toLowerCase();
-      if (seen.has(nameKey)) return false;
-      seen.add(nameKey);
+    const merged = data.flat();
+    const seen   = new Set();
+    allTools     = merged.filter((t) => {
+      if (!t.name || !t.type) return false;
+      const k = t.name.toLowerCase();
+      if (seen.has(k)) return false;
+      seen.add(k);
       return true;
     });
 
     generateFilterButtons();
-
-    // Apply search/filter/sort from sessionStorage and then render
     applyFiltersAndRender();
-
-    // Also check if the URL hash indicates a specific tool to show
     applyURLHash();
-  } catch (error) {
-    console.error("Error loading data:", error);
-    container.innerHTML = "<p>Error loading data. Please try again later.</p>";
+  } catch (err) {
+    console.error(err);
+    container.innerHTML = "<p>Error loading data.</p>";
   }
 }
 
-//APPLY CURRENT SEARCH/FILTER
+/* ----------  SEARCH / FILTER / SORT  ---------- */
+function runSearch(raw = "") {
+  sessionStorage.setItem(SEARCH_KEY, raw);
+  applyFiltersAndRender();
+}
+
 function applyFiltersAndRender() {
-  const savedSearch = sessionStorage.getItem(SEARCH_KEY) || "";
-  const savedSort = sessionStorage.getItem(SORT_KEY) || "name";
-  const savedFilter = sessionStorage.getItem(FILTER_KEY) || "all";
+  const searchRaw = sessionStorage.getItem(SEARCH_KEY) || "";
+  const sortKey   = sessionStorage.getItem(SORT_KEY)   || "name";
+  const typeKey   = sessionStorage.getItem(FILTER_KEY) || "all";
 
-  let filtered = [...allTools];
+  let list = [...allTools];
+  if (typeKey !== "all") list = list.filter((t) => (t.type || "").toLowerCase() === typeKey);
 
-  // 1) SEARCH
-  if (savedSearch) {
-    const fuse = new Fuse(allTools, {
+  if (searchRaw.trim()) {
+    const fuse = new Fuse(getWeightedFuseList(), {
       includeScore: true,
-      threshold: 0.4,
+      includeMatches: true,
+      threshold: 0.3,
+      distance: 100,
       ignoreLocation: true,
-      minMatchCharLength: 2,
       keys: [
-        { name: "name", weight: 0.4 },
-        { name: "keywords", weight: 0.3 },
-        { name: "tags", weight: 0.1 },
-        { name: "type", weight: 0.1 },
-        { name: "description", weight: 0.3 },
-        { name: "long_description", weight: 0.2 },
-      ],
-    });
-    const fuseResults = fuse.search(savedSearch);
-    filtered = fuseResults.map((r) => ({
-      ...r.item,
-      _matches: r.matches,
-    }));
+        { name: "name",            weight: 1.0 },  // primary
+        { name: "keywords",        weight: 0.6 },  // good but weaker
+        { name: "tags",            weight: 0.5 },
+        { name: "description",     weight: 0.3 },
+        { name: "long_description",weight: 0.2 },
+        { name: "type",            weight: 0.1 },
+        { name: "_boost",          weight: 0.8 }   // recent‑search booster
+      ]
+    });    
+    list = fuse.search(searchRaw.trim()).map(({ item, matches }) => ({ ...item, _matches: matches }));
   }
 
-  // 2) FILTER BY TYPE
-  if (savedFilter !== "all") {
-    filtered = filtered.filter(
-      (t) => (t.type || "").toLowerCase() === savedFilter.toLowerCase()
-    );
-  }
-
-  // 3) SORT / SPECIAL FILTER
-  switch (savedSort) {
+  switch (sortKey) {
     case "release_date":
-      // Sort by release_date descending (newest first)
-      filtered.sort(
-        (a, b) => new Date(b.release_date) - new Date(a.release_date)
-      );
+      list.sort((a, b) => new Date(b.release_date) - new Date(a.release_date));
       break;
-
     case "update_date":
-      // Sort by update_date descending (most recently updated first)
-      filtered.sort(
-        (a, b) => new Date(b.update_date) - new Date(a.update_date)
-      );
+      list.sort((a, b) => new Date(b.update_date) - new Date(a.update_date));
       break;
-
-    case "discount":
-      // Filter to only those with an active discount or offer
-      const now = new Date();
-      filtered = filtered.filter((tool) => {
-        const hasActiveDiscount =
-          tool.discount &&
-          (!tool.discount_expiry || new Date(tool.discount_expiry) > now);
-        const hasActiveOffer =
-          tool.offer &&
-          (!tool.offer_expiry || new Date(tool.offer_expiry) > now);
-        return hasActiveDiscount || hasActiveOffer;
-      });
-
-      // Sort discount items
-      filtered.sort((a, b) => {
-        const parseDiscount = (tool) => {
-          const val = parseFloat(tool.discount);
-          return !isNaN(val) && isFinite(val) ? val : 0;
-        };
-        const discountA = parseDiscount(a);
-        const discountB = parseDiscount(b);
-
-        // Higher numeric discount first
-        if (discountA !== discountB) return discountB - discountA;
-
-        // Then any discount vs no discount
-        const hasDiscountA = a.discount ? 1 : 0;
-        const hasDiscountB = b.discount ? 1 : 0;
-        if (hasDiscountA !== hasDiscountB) return hasDiscountB - hasDiscountA;
-
-        // Finally alphabetically
+    case "discount": {
+      const now = Date.now();
+      list = list
+        .filter(
+          (t) =>
+            (t.discount && (!t.discount_expiry || new Date(t.discount_expiry) > now)) ||
+            (t.offer && (!t.offer_expiry || new Date(t.offer_expiry) > now))
+        )
+        .sort((a, b) => (parseFloat(b.discount) || 0) - (parseFloat(a.discount) || 0));
+      break;
+    }
+    default: {
+      const wk = 6048e5,
+        now = Date.now();
+      list.sort((a, b) => {
+        const ar = now - new Date(a.release_date) < wk || now - new Date(a.update_date) < wk;
+        const br = now - new Date(b.release_date) < wk || now - new Date(b.update_date) < wk;
+        if (ar !== br) return br - ar;
         return (a.name || "").localeCompare(b.name || "");
       });
-      break;
-
-    default:
-      // ======================
-      // YOUR CUSTOM "All" SORT:
-      // Show new/updated items first, then alphabetical
-      // ======================
-
-      // Helper to check if a tool is "recent" (new or updated within 7 days)
-      const isRecent = (tool) => {
-        const now = Date.now();
-        const ONE_WEEK = 7 * 24 * 60 * 60 * 1000;
-        const released = new Date(tool.release_date).getTime() || 0;
-        const updated = new Date(tool.update_date).getTime() || 0;
-        return (now - released <= ONE_WEEK) || (now - updated <= ONE_WEEK);
-      };
-
-      filtered.sort((a, b) => {
-        // Sort by "recent" status first
-        const aRecent = isRecent(a) ? 1 : 0;
-        const bRecent = isRecent(b) ? 1 : 0;
-
-        // If one is recent and the other isn’t, put the recent one first
-        if (bRecent !== aRecent) {
-          return bRecent - aRecent; 
-        }
-
-        // Otherwise, sort alphabetically
-        return (a.name || "")
-          .toLowerCase()
-          .localeCompare((b.name || "").toLowerCase());
-      });
-      break;
-  }
-
-  // Finally, render
-  renderTools(filtered);
-
-  // Update filter buttons, inputs, and dropdowns
-  document.querySelectorAll("#filters button").forEach((btn) => {
-    const btnTxt = btn.textContent.toLowerCase();
-    btn.classList.toggle("active", btnTxt === savedFilter.toLowerCase());
-  });
-  if (searchInput) searchInput.value = savedSearch;
-  if (sortSelect) sortSelect.value = savedSort;
-}
-
-function getCardBadges(tool) {
-  const now = new Date();
-  const offerEnd = tool.offer_expiry ? new Date(tool.offer_expiry) : null;
-  const discountEnd = tool.discount_expiry ? new Date(tool.discount_expiry) : null;
-
-  const isOfferActive = tool.offer && (!offerEnd || offerEnd > now);
-  const isDiscountActive = tool.discount && (!discountEnd || discountEnd > now);
-  const isNumericDiscount = !isNaN(parseFloat(tool.discount)) && isFinite(tool.discount);
-
-  const badges = [];
-
-  if (isDiscountActive) {
-    if (isNumericDiscount) {
-      badges.push(`<span class="tool-badge discount-badge">-${tool.discount}%</span>`);
-      if (discountEnd) {
-        const left = formatTimeRemaining(tool.discount_expiry);
-        if (left) {
-          badges.push(`<span class="tool-badge discount-badge">${left}</span>`);
-        }
-      }
-    } else {
-      badges.push(`<span class="tool-badge discount-badge">${escapeHTML(tool.discount)}</span>`);
     }
   }
 
-  if (isOfferActive) {
-    badges.push(`<span class="tool-badge offer-badge">${escapeHTML(tool.offer)}</span>`);
-  }
+  renderTools(list);
 
-  return badges.join("\n");
+  document.querySelectorAll("#filters button").forEach((b) =>
+    b.classList.toggle("active", b.textContent.toLowerCase() === typeKey)
+  );
+  searchInput.value = searchRaw;
+  sortSelect.value  = sortKey;
 }
 
-//RENDER TOOL CARDS
-function renderTools(data) {
+/* ----------  CARD RENDERING  ---------- */
+function getCardBadges(tool) {
+  const now = new Date();
+  const offerEnd    = tool.offer_expiry    ? new Date(tool.offer_expiry)    : null;
+  const discountEnd = tool.discount_expiry ? new Date(tool.discount_expiry) : null;
+
+  const isOffer    = tool.offer    && (!offerEnd    || offerEnd    > now);
+  const isDiscount = tool.discount && (!discountEnd || discountEnd > now);
+  const isNumeric  = !isNaN(parseFloat(tool.discount));
+
+  const out = [];
+  if (isDiscount) {
+    if (isNumeric) {
+      out.push(`<span class="tool-badge discount-badge">-${tool.discount}%</span>`);
+      if (discountEnd) {
+        const left = formatTimeRemaining(tool.discount_expiry);
+        if (left) out.push(`<span class="tool-badge discount-badge">${left}</span>`);
+      }
+    } else {
+      out.push(`<span class="tool-badge discount-badge">${escapeHTML(tool.discount)}</span>`);
+    }
+  }
+  if (isOffer) out.push(`<span class="tool-badge offer-badge">${escapeHTML(tool.offer)}</span>`);
+  return out.join("");
+}
+
+function renderTools(list) {
   container.className = "main-grid";
   container.innerHTML = "";
 
-  if (!data.length) {
+  if (!list.length) {
     container.innerHTML = "<p>No tools found.</p>";
     return;
   }
 
-  const searchQuery = (sessionStorage.getItem(SEARCH_KEY) || "").trim();
-
-  data.forEach((tool) => {
+  list.forEach((tool) => {
     const card = document.createElement("div");
     card.className = "tool-card fade-in";
+    card.dataset.toolName = tool.name;
 
-    const isOfferActive =
-      tool.offer &&
-      (!tool.offer_expiry || new Date(tool.offer_expiry) > new Date());
-
-      const shortDesc = highlightMatch(tool.description || "", tool._matches || [], "description");
-      const safeName = highlightMatch(tool.name || "Unnamed Tool", tool._matches || [], "name");      
+    const desc = highlightMatch(tool.description || "", tool._matches || [], "description");
+    const name = highlightMatch(tool.name || "Unnamed", tool._matches || [], "name");
 
     card.innerHTML = `
       <div class="tool-thumb-wrapper">
         ${getCardBadges(tool)}
-        <img
-          loading="lazy"
-          src="${tool.image || "assets/placeholder.jpg"}"
-          onerror="this.src='assets/placeholder.jpg'"
-          alt="${escapeHTML(tool.name || "Tool")}"
-          class="tool-thumb"
-        />
+        ${smartImg(tool.image || "assets/placeholder.jpg", tool.name).trim()}
       </div>
       <div class="tool-card-body">
-        <h3 class="tool-title">${safeName}</h3>
-        <p class="tool-desc">${shortDesc}</p>
+        <h3 class="tool-title">${name}</h3>
+        <p class="tool-desc">${desc}</p>
         <div class="tool-tags">
-          ${(tool.tags || [])
-            .map((tag) => `<span class="tag">${escapeHTML(tag)}</span>`)
-            .join("")}
+          ${(tool.tags || []).map((t) => `<span class="tag">${escapeHTML(t)}</span>`).join("")}
           ${tool.popular ? `<span class="tag">popular</span>` : ""}
           ${getRecentTags(tool)}
         </div>
-      </div>
-    `;
-
-    card.onclick = () => {
-      location.hash = `tool=${encodeURIComponent(tool.name)}`;
-      showToolDetail(tool);
-    };
-
+      </div>`;
     container.appendChild(card);
   });
+
+  /* Observe the new images */
+  activateLazyImages(container);
 }
 
-//GENERATE FILTER BUTTONS
+/* click‑through via delegation */
+container.addEventListener("click", (e) => {
+  const c = e.target.closest(".tool-card");
+  if (!c) return;
+  const tool = allTools.find((t) => t.name === c.dataset.toolName);
+  if (tool) showToolDetail(tool);
+});
+
+/* ----------  FILTER BUTTONS ---------- */
 function generateFilterButtons() {
-  // Collect unique types
-  const types = [
-    ...new Set(allTools.map((t) => (t.type || "").toLowerCase()).filter(Boolean)),
-  ];
-
+  const types = [...new Set(allTools.map((t) => (t.type || "").toLowerCase()).filter(Boolean))];
   filtersContainer.innerHTML = "";
-
-  // Always have an "All" button
-  const allBtn = createFilterBtn("All");
-  filtersContainer.appendChild(allBtn);
-
-  // Then a button for each unique type
-  types.forEach((type) => {
-    const btn = createFilterBtn(type);
-    filtersContainer.appendChild(btn);
-  });
+  filtersContainer.appendChild(createFilterBtn("All"));
+  types.forEach((t) => filtersContainer.appendChild(createFilterBtn(t)));
 }
-
-function createFilterBtn(label) {
-  const btn = document.createElement("button");
-  btn.textContent = label.charAt(0).toUpperCase() + label.slice(1);
-  btn.addEventListener("click", () => {
+const createFilterBtn = (label) => {
+  const b = document.createElement("button");
+  b.textContent = label.charAt(0).toUpperCase() + label.slice(1);
+  b.addEventListener("click", () => {
     sessionStorage.setItem(FILTER_KEY, label.toLowerCase());
     applyFiltersAndRender();
   });
-  return btn;
-}
+  return b;
+};
 
-//SHOW DETAIL PAGE
-function showToolDetail(tool, isInitial = false) {
-  // If this is not the initial load, update the hash
-  if (!isInitial) {
-    location.hash = `tool=${encodeURIComponent(tool.name)}`;
-  }
+/* ----------  DETAIL VIEW ---------- */
+function showToolDetail(tool, initial = false) {
+  if (!initial) location.hash = `tool=${encodeURIComponent(tool.name)}`;
 
-  // Change the layout class and inject the new detail HTML
   container.className = "detail-wrapper";
   container.innerHTML = `
     <div class="tool-detail fade-in">
       <div class="tool-detail-top">
         <button class="back-btn" onclick="clearHash()">← Back</button>
-        <h2>
-          ${escapeHTML(tool.name || "Unnamed Tool")}
-          ${getBadges(tool)}
-        </h2>
+        <h2>${escapeHTML(tool.name)} ${getBadges(tool)}</h2>
       </div>
-
       <div class="tool-detail-content">
         <div class="tool-detail-left">
-          <img
-            loading="lazy"
-            src="${tool.image || "assets/placeholder.jpg"}"
-            onerror="this.src='assets/placeholder.jpg'"
-            class="tool-main-img"
-            alt="${escapeHTML(tool.name || "Tool")}"
-            onclick="openImageModal(this.src)"
-          />
+          ${smartImg(tool.image || "assets/placeholder.jpg", tool.name).replace(
+            "<img ",
+            '<img class="tool-main-img" onclick="openImageModal(this.src)" '
+          )}
           <div class="tool-gallery">
-            ${(tool.images || [])
-              .map(
-                (img) => `
-                  <img
-                    loading="lazy"
-                    src="${img}"
-                    alt="gallery"
-                  />
-                `
-              )
-              .join("")}
+            ${(tool.images || []).map((img) => smartImg(img, "gallery")).join("")}
           </div>
-          ${
-            tool.video
-              ? `<iframe src="${tool.video}" class="tool-video" allowfullscreen></iframe>`
-              : ""
-          }
+          ${tool.video ? `<iframe src="${tool.video}" class="tool-video" allowfullscreen></iframe>` : ""}
         </div>
-
         <div class="tool-detail-right">
           <div class="tool-info">
-            <p class="desc">
-              <strong>Description:</strong><br>
-              <!-- This will be replaced by HTML below -->
-              ${escapeHTML(tool.long_description || tool.description || "No description available.")}
-            </p>
-            <br>
+            <p class="desc"><strong>Description:</strong><br>${escapeHTML(
+              tool.long_description || tool.description || "No description available."
+            )}</p><br>
             ${renderPricing(tool)}
-            ${
-              tool.discount
-                ? `<p><strong>Discount:</strong> ${tool.discount}%</p><br>`
-                : ""
-            }
-            ${
-              tool.offer_expiry
-                ? `<p>⏳ Offer ends in ${daysLeft(tool.offer_expiry)} days</p><br>`
-                : ""
-            }
+            ${tool.discount ? `<p><strong>Discount:</strong> ${tool.discount}%</p><br>` : ""}
+            ${tool.offer_expiry ? `<p>⏳ Offer ends in ${daysLeft(tool.offer_expiry)} days</p><br>` : ""}
             <p><strong>Stock:</strong><br>${getStockStatus(tool.stock)}</p><br>
             <p><strong>Released:</strong><br>${escapeHTML(tool.release_date || "N/A")}</p><br>
             <p><strong>Updated:</strong><br>${escapeHTML(tool.update_date || "N/A")}</p><br>
-
-            <!-- Contact & Requirements Buttons -->
-            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-              <a
-                href="${getContactLink(tool.contact)}"
-                target="_blank"
-                class="contact-btn"
-              >
-                💬 Contact
-              </a>
-              <button class="requirements-btn" onclick="showRequirementsPopup('${escapeHTML(
-                tool.name
-              )}')">
+            <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+              <a href="${getContactLink(tool.contact)}" target="_blank" class="contact-btn">💬 Contact</a>
+              <button class="requirements-btn" onclick="showRequirementsPopup('${escapeHTML(tool.name)}')">
                 Requirements
               </button>
             </div>
@@ -502,350 +381,283 @@ function showToolDetail(tool, isInitial = false) {
     ${renderRecommendations(tool)}
   `;
 
-  // ✅ Render raw HTML from tool.description, if available
-  const descContainer = document.querySelector(".tool-detail-right .tool-info .desc");
-  if (descContainer && tool.description) {
-    descContainer.innerHTML = `<strong>Description:</strong><br>` + tool.description;
-  }
+  /* if description contains HTML, overwrite safely */
+  const d = document.querySelector(".tool-detail-right .tool-info .desc");
+  if (d && tool.description) d.innerHTML = `<strong>Description:</strong><br>` + tool.description;
 
-  // Swap main image from the gallery if clicked
-  const mainImg = document.querySelector(".tool-main-img");
-  document.querySelectorAll(".tool-gallery img").forEach((img) => {
+  /* gallery swap */
+  const main = document.querySelector(".tool-main-img");
+  document.querySelectorAll(".tool-gallery img").forEach((img) =>
     img.addEventListener("click", () => {
-      if (mainImg && img.src) {
-        mainImg.src = img.src;
-      }
-    });
-  });
+      if (main) main.src = img.src;
+    })
+  );
 
-  // After content is rendered, scroll to the top (delay for layout)
+  /* Observe detail images */
+  activateLazyImages(container);
+
   setTimeout(() => {
     const detail = document.querySelector(".tool-detail");
-    if (!detail) return;
-  
-    // Get where .tool-detail starts on the page
-    const detailTop = detail.getBoundingClientRect().top + window.scrollY;
-  
-    // Subtract however many pixels you want as padding (e.g., 100)
-    window.scrollTo({ top: detailTop - 100, behavior: "smooth" });
+    if (detail) window.scrollTo({ top: detail.getBoundingClientRect().top + scrollY - 100 });
   }, 0);
-  
 }
 
-//SUPPORT FUNCTIONS
+/* ----------  HASH UTILS ---------- */
 function applyURLHash() {
-  const hash = decodeURIComponent(location.hash || "").replace("#", "");
-  if (hash.startsWith("tool=")) {
-    const name = hash.replace("tool=", "").toLowerCase();
-    const matched = allTools.find((t) => (t.name || "").toLowerCase() === name);
-    if (matched) showToolDetail(matched, true);
+  const h = decodeURIComponent(location.hash).replace("#", "");
+  if (h.startsWith("tool=")) {
+    const name = h.slice(5).toLowerCase();
+    const tool = allTools.find((t) => (t.name || "").toLowerCase() === name);
+    if (tool) showToolDetail(tool, true);
   }
 }
+function clearHash() {
+  location.hash = "";
+  window.scrollTo(0, 0);
+  applyFiltersAndRender();
+}
 
-// For "new"/"updated" tag chips under each card
-function getRecentTags(tool) {
-  const now = new Date();
-  const release = new Date(tool.release_date);
-  const update = new Date(tool.update_date);
-
+/* ----------  MISC UTILITIES ---------- */
+function getRecentTags(t) {
+  const now = Date.now(), wk = 6048e5;
   const tags = [];
-  // show "new" if within 7 days of release
-  if ((now - release) / (1000 * 60 * 60 * 24) <= 7) {
-    tags.push('<span class="tag">new</span>');
-  }
-  // show "updated" if within 7 days
-  if ((now - update) / (1000 * 60 * 60 * 24) <= 7) {
-    tags.push('<span class="tag">updated</span>');
-  }
+  if (now - new Date(t.release_date) < wk) tags.push('<span class="tag">new</span>');
+  if (now - new Date(t.update_date)  < wk) tags.push('<span class="tag">updated</span>');
   return tags.join(" ");
 }
-
-// Return a "stock" string
-function getStockStatus(value) {
-  if (typeof value === "number") {
-    if (value === 0) return "Not in stock";
-    return `${value} in stock`;
-  }
-  if (typeof value === "string") {
-    const lower = value.toLowerCase();
-    if (lower === "unlimited") return "Unlimited";
-    if (lower === "very limited") return "Very limited";
-    return value;
-  }
-  return "Need to contact owner";
-}
+const getStockStatus = (v) =>
+  typeof v === "number"
+    ? v === 0
+      ? "Not in stock"
+      : `${v} in stock`
+    : typeof v === "string"
+    ? { unlimited: "Unlimited", "very limited": "Very limited" }[v.toLowerCase()] || v
+    : "Need to contact owner";
 
 function formatTimeRemaining(dateStr) {
-  const now = new Date();
-  const end = new Date(dateStr);
-  const diffMs = end - now;
-
-  if (diffMs <= 0) return null;
-
-  const totalMinutes = Math.floor(diffMs / 60000);
-  const days = Math.floor(totalMinutes / 1440);
-  const hours = Math.floor((totalMinutes % 1440) / 60);
-  const minutes = totalMinutes % 60;
-
-  let result = "⏳ ";
-  if (days) result += `${days}d `;
-  if (hours) result += `${hours}h `;
-  result += `${minutes}m left`;
-
-  return result.trim();
+  const diff = new Date(dateStr) - new Date();
+  if (diff <= 0) return null;
+  const m = Math.floor(diff / 60000),
+    d = Math.floor(m / 1440),
+    h = Math.floor((m % 1440) / 60),
+    mins = m % 60;
+  return `⏳ ${d ? d + "d " : ""}${h ? h + "h " : ""}${mins}m left`.trim();
 }
 
-
-// Collect relevant badges (NEW, UPDATED, DISCOUNT, OFFER)
 function getBadges(tool) {
-  const now = new Date();
-  const release = new Date(tool.release_date);
-  const update = new Date(tool.update_date);
-  const offerEnd = tool.offer_expiry ? new Date(tool.offer_expiry) : null;
-  const discountEnd = tool.discount_expiry ? new Date(tool.discount_expiry) : null;
+  const now = Date.now(),
+    wk = 6048e5,
+    offerEnd = tool.offer_expiry && new Date(tool.offer_expiry),
+    discEnd = tool.discount_expiry && new Date(tool.discount_expiry);
 
-  const badges = [];
+  const out = [];
+  if (now - new Date(tool.release_date) < wk) out.push('<span class="badge new-badge">NEW</span>');
+  if (now - new Date(tool.update_date)  < wk) out.push('<span class="badge updated-badge">UPDATED</span>');
 
-  // NEW (within 7 days)
-  if ((now - release) / (1000 * 60 * 60 * 24) <= 7) {
-    badges.push('<span class="badge new-badge">NEW</span>');
-  }
-
-  // UPDATED (within 7 days)
-  if ((now - update) / (1000 * 60 * 60 * 24) <= 7) {
-    badges.push('<span class="badge updated-badge">UPDATED</span>');
-  }
-
-  // DISCOUNT (active only if no expiry or future expiry)
-  const isDiscountActive = tool.discount && (!discountEnd || discountEnd > now);
-  if (isDiscountActive) {
-    const isNumeric = !isNaN(parseFloat(tool.discount)) && isFinite(tool.discount);
-    const label = isNumeric ? `-${tool.discount}%` : escapeHTML(tool.discount);
-
-    // Main badge
-    badges.push(`<span class="badge discount-badge">${label}</span>`);
-
-    // Countdown badge (only for numeric)
-    if (isNumeric && discountEnd) {
-      const countdown = formatTimeRemaining(tool.discount_expiry);
-      if (countdown) {
-        badges.push(`<span class="badge discount-badge">${countdown}</span>`);
-      }
+  const discActive = tool.discount && (!discEnd || discEnd > now);
+  if (discActive) {
+    const numeric = !isNaN(parseFloat(tool.discount));
+    const lbl = numeric ? `-${tool.discount}%` : escapeHTML(tool.discount);
+    out.push(`<span class="badge discount-badge">${lbl}</span>`);
+    if (numeric && discEnd) {
+      const c = formatTimeRemaining(tool.discount_expiry);
+      if (c) out.push(`<span class="badge discount-badge">${c}</span>`);
     }
   }
-
-  // OFFER (just a static label, no countdown)
-  const isOfferActive = tool.offer && (!offerEnd || offerEnd > now);
-  if (isOfferActive) {
-    badges.push(`<span class="badge offer-badge">${escapeHTML(tool.offer)}</span>`);
-  }
-
-  return badges.join(" ");
+  const offerActive = tool.offer && (!offerEnd || offerEnd > now);
+  if (offerActive) out.push(`<span class="badge offer-badge">${escapeHTML(tool.offer)}</span>`);
+  return out.sort((a, b) => (a.includes("NEW") ? -1 : b.includes("NEW") ? 1 : 0)).join("");
 }
 
-//-------------------------------------------------
-// Return days left before an offer expires
-function daysLeft(date) {
-  const diff = new Date(date) - new Date();
-  return diff > 0 ? Math.ceil(diff / (1000 * 60 * 60 * 24)) : 0;
-}
+const daysLeft = (d) => Math.max(0, Math.ceil((new Date(d) - new Date()) / 864e5));
 
-// Get URL for contact based on the 'contact' field
-function getContactLink(type) {
-  const links = {
-    telegram: "https://t.me/fmpChatBot",
-    discord: "https://discord.gg/kfJfP3aNwC",
-    email: "mailto:flamemodparadiscord@gmail.com",
-  };
-  return links[type?.toLowerCase()] || "#";
-}
+const getContactLink = (t) =>
+  ({ telegram: "https://t.me/fmpChatBot", discord: "https://discord.gg/kfJfP3aNwC", email: "mailto:flamemodparadiscord@gmail.com" }[
+    t?.toLowerCase()
+  ] || "#");
 
-// Utility: render "Pricing" details if present
 function renderPricing(tool) {
   if (tool.pricing) {
-    // If "pricing" is an object with multiple tiers
-    const list = Object.entries(tool.pricing)
+    const li = Object.entries(tool.pricing)
       .map(([k, v]) => `<li>${escapeHTML(k)}: ${escapeHTML(v)}</li>`)
       .join("");
-    return `<p><strong>Pricing:</strong></p>
-            <ul class="pricing-list">${list}</ul><br>`;
-  } else if (tool.price) {
-    // Single price
-    const safePrice = escapeHTML(tool.price)
-      .replace(/\n/g, "<br>")
-      .replace(/(<br>\s*)$/, "<br>&nbsp;");
-    return `<p><strong>Price:</strong><br>${safePrice}</p><br>`;
+    return `<p><strong>Pricing:</strong></p><ul class="pricing-list">${li}</ul><br>`;
   }
+  if (tool.price)
+    return `<p><strong>Price:</strong><br>${escapeHTML(tool.price).replace(/\n/g, "<br>")}</p><br>`;
   return "";
 }
 
-//RECOMMENDATIONS
 function renderRecommendations(tool) {
-  // find up to 6 "related" tools of the same type
-  const recs = allTools
-    .filter(
-      (t) => (t.name || "") !== (tool.name || "") &&
-             (t.type || "").toLowerCase() === (tool.type || "").toLowerCase()
-    )
+  const rec = allTools
+    .filter((t) => t.name !== tool.name && (t.type || "").toLowerCase() === (tool.type || "").toLowerCase())
     .slice(0, 6);
-
-  if (!recs.length) return "";
-
-  // highlight search not needed here, just showing related
-  const cardsHTML = recs
-    .map(
-      (r) => `
-        <div class="recommended-card" onclick='location.hash="tool=${encodeURIComponent(
-          r.name
-        )}"'>
-          <img
-            loading="lazy"
-            src="${r.image || "assets/placeholder.jpg"}"
-            onerror="this.src='assets/placeholder.jpg'"
-          />
-          <h4>${escapeHTML(r.name)}</h4>
-          <p>${escapeHTML(
-            r.description ||
-              (r.long_description || "No description").split("\n")[0] + "..."
-          )}</p>
-        </div>
-      `
-    )
-    .join("");
-
+  if (!rec.length) return "";
   return `
     <section class="recommended-section fade-in">
       <h3>You may also like</h3>
       <div class="recommended-scroll">
-        ${cardsHTML}
+        ${rec
+          .map(
+            (r) => `
+          <div class="recommended-card" onclick='location.hash="tool=${encodeURIComponent(r.name)}"'>
+            ${smartImg(r.image || "assets/placeholder.jpg", r.name)}
+            <h4>${escapeHTML(r.name)}</h4>
+            <p>${escapeHTML((r.description || r.long_description || "")
+              .split("\n")[0] || "No description")}…</p>
+          </div>`
+          )
+          .join("")}
       </div>
-    </section>
-  `;
+    </section>`;
 }
 
-//REQUIREMENTS POPUP
-function showRequirementsPopup(productName) {
-  const popupBox = document.getElementById("popupMessage");
-  const popupText = document.getElementById("popupText");
-  const tool = allTools.find((t) => t.name === productName);
-
-  let message = tool && tool.requirements
-    ? tool.requirements
-    : `Requirements for ${productName}...\n\nPlease contact the owner.`;
-
-  // Insert HTML line breaks + escape
-  message = escapeHTML(message).replace(/\n/g, "<br>");
-  popupText.innerHTML = message;
-
-  popupBox.classList.remove("hidden");
-
-  // optional auto-hide
-  setTimeout(() => popupBox.classList.add("hidden"), 4000);
+/* ----------  REQUIREMENTS POPUP ---------- */
+function showRequirementsPopup(name) {
+  const box = document.getElementById("popupMessage"),
+    txt = document.getElementById("popupText");
+  const tool = allTools.find((t) => t.name === name);
+  let msg =
+    tool?.requirements || `Requirements for ${name}…\n\nPlease contact the owner.`;
+  txt.innerHTML = escapeHTML(msg).replace(/\n/g, "<br>");
+  box.classList.remove("hidden");
+  setTimeout(() => box.classList.add("hidden"), 4000);
 }
 
-// Close popup manually
-function closePopup() {
-  document.getElementById("popupMessage").classList.add("hidden");
-}
+/* ----------  NAV & SCROLL ---------- */
+if (navbarToggle && navbarMenu)
+  navbarToggle.addEventListener("click", () => navbarMenu.classList.toggle("show-menu"));
 
-//CLEAR HASH (BACK BTN)
-function clearHash() {
-  location.hash = "";
-  window.scrollTo({ top: 0, behavior: "smooth" });
-  // Return to the main list
-  applyFiltersAndRender();
-}
+window.addEventListener(
+  "scroll",
+  () => scrollToTopBtn.classList.toggle("show", scrollY > 300),
+  { passive: true }
+);
+scrollToTopBtn?.addEventListener("click", () => window.scrollTo(0, 0));
 
-//NAVBAR TOGGLE (MOBILE)
-if (navbarToggle && navbarMenu) {
-  navbarToggle.addEventListener("click", () => {
-    navbarMenu.classList.toggle("show-menu");
+/* ----------  AUTOCOMPLETE ---------- */
+let selectedIndex = -1;
+const addToRecents = (n) => {
+  const r = [n, ...JSON.parse(localStorage.getItem(RECENT_KEY) || "[]").filter((x) => x !== n)].slice(
+    0,
+    MAX_RECENTS
+  );
+  localStorage.setItem(RECENT_KEY, JSON.stringify(r));
+};
+const getWeightedFuseList = () => {
+  const r = JSON.parse(localStorage.getItem(RECENT_KEY) || "[]");
+  return allTools.map((t) => ({ ...t, _boost: r.filter((x) => x === t.name).length }));
+};
+const updateSelectedItem = (it) =>
+  it.forEach((el, i) => el.classList.toggle("selected", i === selectedIndex));
+const renderAutocomplete = (res) => {
+  autocompleteBox.innerHTML = res
+    .map(({ item }) => `<div data-name="${escapeHTML(item.name)}">${escapeHTML(item.name)}</div>`)
+    .join("");
+  autocompleteBox.classList.remove("hidden");
+  selectedIndex = -1;
+  autocompleteBox.querySelectorAll("div").forEach((d) =>
+    d.addEventListener("mousedown", () => {
+      runSearch(d.dataset.name);
+      autocompleteBox.classList.add("hidden");
+    })
+  );
+};
+const showRecentSearches = () => {
+  const r = JSON.parse(localStorage.getItem(RECENT_KEY) || "[]");
+  if (!r.length) return;
+  autocompleteBox.innerHTML = r.map((n) => `<div data-name="${escapeHTML(n)}">${escapeHTML(n)}</div>`).join("");
+  autocompleteBox.classList.remove("hidden");
+  selectedIndex = -1;
+  autocompleteBox.querySelectorAll("div").forEach((d) =>
+    d.addEventListener("mousedown", () => {
+      addToRecents(d.dataset.name);
+      searchInput.value = d.dataset.name;
+      sessionStorage.setItem(SEARCH_KEY, d.dataset.name);
+      applyFiltersAndRender();
+      autocompleteBox.classList.add("hidden");
+    })
+  );
+};
+
+const debouncedSearch = debounce(runSearch, 250);
+
+searchInput.addEventListener("input", () => {
+  const q = searchInput.value;
+  if (!q) {
+    autocompleteBox.classList.add("hidden");
+    debouncedSearch("");
+    return;
+  }
+  const fuse = new Fuse(getWeightedFuseList(), {
+    includeScore: true,
+    includeMatches: true,
+    threshold: 0.4,
+    ignoreLocation: true,
+    minMatchCharLength: 2,
+    keys: [
+      { name: "name", weight: 0.4 },
+      { name: "keywords", weight: 0.3 },
+      { name: "tags", weight: 0.1 },
+      { name: "type", weight: 0.1 },
+      { name: "description", weight: 0.3 },
+      { name: "long_description", weight: 0.2 },
+      { name: "_boost", weight: 0.8 },
+    ],
   });
+  const res = fuse.search(q).slice(0, 5);
+  res.length ? renderAutocomplete(res) : autocompleteBox.classList.add("hidden");
+  debouncedSearch(q);
+});
+
+searchInput.addEventListener("keydown", (e) => {
+  const items = autocompleteBox.querySelectorAll("div");
+  if (!items.length) return;
+  if (e.key === "ArrowDown") {
+    e.preventDefault();
+    selectedIndex = (selectedIndex + 1) % items.length;
+    updateSelectedItem(items);
+  } else if (e.key === "ArrowUp") {
+    e.preventDefault();
+    selectedIndex = (selectedIndex - 1 + items.length) % items.length;
+    updateSelectedItem(items);
+  } else if (e.key === "Enter") {
+    e.preventDefault();
+    if (selectedIndex !== -1) items[selectedIndex].dispatchEvent(new Event("mousedown"));
+    else debouncedSearch(searchInput.value);
+    autocompleteBox.classList.add("hidden");
+  }
+});
+
+searchInput.addEventListener("focus", () => {
+  if (!searchInput.value.trim()) showRecentSearches();
+});
+searchInput.addEventListener("blur", () => setTimeout(() => autocompleteBox.classList.add("hidden"), 150));
+
+/* ----------  HASH & MODAL ---------- */
+window.addEventListener("hashchange", applyURLHash);
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") closeImageModal();
+});
+imageModal?.addEventListener("click", (e) => {
+  if (e.target === imageModal) closeImageModal();
+});
+function openImageModal(src) {
+  if (imageModal) {
+    imageModal.querySelector("img").src = src;
+    imageModal.classList.remove("hidden");
+  }
+}
+function closeImageModal() {
+  imageModal?.classList.add("hidden");
 }
 
-//SCROLL TO TOP BUTTON
-window.addEventListener("scroll", () => {
-  scrollToTopBtn.classList.toggle("show", window.scrollY > 300);
-});
-
-scrollToTopBtn?.addEventListener("click", () => {
-  window.scrollTo({ top: 0, behavior: "smooth" });
-});
-
-//DEBOUNCED SEARCH
-const debouncedSearchHandler = debounce(() => {
-  sessionStorage.setItem(SEARCH_KEY, searchInput.value);
-  applyFiltersAndRender();
-}, 300);
-
-searchInput?.addEventListener("input", debouncedSearchHandler);
-
-//SORT SELECT
+/* ----------  SORT SELECT ---------- */
 sortSelect?.addEventListener("change", () => {
   sessionStorage.setItem(SORT_KEY, sortSelect.value);
   applyFiltersAndRender();
 });
 
-//INIT
+/* ----------  GO ---------- */
 loadData();
-
-const autocompleteBox = document.getElementById("autocompleteBox");
-
-searchInput.addEventListener("input", () => {
-  const query = searchInput.value.trim();
-  if (!query) {
-    autocompleteBox.classList.add("hidden");
-    autocompleteBox.innerHTML = "";
-    return;
-  }
-
-  const fuse = new Fuse(allTools, {
-    includeScore: true,
-    shouldSort: true,
-    threshold: 0.4,
-    ignoreLocation: true,
-    minMatchCharLength: 2,
-    keys: ["name", "keywords", "tags", "type"]
-  });
-
-  const results = fuse.search(query).slice(0, 5);
-  if (!results.length) {
-    autocompleteBox.classList.add("hidden");
-    return;
-  }
-
-  autocompleteBox.innerHTML = results.map(({ item }) => `<div>${escapeHTML(item.name)}</div>`).join("");
-  autocompleteBox.classList.remove("hidden");
-
-  autocompleteBox.querySelectorAll("div").forEach((div, i) => {
-    div.addEventListener("click", () => {
-      searchInput.value = results[i].item.name;
-      sessionStorage.setItem(SEARCH_KEY, results[i].item.name);
-      applyFiltersAndRender();
-      autocompleteBox.classList.add("hidden");
-    });
-  });
-});
-
-searchInput.addEventListener("blur", () => {
-  setTimeout(() => autocompleteBox.classList.add("hidden"), 150);
-});
-
-
-// If user changes #hash manually, or navigates back/forward
-window.addEventListener("hashchange", () => {
-  // Check if a "tool=" hash is present, otherwise show main list
-  applyURLHash();
-});
-
-//ESC KEY FOR IMAGE MODAL
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") closeImageModal();
-});
-
-// imageModal click outside to close
-imageModal?.addEventListener("click", (e) => {
-  if (e.target === imageModal) {
-    closeImageModal();
-  }
-});

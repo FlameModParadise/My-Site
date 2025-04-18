@@ -1556,3 +1556,7 @@ body.dark .autocomplete-box div.selected:hover {
     top: 50px; /* if you have 3 stacked */
   }
 }
+#autocompleteBox div.selected {
+  background: #444;
+  color: #fff;
+}
