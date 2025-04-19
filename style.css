@@ -64,8 +64,17 @@ body.dark {
 }
 
 /* ================ GLOBAL ELEMENTS ================ */
-a {
+a, button {
   color: var(--color-primary);
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s ease, opacity 0.2s;
+}
+a:hover, button:hover {
+  color: var(--color-accent);
+}
+a:active, button:active {
+  opacity: 0.8;
 }
 img {
   max-width: 100%;
@@ -1143,6 +1152,9 @@ body.dark #popupText {
     padding-right: 20px;
     gap: 0.75rem;
   }
+  .main-grid {
+    grid-template-columns: 1fr;
+  }
 }
 @media (max-width: 480px) {
   .banner {
@@ -1716,50 +1728,129 @@ body.dark #limited-section{
 }
 
 /* ----------  swipe arrow hint (mobile) ---------- */
-/* ----- mobile carousel arrows ----- */
-@media (max-width: 640px){
-  #offers-section   .arrow,
+/* Hide arrows for laptop screens */
+@media (min-width: 1024px) {
+  #offers-section .arrow,
   #recommended-section .arrow,
-  #limited-section  .arrow{
-    position:absolute;
-    top:50%;
-    transform:translateY(-50%);
-    z-index:5;
-    font-size:1.8rem;
-    font-weight:700;
-    color:#fff;
-    background:rgba(0,0,0,.45);
-    border:none;
-    width:34px;height:34px;
-    display:flex;align-items:center;justify-content:center;
-    border-radius:50%;
-    cursor:pointer;
-    backdrop-filter:blur(3px);
-    transition:opacity .3s;
+  #limited-section .arrow {
+    display: none; /* Hide arrows for laptop and larger screens */
   }
-  .arrow.left  { left:6px;  }
-  .arrow.right { right:6px; }
-  .arrow[disabled]{ opacity:.25; pointer-events:none; }
+}
 
-/* ----- swipe hint ----- */
+/* ----- Mobile Carousel Arrows ----- */
+@media (max-width: 1024px) {
+  #offers-section .arrow,
+  #recommended-section .arrow,
+  #limited-section .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 5;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.45);
+    border: none;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+    backdrop-filter: blur(3px);
+    transition: opacity 0.3s;
+  }
+  .arrow.left {
+    left: 6px;
+  }
+  .arrow.right {
+    right: 6px;
+  }
+  .arrow[disabled] {
+    opacity: 0.25;
+    pointer-events: none;
+  }
+}
+
+/* ----- Swipe Hint ----- */
+@media (max-width: 1024px) {
   #offers-section .swipe-hint,
   #recommended-section .swipe-hint,
-  #limited-section .swipe-hint{
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    z-index:4;
-    font-size:1.2rem;
-    font-weight:700;
-    color:#fff;
-    background:rgba(0,0,0,.45);
-    border:none;
-    width:34px;height:34px;
-    display:flex;align-items:center;justify-content:center;
-    border-radius:50%;
-    cursor:pointer;
-    backdrop-filter:blur(3px);
+  #limited-section .swipe-hint {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 4;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.45);
+    border: none;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+    backdrop-filter: blur(3px);
   }
-  
 }
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  #offers-list,
+  #recommended-list,
+  #limited-list {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  #offers-section,
+  #recommended-section,
+  #limited-section {
+    padding: 1rem;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent, #4d7cff);
+  outline-offset: 2px;
+}
+
+button:active,
+a:active {
+  opacity: 0.8;
+}
+
+*,
+*::before,
+*::after {
+  -webkit-tap-highlight-color: transparent;
+}
+/* Disable the tap‑highlight just on things users tap */
+a,
+button,
+.navbar-toggle,
+.logo,
+.tool-card,
+.tag,
+[role="button"] {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+a, button,
+.navbar-toggle,
+.logo,
+.tool-card,
+.tag,
+[role="button"]
+{
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  transition: opacity .2s;
+}
+a:active,
+button:active,
+.navbar-toggle:active,
+.tool-card:active { opacity:.82; }

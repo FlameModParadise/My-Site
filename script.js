@@ -464,19 +464,22 @@ function getCardBadges(tool) {
 }
 
 /* ----------  MAIN LIST CLICK‑THROUGH ---------- */
-container.addEventListener("click", (e) => {
-  const c = e.target.closest(".tool-card");
-  if (!c) return;
-  const tool = allTools.find((t) => t.name === c.dataset.toolName);
+container?.addEventListener("click", e => {
+  const card = e.target.closest(".tool-card");
+  if (!card) return;
+  const tool = allTools.find(t => t.name === card.dataset.toolName);
   if (tool) showToolDetail(tool);
 });
 
 /* ----------  FILTER BUTTONS ---------- */
 function generateFilterButtons() {
-  const types = [...new Set(allTools.map((t) => (t.type || "").toLowerCase()).filter(Boolean))];
+  if (!filtersContainer) return;                     // ← added guard
+  const types = [...new Set(
+    allTools.map(t => (t.type || "").toLowerCase()).filter(Boolean)
+  )];
   filtersContainer.innerHTML = "";
   filtersContainer.appendChild(createFilterBtn("All"));
-  types.forEach((t) => filtersContainer.appendChild(createFilterBtn(t)));
+  types.forEach(t => filtersContainer.appendChild(createFilterBtn(t)));
 }
 
 function createFilterBtn(label) {
@@ -769,7 +772,7 @@ const showRecentSearches = () => {
 
 const debouncedSearch = debounce(runSearch, 250);
 
-searchInput.addEventListener("input", () => {
+searchInput?.addEventListener("input", () => {
   const q = searchInput.value;
   if (!q) {
     autocompleteBox.classList.add("hidden");
@@ -797,7 +800,7 @@ searchInput.addEventListener("input", () => {
   debouncedSearch(q);
 });
 
-searchInput.addEventListener("keydown", (e) => {
+searchInput?.addEventListener("keydown", e  => {
   const items = autocompleteBox.querySelectorAll("div");
   if (!items.length) return;
   if (e.key === "ArrowDown") {
@@ -816,10 +819,11 @@ searchInput.addEventListener("keydown", (e) => {
   }
 });
 
-searchInput.addEventListener("focus", () => {
+searchInput?.addEventListener("focus", () => {
   if (!searchInput.value.trim()) showRecentSearches();
 });
-searchInput.addEventListener("blur", () => setTimeout(() => autocompleteBox.classList.add("hidden"), 150));
+
+searchInput?.addEventListener("blur", () => { setTimeout(() => autocompleteBox.classList.add("hidden"), 150)});
 
 /* ================= LIVE COUNTDOWN ================= */
 function updateBadges() {
@@ -863,4 +867,4 @@ sortSelect?.addEventListener("change", () => {
 });
 
 /* ----------  GO ---------- */
-loadData();
+if (container) loadData();
