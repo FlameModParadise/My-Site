@@ -282,25 +282,67 @@ function populateSpecialSections() {
 });
 
 /* =========  MOBILE SWIPE HINT  ========= */
-function addSwipeHint(wrapperId){
-  const list   = document.getElementById(wrapperId);
+function addSwipeHint(wrapperId) {
+  const list = document.getElementById(wrapperId);
   const parent = list?.parentElement;
-  if(!list || !parent) return;
+  if (!list || !parent) return;
 
-  // show the hint initially
+  // Show the hint initially
   parent.classList.add("has-scroll-hint");
 
-  // hide after the user scrolls a bit (or after 6s as fallback)
+  // Hide after the user scrolls a bit (or after 6s as fallback)
   const hide = () => parent.classList.remove("has-scroll-hint");
-  list.addEventListener("scroll", () => {
-    if (list.scrollLeft > 24) hide();
-  }, { passive: true });
+  list.addEventListener(
+    "scroll",
+    () => {
+      if (list.scrollLeft > 24) hide();
+    },
+    { passive: true }
+  );
 
-  setTimeout(hide, 6000);   // auto‑fade in case they don't scroll
+  setTimeout(hide, 6000); // Auto-fade in case they don't scroll
 }
 
-/* call once, right after we’ve populated the special lists */
-["offers-list","recommended-list","limited-list"].forEach(addSwipeHint);
+/* ========  ARROW BUTTON SCROLLING  ======== */
+function initArrowControls(sectionId) {
+  const list = document.getElementById(sectionId);
+  if (!list) return;
+  const leftBtn = list.parentElement.querySelector(".arrow.left");
+  const rightBtn = list.parentElement.querySelector(".arrow.right");
+  if (!leftBtn || !rightBtn) return;
+
+  const SCROLL = () => {
+    const amount = list.clientWidth * 0.8; // Scroll 80% of the view
+    return (dir) => list.scrollBy({ left: dir * amount, behavior: "smooth" });
+  };
+  const scrollBy = SCROLL();
+
+  leftBtn.addEventListener("click", () => scrollBy(-1));
+  rightBtn.addEventListener("click", () => scrollBy(+1));
+
+  const toggleDisabled = () => {
+    leftBtn.disabled = list.scrollLeft < 8;
+    rightBtn.disabled =
+      list.scrollLeft + list.clientWidth >= list.scrollWidth - 8;
+  };
+  list.addEventListener("scroll", toggleDisabled, { passive: true });
+  toggleDisabled(); // Run once on load
+}
+
+/* ========= APPLY SECTION SCRIPTS ========= */
+function applySectionScripts() {
+  const ids = ["offers-list", "recommended-list", "limited-list"];
+  if (window.innerWidth > 480) {
+    ids.forEach(addSwipeHint);
+    ids.forEach(initArrowControls);
+  }
+}
+
+// Run once on load
+applySectionScripts();
+
+// Re-run if the user resizes the window
+window.addEventListener("resize", applySectionScripts);
 
 /* ========  arrow button scrolling  ======== */
 function initArrowControls(sectionId){

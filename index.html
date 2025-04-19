@@ -94,32 +94,32 @@
 
     <!-- Main Content -->
     <main class="container">
-      <!-- Master tool list (populated by script.js) -->
-      <!-- ===== NEW SECTIONS ===== -->
-      <section id="offers-section">
+      <!-- Offers Carousel -->
+      <section id="offers-section" style="position:relative;">
         <h2 class="section-title">🔥 Offers &amp; Discounts</h2>
-      
-        <!-- list only -->
-        <div id="offers-list" class="main-grid"></div>
-      
-        <!-- arrows are siblings, not inside the grid -->
-        <button class="arrow left"  aria-label="scroll left">‹</button>
-        <button class="arrow right" aria-label="scroll right">›</button>
+        <div id="offers-list"      class="main-grid carousel"></div>
+        <button class="arrow left"  data-target="offers-list"      aria-label="scroll left">‹</button>
+        <button class="arrow right" data-target="offers-list"      aria-label="scroll right">›</button>
       </section>
-      
 
-      <section id="recommended-section">
+      <!-- Recommended Carousel -->
+      <section id="recommended-section" style="position:relative;">
         <h2 class="section-title">⭐ Recommended</h2>
-        <div id="recommended-list" class="main-grid"></div>
+        <div id="recommended-list" class="main-grid carousel"></div>
+        <button class="arrow left"  data-target="recommended-list" aria-label="scroll left">‹</button>
+        <button class="arrow right" data-target="recommended-list" aria-label="scroll right">›</button>
       </section>
 
-      <section id="limited-section">
+      <!-- Limited‑Time Carousel -->
+      <section id="limited-section" style="position:relative;">
         <h2 class="section-title">⏰ Limited‑Time Item</h2>
-        <div id="limited-list" class="main-grid"></div>
+        <div id="limited-list"     class="main-grid carousel"></div>
+        <button class="arrow left"  data-target="limited-list"     aria-label="scroll left">‹</button>
+        <button class="arrow right" data-target="limited-list"     aria-label="scroll right">›</button>
       </section>
-      <!-- ======================== -->
-      <section class="main-grid" id="main-tool-list"></section>
 
+      <!-- Master tool list (populated by script.js) -->
+      <section class="main-grid" id="main-tool-list"></section>
     </main>
 
     <!-- Install Prompt -->
@@ -154,6 +154,7 @@
     <!-- Footer -->
     <footer class="footer" id="contact">
       <div class="footer-content">
+        <!-- Contact -->
         <div class="footer-section contact">
           <h2>
             <img src="assets/icons/contact.gif" alt="Contact Icon" class="footer-icon" />
@@ -181,6 +182,7 @@
             </li>
           </ul>
         </div>
+        <!-- Quick Links -->
         <div class="footer-section links">
           <h2>Quick Links</h2>
           <ul>
@@ -190,6 +192,7 @@
             <li><a href="pages/faq.html"><img src="assets/icons/footers-icons/faq.png" class="footer-subicon" />FAQ</a></li>
           </ul>
         </div>
+        <!-- Resources -->
         <div class="footer-section resources">
           <h2>Resources</h2>
           <ul>
@@ -211,6 +214,7 @@
   <!-- Scripts -->
   <script src="script.js" defer></script>
   <script>
+    // Service Worker registration
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => {
         navigator.serviceWorker.register("./service-worker.js")
@@ -219,32 +223,56 @@
       });
     }
 
+    // Image modal & gallery
     document.addEventListener("DOMContentLoaded", () => {
       const mainImg = document.querySelector(".tool-main-img");
-      const galleryImgs = document.querySelectorAll(".tool-gallery img");
-      galleryImgs.forEach((img) => {
+      document.querySelectorAll(".tool-gallery img").forEach((img) => {
         img.addEventListener("click", () => {
-          if (mainImg && img.src) {
-            mainImg.src = img.src;
-          }
+          if (mainImg && img.src) mainImg.src = img.src;
         });
       });
     });
-
     function openImageModal(src) {
-      const modal = document.getElementById("imageModal");
-      const modalImg = document.getElementById("modalImage");
+      const modal = document.getElementById("imageModal"),
+            modalImg = document.getElementById("modalImage");
       modalImg.src = src;
       modal.classList.remove("hidden");
     }
+    function closeImageModal() { document.getElementById("imageModal").classList.add("hidden"); }
+    function closePopup()       { document.getElementById("popupMessage").classList.add("hidden"); }
 
-    function closeImageModal() {
-      document.getElementById("imageModal").classList.add("hidden");
+    // Carousel auto‑slide + manual arrows
+    function autoSlide(id, interval = 4000) {
+      const box = document.getElementById(id);
+      if (!box) return;
+      let next = 0;
+      const step = () => {
+        const card = box.querySelector(".tool-card");
+        if (!card) return;
+        const gap = parseFloat(getComputedStyle(box).gap) || 16;
+        const w = card.offsetWidth + gap;
+        const max = box.scrollWidth - box.clientWidth;
+        next = next + w > max ? 0 : next + w;
+        box.scrollTo({ left: next, behavior: "smooth" });
+      };
+      setInterval(step, interval);
     }
+    ["offers-list","recommended-list","limited-list"].forEach(autoSlide);
 
-    function closePopup() {
-      document.getElementById("popupMessage").classList.add("hidden");
-    }
+    document.querySelectorAll(".arrow").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const box = document.getElementById(btn.dataset.target);
+        const dir = btn.classList.contains("right") ? 1 : -1;
+        if (box) {
+          const gap = parseFloat(getComputedStyle(box).gap) || 16;
+          const card = box.querySelector(".tool-card");
+          if (card) {
+            const delta = dir * (card.offsetWidth + gap);
+            box.scrollBy({ left: delta, behavior: "smooth" });
+          }
+        }
+      });
+    });
   </script>
   <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
   <noscript>
