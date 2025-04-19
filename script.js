@@ -537,12 +537,14 @@ function createFilterBtn(label) {
 /* ----------  DETAIL VIEW ---------- */
 function showToolDetail(tool, initial = false) {
   if (!initial) {
-    // update the URL hash so you can deep‑link / use Back button
     location.hash = `tool=${encodeURIComponent(tool.name)}`;
-
-    // ⚡ NEW: tell the <body> we’re in detail mode
     document.body.classList.add('detail-mode');
   }
+
+  // Hide special sections
+  document.getElementById("offers-section")?.classList.add("hidden");
+  document.getElementById("recommended-section")?.classList.add("hidden");
+  document.getElementById("limited-section")?.classList.add("hidden");
 
   container.className = 'detail-wrapper';
   container.innerHTML = `
@@ -611,14 +613,15 @@ function showToolDetail(tool, initial = false) {
 }
 
 function clearHash() {
-  // leave “detail” mode
   document.body.classList.remove("detail-mode");
-
-  // reset the URL & scroll
   location.hash = "";
   window.scrollTo(0, 0);
 
-  // back to grid
+  // Show special sections
+  document.getElementById("offers-section")?.classList.remove("hidden");
+  document.getElementById("recommended-section")?.classList.remove("hidden");
+  document.getElementById("limited-section")?.classList.remove("hidden");
+
   applyFiltersAndRender();
 }
 
