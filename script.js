@@ -535,7 +535,6 @@ function createFilterBtn(label) {
 }
 
 /* ----------  DETAIL VIEW ---------- */
-/* ----------  DETAIL VIEW ---------- */
 function showToolDetail(tool, initial = false) {
   if (!initial) {
     // update the URL hash so you can deep‑link / use Back button
