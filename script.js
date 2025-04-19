@@ -490,45 +490,49 @@ function createFilterBtn(label) {
 }
 
 /* ----------  DETAIL VIEW ---------- */
+/* ----------  DETAIL VIEW ---------- */
 function showToolDetail(tool, initial = false) {
   if (!initial) {
-    // update the hash…
+    // update the URL hash so you can deep‑link / use Back button
     location.hash = `tool=${encodeURIComponent(tool.name)}`;
-    // …and enter “detail” mode
-    document.body.classList.add("detail-mode");
+
+    // ⚡ NEW: tell the <body> we’re in detail mode
+    document.body.classList.add('detail-mode');
   }
 
-  container.className = "detail-wrapper";
+  container.className = 'detail-wrapper';
   container.innerHTML = `
     <div class="tool-detail fade-in">
       <div class="tool-detail-top">
         <button class="back-btn" onclick="clearHash()">← Back</button>
         <h2>${escapeHTML(tool.name)} ${getBadges(tool)}</h2>
       </div>
+
       <div class="tool-detail-content">
         <div class="tool-detail-left">
-          ${smartImg(tool.image || "assets/placeholder.jpg", tool.name).replace(
-            "<img ",
-            '<img class="tool-main-img" onclick="openImageModal(this.src)" '
-          )}
+          ${smartImg(tool.image || 'assets/placeholder.jpg', tool.name)
+             .replace('<img ', '<img class="tool-main-img" onclick="openImageModal(this.src)" ')}
           <div class="tool-gallery">
-            ${(tool.images || []).map((img) => smartImg(img, "gallery")).join("")}
+            ${(tool.images || []).map(img => smartImg(img, 'gallery')).join('')}
           </div>
-          ${tool.video ? `<iframe src="${tool.video}" class="tool-video" allowfullscreen></iframe>` : ""}
+          ${tool.video ? `<iframe src="${tool.video}" class="tool-video" allowfullscreen></iframe>` : ''}
         </div>
+
         <div class="tool-detail-right">
           <div class="tool-info">
             <p class="desc"><strong>Description:</strong><br>${escapeHTML(
-              tool.long_description || tool.description || "No description available."
+              tool.long_description || tool.description || 'No description available.'
             )}</p><br>
+
             ${renderPricing(tool)}
-            ${tool.discount ? `<p><strong>Discount:</strong> ${tool.discount}%</p><br>` : ""}
-            ${tool.offer_expiry ? `<p>⏳ Offer ends in ${daysLeft(tool.offer_expiry)} days</p><br>` : ""}
+            ${tool.discount       ? `<p><strong>Discount:</strong> ${tool.discount}%</p><br>` : ''}
+            ${tool.offer_expiry   ? `<p>⏳ Offer ends in ${daysLeft(tool.offer_expiry)} days</p><br>` : ''}
             <p><strong>Stock:</strong><br>${getStockStatus(tool.stock)}</p><br>
-            <p><strong>Released:</strong><br>${escapeHTML(tool.release_date || "N/A")}</p><br>
-            <p><strong>Updated:</strong><br>${escapeHTML(tool.update_date || "N/A")}</p><br>
+            <p><strong>Released:</strong><br>${escapeHTML(tool.release_date || 'N/A')}</p><br>
+            <p><strong>Updated:</strong><br>${escapeHTML(tool.update_date  || 'N/A')}</p><br>
+
             <div style="display:flex;gap:1rem;flex-wrap:wrap;">
-              <a href="${getContactLink(tool.contact)}" target="_blank" class="contact-btn">💬 Contact</a>
+              <a href="${getContactLink(tool.contact)}" target="_blank" class="contact-btn">💬 Contact</a>
               <button class="requirements-btn" onclick="showRequirementsPopup('${escapeHTML(tool.name)}')">
                 Requirements
               </button>
@@ -537,31 +541,28 @@ function showToolDetail(tool, initial = false) {
         </div>
       </div>
     </div>
+
     ${renderRecommendations(tool)}
   `;
 
-  // fix up description override
-  const d = document.querySelector(".tool-detail-right .tool-info .desc");
-  if (d && tool.description) {
-    d.innerHTML = `<strong>Description:</strong><br>` + tool.description;
-  }
+  /* --- dynamic bits ---------------------------------------------------- */
+  // override short description with the HTML version if present
+  const desc = document.querySelector('.tool-detail-right .tool-info .desc');
+  if (desc && tool.description)
+    desc.innerHTML = '<strong>Description:</strong><br>' + tool.description;
 
-  // gallery → main image switch
-  const main = document.querySelector(".tool-main-img");
-  document.querySelectorAll(".tool-gallery img").forEach((img) => {
-    img.addEventListener("click", () => {
-      if (main) main.src = img.src;
-    });
-  });
+  // swap main image when thumbs are clicked
+  const mainImg = document.querySelector('.tool-main-img');
+  document.querySelectorAll('.tool-gallery img').forEach(img =>
+    img.addEventListener('click', () => { if (mainImg) mainImg.src = img.src; })
+  );
 
   activateLazyImages(container);
 
-  // ensure we scroll the detail into view
+  // scroll the detail card into view
   setTimeout(() => {
-    const detail = document.querySelector(".tool-detail");
-    if (detail) {
-      window.scrollTo({ top: detail.getBoundingClientRect().top + window.scrollY - 100 });
-    }
+    const detail = document.querySelector('.tool-detail');
+    if (detail) window.scrollTo({ top: detail.getBoundingClientRect().top + window.scrollY - 100 });
   }, 0);
 }
 
@@ -585,11 +586,6 @@ function applyURLHash() {
     const tool = allTools.find((t) => (t.name || "").toLowerCase() === name);
     if (tool) showToolDetail(tool, true);
   }
-}
-function clearHash() {
-  location.hash = "";
-  window.scrollTo(0, 0);
-  applyFiltersAndRender();
 }
 
 /* ----------  MISC UTILITIES ---------- */
@@ -700,15 +696,31 @@ function showRequirementsPopup(name) {
 }
 
 /* ----------  NAV & SCROLL ---------- */
-if (navbarToggle && navbarMenu)
-  navbarToggle.addEventListener("click", () => navbarMenu.classList.toggle("show-menu"));
+/* ── NAV MENU ─────────────────────────────── */
+if (navbarToggle && navbarMenu) {
+  // open / close with ☰
+  navbarToggle.addEventListener("click", () =>
+    navbarMenu.classList.toggle("show-menu")
+  );
 
-window.addEventListener(
-  "scroll",
-  () => scrollToTopBtn.classList.toggle("show", scrollY > 300),
-  { passive: true }
-);
-scrollToTopBtn?.addEventListener("click", () => window.scrollTo(0, 0));
+  // close after any link (or anything inside a link) is tapped
+  navbarMenu.addEventListener("click", e => {
+    if (e.target.closest("a")) navbarMenu.classList.remove("show-menu");
+  });
+}
+
+/* ── SCROLL‑TO‑TOP BUTTON ─────────────────── */
+if (scrollToTopBtn) {
+  window.addEventListener(
+    "scroll",
+    () => scrollToTopBtn.classList.toggle("show", scrollY > 300),
+    { passive: true }
+  );
+
+  scrollToTopBtn.addEventListener("click", () =>
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  );
+}
 
 /* ----------  AUTOCOMPLETE ---------- */
 let selectedIndex = -1;
