@@ -46,12 +46,20 @@ document.addEventListener("DOMContentLoaded", () => {
           answerEl.classList.toggle("visible");
           faqItem.setAttribute("aria-expanded", isOpen);
 
+          // Highlight the currently expanded FAQ item
+          document.querySelectorAll(".faq-item").forEach((item) => {
+            item.classList.remove("highlight");
+          });
+          if (isOpen) {
+            faqItem.classList.add("highlight");
+          }
+
           // (Optional) If you want to reflect the open item in the URL:
-          // if (isOpen) {
-          //   location.hash = faqId;
-          // } else {
-          //   history.replaceState(null, "", " "); // remove the hash
-          // }
+          if (isOpen) {
+            location.hash = faqId;
+          } else {
+            history.replaceState(null, "", " "); // remove the hash
+          }
         });
 
         // Combine elements and append to container

@@ -814,12 +814,13 @@ const showRecentSearches = () => {
 const debouncedSearch = debounce(runSearch, 250);
 
 searchInput?.addEventListener("input", () => {
-  const q = searchInput.value;
+  const q = searchInput.value.trim();
   if (!q) {
     autocompleteBox.classList.add("hidden");
     debouncedSearch("");
     return;
   }
+
   const fuse = new Fuse(getWeightedFuseList(), {
     includeScore: true,
     includeMatches: true,
@@ -836,14 +837,16 @@ searchInput?.addEventListener("input", () => {
       { name: "_boost", weight: 0.8 }
     ]
   });
-  const res = fuse.search(q).slice(0, 5);
-  res.length ? renderAutocomplete(res) : autocompleteBox.classList.add("hidden");
+
+  const results = fuse.search(q).slice(0, 5);
+  results.length ? renderAutocomplete(results) : autocompleteBox.classList.add("hidden");
   debouncedSearch(q);
 });
 
-searchInput?.addEventListener("keydown", e  => {
+searchInput?.addEventListener("keydown", (e) => {
   const items = autocompleteBox.querySelectorAll("div");
   if (!items.length) return;
+
   if (e.key === "ArrowDown") {
     e.preventDefault();
     selectedIndex = (selectedIndex + 1) % items.length;
@@ -909,3 +912,16 @@ sortSelect?.addEventListener("change", () => {
 
 /* ----------  GO ---------- */
 if (container) loadData();
+
+// Smooth scrolling for internal links
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener("click", function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute("href"));
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    });
+  });
+});

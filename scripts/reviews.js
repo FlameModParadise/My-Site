@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       const label = document.createElement("h3");
-      label.textContent = category;
+      label.textContent = `${category} (${images.length} images)`; // Updated to include image count
 
       catCard.appendChild(collage);
       catCard.appendChild(label);

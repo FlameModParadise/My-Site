@@ -43,6 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // ========== FRONT SIDE ==========
         const frontSide = document.createElement("div");
         frontSide.classList.add("flip-card-front");
+        frontSide.title = type; // Add tooltip with the contact type
 
         const frontImg = document.createElement("img");
         frontImg.src = icon;

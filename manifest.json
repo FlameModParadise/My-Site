@@ -48,6 +48,11 @@
     {
       "name": "Contact",
       "url": "/#contact"
+    },
+    {
+      "name": "View Offers",
+      "short_name": "Offers",
+      "url": "/#offers"
     }
   ],
 
@@ -59,6 +64,11 @@
     },
     {
       "src": "/assets/screenshots/detail.jpg",
+      "sizes": "1080x1920",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "/assets/screenshots/offers.jpg",
       "sizes": "1080x1920",
       "type": "image/jpeg"
     }
