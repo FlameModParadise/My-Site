@@ -252,21 +252,23 @@ function populateSpecialSections() {
 
   /* OFFERS & DISCOUNTS */
   const offers = allTools.filter(t => {
+    const hasKeyword = (t.keywords || []).includes("offer");
     const disc = t.discount && (!t.discount_expiry || new Date(t.discount_expiry) > now);
     const off  = t.offer    && (!t.offer_expiry    || new Date(t.offer_expiry)    > now);
-    return disc || off;
+    return hasKeyword || disc || off;
   });
   renderOrHide(offers, offersList, offersList.parentElement);
 
   /* RECOMMENDED */
-  /* RECOMMENDED — tag only */
   const recommended = allTools.filter(t =>
-    (t.tags || []).some(x => x.toLowerCase() === "recommended")
+    (t.keywords || []).includes("recommended")
   );
   renderOrHide(recommended, recommendedList, recommendedList.parentElement);
 
   /* LIMITED‑TIME */
-  const limited = allTools.filter(t => t.stock === 1);
+  const limited = allTools.filter(t =>
+    (t.keywords || []).includes("limited") || t.stock === 1
+  );
   renderOrHide(limited, limitedList, limitedList.parentElement);
 }
 
