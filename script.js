@@ -305,38 +305,11 @@ function addSwipeHint(wrapperId) {
   setTimeout(hide, 6000); // Auto-fade in case they don't scroll
 }
 
-/* ========  ARROW BUTTON SCROLLING  ======== */
-function initArrowControls(sectionId) {
-  const list = document.getElementById(sectionId);
-  if (!list) return;
-  const leftBtn = list.parentElement.querySelector(".arrow.left");
-  const rightBtn = list.parentElement.querySelector(".arrow.right");
-  if (!leftBtn || !rightBtn) return;
-
-  const SCROLL = () => {
-    const amount = list.clientWidth * 0.8; // Scroll 80% of the view
-    return (dir) => list.scrollBy({ left: dir * amount, behavior: "smooth" });
-  };
-  const scrollBy = SCROLL();
-
-  leftBtn.addEventListener("click", () => scrollBy(-1));
-  rightBtn.addEventListener("click", () => scrollBy(+1));
-
-  const toggleDisabled = () => {
-    leftBtn.disabled = list.scrollLeft < 8;
-    rightBtn.disabled =
-      list.scrollLeft + list.clientWidth >= list.scrollWidth - 8;
-  };
-  list.addEventListener("scroll", toggleDisabled, { passive: true });
-  toggleDisabled(); // Run once on load
-}
-
 /* ========= APPLY SECTION SCRIPTS ========= */
 function applySectionScripts() {
   const ids = ["offers-list", "recommended-list", "limited-list"];
   if (window.innerWidth > 480) {
     ids.forEach(addSwipeHint);
-    ids.forEach(initArrowControls);
   }
 }
 
@@ -345,34 +318,6 @@ applySectionScripts();
 
 // Re-run if the user resizes the window
 window.addEventListener("resize", applySectionScripts);
-
-/* ========  arrow button scrolling  ======== */
-function initArrowControls(sectionId){
-  const list   = document.getElementById(sectionId);
-  if(!list) return;
-  const leftBtn  = list.parentElement.querySelector(".arrow.left");
-  const rightBtn = list.parentElement.querySelector(".arrow.right");
-  if(!leftBtn || !rightBtn) return;
-
-  const SCROLL = () => {
-    const amount = list.clientWidth * 0.8;          // scroll 80 % of view
-    return (dir) => list.scrollBy({ left: dir*amount, behavior:"smooth" });
-  };
-  const scrollBy = SCROLL();
-
-  leftBtn .addEventListener("click", () => scrollBy(-1));
-  rightBtn.addEventListener("click", () => scrollBy(+1));
-
-  const toggleDisabled = () => {
-    leftBtn .disabled = list.scrollLeft < 8;
-    rightBtn.disabled = list.scrollLeft + list.clientWidth >= list.scrollWidth - 8;
-  };
-  list.addEventListener("scroll", toggleDisabled, { passive:true });
-  toggleDisabled();           // run once on load
-}
-
-/* activate on all three lists */
-["offers-list","recommended-list","limited-list"].forEach(initArrowControls);
 
 /* ----------  SEARCH / FILTER / SORT  ---------- */
 function runSearch(raw = "") {
