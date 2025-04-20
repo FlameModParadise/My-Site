@@ -318,14 +318,19 @@ body.dark .filter-tags button:hover {
   background: #fff;
   padding: 1rem;
   border-radius: 10px;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
   cursor: pointer;
-  transition: transform var(--transition), box-shadow var(--transition);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
   animation: slideIn 0.6s ease-in-out;
 }
 .tool-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transform: translateY(-4px);
+}
+@media (hover: none) {
+  .tool-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
 }
 .tool-thumb-wrapper {
   width: 100%;
@@ -613,11 +618,16 @@ body:not(.dark) .lifetime-badge {
   padding: 0.75rem;
   border: 1px solid #ddd;
   cursor: pointer;
-  transition: 0.2s;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 .recommended-card:hover {
-  transform: translateY(5px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transform: translateY(4px);
+}
+@media (hover: none) {
+  .recommended-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
 }
 .recommended-card img {
   width: 100%;
@@ -831,6 +841,7 @@ body.dark .footer-bottom p {
   border-top: 1px solid #eee;
   box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.05);
   color: var(--text-light);
+  will-change: transform;
 }
 .footer-content {
   display: flex;
@@ -1615,13 +1626,13 @@ body.dark #limited-section .tool-card:hover {
 /* ================ GLOBAL MORPHISM EFFECT ================ */
 body, .navbar, .banner, .install-box, .popup-box, .image-modal-content, footer.footer.container {
   background: rgba(255, 255, 255, 0.8); /* Light mode glass effect */
-  backdrop-filter: blur(10px);
+  backdrop-filter: none !important;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 
 body.dark, body.dark .navbar, body.dark .banner, body.dark .install-box, body.dark .popup-box, body.dark .image-modal-content, body.dark footer.footer.container {
-  background: rgba(0, 0, 0, 0.7); /* Dark mode glass effect */
+  background: #121212; /* Solid dark background */
   box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
 }
