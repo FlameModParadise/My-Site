@@ -74,19 +74,20 @@
     "type": "Checker",
     "name": "GPT Cookie Checker",
     "description": "Validates GPT+ cookies and captures access status.",
-    "long_description": "\ud83e\udd16 Supports GPT+ cookies\n\ud83d\udfe2 Detects valid, invalid, and expired cookies\n\u26a1 Optimized and proxyless\n\ud83d\udcc8 Useful for bulk validation",
+    "long_description": "\ud83e\udd16 Supports GPT+ cookies\n\ud83d\udfe2 Detects valid, invalid, and expired cookies\n\u26a1 Optimized and proxyless\n\ud83d\udcc8 Useful for bulk validation\n\ud83d\udcdd Now also find half pro subscription.",
     "requirements": "\u2705 No requirement.",
     "image": "assets/checkers-pic/chatgpt.jpg",
     "video": "",
     "images": [
       "assets/checkers-pic/checking/gpt1.png",
-      "assets/checkers-pic/checking/gpt2.png"
+      "assets/checkers-pic/checking/gpt2.png",
+      "assets/checkers-pic/checking/gpt3.png"
     ],
     "discount": null,
     "offer": null,
     "offer_expiry": null,
     "release_date": "2025-03-19",
-    "update_date": "2025-04-01",
+    "update_date": "2025-04-22",
     "tags": [
       "gpt"
     ],
