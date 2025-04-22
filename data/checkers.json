@@ -3,8 +3,8 @@
     "type": "Checker",
     "name": "Netflix Cookie Checker",
     "description": "Checks Netflix cookies and captures slot info.",
-    "long_description": "\u2705 Full slot details captured\n\ud83c\udf10 VPN recommended for IP restrictions\n\u2699\ufe0f Works with all cookie types\n\u23f1\ufe0f Reliable output no skip.",
-    "requirements": "\u2705 VPN needed to tackle ip ban.",
+    "long_description": "✅ Full slot details captured\n🌐 VPN recommended for IP restrictions\n⚙️ Works with all cookie types\n⏱️ Reliable output no skip.",
+    "requirements": "✅ VPN needed to tackle ip ban.",
     "image": "assets/checkers-pic/netflix.png",
     "video": "",
     "images": [
@@ -13,13 +13,11 @@
       "assets/checkers-pic/checking/netflix2.png"
     ],
     "discount": 30,
-    "offer": null,
-    "offer_expiry": null,
+    "offer": "Source Code discounted to $25 for 3 days",
+    "offer_expiry": "2025-04-25",
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
-    "tags": [
-      "netflix"
-    ],
+    "tags": ["netflix"],
     "keywords": [
       "netflix slot checker",
       "check netflix cookies",
@@ -34,7 +32,7 @@
       "2 Months": "$14 or 35 TP Cookies",
       "3 Months": "$17 or 43 TP Cookies",
       "Lifetime": "$23 or 60 TP Cookies or 15 TP monthly",
-      "Source Code": "$33",
+      "Source Code": "$25",
       "Custom Function": "+$5"
     }
   },
@@ -42,20 +40,17 @@
     "type": "Checker",
     "name": "Netflix Cookie Privatizer",
     "description": "Privatizes cookies safely and reliably.",
-    "long_description": "\ud83d\udd10 Privatizes any Netflix cookies\n\ud83d\udeab No negotiation or modification\n\ud83c\udf0d VPN support required for smooth experience",
-    "requirements": "\u2705 Don't use it to check cookies, use it to privatize cookies.",
+    "long_description": "🔐 Privatizes any Netflix cookies\n🚫 No negotiation or modification\n🌍 VPN support required for smooth experience",
+    "requirements": "✅ Don't use it to check cookies, use it to privatize cookies.",
     "image": "assets/checkers-pic/netflix.png",
     "video": "",
     "images": [],
     "discount": null,
-    "offer": null,
-    "offer_expiry": null,
+    "offer": "Source Code discounted to $30 for 3 days",
+    "offer_expiry": "2025-04-25",
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
-    "tags": [
-      "netflix",
-      "privatizer"
-    ],
+    "tags": ["netflix", "privatizer"],
     "keywords": [
       "netflix cookie privatizer",
       "make netflix cookies private",
@@ -67,15 +62,15 @@
       "1 Month": "$10 or 25 Cookies",
       "3 Months": "$20 or 50 Cookies",
       "Lifetime": "$25 or 15 Cookies monthly (No Patch)",
-      "Source Code": "$35"
+      "Source Code": "$30"
     }
   },
   {
     "type": "Checker",
     "name": "GPT Cookie Checker",
     "description": "Validates GPT+ cookies and captures access status.",
-    "long_description": "\ud83e\udd16 Supports GPT+ cookies\n\ud83d\udfe2 Detects valid, invalid, and expired cookies\n\u26a1 Optimized and proxyless\n\ud83d\udcc8 Useful for bulk validation\n\ud83d\udcdd Now also find half pro subscription.",
-    "requirements": "\u2705 No requirement.",
+    "long_description": "🤖 Supports GPT+ cookies\n🟢 Detects valid, invalid, and expired cookies\n⚡ Optimized and proxyless\n📈 Useful for bulk validation\n📝 Now also find half pro subscription.",
+    "requirements": "✅ No requirement.",
     "image": "assets/checkers-pic/chatgpt.jpg",
     "video": "",
     "images": [
@@ -84,13 +79,11 @@
       "assets/checkers-pic/checking/gpt3.png"
     ],
     "discount": null,
-    "offer": null,
-    "offer_expiry": null,
+    "offer": "Source Code discounted to $15 for 3 days",
+    "offer_expiry": "2025-04-25",
     "release_date": "2025-03-19",
     "update_date": "2025-04-22",
-    "tags": [
-      "gpt"
-    ],
+    "tags": ["gpt"],
     "keywords": [
       "chatgpt cookie check",
       "validate gpt cookies",
@@ -106,15 +99,15 @@
       "2 Months": "$6",
       "Lifetime (No Patch)": "$13",
       "Lifetime (Inc Patch)": "$17",
-      "Source Code": "$20"
+      "Source Code": "$15"
     }
   },
   {
     "type": "Checker",
     "name": "Spotify Cookie Checker",
     "description": "Detects free, premium, and mixed cookies.",
-    "long_description": "\ud83c\udfb5 Checks Spotify cookies for access level\n\ud83d\udd0d Finds free vs premium accounts\n\ud83d\udce6 Captures region and subscription info\n\ud83d\udee1\ufe0f Proxyless and efficient",
-    "requirements": "\u2705 No requirement.",
+    "long_description": "🎵 Checks Spotify cookies for access level\n🔍 Finds free vs premium accounts\n📦 Captures region and subscription info\n🛡️ Proxyless and efficient",
+    "requirements": "✅ No requirement.",
     "image": "assets/checkers-pic/spotify.jpg",
     "video": "",
     "images": [
@@ -122,13 +115,11 @@
       "assets/checkers-pic/checking/spotify2.png"
     ],
     "discount": null,
-    "offer": null,
-    "offer_expiry": null,
+    "offer": "Source Code discounted to $10 for 3 days",
+    "offer_expiry": "2025-04-25",
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
-    "tags": [
-      "spotify"
-    ],
+    "tags": ["spotify"],
     "keywords": [
       "spotify cookie checker",
       "check spotify login",
@@ -143,14 +134,14 @@
       "1 Month": "$3",
       "2 Months": "$5",
       "Lifetime (No Patch)": "$10",
-      "Source Code": "$15"
+      "Source Code": "$10"
     }
   },
   {
     "type": "Checker",
     "name": "Hotstar Cookie Checker",
     "description": "Validates Hotstar cookies instantly.",
-    "long_description": "\ud83d\udcfa Validates active Hotstar cookies\n\ud83d\udccd Shows region and package info\n\u2699\ufe0f Clean UI, proxyless, fast response",
+    "long_description": "📺 Validates active Hotstar cookies\n📍 Shows region and package info\n⚙️ Clean UI, proxyless, fast response",
     "image": "assets/checkers-pic/hotstar.png",
     "video": "",
     "images": [
@@ -159,15 +150,13 @@
       "assets/checkers-pic/checking/hotstar3.png",
       "assets/checkers-pic/checking/hotstar4.png"
     ],
-    "requirements": "\u2705 If not from india, use VPN to check cookies.",
+    "requirements": "✅ If not from india, use VPN to check cookies.",
     "discount": null,
-    "offer": null,
-    "offer_expiry": null,
+    "offer": "Source Code discounted to $15 for 3 days",
+    "offer_expiry": "2025-04-25",
     "release_date": "2025-03-19",
     "update_date": "2025-04-22",
-    "tags": [
-      "hotstar"
-    ],
+    "tags": ["hotstar"],
     "keywords": [
       "hotstar account check",
       "validate hotstar cookie",
@@ -181,28 +170,26 @@
       "1 Month": "$3",
       "2 Months": "$5",
       "Lifetime (No Patch)": "$10",
-      "Source Code": "$20"
+      "Source Code": "$15"
     }
   },
   {
     "type": "Checker",
     "name": "Prime Video Cookie Checker",
     "description": "Checks validity of Amazon Prime cookies.",
-    "long_description": "\ud83c\udfa5 Works globally to detect Prime Video cookies\n\u2705 Highlights valid, invalid, region-based data\n\ud83d\udca1 Minimal setup required",
-    "requirements": "\u2705 No requirement.",
+    "long_description": "🎥 Works globally to detect Prime Video cookies\n✅ Highlights valid, invalid, region-based data\n💡 Minimal setup required",
+    "requirements": "✅ No requirement.",
     "image": "assets/checkers-pic/primevideo.jpg",
     "video": "",
     "images": [
       "assets/checkers-pic/checking/primevideo1.png"
     ],
     "discount": null,
-    "offer": null,
-    "offer_expiry": null,
+    "offer": "Source Code discounted to $10 for 3 days",
+    "offer_expiry": "2025-04-25",
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
-    "tags": [
-      "prime"
-    ],
+    "tags": ["prime"],
     "keywords": [
       "prime video cookie check",
       "amazon prime cookie tool",
@@ -216,15 +203,15 @@
       "1 Month": "$3",
       "2 Months": "$5",
       "Lifetime (No Patch)": "$8",
-      "Source Code": "$15"
+      "Source Code": "$10"
     }
   },
   {
     "type": "Checker",
     "name": "Crunchyroll Cookie Checker",
     "description": "Detects valid anime streaming cookies.",
-    "long_description": "\ud83d\udcfa Designed for Crunchyroll logins\n\ud83d\udd0d Auto captcha solver, proxyless\n\ud83e\udde0 Captures session, subscription, region info\n\ud83c\udfaf Organized cookie sorting",
-    "requirements": "\u2705 No requirement.",
+    "long_description": "📺 Designed for Crunchyroll logins\n🔓 Auto captcha solver, proxyless\n🤖 Captures session, subscription, region info\n🎯 Organized cookie sorting",
+    "requirements": "✅ No requirement.",
     "image": "assets/checkers-pic/crunchyroll.png",
     "video": "",
     "images": [
@@ -232,13 +219,11 @@
       "assets/checkers-pic/checking/crunchyroll2.png"
     ],
     "discount": null,
-    "offer": null,
-    "offer_expiry": null,
+    "offer": "Source Code discounted to $15 for 3 days",
+    "offer_expiry": "2025-04-25",
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
-    "tags": [
-      "crunchyroll"
-    ],
+    "tags": ["crunchyroll"],
     "keywords": [
       "crunchyroll cookie checker",
       "anime login checker",
@@ -252,28 +237,26 @@
       "1 Week": "$4",
       "30 Days": "$7",
       "Lifetime (Inc Patch)": "$15",
-      "Source Code": "$20"
+      "Source Code": "$15"
     }
   },
   {
     "type": "Checker",
     "name": "Hulu Cookie Checker",
     "description": "Auto-categorizes Hulu cookies with ease.",
-    "long_description": "\ud83d\udcfa Automatically detects and validates Hulu cookies\n\ud83d\udd04 Sorts based on access level\n\ud83d\udfe2 Proxyless and fast",
-    "requirements": "\u2705 No requirement. But it is very hard to find hulu cookies due to less user and less demand.",
+    "long_description": "📺 Automatically detects and validates Hulu cookies\n🔄 Sorts based on access level\n🟢 Proxyless and fast",
+    "requirements": "✅ No requirement. But it is very hard to find hulu cookies due to less user and less demand.",
     "image": "assets/checkers-pic/hulu.jpg",
     "video": "",
     "images": [
       "assets/checkers-pic/checking/hulu1.png"
     ],
     "discount": null,
-    "offer": null,
-    "offer_expiry": null,
+    "offer": "Source Code discounted to $15 for 3 days",
+    "offer_expiry": "2025-04-25",
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
-    "tags": [
-      "hulu"
-    ],
+    "tags": ["hulu"],
     "keywords": [
       "hulu cookie check",
       "validate hulu login",
@@ -287,28 +270,26 @@
       "1 Week": "$4",
       "30 Days": "$7",
       "Lifetime (Inc Patch)": "$15",
-      "Source Code": "$20"
+      "Source Code": "$15"
     }
   },
   {
     "type": "Checker",
     "name": "Instagram Cookie Checker",
     "description": "Classifies Insta cookies by type and status.",
-    "long_description": "\ud83d\udcf8 Detects business, creator, personal, or expired\n\ud83e\udde0 Identifies duplicates\n\u2699\ufe0f Proxyless with clean result display",
-    "requirements": "\u2705 No requirement.",
+    "long_description": "📸 Detects business, creator, personal, or expired\n🤖 Identifies duplicates\n⚙️ Proxyless with clean result display",
+    "requirements": "✅ No requirement.",
     "image": "assets/checkers-pic/instagram.jpg",
     "video": "",
     "images": [
       "assets/checkers-pic/checking/instagram1.png"
     ],
     "discount": null,
-    "offer": null,
-    "offer_expiry": null,
+    "offer": "Source Code discounted to $15 for 3 days",
+    "offer_expiry": "2025-04-25",
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
-    "tags": [
-      "instagram"
-    ],
+    "tags": ["instagram"],
     "keywords": [
       "instagram account checker",
       "cookie check instagram",
@@ -322,28 +303,26 @@
       "1 Week": "$4",
       "30 Days": "$7",
       "Lifetime (No Patch)": "$15",
-      "Source Code": "$20"
+      "Source Code": "$15"
     }
   },
   {
     "type": "Checker",
     "name": "Blackbox AI Cookie Checker",
     "description": "Detects free & paid Blackbox AI cookies.",
-    "long_description": "\ud83e\udd16 Shows valid, expired, and duplicate cookies\n\ud83d\udcca Captures email, subscription ID\n\ud83d\ude80 Proxyless and smooth",
-    "requirements": "\u2705 No requirement.",
+    "long_description": "🤖 Shows valid, expired, and duplicate cookies\n📊 Captures email, subscription ID\n🚀 Proxyless and smooth",
+    "requirements": "✅ No requirement.",
     "image": "assets/checkers-pic/blackboxai.png",
     "video": "",
     "images": [
       "assets/checkers-pic/checking/blackboxai1.png"
     ],
     "discount": null,
-    "offer": null,
-    "offer_expiry": null,
+    "offer": "Source Code discounted to $15 for 3 days",
+    "offer_expiry": "2025-04-25",
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
-    "tags": [
-      "blackbox"
-    ],
+    "tags": ["blackbox"],
     "keywords": [
       "blackbox ai login",
       "check blackbox cookie",
@@ -357,15 +336,15 @@
       "1 Week": "$4",
       "30 Days": "$7",
       "Lifetime (No Patch)": "$15",
-      "Source Code": "$20"
+      "Source Code": "$15"
     }
   },
   {
     "type": "Checker",
     "name": "2Captcha Cookie Checker",
     "description": "Checks API keys, balance, and token validity.",
-    "long_description": "\ud83d\udd11 Extracts API Key & Balance\n\ud83e\udde9 Proxyless & stable tool\n\ud83d\udcca Fast checker for token-based access",
-    "requirements": "\u2705 No requirement.",
+    "long_description": "🔑 Extracts API Key & Balance\n🦾 Proxyless & stable tool\n📊 Fast checker for token-based access",
+    "requirements": "✅ No requirement.",
     "image": "assets/checkers-pic/2captcha.png",
     "video": "",
     "images": [
@@ -373,13 +352,11 @@
       "assets/checkers-pic/checking/2captcha2.png"
     ],
     "discount": null,
-    "offer": null,
-    "offer_expiry": null,
+    "offer": "Source Code discounted to $15 for 3 days",
+    "offer_expiry": "2025-04-25",
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
-    "tags": [
-      "2captcha"
-    ],
+    "tags": ["2captcha"],
     "keywords": [
       "2captcha api key check",
       "balance checker 2captcha",
@@ -393,28 +370,26 @@
       "1 Week": "$4",
       "30 Days": "$7",
       "Lifetime (No Patch)": "$15",
-      "Source Code": "$20"
+      "Source Code": "$15"
     }
   },
   {
     "type": "Checker",
     "name": "Perplexity AI Cookie Checker",
     "description": "Detects free, paid, and duplicate cookies.",
-    "long_description": "\ud83e\udd2f Optimized for Perplexity.ai\n\ud83e\udde0 Auto-detects plan type, region, and status\n\ud83c\udf0d Fast & simple interface",
-    "requirements": "\u2705 No requirement.",
+    "long_description": "😲 Optimized for Perplexity.ai\n🤖 Auto-detects plan type, region, and status\n🌍 Fast & simple interface",
+    "requirements": "✅ No requirement.",
     "image": "assets/checkers-pic/perplexityai.jpg",
     "video": "",
     "images": [
       "assets/checkers-pic/checking/perplexityai1.png"
     ],
     "discount": null,
-    "offer": null,
-    "offer_expiry": null,
+    "offer": "Source Code discounted to $15 for 3 days",
+    "offer_expiry": "2025-04-25",
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
-    "tags": [
-      "perplexity"
-    ],
+    "tags": ["perplexity"],
     "keywords": [
       "perplexity ai login checker",
       "perplexity cookies status",
@@ -429,28 +404,26 @@
       "1 Week": "$4",
       "30 Days": "$7",
       "Lifetime (No Patch)": "$15",
-      "Source Code": "$20"
+      "Source Code": "$15"
     }
   },
   {
     "type": "Checker",
     "name": "Eneba Cookie Checker",
     "description": "Validates Eneba cookies, points, balance.",
-    "long_description": "\ud83d\udcb0 Displays account balance, loyalty points\n\ud83c\udfaf Great for log sorting & selling\n\u2705 Proxyless and real-time results",
-    "requirements": "\u2705 No requirement.",
+    "long_description": "💰 Displays account balance, loyalty points\n🎯 Great for log sorting & selling\n✅ Proxyless and real-time results",
+    "requirements": "✅ No requirement.",
     "image": "assets/checkers-pic/eneba.png",
     "video": "",
     "images": [
       "assets/checkers-pic/checking/eneba1.png"
     ],
     "discount": null,
-    "offer": null,
-    "offer_expiry": null,
+    "offer": "Source Code discounted to $20 for 3 days",
+    "offer_expiry": "2025-04-25",
     "release_date": "2025-03-25",
     "update_date": "2025-04-01",
-    "tags": [
-      "eneba"
-    ],
+    "tags": ["eneba"],
     "keywords": [
       "eneba balance check",
       "eneba account checker",
@@ -466,30 +439,26 @@
       "2 Months": "$16",
       "Lifetime (No Patch)": "$20",
       "Lifetime (Inc Patch)": "$25",
-      "Source Code": "$30"
+      "Source Code": "$20"
     }
   },
   {
     "type": "Checker",
     "name": "Nord Cookie Checker",
     "description": "Validates nord vpn cookies",
-    "long_description": "\n Checks cookies of nord vpn site and find out and capture all details of that account including payment details, services etc.\n And you can login in browser using valid cookie then login in app (in case of pc)",
-    "requirements": "\n No requirement but very hard to find cookies so get good logs.",
+    "long_description": "Checks cookies of nord vpn site and find out and capture all details of that account including payment details, services etc.\nAnd you can login in browser using valid cookie then login in app (in case of pc)",
+    "requirements": "No requirement but very hard to find cookies so get good logs.",
     "image": "assets/checkers-pic/nordvpn.png",
     "video": "",
     "images": [
       "assets/checkers-pic/checking/nordvpn1.png"
     ],
     "discount": null,
-    "offer": null,
-    "offer_expiry": null,
+    "offer": "Source Code discounted to $10 for 3 days",
+    "offer_expiry": "2025-04-25",
     "release_date": "2025-04-20",
     "update_date": "2025-04-20",
-    "tags": [
-      "nordvpn",
-      "vpn",
-      "recommended"
-    ],
+    "tags": ["nordvpn", "vpn", "recommended"],
     "keywords": [
       "nordvpn cookie checker",
       "check nordvpn cookies",
@@ -506,7 +475,7 @@
       "30 Days": "$8",
       "2 Months": "$10",
       "Lifetime (Inc Patch)": "$12",
-      "Source Code": "$15"
+      "Source Code": "$10"
     }
   }
 ]
