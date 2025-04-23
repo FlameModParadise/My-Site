@@ -326,9 +326,24 @@ function runSearch(raw = "") {
 }
 
 function applyFiltersAndRender() {
+  const offersSection      = document.getElementById("offers-section");
+  const recommendedSection = document.getElementById("recommended-section");
+  const limitedSection     = document.getElementById("limited-section");
+
   const searchRaw = sessionStorage.getItem(SEARCH_KEY) || "";
   const sortKey   = sessionStorage.getItem(SORT_KEY)   || "name";
   const typeKey   = sessionStorage.getItem(FILTER_KEY) || "all";
+
+  // hide special sections when filtering anything but “all”
+  if (typeKey !== "all") {
+    offersSection?.classList.add("hidden");
+    recommendedSection?.classList.add("hidden");
+    limitedSection?.classList.add("hidden");
+  } else {
+    offersSection?.classList.remove("hidden");
+    recommendedSection?.classList.remove("hidden");
+    limitedSection?.classList.remove("hidden");
+  }
 
   let list = [...allTools];
   if (typeKey !== "all")
