@@ -68,5 +68,20 @@
     "keywords": ["prime", "amazon", "cookie"],
     "image": "assets/images/primevideo.png",
     "stock": "unlimited"
+  },
+  {
+    "name": "Surfshark Cookies",
+    "type": "Cookie",
+    "description": "Surfshark cookies available as mixed plan.",
+    "long_description": "🌐 Surfshark Cookies\n- Mixed: General access cookies",
+    "requirements": "If you want any speific country, duration price will be 1$ per 1.",
+    "tags": ["surfshark", "cookie", "vpn"],
+    "release_date": "2025-04-23",
+    "update_date": "2025-04-023",
+    "price": "0.5$ per 1",
+    "contact": "telegram",
+    "keywords": ["surfshark", "cookie", "vpn"],
+    "image": "assets/images/surfshark.png",
+    "stock": "5"
   }
 ]
