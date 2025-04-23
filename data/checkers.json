@@ -444,6 +444,40 @@
   },
   {
     "type": "Checker",
+    "name": "Peacock Tv Cookie Checker",
+    "description": "Validates peacock cookies with its plan and payment details.",
+    "long_description": "📺 Validates Peacock TV cookies\n💳 Captures plan and payment details\n🌍 Proxyless and fast response\n✅ Great for account management",
+    "requirements": "✅ Must be us citizen or use VPN to check cookies.",
+    "image": "assets/checkers-pic/peacocktv.jpg",
+    "video": "",
+    "images": [
+      "assets/checkers-pic/checking/peacock1.png"
+    ],
+    "discount": null,
+    "offer": "",
+    "offer_expiry": null,
+    "release_date": "2025-04-23",
+    "update_date": "2025-04-23",
+    "tags": ["peacock tv"],
+    "keywords": [
+      "peacock tv cookie checker",
+      "validate peacock cookies",
+      "peacock tv account status",
+      "peacock tv plan details",
+      "peacock tv payment"
+    ],
+    "contact": "telegram",
+    "stock": "unlimited",
+    "pricing": {
+      "1 Day": "$1",
+      "1 Week": "$4",
+      "30 Days": "$8",
+      "Lifetime (No Patch)": "$13",
+      "Source Code": "$15"
+    }
+  },
+  {
+    "type": "Checker",
     "name": "Nord Cookie Checker",
     "description": "Validates nord vpn cookies",
     "long_description": "Checks cookies of nord vpn site and find out and capture all details of that account including payment details, services etc.\nAnd you can login in browser using valid cookie then login in app (in case of pc)",
