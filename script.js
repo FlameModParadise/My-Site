@@ -539,10 +539,10 @@ function showToolDetail(tool, initial = false) {
   `;
 
   /* --- dynamic bits ---------------------------------------------------- */
-  // override short description with the HTML version if present
+  // override with the HTML version if long_description is present
   const desc = document.querySelector('.tool-detail-right .tool-info .desc');
-  if (desc && tool.description)
-    desc.innerHTML = '<strong>Description:</strong><br>' + tool.description;
+  if (desc && tool.long_description)
+    desc.innerHTML = '<strong>Description:</strong><br>' + tool.long_description;
 
   // swap main image when thumbs are clicked
   const mainImg = document.querySelector('.tool-main-img');
