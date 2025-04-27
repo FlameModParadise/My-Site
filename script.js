@@ -229,7 +229,6 @@ async function loadData() {
     });
 
     generateFilterButtons();
-    populateSpecialSections();        // << fill the new sections
     applyFiltersAndRender();
     applyURLHash();
   } catch (err) {
@@ -257,19 +256,19 @@ function populateSpecialSections() {
     const off  = t.offer    && (!t.offer_expiry    || new Date(t.offer_expiry)    > now);
     return hasKeyword || disc || off;
   });
-  renderOrHide(offers, offersList, offersList.parentElement);
+  renderOrHide(offers, offersList, document.getElementById("offers-section"));
 
   /* RECOMMENDED */
   const recommended = allTools.filter(t =>
     (t.keywords || []).includes("recommended")
   );
-  renderOrHide(recommended, recommendedList, recommendedList.parentElement);
+  renderOrHide(recommended, recommendedList, document.getElementById("recommended-section"));
 
   /* LIMITED‑TIME */
   const limited = allTools.filter(t =>
     (t.keywords || []).includes("limited") || t.stock === 1
   );
-  renderOrHide(limited, limitedList, limitedList.parentElement);
+  renderOrHide(limited, limitedList, document.getElementById("limited-section"));
 }
 
 /* allow clicking cards in the extra lists */
@@ -433,6 +432,9 @@ function applyFiltersAndRender() {
     );
   searchInput.value = searchRaw;
   sortSelect.value = sortKey;
+
+  // Dynamically hide or show special sections
+  populateSpecialSections();
 }
 
 /* ----------  BADGE HELPERS & CARD MARKUP ---------- */
