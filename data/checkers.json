@@ -275,26 +275,23 @@
   },
   {
     "type": "Checker",
-    "name": "Instagram Cookie Checker",
-    "description": "Classifies Insta cookies by type and status.",
-    "long_description": "📸 Detects business, creator, personal, or expired\n🤖 Identifies duplicates\n⚙️ Proxyless with clean result display",
-    "requirements": "✅ No requirement.",
-    "image": "assets/checkers-pic/instagram.jpg",
+    "name": "Freepik Cookie Checker",
+    "description": "Freepik is a technology company specializing in AI tools for creating and editing audiovisual content.",
+    "long_description": "🖼️ Validates Freepik cookies\n🔍 Detects free vs premium accounts\n📊 Captures credit and some basic details.\n🌍 Proxyless and efficient.\nIf needed i can add payment capture in just 2$ extra.",
+    "requirements": "✅ Normally no requirement, sometime may need vpn.",
+    "image": "assets/checkers-pic/freepik.jpg",
     "video": "",
     "images": [
-      "assets/checkers-pic/checking/instagram1.png"
+      "assets/checkers-pic/checking/freepik1.png"
     ],
     "discount": null,
     "offer": "Source Code discounted to $15 for 3 days",
     "offer_expiry": "2025-04-25",
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
-    "tags": ["instagram"],
+    "tags": ["freepik"],
     "keywords": [
-      "instagram account checker",
-      "cookie check instagram",
-      "detect insta login",
-      "classify instagram session"
+      "freepik cookie checker"
     ],
     "contact": "telegram",
     "stock": "unlimited",
@@ -303,7 +300,7 @@
       "1 Week": "$4",
       "30 Days": "$7",
       "Lifetime (No Patch)": "$15",
-      "Source Code": "$15"
+      "Source Code": "$17"
     }
   },
   {
