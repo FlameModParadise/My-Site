@@ -279,16 +279,16 @@
     "description": "Freepik is a technology company specializing in AI tools for creating and editing audiovisual content.",
     "long_description": "🖼️ Validates Freepik cookies\n🔍 Detects free vs premium accounts\n📊 Captures credit and some basic details.\n🌍 Proxyless and efficient.\nIf needed i can add payment capture in just 2$ extra.",
     "requirements": "✅ Normally no requirement, sometime may need vpn.",
-    "image": "assets/checkers-pic/freepik.jpg",
+    "image": "assets/checkers-pic/freepik.png",
     "video": "",
     "images": [
       "assets/checkers-pic/checking/freepik1.png"
     ],
     "discount": null,
-    "offer": "Source Code discounted to $15 for 3 days",
-    "offer_expiry": "2025-04-25",
-    "release_date": "2025-03-19",
-    "update_date": "2025-04-01",
+    "offer": null,
+    "offer_expiry": null,
+    "release_date": "2025-04-29",
+    "update_date": "2025-04-29",
     "tags": ["freepik"],
     "keywords": [
       "freepik cookie checker"
