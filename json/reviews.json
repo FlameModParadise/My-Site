@@ -11,6 +11,7 @@
       "../assets/reviews/nfcookies7.png",
       "../assets/reviews/nfcookies8.png",
       "../assets/reviews/nfcookies9.png",
+      "../assets/reviews/nfcookies10.png",
       "../assets/reviews/hotstarcookies1.png",
       "../assets/reviews/gptcookie1.png"
     ]
@@ -62,6 +63,12 @@
     "category": "2cpatcha Cookie Checker Sold",
     "images": [
       "../assets/reviews/2captchacookiechecker1.png"
+    ]
+  },
+  {
+    "category": "Freepik Cookie Checker Sold",
+    "images": [
+      "../assets/reviews/freepik1.png"
     ]
   },
   {
