@@ -1537,15 +1537,15 @@ body.dark .autocomplete-box div.selected:hover {
   transition: all 0.3s ease;
 }
 
-body.dark #offers-section, 
-body.dark #recommended-section, 
+body.dark #offers-section,
+body.dark #recommended-section,
 body.dark #limited-section {
   background: rgba(0, 0, 0, 0.6); /* Dark mode glass effect */
   box-shadow: 0 6px 20px rgba(255, 255, 255, 0.1);
 }
 
-#offers-section h2, 
-#recommended-section h2, 
+#offers-section h2,
+#recommended-section h2,
 #limited-section h2 {
   font-size: 1.8rem;
   font-weight: 700;
@@ -1553,14 +1553,14 @@ body.dark #limited-section {
   color: var(--text-light);
 }
 
-body.dark #offers-section h2, 
-body.dark #recommended-section h2, 
+body.dark #offers-section h2,
+body.dark #recommended-section h2,
 body.dark #limited-section h2 {
   color: var(--text-dark);
 }
 
-#offers-section .carousel, 
-#recommended-section .carousel, 
+#offers-section .carousel,
+#recommended-section .carousel,
 #limited-section .carousel {
   display: flex;
   gap: 1rem; /* Reduced gap for better alignment */
@@ -1569,8 +1569,8 @@ body.dark #limited-section h2 {
 }
 
 /* ================ OPTIMIZED CARD STYLES ================ */
-#offers-section .tool-card, 
-#recommended-section .tool-card, 
+#offers-section .tool-card,
+#recommended-section .tool-card,
 #limited-section .tool-card {
   flex: 0 0 160px; /* Smaller card width */
   background: rgba(255, 255, 255, 0.9); /* Light mode glass effect */
@@ -1583,22 +1583,22 @@ body.dark #limited-section h2 {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-body.dark #offers-section .tool-card, 
-body.dark #recommended-section .tool-card, 
+body.dark #offers-section .tool-card,
+body.dark #recommended-section .tool-card,
 body.dark #limited-section .tool-card {
   background: rgba(0, 0, 0, 0.8); /* Dark mode glass effect */
   box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2), 0 2px 4px rgba(0, 0, 0, 0.3) inset;
 }
 
-#offers-section .tool-card:hover, 
-#recommended-section .tool-card:hover, 
+#offers-section .tool-card:hover,
+#recommended-section .tool-card:hover,
 #limited-section .tool-card:hover {
   transform: perspective(800px) translateZ(15px) scale(1.03);
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25), 0 4px 6px rgba(0, 0, 0, 0.15) inset;
 }
 
-body.dark #offers-section .tool-card:hover, 
-body.dark #recommended-section .tool-card:hover, 
+body.dark #offers-section .tool-card:hover,
+body.dark #recommended-section .tool-card:hover,
 body.dark #limited-section .tool-card:hover {
   box-shadow: 0 12px 24px rgba(255, 255, 255, 0.3), 0 4px 6px rgba(0, 0, 0, 0.4) inset;
   filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3)); /* Glow effect */
@@ -1606,8 +1606,8 @@ body.dark #limited-section .tool-card:hover {
 
 /* Responsive adjustments for cards */
 @media (max-width: 768px) {
-  #offers-section .tool-card, 
-  #recommended-section .tool-card, 
+  #offers-section .tool-card,
+  #recommended-section .tool-card,
   #limited-section .tool-card {
     flex: 0 0 140px; /* Smaller width for tablets */
     padding: 0.5rem;
@@ -1615,8 +1615,8 @@ body.dark #limited-section .tool-card:hover {
 }
 
 @media (max-width: 480px) {
-  #offers-section .tool-card, 
-  #recommended-section .tool-card, 
+  #offers-section .tool-card,
+  #recommended-section .tool-card,
   #limited-section .tool-card {
     flex: 0 0 120px; /* Smaller width for mobile */
     padding: 0.4rem;

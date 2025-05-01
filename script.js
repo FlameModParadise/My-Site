@@ -333,7 +333,7 @@ function applyFiltersAndRender() {
   const sortKey   = sessionStorage.getItem(SORT_KEY)   || "name";
   const typeKey   = sessionStorage.getItem(FILTER_KEY) || "all";
 
-  // hide special sections when filtering anything but “all”
+  // Hide special sections when filtering anything but "all"
   if (typeKey !== "all") {
     offersSection?.classList.add("hidden");
     recommendedSection?.classList.add("hidden");
@@ -434,7 +434,9 @@ function applyFiltersAndRender() {
   sortSelect.value = sortKey;
 
   // Dynamically hide or show special sections
-  populateSpecialSections();
+  if (typeKey === "all") {
+    populateSpecialSections();
+  }
 }
 
 /* ----------  BADGE HELPERS & CARD MARKUP ---------- */
