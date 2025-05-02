@@ -204,22 +204,19 @@ function renderInto(selector, list) {
 /* ----------  LOAD DATA  ---------- */
 async function loadData() {
   container.className = "main-grid";
-  container.innerHTML =
-    "<div class='tool-card skeleton'></div>".repeat(12);
+  container.innerHTML = "<div class='tool-card skeleton'></div>".repeat(12);
 
   try {
-    const data = await Promise.all(
+    const data = await Promise.allSettled(
       DATA_FILES.map((u) =>
-        fetch(u)
-          .then((r) => (r.ok ? r.json() : Promise.reject(r.statusText)))
-          .catch((e) => {
-            console.error("failed", u, e);
-            return [];
-          })
+        fetch(u).then((r) => (r.ok ? r.json() : Promise.reject(r.statusText)))
       )
     );
 
-    const merged = data.flat();
+    const merged = data
+      .filter((result) => result.status === "fulfilled")
+      .flatMap((result) => result.value);
+
     const seen = new Set();
     allTools = merged.filter((t) => {
       if (!t.name || !t.type) return false;
@@ -233,7 +230,7 @@ async function loadData() {
     applyFiltersAndRender();
     applyURLHash();
   } catch (err) {
-    console.error(err);
+    console.error("Error loading data:", err);
     container.innerHTML = "<p>Error loading data.</p>";
   }
 }

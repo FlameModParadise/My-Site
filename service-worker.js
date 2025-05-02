@@ -49,16 +49,16 @@ self.addEventListener("fetch", (e) => {
     return;                                         // stop here
   }
 
-  /* 2 JSON – stale‑while‑revalidate */
+  /* 2 JSON – network‑FIRST */
   if (url.pathname.endsWith(".json")) {
     e.respondWith(
-      caches.open(RUNTIME_JSON).then(async (cache) => {
-        const cached = await cache.match(req);
-        const network = fetch(req)
-          .then((resp) => { cache.put(req, resp.clone()); return resp; })
-          .catch(() => cached);
-        return cached || network;                   // prefer cache, update in bg
-      })
+      fetch(req)
+        .then((resp) => {
+          const clone = resp.clone();
+          caches.open(RUNTIME_JSON).then((cache) => cache.put(req, clone));
+          return resp;
+        })
+        .catch(() => caches.match(req))
     );
     return;
   }
