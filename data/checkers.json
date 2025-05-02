@@ -106,7 +106,7 @@
     "type": "Checker",
     "name": "Spotify Cookie Checker",
     "description": "Identify free, premium, and mixed Spotify cookies.",
-    "long_description": "🎵 Analyze Spotify cookies to determine access levels.\n🔍 Differentiate between free and premium accounts.\n📦 Capture region and subscription details.\n🛡️ Efficient and works without proxies.",
+    "long_description": "📦 Capture region and subscription details.\n🛡️ Efficient and works without proxies.\nCaptures spotify links and address.",
     "requirements": "✅ No specific requirements.",
     "image": "assets/checkers-pic/spotify.jpg",
     "video": "",
@@ -134,7 +134,7 @@
       "1 Month": "$3",
       "2 Months": "$5",
       "Lifetime (No Patch)": "$10",
-      "Source Code": "$10"
+      "Source Code": "$13"
     }
   },
   {
@@ -236,7 +236,7 @@
       "1 Day": "$1",
       "1 Week": "$4",
       "30 Days": "$7",
-      "Lifetime (Inc Patch)": "$15",
+      "Lifetime (Inc Patch)": "$12",
       "Source Code": "$15"
     }
   },
@@ -269,7 +269,7 @@
       "1 Day": "$1",
       "1 Week": "$4",
       "30 Days": "$7",
-      "Lifetime (Inc Patch)": "$15",
+      "Lifetime (Inc Patch)": "$12",
       "Source Code": "$15"
     }
   },
@@ -332,7 +332,7 @@
       "1 Day": "$1",
       "1 Week": "$4",
       "30 Days": "$7",
-      "Lifetime (No Patch)": "$15",
+      "Lifetime (No Patch)": "$12",
       "Source Code": "$15"
     }
   },
@@ -366,7 +366,7 @@
       "1 Day": "$1",
       "1 Week": "$4",
       "30 Days": "$7",
-      "Lifetime (No Patch)": "$15",
+      "Lifetime (No Patch)": "$12",
       "Source Code": "$15"
     }
   },
@@ -400,7 +400,7 @@
       "1 Day": "$1",
       "1 Week": "$4",
       "30 Days": "$7",
-      "Lifetime (No Patch)": "$15",
+      "Lifetime (No Patch)": "$12",
       "Source Code": "$15"
     }
   },
@@ -433,9 +433,8 @@
       "1 Day": "$1",
       "1 Week": "$4",
       "30 Days": "$10",
-      "2 Months": "$16",
-      "Lifetime (No Patch)": "$20",
-      "Lifetime (Inc Patch)": "$25",
+      "Lifetime (No Patch)": "$13",
+      "Lifetime (Inc Patch)": "$15",
       "Source Code": "$20"
     }
   },
@@ -500,9 +499,8 @@
       "1 Day": "$1",
       "1 Week": "$4",
       "30 Days": "$8",
-      "2 Months": "$10",
-      "Lifetime (Inc Patch)": "$12",
-      "Source Code": "$10"
+      "Lifetime (Inc Patch)": "$10",
+      "Source Code": "$12"
     } 
   } 
 ]
