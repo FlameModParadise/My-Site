@@ -12,8 +12,8 @@
       "assets/checkers-pic/checking.png",
       "assets/checkers-pic/checking/netflix2.png"
     ],
-    "discount": 30,
-    "offer": "Source Code discounted to $25 for 3 days",
+    "discount": null,
+    "offer": null,
     "offer_expiry": "2025-04-25",
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
@@ -46,7 +46,7 @@
     "video": "",
     "images": [],
     "discount": null,
-    "offer": "Source Code discounted to $30 for 3 days",
+    "offer": null,
     "offer_expiry": "2025-04-25",
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
@@ -79,7 +79,7 @@
       "assets/checkers-pic/checking/gpt3.png"
     ],
     "discount": null,
-    "offer": "Source Code discounted to $15 for 3 days",
+    "offer": null,
     "offer_expiry": "2025-04-25",
     "release_date": "2025-03-19",
     "update_date": "2025-04-22",
@@ -115,7 +115,7 @@
       "assets/checkers-pic/checking/spotify2.png"
     ],
     "discount": null,
-    "offer": "Source Code discounted to $10 for 3 days",
+    "offer": null,
     "offer_expiry": "2025-04-25",
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
@@ -152,7 +152,7 @@
       "assets/checkers-pic/checking/hotstar4.png"
     ],
     "discount": null,
-    "offer": "Source Code discounted to $15 for 3 days",
+    "offer": null,
     "offer_expiry": "2025-04-25",
     "release_date": "2025-03-19",
     "update_date": "2025-04-22",
@@ -185,7 +185,7 @@
       "assets/checkers-pic/checking/primevideo1.png"
     ],
     "discount": null,
-    "offer": "Source Code discounted to $10 for 3 days",
+    "offer": null,
     "offer_expiry": "2025-04-25",
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
@@ -219,7 +219,7 @@
       "assets/checkers-pic/checking/crunchyroll2.png"
     ],
     "discount": null,
-    "offer": "Source Code discounted to $15 for 3 days",
+    "offer": null,
     "offer_expiry": "2025-04-25",
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
@@ -252,7 +252,7 @@
       "assets/checkers-pic/checking/hulu1.png"
     ],
     "discount": null,
-    "offer": "Source Code discounted to $15 for 3 days",
+    "offer": null,
     "offer_expiry": "2025-04-25",
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
@@ -315,7 +315,7 @@
       "assets/checkers-pic/checking/blackboxai1.png"
     ],
     "discount": null,
-    "offer": "Source Code discounted to $15 for 3 days",
+    "offer": null,
     "offer_expiry": "2025-04-25",
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
@@ -349,7 +349,7 @@
       "assets/checkers-pic/checking/2captcha2.png"
     ],
     "discount": null,
-    "offer": "Source Code discounted to $15 for 3 days",
+    "offer": null,
     "offer_expiry": "2025-04-25",
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
@@ -382,7 +382,7 @@
       "assets/checkers-pic/checking/perplexityai1.png"
     ],
     "discount": null,
-    "offer": "Source Code discounted to $15 for 3 days",
+    "offer": null,
     "offer_expiry": "2025-04-25",
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
@@ -416,7 +416,7 @@
       "assets/checkers-pic/checking/eneba1.png"
     ],
     "discount": null,
-    "offer": "Source Code discounted to $20 for 3 days",
+    "offer": null,
     "offer_expiry": "2025-04-25",
     "release_date": "2025-03-25",
     "update_date": "2025-04-01",
@@ -450,7 +450,7 @@
       "assets/checkers-pic/checking/peacock1.png"
     ],
     "discount": null,
-    "offer": "",
+    "offer": null,
     "offer_expiry": null,
     "release_date": "2025-04-23",
     "update_date": "2025-04-23",
@@ -481,7 +481,7 @@
       "assets/checkers-pic/checking/nordvpn1.png"
     ],
     "discount": null,
-    "offer": "Source Code discounted to $10 for 3 days",
+    "offer": null,
     "offer_expiry": "2025-04-25",
     "release_date": "2025-04-20",
     "update_date": "2025-04-20",
