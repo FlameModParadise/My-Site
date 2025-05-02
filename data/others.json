@@ -2,8 +2,8 @@
   {
     "name": "Discord Nitro (Full)",
     "type": "Others",
-    "description": "Get Discord Nitro with Boost — available as both trial and full versions.",
-    "long_description": "Enjoy the full experience of Discord Nitro with Boost. Choose between a trial option or full-length subscription. Fast delivery and simple setup guaranteed.",
+    "description": "Unlock the full Discord Nitro experience with Boost — available as trial or full versions.",
+    "long_description": "Enjoy the complete features of Discord Nitro with Boost. Choose between a trial or full-length subscription. Fast delivery and easy setup guaranteed.",
     "image": "assets/others/discordnitrofull.jpg",
     "requirements": "1. Your Discord account must be at least 1 month old.\n2. If selecting a trial, you must not have used Discord Nitro before and must have a working payment method.",
     "images": [],
@@ -26,8 +26,8 @@
   {
     "name": "Discord Nitro (Basic)",
     "type": "Others",
-    "description": "Affordable full version of Discord Nitro for eligible accounts.",
-    "long_description": "If your Discord account has never used Nitro, you're eligible to get the full version at the cheapest rate. Perfect for first-time Nitro users.",
+    "description": "Get the full version of Discord Nitro at an affordable price for eligible accounts.",
+    "long_description": "If your Discord account has never used Nitro, you can get the full version at the lowest rate. Ideal for first-time Nitro users.",
     "image": "assets/others/discordnitrobasic.png",
     "requirements": "1. Your Discord account must be at least 1 month old.\n2. You must not have previously activated Discord Nitro.",
     "images": [],
@@ -46,10 +46,10 @@
     "keywords": ["discord", "nitro", "basic", "full version", "subscription", "first time"]
   },
   {
-    "name": "Surfshark VPN ",
+    "name": "Surfshark VPN",
     "type": "Others",
-    "description": "Affordable surfshark vpn.",
-    "long_description": "Want to surf the web securely and privately? Get Surfshark VPN at a discounted rate. Fast delivery and easy setup.\n All are unlimited devices.",
+    "description": "Secure your online activity with Surfshark VPN at an affordable price.",
+    "long_description": "Browse the web securely and privately with Surfshark VPN. Get it at a discounted rate with fast delivery and easy setup. Supports unlimited devices.",
     "image": "assets/others/surfshark.jpg",
     "requirements": "1.If you are buying trial only 1 time it can be activated and need card.",
     "images": [],

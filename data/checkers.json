@@ -2,9 +2,9 @@
   {
     "type": "Checker",
     "name": "Netflix Cookie Checker",
-    "description": "Checks Netflix cookies and captures slot info.",
-    "long_description": "✅ Full slot details captured\n🌐 VPN recommended for IP restrictions\n⚙️ Works with all cookie types\n⏱️ Reliable output no skip.",
-    "requirements": "✅ VPN needed to tackle ip ban.",
+    "description": "Effortlessly validate Netflix cookies and capture slot details.",
+    "long_description": "✅ Capture complete slot details with precision.\n🌐 Recommended to use a VPN to bypass IP restrictions.\n⚙️ Compatible with all cookie types.\n⏱️ Provides reliable output without skipping.",
+    "requirements": "✅ A VPN is required to avoid IP bans.",
     "image": "assets/checkers-pic/netflix.png",
     "video": "",
     "images": [
@@ -39,9 +39,9 @@
   {
     "type": "Checker",
     "name": "Netflix Cookie Privatizer",
-    "description": "Privatizes cookies safely and reliably.",
-    "long_description": "🔐 Privatizes any Netflix cookies\n🚫 No negotiation or modification\n🌍 VPN support required for smooth experience",
-    "requirements": "✅ Don't use it to check cookies, use it to privatize cookies.",
+    "description": "Securely privatize Netflix cookies with ease.",
+    "long_description": "🔐 Safely privatize any Netflix cookies.\n🚫 No modifications or negotiations allowed.\n🌍 VPN support is recommended for a seamless experience.",
+    "requirements": "✅ Use this tool only for privatizing cookies, not for checking them.",
     "image": "assets/checkers-pic/netflix.png",
     "video": "",
     "images": [],
@@ -68,9 +68,9 @@
   {
     "type": "Checker",
     "name": "GPT Cookie Checker",
-    "description": "Validates GPT+ cookies and captures access status.",
-    "long_description": "🤖 Supports GPT+ cookies\n🟢 Detects valid, invalid, and expired cookies\n⚡ Optimized and proxyless\n📈 Useful for bulk validation\n📝 Now also find half pro subscription.",
-    "requirements": "✅ No requirement.",
+    "description": "Validate GPT+ cookies and determine access status.",
+    "long_description": "🤖 Supports GPT+ cookies validation.\n🟢 Identifies valid, invalid, and expired cookies.\n⚡ Optimized for performance and works without proxies.\n📈 Ideal for bulk validation tasks.\n📝 Now includes detection for half-pro subscriptions.",
+    "requirements": "✅ No specific requirements.",
     "image": "assets/checkers-pic/chatgpt.jpg",
     "video": "",
     "images": [
@@ -105,9 +105,9 @@
   {
     "type": "Checker",
     "name": "Spotify Cookie Checker",
-    "description": "Detects free, premium, and mixed cookies.",
-    "long_description": "🎵 Checks Spotify cookies for access level\n🔍 Finds free vs premium accounts\n📦 Captures region and subscription info\n🛡️ Proxyless and efficient",
-    "requirements": "✅ No requirement.",
+    "description": "Identify free, premium, and mixed Spotify cookies.",
+    "long_description": "🎵 Analyze Spotify cookies to determine access levels.\n🔍 Differentiate between free and premium accounts.\n📦 Capture region and subscription details.\n🛡️ Efficient and works without proxies.",
+    "requirements": "✅ No specific requirements.",
     "image": "assets/checkers-pic/spotify.jpg",
     "video": "",
     "images": [
@@ -140,8 +140,9 @@
   {
     "type": "Checker",
     "name": "Hotstar Cookie Checker",
-    "description": "Validates Hotstar cookies instantly.",
-    "long_description": "📺 Validates active Hotstar cookies\n📍 Shows region and package info\n⚙️ Clean UI, proxyless, fast response",
+    "description": "Quickly validate Hotstar cookies and retrieve account details.",
+    "long_description": "📺 Validate active Hotstar cookies instantly.\n📍 Display region and package information.\n⚙️ Features a clean UI with fast, proxyless responses.",
+    "requirements": "✅ Use a VPN if you are not located in India.",
     "image": "assets/checkers-pic/hotstar.png",
     "video": "",
     "images": [
@@ -150,7 +151,6 @@
       "assets/checkers-pic/checking/hotstar3.png",
       "assets/checkers-pic/checking/hotstar4.png"
     ],
-    "requirements": "✅ If not from india, use VPN to check cookies.",
     "discount": null,
     "offer": "Source Code discounted to $15 for 3 days",
     "offer_expiry": "2025-04-25",
@@ -176,9 +176,9 @@
   {
     "type": "Checker",
     "name": "Prime Video Cookie Checker",
-    "description": "Checks validity of Amazon Prime cookies.",
-    "long_description": "🎥 Works globally to detect Prime Video cookies\n✅ Highlights valid, invalid, region-based data\n💡 Minimal setup required",
-    "requirements": "✅ No requirement.",
+    "description": "Verify Amazon Prime Video cookies globally.",
+    "long_description": "🎥 Detect valid, invalid, and region-specific Prime Video cookies.\n✅ Highlights account details with minimal setup.\n💡 Works seamlessly across regions.",
+    "requirements": "✅ No specific requirements.",
     "image": "assets/checkers-pic/primevideo.jpg",
     "video": "",
     "images": [
@@ -209,9 +209,9 @@
   {
     "type": "Checker",
     "name": "Crunchyroll Cookie Checker",
-    "description": "Detects valid anime streaming cookies.",
-    "long_description": "📺 Designed for Crunchyroll logins\n🔓 Auto captcha solver, proxyless\n🤖 Captures session, subscription, region info\n🎯 Organized cookie sorting",
-    "requirements": "✅ No requirement.",
+    "description": "Validate Crunchyroll cookies and capture subscription details.",
+    "long_description": "📺 Designed for Crunchyroll account validation.\n🔓 Includes auto-captcha solving and works without proxies.\n🤖 Captures session, subscription, and region details.\n🎯 Organizes cookies for easy sorting.",
+    "requirements": "✅ No specific requirements.",
     "image": "assets/checkers-pic/crunchyroll.png",
     "video": "",
     "images": [
@@ -243,9 +243,9 @@
   {
     "type": "Checker",
     "name": "Hulu Cookie Checker",
-    "description": "Auto-categorizes Hulu cookies with ease.",
-    "long_description": "📺 Automatically detects and validates Hulu cookies\n🔄 Sorts based on access level\n🟢 Proxyless and fast",
-    "requirements": "✅ No requirement. But it is very hard to find hulu cookies due to less user and less demand.",
+    "description": "Efficiently categorize and validate Hulu cookies.",
+    "long_description": "📺 Automatically detects and validates Hulu cookies.\n🔄 Sorts cookies based on access levels.\n🟢 Fast and works without proxies.",
+    "requirements": "✅ No specific requirements. However, finding Hulu cookies can be challenging due to low demand.",
     "image": "assets/checkers-pic/hulu.jpg",
     "video": "",
     "images": [
@@ -276,9 +276,9 @@
   {
     "type": "Checker",
     "name": "Freepik Cookie Checker",
-    "description": "Freepik is a technology company specializing in AI tools for creating and editing audiovisual content.",
-    "long_description": "🖼️ Validates Freepik cookies\n🔍 Detects free vs premium accounts\n📊 Captures credit and some basic details.\n🌍 Proxyless and efficient.\nIf needed i can add payment capture in just 2$ extra.",
-    "requirements": "✅ Normally no requirement, sometime may need vpn.",
+    "description": "Validate Freepik cookies and capture account details.",
+    "long_description": "🖼️ Check Freepik cookies for free or premium accounts.\n🔍 Detects account credits and basic details.\n📊 Efficient and works without proxies.\n🌍 Optional payment capture available for an additional $2.",
+    "requirements": "✅ Generally no requirements, but a VPN may be needed occasionally.",
     "image": "assets/checkers-pic/freepik.png",
     "video": "",
     "images": [
@@ -306,9 +306,9 @@
   {
     "type": "Checker",
     "name": "Blackbox AI Cookie Checker",
-    "description": "Detects free & paid Blackbox AI cookies.",
-    "long_description": "🤖 Shows valid, expired, and duplicate cookies\n📊 Captures email, subscription ID\n🚀 Proxyless and smooth",
-    "requirements": "✅ No requirement.",
+    "description": "Validate Blackbox AI cookies and capture subscription details.",
+    "long_description": "🤖 Detect valid, expired, and duplicate cookies.\n📊 Retrieve email and subscription ID details.\n🚀 Smooth and proxyless operation.",
+    "requirements": "✅ No specific requirements.",
     "image": "assets/checkers-pic/blackboxai.png",
     "video": "",
     "images": [
@@ -339,9 +339,9 @@
   {
     "type": "Checker",
     "name": "2Captcha Cookie Checker",
-    "description": "Checks API keys, balance, and token validity.",
-    "long_description": "🔑 Extracts API Key & Balance\n🦾 Proxyless & stable tool\n📊 Fast checker for token-based access",
-    "requirements": "✅ No requirement.",
+    "description": "Validate 2Captcha API keys and token balances.",
+    "long_description": "🔑 Extract API keys and account balances.\n🦾 Stable and works without proxies.\n📊 Fast and efficient for token-based access validation.",
+    "requirements": "✅ No specific requirements.",
     "image": "assets/checkers-pic/2captcha.png",
     "video": "",
     "images": [
@@ -373,9 +373,9 @@
   {
     "type": "Checker",
     "name": "Perplexity AI Cookie Checker",
-    "description": "Detects free, paid, and duplicate cookies.",
-    "long_description": "😲 Optimized for Perplexity.ai\n🤖 Auto-detects plan type, region, and status\n🌍 Fast & simple interface",
-    "requirements": "✅ No requirement.",
+    "description": "Validate Perplexity AI cookies and account details.",
+    "long_description": "😲 Optimized for Perplexity.ai accounts.\n🤖 Automatically detects plan type, region, and status.\n🌍 Fast and user-friendly interface.",
+    "requirements": "✅ No specific requirements.",
     "image": "assets/checkers-pic/perplexityai.jpg",
     "video": "",
     "images": [
@@ -407,9 +407,9 @@
   {
     "type": "Checker",
     "name": "Eneba Cookie Checker",
-    "description": "Validates Eneba cookies, points, balance.",
-    "long_description": "💰 Displays account balance, loyalty points\n🎯 Great for log sorting & selling\n✅ Proxyless and real-time results",
-    "requirements": "✅ No requirement.",
+    "description": "Validate Eneba cookies and retrieve account balances.",
+    "long_description": "💰 Display account balances and loyalty points.\n🎯 Ideal for log sorting and account management.\n✅ Provides real-time results without proxies.",
+    "requirements": "✅ No specific requirements.",
     "image": "assets/checkers-pic/eneba.png",
     "video": "",
     "images": [
@@ -441,10 +441,10 @@
   },
   {
     "type": "Checker",
-    "name": "Peacock Tv Cookie Checker",
-    "description": "Validates peacock cookies with its plan and payment details.",
-    "long_description": "📺 Validates Peacock TV cookies\n💳 Captures plan and payment details\n🌍 Proxyless and fast response\n✅ Great for account management",
-    "requirements": "✅ Must be us citizen or use VPN to check cookies.",
+    "name": "Peacock TV Cookie Checker",
+    "description": "Validate Peacock TV cookies and retrieve plan details.",
+    "long_description": "📺 Check Peacock TV cookies for plan and payment details.\n💳 Capture subscription and payment information.\n🌍 Fast and works without proxies.\n✅ Ideal for account management.",
+    "requirements": "✅ Must be a US citizen or use a VPN to validate cookies.",
     "image": "assets/checkers-pic/peacocktv.jpg",
     "video": "",
     "images": [
@@ -473,9 +473,9 @@
   {
     "type": "Checker",
     "name": "Nord Cookie Checker",
-    "description": "Validates nord vpn cookies",
-    "long_description": "Checks cookies of nord vpn site and find out and capture all details of that account including payment details, services etc.\nAnd you can login in browser using valid cookie then login in app (in case of pc)",
-    "requirements": "No requirement but very hard to find cookies so get good logs.",
+    "description": "Validate NordVPN cookies and capture account details.",
+    "long_description": "🔒 Check NordVPN cookies to retrieve account details, including payment information and services.\n💻 Use valid cookies to log in via browser and app (for PC users).",
+    "requirements": "✅ No specific requirements, but finding cookies can be challenging. Ensure good logs.",
     "image": "assets/checkers-pic/nordvpn.png",
     "video": "",
     "images": [

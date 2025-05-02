@@ -2,8 +2,8 @@
   {
     "name": "Netflix Methods",
     "type": "Method",
-    "description": "Access Netflix via EM, C2P, and Privatizing strategies.",
-    "long_description": "🛠️ Netflix Methods:\n- Netflix C2P: Change owner mail to your own.\n- Netflix EM: Get an invite without touching the owner's mail.\n- Manual Privatize: Convert public Netflix cookies into private ones.",
+    "description": "Learn Netflix access techniques like EM, C2P, and privatization.",
+    "long_description": "🛠️ Netflix Methods:\n- Netflix C2P: Change the owner's email to your own.\n- Netflix EM: Receive an invite without accessing the owner's email.\n- Manual Privatize: Transform public Netflix cookies into private ones.",
     "tags": ["netflix", "Method", "c2p", "em", "private"],
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
@@ -17,8 +17,8 @@
   {
     "name": "GPT Invite Trick",
     "type": "Method",
-    "description": "Invite-based GPT+ access.",
-    "long_description": "🧠 GPT Invite Trick:\n- Invite is sent to your own mail.\n- It works based on luck only.\n- Fully automatic delivery.\n- Same as Netflix lifetime method.",
+    "description": "Gain GPT+ access through invite-based methods.",
+    "long_description": "🧠 GPT Invite Trick:\n- Receive an invite directly to your email.\n- Works on a luck-based system.\n- Fully automated delivery.\n- Similar to Netflix lifetime methods.",
     "tags": ["Chatgpt", "Method", "invite"],
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
@@ -32,8 +32,8 @@
   {
     "name": "Spotify Methods",
     "type": "Method",
-    "description": "Simple Spotify invitation and conversion tricks.",
-    "long_description": "🎵 Spotify Methods:\n- Mail Invite: Spotify invite sent to your mail.\n- C2P: Convert account from owner's mail to your own.",
+    "description": "Master Spotify invitation and account conversion techniques.",
+    "long_description": "🎵 Spotify Methods:\n- Mail Invite: Receive a Spotify invite in your email.\n- C2P: Convert the account from the owner's email to your own.",
     "tags": ["spotify", "Method", "invite", "c2p"],
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
@@ -47,8 +47,8 @@
   {
     "name": "Hotstar Method",
     "type": "Method",
-    "description": "Convert other Hotstar accounts to yours.",
-    "long_description": "📺 Hotstar Method:\n- C2P: Convert from owner’s mail to your mobile number.",
+    "description": "Convert Hotstar accounts to your own using simple techniques.",
+    "long_description": "📺 Hotstar Method:\n- C2P: Change the account from the owner’s email to your mobile number.",
     "tags": ["hotstar", "Method", "c2p"],
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
