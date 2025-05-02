@@ -21,7 +21,8 @@ const DATA_FILES = [
   "data/game.json",
   "data/others.json",
   "data/cookies.json",
-  "data/methods.json"
+  "data/methods.json",
+  "data/membership.json"
 ];
 
 const THEME_KEY   = "theme";

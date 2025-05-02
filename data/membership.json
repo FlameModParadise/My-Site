@@ -1,0 +1,66 @@
+[
+    {
+      "name": "Tools Membership",
+      "type": "Membership",
+      "description": "Access to all private tools and cookie checkers with license",
+      "long_description": "🛠️ Tools Membership\n• Private channel access for all current and future tools.\n• Includes 10+ working cookie checkers.\n• Each member gets personal license (no source, only .exe).\n• Tools may take time — not daily posts.\n• Limited to 15 members max.",
+      "requirements": "Tools are .exe only. No source code. Active license provided. Not suitable for mobile use.",
+      "image": "../assets/membership/tools.png",
+      "tags": ["tools", "cookie", "checkers", "membership"],
+      "release_date": "2025-05-02",
+      "update_date": "2025-05-02",
+      "price": "$30/month",
+      "contact": "telegram",
+      "keywords": ["tools membership", "cookie checker access", "software license", "exclusive tools", "membership"],
+      "stock_limit": 15
+    },
+    {
+      "name": "Cookie Membership",
+      "type": "Membership",
+      "description": "Private cookie drops not posted elsewhere",
+      "long_description": "🍪 Cookie Membership\n• Private cookies from multiple sites.\n• Drops every 3–4 days (minimum).\n• These are not posted in public or other channels.\n• Max 5 members only.",
+      "requirements": "Drops based on what’s extracted. No direct requests. Quality over quantity.",
+      "image": "../assets/membership/cookie.png",
+      "tags": ["cookies", "private group", "exclusive", "membership"],
+      "release_date": "2025-05-02",
+      "update_date": "2025-05-02",
+      "price": "$5/month",
+      "contact": "telegram",
+      "keywords": ["cookie membership", "exclusive cookies", "site cookies", "hidden drops", "membership"],
+      "stock_limit": 5
+    },
+    {
+      "name": "GPT Membership (Cookie Only)",
+      "type": "Membership",
+      "description": "Access GPT via cookie with limited daily usage",
+      "long_description": "🤖 GPT Cookie Plan\n• Use GPT through browser cookies.\n• Limit: 1 cookie every 2 days.\n• Replacement if expired.\n• Works only on browser (Firefox preferred).",
+      "requirements": "Cookies are browser-based only. No sharing or misuse. Replacement only within limits.",
+      "image": "../assets/membership/gpt.png",
+      "tags": ["gpt", "cookies", "browser", "ai", "membership"],
+      "release_date": "2025-05-02",
+      "update_date": "2025-05-02",
+      "price": "$2/month",
+      "contact": "telegram",
+      "keywords": ["gpt membership", "ai access", "gpt cookies", "browser gpt", "chatgpt"],
+      "stock_limit": "Unlimited"
+    },
+    {
+      "name": "Netflix TV Membership",
+      "type": "Membership",
+      "description": "Monthly Netflix access for TV (HD or UHD)",
+      "long_description": "📺 Netflix TV Plan\n• HD Plan available.\n• UHD Plan available.\n• For TV access only.\n• Setup support is not provided.",
+      "requirements": "TV setup is your own responsibility. No guide or help will be given. Access only, no cookie sharing.",
+      "image": "../assets/membership/netflixTv.jpg",
+      "tags": ["netflix", "tv", "hd", "uhd", "membership"],
+      "release_date": "2025-05-02",
+      "update_date": "2025-05-02",
+      "price": {
+        "HD": "$2/month",
+        "UHD": "$3.5/month"
+      },
+      "contact": "telegram",
+      "keywords": ["netflix tv", "netflix hd", "netflix uhd", "streaming access", "tv plan"],
+      "stock_limit": "Unlimited"
+    }
+  ]
+  
