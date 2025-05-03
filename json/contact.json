@@ -19,7 +19,7 @@
     "type": "Discord",
     "icon": "../assets/icons/footers-icons/discord.png",
     "title": "Discord Server",
-    "description": "Join our Discord community share ideas, and stay updated.",
+    "description": "Join our Discord community, share ideas, and stay updated.",
     "link": "https://discord.gg/28P77Dp99H",
     "buttonText": "Join Discord"
   },
@@ -38,5 +38,13 @@
     "description": "Visit our YouTube channel for tutorials, reviews, and more.",
     "link": "https://www.youtube.com/@FMP-yt?sub_confirmation=1",
     "buttonText": "Visit Channel"
+  },
+  {
+    "type": "Payment",
+    "icon": "../assets/icons/payment.png",
+    "title": "Accepted Payments",
+    "description": "We accept payments via Binance and major cryptocurrencies including BTC, ETH, LTC, and other popular coins.",
+    "link": "#",
+    "buttonText": "Payment Info"
   }
 ]
