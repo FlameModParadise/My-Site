@@ -115,13 +115,18 @@ function smartImg(src, alt = "") {
 function activateLazyImages(root = document) {
   const images = root.querySelectorAll("img[data-src]");
   images.forEach((img) => {
-    io.observe(img);
-    // Fallback: Load image manually if not loaded within 3 seconds
-    setTimeout(() => {
-      if (img.dataset.src && img.src === "assets/placeholder.jpg") {
-        img.src = img.dataset.src;
-      }
-    }, 3000);
+    if (img.complete && img.naturalWidth > 0) {
+      // If the image is already loaded, skip observing
+      img.src = img.dataset.src;
+    } else {
+      io.observe(img);
+      // Fallback: Load image manually if not loaded within 3 seconds
+      setTimeout(() => {
+        if (img.dataset.src && img.src === "assets/placeholder.jpg") {
+          img.src = img.dataset.src;
+        }
+      }, 3000);
+    }
   });
 }
 
@@ -577,22 +582,15 @@ function showToolDetail(tool, initial = false) {
     ${renderRecommendations(tool)}
   `;
 
-  /* --- dynamic bits ---------------------------------------------------- */
-  // override with the HTML version if long_description is present
-  const desc = document.querySelector('.tool-detail-right .tool-info .desc');
-  if (desc && tool.long_description)
-    desc.innerHTML = '<strong>Description:</strong><br>' +
-                     escapeHTML(tool.long_description).replace(/\n/g, "<br>");
-
-  // swap main image when thumbs are clicked
+  // Force load images in the detail view
   const mainImg = document.querySelector('.tool-main-img');
-  document.querySelectorAll('.tool-gallery img').forEach(img =>
-    img.addEventListener('click', () => { if (mainImg) mainImg.src = img.src; })
-  );
+  const galleryImgs = document.querySelectorAll('.tool-gallery img');
+  if (mainImg && mainImg.dataset.src) mainImg.src = mainImg.dataset.src;
+  galleryImgs.forEach((img) => {
+    if (img.dataset.src) img.src = img.dataset.src;
+  });
 
-  activateLazyImages(container);
-
-  // scroll the detail card into view
+  // Scroll the detail card into view
   setTimeout(() => {
     const detail = document.querySelector('.tool-detail');
     if (detail) window.scrollTo({ top: detail.getBoundingClientRect().top + window.scrollY - 100 });
