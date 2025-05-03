@@ -282,18 +282,48 @@ function populateSpecialSections() {
     return hasKeyword || disc || off;
   });
   renderOrHide(offers, offersList, document.getElementById("offers-section"));
+  if (offers.length) {
+    document.getElementById("offers-section").insertAdjacentHTML(
+      "afterbegin",
+      `<h2 class="section-heading">Special Offers</h2>`
+    );
+    document.getElementById("offers-section").insertAdjacentHTML(
+      "afterend",
+      `<div class="animated-separator"></div>` // Add animated separator
+    );
+  }
 
   /* RECOMMENDED */
   const recommended = allTools.filter(t =>
     (t.keywords || []).includes("recommended")
   );
   renderOrHide(recommended, recommendedList, document.getElementById("recommended-section"));
+  if (recommended.length) {
+    document.getElementById("recommended-section").insertAdjacentHTML(
+      "afterbegin",
+      `<h2 class="section-heading">Recommended Tools</h2>`
+    );
+    document.getElementById("recommended-section").insertAdjacentHTML(
+      "afterend",
+      `<div class="animated-separator"></div>` // Add animated separator
+    );
+  }
 
   /* LIMITED‑TIME */
   const limited = allTools.filter(t =>
     (t.keywords || []).includes("limited") || t.stock === 1
   );
   renderOrHide(limited, limitedList, document.getElementById("limited-section"));
+  if (limited.length) {
+    document.getElementById("limited-section").insertAdjacentHTML(
+      "afterbegin",
+      `<h2 class="section-heading">Limited Stock</h2>`
+    );
+    document.getElementById("limited-section").insertAdjacentHTML(
+      "afterend",
+      `<div class="animated-separator"></div>` // Add animated separator
+    );
+  }
 }
 
 /* allow clicking cards in the extra lists */

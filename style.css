@@ -1710,3 +1710,35 @@ body.dark, body.dark .navbar, body.dark .banner, body.dark .install-box, body.da
   background: #121212; /* Solid dark background */
   box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
 }
+
+/* ================ ANIMATED SEPARATOR ================ */
+.animated-separator {
+  position: relative;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+  overflow: hidden;
+  margin: 2rem 0;
+}
+
+.animated-separator::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+  animation: siuEffect 1.5s infinite linear;
+}
+
+@keyframes siuEffect {
+  0% {
+    left: -100%;
+  }
+  50% {
+    left: 50%;
+  }
+  100% {
+    left: 100%;
+  }
+}
