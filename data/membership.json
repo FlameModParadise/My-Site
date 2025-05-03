@@ -39,7 +39,7 @@
       "tags": ["gpt", "cookies", "browser", "ai", "membership"],
       "release_date": "2025-05-02",
       "update_date": "2025-05-02",
-      "price": "$2/month",
+      "price": "10days: 1$ \n15days: 1.5$ \n1month: $4\n (Invite on mail : 4$ | 100% autopay but luck based random life.)",
       "contact": "telegram",
       "keywords": ["gpt membership", "ai access", "gpt cookies", "browser gpt", "chatgpt"],
       "stock_limit": "Unlimited"
@@ -54,10 +54,7 @@
       "tags": ["netflix", "tv", "hd", "uhd", "membership"],
       "release_date": "2025-05-02",
       "update_date": "2025-05-02",
-      "price": {
-        "HD": "$2/month",
-        "UHD": "$3.5/month"
-      },
+      "price": "- HD: $2/month\n- UHD: $3.5/month",
       "contact": "telegram",
       "keywords": ["netflix tv", "netflix hd", "netflix uhd", "streaming access", "tv plan"],
       "stock_limit": "Unlimited"
