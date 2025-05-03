@@ -34,7 +34,7 @@
       "type": "Membership",
       "description": "Access GPT via cookie with limited daily usage",
       "long_description": "🤖 GPT Cookie Plan\n• Use GPT through browser cookies.\n• Limit: 1 cookie every 2 days.\n• Replacement if expired.\n• Works only on browser (Firefox preferred).",
-      "requirements": "Cookies are browser-based only. No sharing or misuse. Replacement only within limits.",
+      "requirements": "Cookies are browser-based only.\nNo sharing or misuse.\nReplacement only within limits.",
       "image": "assets/membership/gpt.png",
       "tags": ["gpt", "cookies", "browser", "ai", "membership"],
       "release_date": "2025-05-02",
