@@ -147,6 +147,14 @@ if (banner && closeBanner && !localStorage.getItem(BANNER_KEY)) {
   });
 }
 
+/* ----------  AUTO REFRESH FOR MOBILE OR UNKNOWN DEVICES  ---------- */
+if (/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || !navigator.userAgent) {
+  if (!sessionStorage.getItem("refreshed")) {
+    sessionStorage.setItem("refreshed", "true");
+    location.reload(true); // Force a hard refresh
+  }
+}
+
 /* --------------------------------------------------
      RENDER UTIL THAT WORKS FOR *ANY* CONTAINER
    -------------------------------------------------- */
