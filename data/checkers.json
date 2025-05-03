@@ -67,7 +67,7 @@
   },
   {
     "type": "Checker",
-    "name": "GPT Cookie Checker",
+    "name": "ChatGPT Cookie Checker",
     "description": "Validate GPT+ cookies and determine access status.",
     "long_description": "🤖 Supports GPT+ cookies validation.\n🟢 Identifies valid, invalid, and expired cookies.\n⚡ Optimized for performance and works without proxies.\n📈 Ideal for bulk validation tasks.\n📝 Now includes detection for half-pro subscriptions.",
     "requirements": "✅ No specific requirements.",
@@ -76,20 +76,23 @@
     "images": [
       "assets/checkers-pic/checking/gpt1.png",
       "assets/checkers-pic/checking/gpt2.png",
-      "assets/checkers-pic/checking/gpt3.png"
+      "assets/checkers-pic/checking/gpt3.png",
+      "assets/checkers-pic/checking/gpt4.png"
     ],
     "discount": null,
     "offer": null,
     "offer_expiry": "2025-04-25",
     "release_date": "2025-03-19",
     "update_date": "2025-04-22",
-    "tags": ["gpt"],
+    "tags": ["gpt", "chatgpt"],
     "keywords": [
       "chatgpt cookie check",
       "validate gpt cookies",
       "gpt plus status checker",
       "chatgpt login session",
-      "gpt access tool"
+      "gpt access tool",
+      "chatgpt",
+      "gpt"
     ],
     "contact": "telegram",
     "stock": "unlimited",
