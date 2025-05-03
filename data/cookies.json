@@ -14,6 +14,21 @@
     "stock": "300 in stock (cc-based)"
   },
   {
+    "name": "Freepik Cookies",
+    "type": "Cookie",
+    "description": "Freepik is an ai platform for designers to design and create images, video vectors, and more.",
+    "long_description": "🖼️ Freepik Cookies\n- Normal: Basic access.\n- Credit Points: Access with credit points.",
+    "tags": ["freepik", "cookie", "design"],
+    "release_date": "2025-05-03",
+    "update_date": "2025-05-03",
+    "price": "- Credit less than 10k: $0.50\n- Credit more than 10k: $0.80\n- Credit more than 15k: $1\n- Credit more than 20k: $1.50\n- Credit more than 25k: $2",
+    "contact": "telegram",
+    "keywords": ["freepik", "cookie", "design"],
+    "image": "assets/images/freepik.png",
+    "requirements": "After that per 10k credit will be 0.50$.\n",
+    "stock": "5"
+  },
+  {
     "name": "GPT+ Cookies",
     "type": "Cookie",
     "description": "Fresh GPT+ cookies available in bulk, with optional replacement.",

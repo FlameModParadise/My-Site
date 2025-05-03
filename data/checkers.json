@@ -279,7 +279,7 @@
   {
     "type": "Checker",
     "name": "Freepik Cookie Checker",
-    "description": "Validate Freepik cookies and capture account details.",
+    "description": "Freepik is an ai platform for designers to design and create images, video vectors, and more.",
     "long_description": "🖼️ Check Freepik cookies for free or premium accounts.\n🔍 Detects account credits and basic details.\n📊 Efficient and works without proxies.\n🌍 Optional payment capture available for an additional $2.",
     "requirements": "✅ Generally no requirements, but a VPN may be needed occasionally.",
     "image": "assets/checkers-pic/freepik.png",
