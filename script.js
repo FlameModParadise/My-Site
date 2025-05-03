@@ -928,6 +928,15 @@ sortSelect?.addEventListener("change", () => {
   applyFiltersAndRender();
 });
 
+/* ----------  SCROLL PROGRESS ---------- */
+document.addEventListener("scroll", () => {
+  const scrollProgress = document.getElementById("scrollProgress");
+  const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+  const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrollPercentage = (scrollTop / scrollHeight) * 100;
+  scrollProgress.style.width = `${scrollPercentage}%`;
+});
+
 /* ----------  GO ---------- */
 if (container) loadData();
 

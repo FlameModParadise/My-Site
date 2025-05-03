@@ -1742,3 +1742,15 @@ body.dark, body.dark .navbar, body.dark .banner, body.dark .install-box, body.da
     left: 100%;
   }
 }
+
+/* ================ SCROLL PROGRESS BAR ================ */
+#scrollProgress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  background: var(--color-primary, #007bff); /* Default color */
+  width: 0;
+  z-index: 9999;
+  transition: width 0.1s ease;
+}
