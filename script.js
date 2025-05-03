@@ -108,11 +108,21 @@ function smartImg(src, alt = "") {
   return `<img loading="lazy"
                data-src="${src}"
                src="assets/placeholder.jpg"
-               alt="${escapeHTML(alt)}">`;
+               alt="${escapeHTML(alt)}"
+               onerror="this.onerror=null;this.src='${src}'">`; // Fallback for broken images
 }
 
 function activateLazyImages(root = document) {
-  root.querySelectorAll("img[data-src]").forEach((img) => io.observe(img));
+  const images = root.querySelectorAll("img[data-src]");
+  images.forEach((img) => {
+    io.observe(img);
+    // Fallback: Load image manually if not loaded within 3 seconds
+    setTimeout(() => {
+      if (img.dataset.src && img.src === "assets/placeholder.jpg") {
+        img.src = img.dataset.src;
+      }
+    }, 3000);
+  });
 }
 
 /* ----------  DARK MODE  ---------- */
