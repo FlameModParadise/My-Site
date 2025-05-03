@@ -68,7 +68,7 @@ const escapeHTML = (s = "") =>
    .replace(/>/g, "&gt;")
    .replace(/"/g, "&quot;");
 
-const nl2br = (txt = "") => escapeHTML(txt).replace(/\n/g, "<br>");
+const nl2br = (txt = "") => txt.replace(/\n/g, "<br>");
 
 function highlightMatch(text, matches, key) {
   const m = matches?.find((x) => x.key === key);
@@ -164,19 +164,17 @@ function renderTools(list, target = container) {
     card.className = "tool-card fade-in";
     card.dataset.toolName = tool.name;
 
-    const desc = highlightMatch(
+    let desc = highlightMatch(
       tool.description || "",
       tool._matches || [],
       "description"
     );
+    desc = nl2br(desc); // Convert \n to <br> for card descriptions
+
     const name = highlightMatch(
       tool.name || "Unnamed",
       tool._matches || [],
       "name"
-    );
-
-    const descHtml = nl2br(
-      tool.long_description || tool.description || "No description available."
     );
 
     card.innerHTML = `
@@ -186,7 +184,7 @@ function renderTools(list, target = container) {
       </div>
       <div class="tool-card-body">
         <h3 class="tool-title">${name}</h3>
-        <p class="tool-desc">${descHtml}</p>
+        <p class="tool-desc">${desc}</p>
         <div class="tool-tags">
           ${(tool.tags || [])
             .map((t) => `<span class="tag">${escapeHTML(t)}</span>`)
@@ -538,7 +536,7 @@ function showToolDetail(tool, initial = false) {
           <div class="tool-info">
             <p class="desc"><strong>Description:</strong><br>${escapeHTML(
               tool.long_description || tool.description || 'No description available.'
-            )}</p><br>
+            ).replace(/\n/g, "<br>")}</p><br>
 
             ${renderPricing(tool)}
             ${tool.discount       ? `<p><strong>Discount:</strong> ${tool.discount}%</p><br>` : ''}
@@ -565,7 +563,8 @@ function showToolDetail(tool, initial = false) {
   // override with the HTML version if long_description is present
   const desc = document.querySelector('.tool-detail-right .tool-info .desc');
   if (desc && tool.long_description)
-    desc.innerHTML = '<strong>Description:</strong><br>' + nl2br(tool.long_description);
+    desc.innerHTML = '<strong>Description:</strong><br>' +
+                     escapeHTML(tool.long_description).replace(/\n/g, "<br>");
 
   // swap main image when thumbs are clicked
   const mainImg = document.querySelector('.tool-main-img');
@@ -672,7 +671,7 @@ function renderPricing(tool) {
     return `<p><strong>Pricing:</strong></p><ul class="pricing-list">${li}</ul><br>`;
   }
   if (tool.price)
-    return `<p><strong>Price:</strong><br>${nl2br(tool.price)}</p><br>`;
+    return `<p><strong>Price:</strong><br>${escapeHTML(tool.price).replace(/\n/g, "<br>")}</p><br>`;
   return "";
 }
 
@@ -707,7 +706,7 @@ function showRequirementsPopup(name) {
   const tool = allTools.find((t) => t.name === name);
   let msg =
     tool?.requirements || `Requirements for ${name}…\n\nPlease contact the owner.`;
-  txt.innerHTML = nl2br(msg);
+  txt.innerHTML = escapeHTML(msg).replace(/\n/g, "<br>");
   box.classList.remove("hidden");
   setTimeout(() => box.classList.add("hidden"), 4000);
 }
