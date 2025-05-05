@@ -446,6 +446,44 @@
   },
   {
     "type": "Checker",
+    "name": "Claude Ai Cookie Checker",
+    "description": "Ai like chatgpt but more effective for coding and programming.",
+    "long_description": "🤖 Validate Claude AI cookies and retrieve account details.\n🔍 Detects free or premium.\n🌍 Fast and user-friendly interface.",
+    "requirements": "✅ No specific requirements.",
+    "image": "assets/checkers-pic/claudeai.png",
+    "video": "",
+    "images": [
+      "assets/checkers-pic/checking/claudeai1.png",
+      "assets/checkers-pic/checking/claudeai2.png",
+      "assets/checkers-pic/checking/claudeai3.png"
+    ],
+    "discount": null,
+    "offer": null,
+    "offer_expiry": null,
+    "release_date": "2025-05-05",
+    "update_date": "2025-05-05",
+    "tags": ["claude", "ai", "chatbot"],
+    "keywords": [
+      "claude ai login checker",
+      "validate claude cookies",
+      "check claude session",
+      "claude ai tool",
+      "ai plan validation",
+      "chatgpt",
+      "ai"
+    ],
+    "contact": "telegram",
+    "stock": "unlimited",
+    "pricing": {
+      "1 Day": "$1",
+      "1 Week": "$4",
+      "30 Days": "$7",
+      "Lifetime (No Patch)": "$12",
+      "Source Code": "$15"
+    }
+  },
+  {
+    "type": "Checker",
     "name": "Peacock TV Cookie Checker",
     "description": "Validate Peacock TV cookies and retrieve plan details.",
     "long_description": "📺 Check Peacock TV cookies for plan and payment details.\n💳 Capture subscription and payment information.\n🌍 Fast and works without proxies.\n✅ Ideal for account management.",

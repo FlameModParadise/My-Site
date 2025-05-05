@@ -556,6 +556,19 @@ function createFilterBtn(label) {
 }
 
 /* ----------  DETAIL VIEW ---------- */
+function swapMainImage(thumb) {
+  const main = document.querySelector('.tool-main-img');
+  if (!main) return;
+
+  const src = thumb.dataset.src || thumb.src;
+  main.src = src;
+  main.dataset.src = src;
+
+  document.querySelectorAll('.tool-gallery img')
+          .forEach(i => i.classList.remove('active'));
+  thumb.classList.add('active');
+}
+
 function showToolDetail(tool, initial = false) {
   if (!initial) {
     location.hash = `tool=${encodeURIComponent(tool.name)}`;
@@ -616,8 +629,11 @@ function showToolDetail(tool, initial = false) {
   const mainImg = document.querySelector('.tool-main-img');
   const galleryImgs = document.querySelectorAll('.tool-gallery img');
   if (mainImg && mainImg.dataset.src) mainImg.src = mainImg.dataset.src;
-  galleryImgs.forEach((img) => {
+
+  galleryImgs.forEach(img => {
     if (img.dataset.src) img.src = img.dataset.src;
+    img.style.cursor = 'pointer';
+    img.addEventListener('click', () => swapMainImage(img));
   });
 
   // Scroll the detail card into view
@@ -733,8 +749,9 @@ function renderRecommendations(tool) {
         ${rec
           .map(
             (r) => `
-          <div class="recommended-card" onclick='location.hash="tool=${encodeURIComponent(r.name)}"'}>
-            ${smartImg(r.image || "assets/placeholder.jpg", r.name)}
+          <div class="recommended-card" onclick='location.hash="tool=${encodeURIComponent(r.name)}"'>
+            <img src="${r.image || 'assets/placeholder.jpg'}"
+                 alt="${escapeHTML(r.name)}">
             <h4>${escapeHTML(r.name)}</h4>
             <p>${escapeHTML((r.description || r.long_description || "")
               .split("\n")[0] || "No description")}…</p>
@@ -913,13 +930,16 @@ imageModal?.addEventListener("click", (e) => {
   if (e.target === imageModal) closeImageModal();
 });
 function openImageModal(src) {
-  if (imageModal) {
-    imageModal.querySelector("img").src = src;
-    imageModal.classList.remove("hidden");
+  const modal = document.getElementById("imageModal");
+  const modalImg = document.getElementById("modalImage");
+  if (modal && modalImg) {
+    modalImg.src = src;
+    modal.classList.remove("hidden");
   }
 }
 function closeImageModal() {
-  imageModal?.classList.add("hidden");
+  const modal = document.getElementById("imageModal");
+  if (modal) modal.classList.add("hidden");
 }
 
 /* ----------  SORT SELECT ---------- */
