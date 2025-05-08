@@ -100,6 +100,20 @@
     "stock": "unlimited"
   },
   {
+    "name": "Perplexity AI Cookies",
+    "type": "Cookie",
+    "description": "Access Perplexity AI for advanced search and conversational AI capabilities.",
+    "long_description": "Leverage Perplexity AI for intelligent search, question answering, and conversational assistance.",
+    "tags": ["perplexity", "ai", "search", "assistant", "nlp"],
+    "release_date": "2025-03-19",
+    "update_date": "2025-04-01",
+    "price": "- Mixed: $1 per 10",
+    "contact": "telegram",
+    "keywords": ["perplexity", "ai", "search", "assistant", "nlp"],
+    "image": "assets/images/perplexityai.png",
+    "stock": "unlimited"
+  },
+  {
     "name": "Surfshark Cookies",
     "type": "Cookie",
     "description": "Secure your online privacy with Surfshark VPN access.",
