@@ -1746,3 +1746,15 @@ body.dark, body.dark .navbar, body.dark .banner, body.dark .install-box, body.da
   z-index: 9999;
   transition: width 0.1s ease;
 }
+.no-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--skeleton-bg);
+  color: var(--fg);
+  font-size: 0.9rem;
+  height: 100%;
+  text-align: center;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}

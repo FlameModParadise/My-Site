@@ -105,11 +105,40 @@ const io = new IntersectionObserver(
 );
 
 function smartImg(src, alt = "") {
-  return `<img loading="lazy"
-               data-src="${src}"
-               src="assets/placeholder.jpg"
-               alt="${escapeHTML(alt)}"
-               onerror="this.onerror=null;this.src='${src}'">`; // Fallback for broken images
+  const fallbacks = [
+    src,
+    "/assets/placeholder.jpg",
+    "../assets/placeholder.jpg",
+    "assets/placeholder.jpg"
+  ];
+  const fbList = JSON.stringify(fallbacks).replace(/"/g, "&quot;");
+  return `
+    <img loading="lazy"
+         data-src="${src}"
+         data-fallbacks="${fbList}"
+         data-fb-index="0"
+         src="${fallbacks[3]}"
+         alt="${escapeHTML(alt)}"
+         onerror="
+           (() => {
+             const fbs = JSON.parse(this.dataset.fallbacks);
+             let idx = Number(this.dataset.fbIndex) || 0;
+             console.error('Image failed to load:', fbs[idx]);
+             idx++;
+             if (idx < fbs.length) {
+               this.dataset.fbIndex = idx;
+               this.src = fbs[idx];
+             } else {
+               console.error('All image fallbacks failed for:', fbs[0]);
+               const div = document.createElement('div');
+               div.className = 'no-image';
+               div.textContent = this.alt || 'No image';
+               this.replaceWith(div);
+             }
+           })()
+         "
+    >
+  `.trim();
 }
 
 function activateLazyImages(root = document) {
