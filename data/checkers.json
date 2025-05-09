@@ -142,9 +142,9 @@
   },
   {
     "type": "Checker",
-    "name": "Hotstar Cookie Checker",
-    "description": "Quickly validate Hotstar cookies and retrieve account details.",
-    "long_description": "📺 Validate active Hotstar cookies instantly.\n📍 Display region and package information.\n⚙️ Features a clean UI with fast, proxyless responses.",
+    "name": "Jio Hotstar Cookie Checker",
+    "description": "Quickly validate Jio Hotstar cookies and retrieve account details.",
+    "long_description": "📺 Validate active Jio Hotstar cookies instantly.\n📍 Display region and package information.\n⚙️ Features a clean UI with fast, proxyless responses.",
     "requirements": "✅ Use a VPN if you are not located in India.",
     "image": "assets/checkers-pic/hotstar.png",
     "video": "",
@@ -159,12 +159,13 @@
     "offer_expiry": "2025-04-25",
     "release_date": "2025-03-19",
     "update_date": "2025-04-22",
-    "tags": ["hotstar"],
+    "tags": ["jio hotstar"],
     "keywords": [
-      "hotstar account check",
+      "hotstar cookie check",
       "validate hotstar cookie",
       "check hotstar region",
-      "detect hotstar access"
+      "detect hotstar access",
+      "jio hotstar"
     ],
     "contact": "telegram",
     "stock": "unlimited",
