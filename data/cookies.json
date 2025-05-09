@@ -61,7 +61,7 @@
     "type": "Cookie",
     "description": "Stream JioCinema and Hotstar’s on-demand entertainment and live sports.",
     "long_description": "Enjoy Hotstar’s wide selection of TV shows, blockbuster movies and live sporting events in India.",
-    "requirements": "✅ Must be in India or use VPN.",
+    "requirements": "✅ Must be in India or use India based VPN.",
     "tags": ["hotstar", "jio", "entertainment", "sports", "streaming"],
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
