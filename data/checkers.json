@@ -198,7 +198,8 @@
       "assets/checkers-pic/checking/hotstar1.png",
       "assets/checkers-pic/checking/hotstar2.png",
       "assets/checkers-pic/checking/hotstar3.png",
-      "assets/checkers-pic/checking/hotstar4.png"
+      "assets/checkers-pic/checking/hotstar4.png",
+      "assets/checkers-pic/checking/hotstar5.png"
     ],
     "discount": null,
     "offer": null,
@@ -590,6 +591,42 @@
       "1 Day": "$1",
       "1 Week": "$4",
       "30 Days": "$8",
+      "Lifetime (Inc Patch)": "$10",
+      "Source Code": "$12"
+    } 
+  },
+  {
+    "type": "Checker",
+    "name": "TradingView Cookie Checker",
+    "description": "radingView is a powerful and popular platform used for analyzing financial markets, especially for trading, investing, and social networking among traders. ",
+    "long_description": "📈 Validate TradingView cookies and retrieve account details.\n💳 Capture subscription and payment information.\n🌍 Fast and works without proxies.\n✅ Ideal for account management.",
+    "requirements": "✅ No specific requirements.",
+    "image": "assets/checkers-pic/tradingview.jpg",
+    "video": "",
+    "images": [
+      "assets/checkers-pic/checking/tradingview1.png",
+      "assets/checkers-pic/checking/tradingview2.png",
+      "assets/checkers-pic/checking/tradingview3.png"
+    ],
+    "discount": null,
+    "offer": null,
+    "offer_expiry": "2025-04-25",
+    "release_date": "2025-04-20",
+    "update_date": "2025-04-20",
+    "tags": ["nordvpn", "vpn"],
+    "keywords": [
+      "tradingview cookie checker",
+      "check tradingview cookies",
+      "tradingview account status",
+      "slot capture tradingview",
+      "tradingview cookies tool"
+    ],
+    "contact": "telegram",
+    "stock": "unlimited",
+    "pricing": {
+      "1 Day": "$1",
+      "1 Week": "$4",
+      "30 Days": "$7",
       "Lifetime (Inc Patch)": "$10",
       "Source Code": "$12"
     } 
