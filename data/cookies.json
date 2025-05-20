@@ -26,7 +26,7 @@
     "keywords": ["freepik", "design", "graphics", "illustrations", "vectors"],
     "image": "assets/images/freepik.png",
     "requirements": "After that per 10k credit will be 0.50$.\n",
-    "stock": "5"
+    "stock": "0"
   },
   {
     "name": "GPT+ Cookies",
@@ -97,7 +97,7 @@
     "contact": "telegram",
     "keywords": ["claude", "anthropic", "ai", "assistant", "nlp"],
     "image": "assets/images/claudeai.png",
-    "stock": "unlimited"
+    "stock": "0"
   },
   {
     "name": "Perplexity AI Cookies",
@@ -111,7 +111,7 @@
     "contact": "telegram",
     "keywords": ["perplexity", "ai", "search", "assistant", "nlp"],
     "image": "assets/images/perplexityai.png",
-    "stock": "unlimited"
+    "stock": "0"
   },
   {
     "name": "Surfshark Cookies",
@@ -126,6 +126,21 @@
     "contact": "telegram",
     "keywords": ["surfshark", "vpn", "privacy", "security", "geo-unblock"],
     "image": "assets/images/surfshark.png",
-    "stock": "5-7"
+    "stock": "3"
+  },
+  {
+    "name": "TradingView Cookies",
+    "type": "Cookie",
+    "description": "Access TradingView’s advanced charting and analysis tools.",
+    "long_description": "Utilize TradingView’s powerful charting platform for stocks, forex, and cryptocurrencies.",
+    "requirements": "None",
+    "tags": ["tradingview", "finance", "stocks", "forex", "cryptocurrency"],
+    "release_date": "2025-05-20",
+    "update_date": "2025-05-20",
+    "price": "0.5$ per 1 Any plan",
+    "contact": "telegram",
+    "keywords": ["tradingview", "finance", "stocks", "forex", "cryptocurrency"],
+    "image": "assets/checkers-pic/tradingview.jpg",
+    "stock": "3"
   }
 ]
