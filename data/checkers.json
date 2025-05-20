@@ -120,8 +120,8 @@
       "assets/checkers-pic/checking/outlook5.png"
     ],
     "discount": null,
-    "offer": "$5 off for 1st 10 buyers (source code only)",
-    "offer_expiry": "2025-05-20",
+    "offer": null,
+    "offer_expiry": null,
     "release_date": "2025-05-13",
     "update_date": "2025-05-13",
     "tags": ["outlook", "microsoft", "hotmail", "inbox searcher"],
@@ -149,6 +149,44 @@
       "1 Month": "$15",
       "Lifetime (No Patch)": "$35",
       "Source Code": "$50 (Pricy but worth it)"
+    }
+  },
+  {
+    "type": "Checker",
+    "name": "Azure Cookie Checker",
+    "description": "Azure is Microsoft's cloud computing platform that provides a wide range of services like virtual machines, databases, AI, and app hosting. ",
+    "long_description": "Checks if azure cookies are valid or not.\nShort according to plan free or premium based.\nYou can login using cookie and make rdp as your need.\nFast and proxyless.",
+    "image": "assets/checkers-pic/azure.png",
+    "requirements": "✅ Please don't ask me how to make rdp using azure cookies.",
+    "video": "",
+    "images": [
+      "assets/checkers-pic/checking/azure1.png", 
+      "assets/checkers-pic/checking/azure2.png",
+      "assets/checkers-pic/checking/azure3.png",
+      "assets/checkers-pic/checking/azure4.png",
+      "assets/checkers-pic/checking/azure5.png"
+    ],
+    "discount": null,
+    "offer": null,
+    "offer_expiry": null,
+    "release_date": "2025-05-22",
+    "update_date": "2025-05-22",
+    "tags": ["azure", "microsoft", "cloud", "rdp"],
+    "keywords": [
+      "azure cookie checker",
+      "detect azure cookies",
+      "azure access tool",
+      "azure checker",
+      "azure",
+      "rdp"
+    ],
+    "contact": "telegram",
+    "stock": "unlimited",
+    "pricing": {
+      "1 Day": "$3",
+      "1 Month": "$15",
+      "Lifetime (No Patch)": "$30",
+      "Source Code": "$40 (Pricy but worth it)"
     }
   },
   {
