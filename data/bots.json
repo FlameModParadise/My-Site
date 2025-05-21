@@ -12,10 +12,10 @@
     "price": "$5 – $15 (depends on features)",
     "contact": "telegram",
     "keywords": ["discord bot", "moderation", "giveaway", "custom", "auto role"],
-    "discount": "Lifetime Deal",
+    "discount": null,
     "discount_expiry": null,
-    "offer": "1-Day Setup Included",
-    "offer_expiry": "2025-04-15"
+    "offer": null,
+    "offer_expiry": null
   },
   {
     "name": "Custom Telegram Bot",
@@ -30,9 +30,9 @@
     "price": "$5 – $15 (depends on features)",
     "contact": "telegram",
     "keywords": ["telegram bot", "file bot", "scraper", "automation", "custom"],
-    "discount": "Lifetime Deal",
+    "discount": null,
     "discount_expiry": null,
-    "offer": "1-Day Setup Included",
-    "offer_expiry": "2025-04-16"
+    "offer": null,
+    "offer_expiry": null
   }
 ]

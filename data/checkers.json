@@ -13,8 +13,8 @@
       "assets/checkers-pic/checking/netflix2.png"
     ],
     "discount": null,
-    "offer": null,
-    "offer_expiry": "2025-04-25",
+    "offer": "$15",
+    "offer_expiry": "2025-06-25",
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
     "tags": ["netflix"],
@@ -32,7 +32,7 @@
       "2 Months": "$14 or 35 TP Cookies",
       "3 Months": "$17 or 43 TP Cookies",
       "Lifetime": "$23 or 60 TP Cookies or 15 TP monthly",
-      "Source Code": "$25",
+      "Source Code": "$15 (Offer until 2025-06-25)",
       "Custom Function": "+$5"
     }
   },
@@ -46,8 +46,8 @@
     "video": "",
     "images": [],
     "discount": null,
-    "offer": null,
-    "offer_expiry": "2025-04-25",
+    "offer": "$22",
+    "offer_expiry": "2025-06-25",
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
     "tags": ["netflix", "privatizer"],
@@ -62,7 +62,7 @@
       "1 Month": "$10 or 25 Cookies",
       "3 Months": "$20 or 50 Cookies",
       "Lifetime": "$25 or 15 Cookies monthly (No Patch)",
-      "Source Code": "$30"
+      "Source Code": "$22 (Offer until 2025-06-25)"
     }
   },
   {
@@ -80,8 +80,8 @@
       "assets/checkers-pic/checking/gpt4.png"
     ],
     "discount": null,
-    "offer": null,
-    "offer_expiry": "2025-04-25",
+    "offer": "$15",
+    "offer_expiry": "2025-06-25",
     "release_date": "2025-03-19",
     "update_date": "2025-04-22",
     "tags": ["gpt", "chatgpt"],
@@ -102,7 +102,7 @@
       "2 Months": "$6",
       "Lifetime (No Patch)": "$13",
       "Lifetime (Inc Patch)": "$17",
-      "Source Code": "$20"
+      "Source Code": "$15 (Offer until 2025-06-25)"
     }
   },
   {
@@ -120,8 +120,8 @@
       "assets/checkers-pic/checking/outlook5.png"
     ],
     "discount": null,
-    "offer": null,
-    "offer_expiry": null,
+    "offer": "$35",
+    "offer_expiry": "2025-06-25",
     "release_date": "2025-05-13",
     "update_date": "2025-05-13",
     "tags": ["outlook", "microsoft", "hotmail", "inbox searcher"],
@@ -148,7 +148,7 @@
       "1 Day": "$3",
       "1 Month": "$15",
       "Lifetime (No Patch)": "$35",
-      "Source Code": "$50 (Pricy but worth it)"
+      "Source Code": "$35 (Offer until 2025-06-25)"
     }
   },
   {
@@ -171,8 +171,8 @@
       "assets/checkers-pic/checking/azure9.png"
     ],
     "discount": null,
-    "offer": null,
-    "offer_expiry": null,
+    "offer": "$25",
+    "offer_expiry": "2025-06-25",
     "release_date": "2025-05-22",
     "update_date": "2025-05-22",
     "tags": ["azure", "microsoft", "cloud", "rdp"],
@@ -190,7 +190,7 @@
       "1 Day": "$3",
       "1 Month": "$15",
       "Lifetime (No Patch)": "$30",
-      "Source Code": "$40 (Pricy but worth it)"
+      "Source Code": "$25 (Offer until 2025-06-25)"
     }
   },
   {
@@ -206,8 +206,8 @@
       "assets/checkers-pic/checking/spotify2.png"
     ],
     "discount": null,
-    "offer": null,
-    "offer_expiry": "2025-04-25",
+    "offer": "$10",
+    "offer_expiry": "2025-06-25",
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
     "tags": ["spotify"],
@@ -225,7 +225,7 @@
       "1 Month": "$3",
       "2 Months": "$5",
       "Lifetime (No Patch)": "$10",
-      "Source Code": "$13"
+      "Source Code": "$10 (Offer until 2025-06-25)"
     }
   },
   {
@@ -244,8 +244,8 @@
       "assets/checkers-pic/checking/hotstar5.png"
     ],
     "discount": null,
-    "offer": null,
-    "offer_expiry": "2025-04-25",
+    "offer": "$10",
+    "offer_expiry": "2025-06-25",
     "release_date": "2025-03-19",
     "update_date": "2025-04-22",
     "tags": ["jio hotstar"],
@@ -263,7 +263,7 @@
       "1 Month": "$3",
       "2 Months": "$5",
       "Lifetime (No Patch)": "$10",
-      "Source Code": "$15"
+      "Source Code": "$10 (Offer until 2025-06-25)"
     }
   },
   {
@@ -278,8 +278,8 @@
       "assets/checkers-pic/checking/primevideo1.png"
     ],
     "discount": null,
-    "offer": null,
-    "offer_expiry": "2025-04-25",
+    "offer": "$8",
+    "offer_expiry": "2025-06-25",
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
     "tags": ["prime"],
@@ -296,7 +296,7 @@
       "1 Month": "$3",
       "2 Months": "$5",
       "Lifetime (No Patch)": "$8",
-      "Source Code": "$10"
+      "Source Code": "$8 (Offer until 2025-06-25)"
     }
   },
   {
@@ -312,8 +312,8 @@
       "assets/checkers-pic/checking/crunchyroll2.png"
     ],
     "discount": null,
-    "offer": null,
-    "offer_expiry": "2025-04-25",
+    "offer": "$7",
+    "offer_expiry": "2025-06-25",
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
     "tags": ["crunchyroll"],
@@ -345,8 +345,8 @@
       "assets/checkers-pic/checking/hulu1.png"
     ],
     "discount": null,
-    "offer": null,
-    "offer_expiry": "2025-04-25",
+    "offer": "$7",
+    "offer_expiry": "2025-06-25",
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
     "tags": ["hulu"],
@@ -411,8 +411,8 @@
       "assets/checkers-pic/checking/blackboxai1.png"
     ],
     "discount": null,
-    "offer": null,
-    "offer_expiry": "2025-04-25",
+    "offer": "$15",
+    "offer_expiry": "2025-06-25",
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
     "tags": ["blackbox"],
@@ -445,8 +445,8 @@
       "assets/checkers-pic/checking/2captcha2.png"
     ],
     "discount": null,
-    "offer": null,
-    "offer_expiry": "2025-04-25",
+    "offer": "$15",
+    "offer_expiry": "2025-06-25",
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
     "tags": ["2captcha"],
@@ -478,8 +478,8 @@
       "assets/checkers-pic/checking/perplexityai1.png"
     ],
     "discount": null,
-    "offer": null,
-    "offer_expiry": "2025-04-25",
+    "offer": "$15",
+    "offer_expiry": "2025-06-25",
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
     "tags": ["perplexity"],
@@ -512,8 +512,8 @@
       "assets/checkers-pic/checking/eneba1.png"
     ],
     "discount": null,
-    "offer": null,
-    "offer_expiry": "2025-04-25",
+    "offer": "$10",
+    "offer_expiry": "2025-06-25",
     "release_date": "2025-03-25",
     "update_date": "2025-04-01",
     "tags": ["eneba"],
@@ -548,8 +548,8 @@
       "assets/checkers-pic/checking/claudeai3.png"
     ],
     "discount": null,
-    "offer": null,
-    "offer_expiry": null,
+    "offer": "$10",
+    "offer_expiry": "2025-06-25",
     "release_date": "2025-05-05",
     "update_date": "2025-05-05",
     "tags": ["claude", "ai", "chatbot"],
@@ -584,8 +584,8 @@
       "assets/checkers-pic/checking/peacock1.png"
     ],
     "discount": null,
-    "offer": null,
-    "offer_expiry": null,
+    "offer": "$10",
+    "offer_expiry": "2025-06-25",
     "release_date": "2025-04-23",
     "update_date": "2025-04-23",
     "tags": ["peacock tv"],
@@ -615,8 +615,8 @@
       "assets/checkers-pic/checking/nordvpn1.png"
     ],
     "discount": null,
-    "offer": null,
-    "offer_expiry": "2025-04-25",
+    "offer": "$15",
+    "offer_expiry": "2025-06-25",
     "release_date": "2025-04-20",
     "update_date": "2025-04-20",
     "tags": ["nordvpn", "vpn"],
@@ -653,8 +653,8 @@
       "assets/checkers-pic/checking/tradingview5.png"
     ],
     "discount": null,
-    "offer": null,
-    "offer_expiry": null,
+    "offer": "$10",
+    "offer_expiry": "2025-06-25",
     "release_date": "2025-05-20",
     "update_date": "2025-05-20",
     "tags": ["tradingview", "finance", "stock market"],
