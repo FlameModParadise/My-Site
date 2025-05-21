@@ -14,7 +14,7 @@
     ],
     "discount": null,
     "offer": "$15",
-    "offer_expiry": "2025-06-25",
+    "offer_expiry": "2025-05-26",
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
     "tags": ["netflix"],
@@ -32,7 +32,7 @@
       "2 Months": "$14 or 35 TP Cookies",
       "3 Months": "$17 or 43 TP Cookies",
       "Lifetime": "$23 or 60 TP Cookies or 15 TP monthly",
-      "Source Code": "$15 (Offer until 2025-06-25)",
+      "Source Code": "$25",
       "Custom Function": "+$5"
     }
   },
@@ -62,7 +62,7 @@
       "1 Month": "$10 or 25 Cookies",
       "3 Months": "$20 or 50 Cookies",
       "Lifetime": "$25 or 15 Cookies monthly (No Patch)",
-      "Source Code": "$22 (Offer until 2025-06-25)"
+      "Source Code": "$30"
     }
   },
   {
@@ -102,7 +102,7 @@
       "2 Months": "$6",
       "Lifetime (No Patch)": "$13",
       "Lifetime (Inc Patch)": "$17",
-      "Source Code": "$15 (Offer until 2025-06-25)"
+      "Source Code": "$20"
     }
   },
   {
@@ -148,7 +148,7 @@
       "1 Day": "$3",
       "1 Month": "$15",
       "Lifetime (No Patch)": "$35",
-      "Source Code": "$35 (Offer until 2025-06-25)"
+      "Source Code": "$50 (Pricy but worth it)"
     }
   },
   {
@@ -190,7 +190,7 @@
       "1 Day": "$3",
       "1 Month": "$15",
       "Lifetime (No Patch)": "$30",
-      "Source Code": "$25 (Offer until 2025-06-25)"
+      "Source Code": "$40 (Pricy but worth it)"
     }
   },
   {
@@ -225,7 +225,7 @@
       "1 Month": "$3",
       "2 Months": "$5",
       "Lifetime (No Patch)": "$10",
-      "Source Code": "$10 (Offer until 2025-06-25)"
+      "Source Code": "$13"
     }
   },
   {
@@ -263,7 +263,7 @@
       "1 Month": "$3",
       "2 Months": "$5",
       "Lifetime (No Patch)": "$10",
-      "Source Code": "$10 (Offer until 2025-06-25)"
+      "Source Code": "$15"
     }
   },
   {
