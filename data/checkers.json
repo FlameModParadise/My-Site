@@ -305,7 +305,7 @@
     "type": "Checker",
     "name": "Crunchyroll Cookie Checker",
     "description": "Validate Crunchyroll cookies and capture subscription details.",
-    "long_description": "📺 Designed for Crunchyroll account validation.\n🔓 Includes auto-captcha solving and works without proxies.\n🤖 Captures session, subscription, and region details.\n🎯 Organizes cookies for easy sorting.",
+    "long_description": "📺 Designed for Crunchyroll cookie validation.\n🔓 Includes auto-captcha solving and works without proxies.\n🤖 Captures session, subscription, and region details.\n🎯 Organizes cookies for easy sorting.",
     "requirements": "✅ No specific requirements.",
     "image": "assets/checkers-pic/crunchyroll.png",
     "video": "",
@@ -317,13 +317,14 @@
     "offer": null,
     "offer_expiry": null,
     "release_date": "2025-03-19",
-    "update_date": "2025-04-01",
+    "update_date": "2025-06-003",
     "tags": ["crunchyroll"],
     "keywords": [
       "crunchyroll cookie checker",
       "anime login checker",
       "crunchyroll session status",
-      "region anime cookie check"
+      "region anime cookie check",
+      "anime"
     ],
     "contact": "telegram",
     "stock": "unlimited",
@@ -331,6 +332,41 @@
       "1 Day": "$1",
       "1 Week": "$4",
       "30 Days": "$7",
+      "Lifetime (No Patch)": "$10",
+      "Lifetime (Inc Patch)": "$12",
+      "Source Code": "$15"
+    }
+  },
+  {
+    "type": "Checker",
+    "name": "Crunchyroll Account Checker",
+    "description": "Validate Crunchyroll accounts and capture subscription details.",
+    "long_description": "📺 Designed for Crunchyroll account validation.\n🔓 Includes auto-captcha solving and works without proxies.\n🤖 Captures session, subscription, and region details.\n🎯 Organizes cookies for easy sorting.",
+    "requirements": "✅ No specific requirements.",
+    "image": "assets/checkers-pic/crunchyroll.png",
+    "video": "",
+    "images": [
+    ],
+    "discount": null,
+    "offer": null,
+    "offer_expiry": null,
+    "release_date": "2025-06-03",
+    "update_date": "2025-06-03",
+    "tags": ["crunchyroll"],
+    "keywords": [
+      "crunchyroll accounr checker",
+      "anime login checker",
+      "crunchyroll session status",
+      "region anime cookie check",
+      "anime"
+    ],
+    "contact": "telegram",
+    "stock": "unlimited",
+    "pricing": {
+      "1 Day": "$1",
+      "1 Week": "$4",
+      "30 Days": "$7",
+      "Lifetime (No Patch)": "$10",
       "Lifetime (Inc Patch)": "$12",
       "Source Code": "$15"
     }
