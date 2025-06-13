@@ -6,6 +6,9 @@
     "long_description": "🛠️ Tools Membership\n• Private channel access for all current and future tools.\n• Includes 10+ working cookie checkers.\n• Each member gets personal license (no source, only .exe).\n• Tools may take time — not daily posts.\n• Limited to 15 members max.",
     "requirements": "Tools are .exe only. No source code. Active license provided. Not suitable for mobile use.",
     "image": "assets/membership/tools.png",
+    "images": [
+      "assets/membership/toolchannel1.png"
+    ],
     "tags": [
       "tools",
       "cookie",
