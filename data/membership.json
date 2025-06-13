@@ -3,8 +3,8 @@
     "name": "Tools Membership",
     "type": "Membership",
     "description": "Access to all private tools and cookie checkers with license",
-    "long_description": "🛠️ Tools Membership\n• Private channel access for all current and future tools.\n• Includes 10+ working cookie checkers.\n• Each member gets personal license (no source, only .exe).\n• Tools may take time — not daily posts.\n• Limited to 15 members max.",
-    "requirements": "Tools are .exe only. No source code. Active license provided. Not suitable for mobile use.",
+    "long_description": "🛠️ Tools Membership\n• Private channel access for all current and future tools.\n• Includes 15+ working cookie checkers.\n• Tools may take time — not daily posts.\n• Limited to 15 members max.",
+    "requirements": "Tools are .exe only.\nNo source code.\nNo leak.",
     "image": "assets/membership/tools.png",
     "images": [
       "assets/membership/toolchannel1.png"
@@ -16,7 +16,7 @@
       "membership"
     ],
     "release_date": "2025-05-02",
-    "update_date": "2025-05-02",
+    "update_date": "2025-06-13",
     "price": "$30/month",
     "contact": "telegram",
     "keywords": [
@@ -26,7 +26,7 @@
       "exclusive tools",
       "membership"
     ],
-    "stock_limit": 15
+    "stock": 15
   },
   {
     "name": "Cookie Membership",
@@ -52,7 +52,7 @@
       "hidden drops",
       "membership"
     ],
-    "stock_limit": 5
+    "stock": 5
   },
   {
     "name": "GPT Membership",
@@ -79,7 +79,7 @@
       "browser gpt",
       "chatgpt"
     ],
-    "stock_limit": "Unlimited"
+    "stock": "Unlimited"
   },
   {
     "name": "Netflix TV Membership",
@@ -106,7 +106,7 @@
       "streaming access",
       "tv plan"
     ],
-    "stock_limit": "Unlimited"
+    "stock": "Unlimited"
   },
   {
     "name": "Hotstar Membership",
@@ -132,7 +132,7 @@
       "hotstar plan",
       "membership"
     ],
-    "stock_limit": "Unlimited"
+    "stock": "Unlimited"
   },
   {
     "name": "PrimeVideo Membership",
@@ -158,7 +158,7 @@
       "prime plan",
       "membership"
     ],
-    "stock_limit": "Unlimited"
+    "stock": "Unlimited"
   },
   {
     "name": "Spotify Membership",
@@ -184,6 +184,6 @@
       "spotify plan",
       "membership"
     ],
-    "stock_limit": "Unlimited"
+    "stock": "Unlimited"
   }
 ]
