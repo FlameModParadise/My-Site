@@ -7,7 +7,8 @@
     "requirements": "Tools are .exe only.\nNo source code.\nNo leak.",
     "image": "assets/membership/tools.png",
     "images": [
-      "assets/membership/toolchannel1.png"
+      "assets/membership/toolchannel1.png",
+      "assets/membership/toolchannel2.png"
     ],
     "tags": [
       "tools",
@@ -17,7 +18,7 @@
     ],
     "release_date": "2025-05-02",
     "update_date": "2025-06-13",
-    "price": "$30/month",
+    "price": "$30/month \n$70 Lifetime",
     "contact": "telegram",
     "keywords": [
       "tools membership",
