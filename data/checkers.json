@@ -687,6 +687,40 @@
   },
   {
     "type": "Checker",
+    "name": "Hailuoai Cookie Checker",
+    "description": "Validate Hailuoai cookies and capture account details.",
+    "long_description": "🔒 Check Hailuoai cookies to retrieve account details, and auto sort using subscription plan.",
+    "requirements": "✅ No specific requirements, but finding cookies can be challenging. Ensure good logs.",
+    "image": "assets/checkers-pic/hailuoai.png",
+    "video": "",
+    "images": [
+      "assets/checkers-pic/checking/hailuoai1.png"
+    ],
+    "discount": null,
+    "offer": null,
+    "offer_expiry": null,
+    "release_date": "2025-06-18",
+    "update_date": "2025-06-18",
+    "tags": ["hailuoai", "ai"],
+    "keywords": [
+      "hailuoai cookie checker",
+      "check hailuoai cookies",
+      "hailuoai account status",
+      "hailuoai cookies tool"
+    ],
+    "contact": "telegram",
+    "stock": "unlimited",
+    "pricing": {
+      "1 Day": "$1",
+      "1 Week": "$4",
+      "30 Days": "$8",
+      "Lifetime (No Patch)": "$10",
+      "Lifetime (Inc Patch)": "$12",
+      "Source Code": "$15"
+    } 
+  },
+  {
+    "type": "Checker",
     "name": "Nord Cookie Checker",
     "description": "Validate NordVPN cookies and capture account details.",
     "long_description": "🔒 Check NordVPN cookies to retrieve account details, including payment information and services.\n💻 Use valid cookies to log in via browser and app (for PC users).",
