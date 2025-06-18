@@ -689,7 +689,7 @@
     "type": "Checker",
     "name": "Hailuoai Cookie Checker",
     "description": "Validate Hailuoai cookies and capture account details.",
-    "long_description": "🔒 Check Hailuoai cookies to retrieve account details, and auto sort using subscription plan.",
+    "long_description": "Hailuo AI automates the video production process, making intelligent video editing easy. With machine learning, AI video creators can analyze content and quickly produce high-quality videos. This reduces the effort needed for traditional video editing and ensures consistent results.",
     "requirements": "✅ No specific requirements, but finding cookies can be challenging. Ensure good logs.",
     "image": "assets/checkers-pic/hailuoai.png",
     "video": "",
