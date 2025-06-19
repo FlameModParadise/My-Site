@@ -342,7 +342,7 @@
     "name": "Crunchyroll Account Checker",
     "description": "Validate Crunchyroll accounts and capture subscription details.",
     "long_description": "📺 Designed for Crunchyroll account validation.\n🔓 Includes auto-captcha solving and works without proxies.\n🤖 Captures session, subscription, and region details.\n🎯 Organizes cookies for easy sorting.",
-    "requirements": "✅ No specific requirements.",
+    "requirements": "✅ Ip Ban Issue So i dont recommend, good if you want only payment info from valid ones.",
     "image": "assets/checkers-pic/crunchyroll.png",
     "video": "",
     "images": [
@@ -684,6 +684,41 @@
       "Lifetime (No Patch)": "$13",
       "Source Code": "$15"
     }
+  },
+  {
+    "type": "Checker",
+    "name": "Klingai Cookie Checker",
+    "description": "Validate Klingai cookies and capture all details.",
+    "long_description": "Kling AI, tools for creating imaginative images and videos, based on state-of-art generative AI methods.",
+    "requirements": "✅ No specific requirements, but finding cookies can be challenging. Ensure good logs.",
+    "image": "assets/checkers-pic/klingai.png",
+    "video": "",
+    "images": [
+      "assets/checkers-pic/checking/klingai1.png",
+      "assets/checkers-pic/checking/klingai2.png"
+    ],
+    "discount": null,
+    "offer": null,
+    "offer_expiry": null,
+    "release_date": "2025-06-18",
+    "update_date": "2025-06-18",
+    "tags": ["klingai", "ai"],
+    "keywords": [
+      "klingai cookie checker",
+      "check klingai cookies",
+      "klingai account status",
+      "klingai cookies tool"
+    ],
+    "contact": "telegram",
+    "stock": "unlimited",
+    "pricing": {
+      "1 Day": "$1",
+      "1 Week": "$4",
+      "30 Days": "$8",
+      "Lifetime (No Patch)": "$10",
+      "Lifetime (Inc Patch)": "$12",
+      "Source Code": "$15"
+    } 
   },
   {
     "type": "Checker",
