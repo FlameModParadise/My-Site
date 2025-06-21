@@ -4,7 +4,7 @@
     "name": "Netflix Cookie Checker",
     "description": "Effortlessly validate Netflix cookies and capture slot details.",
     "long_description": "✅ Capture complete slot details with precision.\n🌐 Recommended to use a VPN to bypass IP restrictions.\n⚙️ Compatible with all cookie types.\n⏱️ Provides reliable output without skipping.",
-    "requirements": "✅ A VPN is required to avoid IP bans.",
+    "requirements": "✅ A VPN is required to avoid IP bans.\nFor unknown based cookie please recheck after restarting the checker.",
     "image": "assets/checkers-pic/netflix.png",
     "video": "",
     "images": [
