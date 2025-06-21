@@ -21,12 +21,12 @@
     "tags": ["freepik", "design", "graphics", "vectors", "photos"],
     "release_date": "2025-05-03",
     "update_date": "2025-05-03",
-    "price": "- Credit less than 10k: $0.50\n- Credit more than 10k: $0.80\n- Credit more than 15k: $1\n- Credit more than 20k: $1.50\n- Credit more than 25k: $2",
+    "price": "- Credit less than 10k: $0.30\n- Credit more than 10k: $0.50\n- Credit more than 15k: $0.6\n- Credit more than 20k: $0.8\n- Credit more than 25k: $1",
     "contact": "telegram",
     "keywords": ["freepik", "design", "graphics", "illustrations", "vectors"],
     "image": "assets/images/freepik.png",
-    "requirements": "After that per 10k credit will be 0.50$.\n",
-    "stock": "0"
+    "requirements": "After that per 10k credit will be 0.50$.\nAnd i am not responsible for any device limit issue.",
+    "stock": "3"
   },
   {
     "name": "GPT+ Cookies",
@@ -40,6 +40,7 @@
     "contact": "telegram",
     "keywords": ["chatgpt", "gpt+", "ai", "assistant", "language-model"],
     "image": "assets/images/chatgpt.png",
+    "requirements": "✅ To be open, it don't last long.\n✅ If you want to use it for a long time, you can buy the checker.",
     "stock": "Always"
   },
   {
@@ -54,6 +55,7 @@
     "contact": "telegram",
     "keywords": ["spotify", "music", "podcasts", "streaming", "premium"],
     "image": "assets/images/spotify.png",
+    "requirements": "✅ None.",
     "stock": "unlimited"
   },
   {
@@ -72,6 +74,21 @@
     "stock": "Always"
   },
   {
+    "name": "Crunchyroll Cookies",
+    "type": "Cookie",
+    "description": "Stream anime and Asian dramas on Crunchyroll.",
+    "long_description": "Access Crunchyroll’s extensive library of anime series, movies and simulcasts with premium features.",
+    "requirements": "None",
+    "tags": ["crunchyroll", "anime", "streaming", "dramas", "premium"],
+    "release_date": "2025-03-19",
+    "update_date": "2025-04-01",
+    "price": "- Mixed: $1 per 10 \n -Specific plans: $1 per 3\n- Duration >200days: $1 per 2\n- Duration >300days: $1 per 1\n",
+    "contact": "telegram",
+    "keywords": ["crunchyroll", "anime", "streaming", "dramas", "premium"],
+    "image": "assets/images/crunchyroll.png",
+    "stock": "Always"
+  },
+  {
     "name": "Prime Video Cookies",
     "type": "Cookie",
     "description": "Watch movies, series and Amazon Originals on Prime Video.",
@@ -83,6 +100,7 @@
     "contact": "telegram",
     "keywords": ["primevideo", "amazon", "streaming", "movies", "originals"],
     "image": "assets/images/primevideo.png",
+    "requirements": "✅ None.",
     "stock": "unlimited"
   },
   {
@@ -97,7 +115,8 @@
     "contact": "telegram",
     "keywords": ["claude", "anthropic", "ai", "assistant", "nlp"],
     "image": "assets/images/claudeai.png",
-    "stock": "0"
+    "requirements": "✅ None.",
+    "stock": "2"
   },
   {
     "name": "Perplexity AI Cookies",
@@ -111,7 +130,8 @@
     "contact": "telegram",
     "keywords": ["perplexity", "ai", "search", "assistant", "nlp"],
     "image": "assets/images/perplexityai.png",
-    "stock": "0"
+    "requirements": "✅ None.",
+    "stock": "2"
   },
   {
     "name": "Surfshark Cookies",
@@ -126,7 +146,7 @@
     "contact": "telegram",
     "keywords": ["surfshark", "vpn", "privacy", "security", "geo-unblock"],
     "image": "assets/images/surfshark.png",
-    "stock": "3"
+    "stock": "0"
   },
   {
     "name": "TradingView Cookies",
