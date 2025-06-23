@@ -21,7 +21,7 @@
     "offer": null,
     "offer_expiry": "",
     "contact": "telegram",
-    "keywords": ["discord", "nitro", "boost", "trial", "subscription", "premium", "full version"]
+    "keywords": ["discord", "nitro", "boost", "trial", "subscription", "premium", "full", "full version", "upgrade", "gift"]
   },
   {
     "name": "Discord Nitro (Basic)",
@@ -43,7 +43,7 @@
     "offer": null,
     "offer_expiry": "",
     "contact": "telegram",
-    "keywords": ["discord", "nitro", "basic", "full version", "subscription", "first time"]
+    "keywords": ["discord", "nitro", "basic", "full", "full version", "subscription", "first time", "upgrade", "gift"]
   },
   {
     "name": "Surfshark VPN",
@@ -54,7 +54,7 @@
     "requirements": "1.If you are buying trial only 1 time it can be activated and need card.",
     "images": [],
     "video": "",
-    "tags": ["discord", "nitro", "basic", "full", "subscription"],
+    "tags": ["surfshark", "vpn", "subscription"],
     "release_date": "2025-03-25",
     "update_date": "2025-04-01",
     "pricing": {
@@ -65,6 +65,6 @@
     "offer": null,
     "offer_expiry": "",
     "contact": "telegram",
-    "keywords": ["discord", "nitro", "basic", "full version", "subscription", "first time"]
+    "keywords": ["surfshark", "vpn", "subscription", "trial", "starter", "privacy", "security", "internet", "full", "premium"]
   }
 ]

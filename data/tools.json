@@ -11,7 +11,7 @@
       "logs",
       "extractor",
       "cookies",
-      "bots"
+      "automation"
     ],
     "release_date": "2025-03-25",
     "update_date": "2025-04-01",
@@ -30,7 +30,10 @@
       "log",
       "extract",
       "cookies",
-      "debug"
+      "debug",
+      "parser",
+      "tool",
+      "automation"
     ]
   },
   {
@@ -61,7 +64,10 @@
       "ulp",
       "combo",
       "task",
-      "script"
+      "script",
+      "automation",
+      "generator",
+      "tool"
     ]
   }
 ]

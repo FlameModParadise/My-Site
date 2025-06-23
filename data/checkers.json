@@ -2,7 +2,7 @@
   {
     "type": "Checker",
     "name": "Netflix Cookie Checker",
-    "description": "Effortlessly validate Netflix cookies and capture slot details.",
+    "description": "Netflix is a global streaming service for movies, TV shows, and original content.",
     "long_description": "✅ Capture complete slot details with precision.\n🌐 Recommended to use a VPN to bypass IP restrictions.\n⚙️ Compatible with all cookie types.\n⏱️ Provides reliable output without skipping.",
     "requirements": "✅ A VPN is required to avoid IP bans.\nFor unknown based cookie please recheck after restarting the checker.",
     "image": "assets/checkers-pic/netflix.png",
@@ -28,10 +28,10 @@
     "contact": "telegram",
     "stock": "unlimited",
     "pricing": {
-      "1 Month": "$8 or 20 TP Cookies",
-      "2 Months": "$14 or 35 TP Cookies",
-      "3 Months": "$17 or 43 TP Cookies",
-      "Lifetime": "$23 or 60 TP Cookies or 15 TP monthly",
+      "1 Month": "$8",
+      "2 Months": "$14",
+      "3 Months": "$17",
+      "Lifetime": "$23",
       "Source Code": "$25",
       "Custom Function": "+$5"
     }
@@ -39,7 +39,7 @@
   {
     "type": "Checker",
     "name": "Netflix Cookie Privatizer",
-    "description": "Securely privatize Netflix cookies with ease.",
+    "description": "Netflix is a global streaming service for movies, TV shows, and original content.",
     "long_description": "🔐 Safely privatize any Netflix cookies.\n🚫 No modifications or negotiations allowed.\n🌍 VPN support is recommended for a seamless experience.",
     "requirements": "✅ Use this tool only for privatizing cookies, not for checking them.",
     "image": "assets/checkers-pic/netflix.png",
@@ -59,16 +59,16 @@
     "contact": "telegram",
     "stock": "unlimited",
     "pricing": {
-      "1 Month": "$10 or 25 Cookies",
-      "3 Months": "$20 or 50 Cookies",
-      "Lifetime": "$25 or 15 Cookies monthly (No Patch)",
+      "1 Month": "$10",
+      "3 Months": "$20",
+      "Lifetime": "$25",
       "Source Code": "$30"
     }
   },
   {
     "type": "Checker",
     "name": "ChatGPT Cookie Checker",
-    "description": "Validate GPT+ cookies and determine access status.",
+    "description": "ChatGPT is an AI-powered chatbot platform developed by OpenAI for conversational tasks.",
     "long_description": "🤖 Supports GPT+ cookies validation.\n🟢 Identifies valid, invalid, and expired cookies.\n⚡ Optimized for performance and works without proxies.\n📈 Ideal for bulk validation tasks.\n📝 Now includes detection for half-pro subscriptions.",
     "requirements": "✅ No specific requirements.",
     "image": "assets/checkers-pic/chatgpt.jpg",
@@ -108,7 +108,7 @@
   {
     "type": "Checker",
     "name": "Outlook Cookie Checker and inbox Searcher",
-    "description": "Validate Outlook cookies and check inbox message according to keywords.",
+    "description": "Outlook is Microsoft's email and calendar platform for personal and business use.",
     "long_description": "Checks if Outlook cookies are valid and searches inboxes for keywords you provide.\nJust load your keyword list and select a logs folder — the tool will extract cookies, validate each one, and if valid, scan the inbox for your keywords.\nMatches are saved in organized folders with hit details and clean formatting. Fast, simple, and works with or without proxies.\n\nOutlook cookies give full mailbox access — like Gmail. If the inbox is linked to services like Netflix or PayPal, you can log in, use the 'Forgot Password' option and have access.",
     "image": "assets/checkers-pic/outlook.png",
     "video": "",
@@ -156,7 +156,7 @@
   {
     "type": "Checker",
     "name": "Azure Cookie Checker",
-    "description": "Azure is Microsoft's cloud computing platform that provides a wide range of services like virtual machines, databases, AI, and app hosting. ",
+    "description": "Azure is Microsoft's cloud computing platform for hosting, databases, and AI services.",
     "long_description": "Checks if azure cookies are valid or not.\nShort according to plan free or premium based.\nYou can login using cookie and make rdp as your need.\nFast and proxyless.",
     "image": "assets/checkers-pic/azure.png",
     "requirements": "✅ Please don't ask me how to make rdp using azure cookies.",
@@ -198,7 +198,7 @@
   {
     "type": "Checker",
     "name": "Spotify Cookie Checker",
-    "description": "Identify free, premium, and mixed Spotify cookies.",
+    "description": "Spotify is a digital music streaming service with millions of songs and podcasts.",
     "long_description": "📦 Capture region and subscription details.\n🛡️ Efficient and works without proxies.\nCaptures spotify links and address.",
     "requirements": "✅ No specific requirements.",
     "image": "assets/checkers-pic/spotify.jpg",
@@ -233,7 +233,7 @@
   {
     "type": "Checker",
     "name": "Jio Hotstar Cookie Checker",
-    "description": "Quickly validate Jio Hotstar cookies and retrieve account details.",
+    "description": "Jio Hotstar is a streaming platform for movies, TV shows, sports, and live events in India.",
     "long_description": "📺 Validate active Jio Hotstar cookies instantly.\n📍 Display region and package information.\n⚙️ Features a clean UI with fast, proxyless responses.",
     "requirements": "✅ Use a VPN if you are not located in India.",
     "image": "assets/checkers-pic/hotstar.png",
@@ -271,7 +271,7 @@
   {
     "type": "Checker",
     "name": "Prime Video Cookie Checker",
-    "description": "Verify Amazon Prime Video cookies globally.",
+    "description": "Prime Video is Amazon's streaming service for movies, TV series, and originals.",
     "long_description": "🎥 Detect valid, invalid, and region-specific Prime Video cookies.\n✅ Highlights account details with minimal setup.\n💡 Works seamlessly across regions.",
     "requirements": "✅ No specific requirements.",
     "image": "assets/checkers-pic/primevideo.jpg",
@@ -304,7 +304,7 @@
   {
     "type": "Checker",
     "name": "Crunchyroll Cookie Checker",
-    "description": "Validate Crunchyroll cookies and capture subscription details.",
+    "description": "Crunchyroll is a streaming platform for anime, manga, and Asian dramas.",
     "long_description": "📺 Designed for Crunchyroll cookie validation.\n🔓 Includes auto-captcha solving and works without proxies.\n🤖 Captures session, subscription, and region details.\n🎯 Organizes cookies for easy sorting.",
     "requirements": "✅ No specific requirements.",
     "image": "assets/checkers-pic/crunchyroll.png",
@@ -340,7 +340,7 @@
   {
     "type": "Checker",
     "name": "Crunchyroll Account Checker",
-    "description": "Validate Crunchyroll accounts and capture subscription details.",
+    "description": "Crunchyroll is a streaming platform for anime, manga, and Asian dramas.",
     "long_description": "📺 Designed for Crunchyroll account validation.\n🔓 Includes auto-captcha solving and works without proxies.\n🤖 Captures session, subscription, and region details.\n🎯 Organizes cookies for easy sorting.",
     "requirements": "✅ Ip Ban Issue So i dont recommend, good if you want only payment info from valid ones.",
     "image": "assets/checkers-pic/crunchyroll.png",
@@ -374,7 +374,7 @@
   {
     "type": "Checker",
     "name": "Genspark AI Cookie Checker",
-    "description": "AI Slides, AI Sheets, AI Chat, AI Image and Video Generation, AI Download For Me, AI Call For Me, AI Drive, and more.",
+    "description": "GenSpark AI is a generative AI platform for business automation and creative tasks.",
     "long_description": "GenSpark AI is a state-of-the-art generative AI platform designed to streamline and enhance various business and creative processes. With its suite of intelligent agents, GenSpark AI can automate repetitive tasks, generate high-quality content, and offer data-driven insights that enable smarter decision-making. \n🔄 Sorts cookies based on plan.\n🟢 Fast and works without proxies.",
     "requirements": "✅ No specific requirements. \nHowever, finding Genspark cookies can be challenging due to low demand.",
     "image": "assets/checkers-pic/genspark.png",
@@ -417,7 +417,7 @@
   {
     "type": "Checker",
     "name": "Hulu Cookie Checker",
-    "description": "Efficiently categorize and validate Hulu cookies.",
+    "description": "Hulu is a streaming service for TV shows, movies, and exclusive content.",
     "long_description": "📺 Automatically detects and validates Hulu cookies.\n🔄 Sorts cookies based on access levels.\n🟢 Fast and works without proxies.",
     "requirements": "✅ No specific requirements. However, finding Hulu cookies can be challenging due to low demand.",
     "image": "assets/checkers-pic/hulu.jpg",
@@ -450,7 +450,7 @@
   {
     "type": "Checker",
     "name": "Freepik Cookie Checker",
-    "description": "Freepik is an ai platform for designers to design and create images, video vectors, and more.",
+    "description": "Freepik is a platform for designers to access images, vectors, and design resources.",
     "long_description": "🖼️ Check Freepik cookies for free or premium accounts.\n🔍 Detects account credits and basic details.\n📊 Efficient and works without proxies.\n🌍 Optional payment capture available for an additional $2.",
     "requirements": "✅ Generally no requirements, but a VPN may be needed occasionally.",
     "image": "assets/checkers-pic/freepik.png",
@@ -483,7 +483,7 @@
   {
     "type": "Checker",
     "name": "Blackbox AI Cookie Checker",
-    "description": "Validate Blackbox AI cookies and capture subscription details.",
+    "description": "Blackbox AI is a platform for AI-powered coding and developer tools.",
     "long_description": "🤖 Detect valid, expired, and duplicate cookies.\n📊 Retrieve email and subscription ID details.\n🚀 Smooth and proxyless operation.",
     "requirements": "✅ No specific requirements.",
     "image": "assets/checkers-pic/blackboxai.png",
@@ -517,7 +517,7 @@
   {
     "type": "Checker",
     "name": "2Captcha Cookie Checker",
-    "description": "Validate 2Captcha API keys and token balances.",
+    "description": "2Captcha is a service for solving CAPTCHAs and automating web tasks.",
     "long_description": "🔑 Extract API keys and account balances.\n🦾 Stable and works without proxies.\n📊 Fast and efficient for token-based access validation.",
     "requirements": "✅ No specific requirements.",
     "image": "assets/checkers-pic/2captcha.png",
@@ -551,7 +551,7 @@
   {
     "type": "Checker",
     "name": "Perplexity AI Cookie Checker",
-    "description": "Validate Perplexity AI cookies and account details.",
+    "description": "Perplexity AI is an AI-powered search and conversational assistant platform.",
     "long_description": "😲 Optimized for Perplexity.ai accounts.\n🤖 Automatically detects plan type, region, and status.\n🌍 Fast and user-friendly interface.",
     "requirements": "✅ No specific requirements.",
     "image": "assets/checkers-pic/perplexityai.jpg",
@@ -585,7 +585,7 @@
   {
     "type": "Checker",
     "name": "Eneba Cookie Checker",
-    "description": "Validate Eneba cookies and retrieve account balances.",
+    "description": "Eneba is an online marketplace for digital games and gift cards.",
     "long_description": "💰 Display account balances and loyalty points.\n🎯 Ideal for log sorting and account management.\n✅ Provides real-time results without proxies.",
     "requirements": "✅ No specific requirements.",
     "image": "assets/checkers-pic/eneba.png",
@@ -619,7 +619,7 @@
   {
     "type": "Checker",
     "name": "Claude Ai Cookie Checker",
-    "description": "Ai like chatgpt but more effective for coding and programming.",
+    "description": "Claude AI is an advanced AI chatbot platform for coding and productivity.",
     "long_description": "🤖 Validate Claude AI cookies and retrieve account details.\n🔍 Detects free or premium.\n🌍 Fast and user-friendly interface.",
     "requirements": "✅ No specific requirements.",
     "image": "assets/checkers-pic/claudeai.png",
@@ -657,7 +657,7 @@
   {
     "type": "Checker",
     "name": "Peacock TV Cookie Checker",
-    "description": "Validate Peacock TV cookies and retrieve plan details.",
+    "description": "Peacock TV is a streaming service for movies, TV shows, and live sports.",
     "long_description": "📺 Check Peacock TV cookies for plan and payment details.\n💳 Capture subscription and payment information.\n🌍 Fast and works without proxies.\n✅ Ideal for account management.",
     "requirements": "✅ Must be a US citizen or use a VPN to validate cookies.",
     "image": "assets/checkers-pic/peacocktv.jpg",
@@ -688,7 +688,7 @@
   {
     "type": "Checker",
     "name": "Klingai Cookie Checker",
-    "description": "Validate Klingai cookies and capture all details.",
+    "description": "Kling AI is a platform for generative AI-based image and video creation.",
     "long_description": "Kling AI, tools for creating imaginative images and videos, based on state-of-art generative AI methods.",
     "requirements": "✅ No specific requirements, but finding cookies can be challenging. Ensure good logs.",
     "image": "assets/checkers-pic/klingai.png",
@@ -723,7 +723,7 @@
   {
     "type": "Checker",
     "name": "Hailuoai Cookie Checker",
-    "description": "Validate Hailuoai cookies and capture account details.",
+    "description": "Hailuo AI is a platform for automated video production using AI.",
     "long_description": "Hailuo AI automates the video production process, making intelligent video editing easy. With machine learning, AI video creators can analyze content and quickly produce high-quality videos. This reduces the effort needed for traditional video editing and ensures consistent results.",
     "requirements": "✅ No specific requirements, but finding cookies can be challenging. Ensure good logs.",
     "image": "assets/checkers-pic/hailuoai.png",
@@ -757,7 +757,7 @@
   {
     "type": "Checker",
     "name": "Nord Cookie Checker",
-    "description": "Validate NordVPN cookies and capture account details.",
+    "description": "NordVPN is a VPN service for secure and private internet access.",
     "long_description": "🔒 Check NordVPN cookies to retrieve account details, including payment information and services.\n💻 Use valid cookies to log in via browser and app (for PC users).",
     "requirements": "✅ No specific requirements, but finding cookies can be challenging. Ensure good logs.",
     "image": "assets/checkers-pic/nordvpn.png",
@@ -791,7 +791,7 @@
   {
     "type": "Checker",
     "name": "TradingView Cookie Checker",
-    "description": "radingView is a powerful and popular platform used for analyzing financial markets, especially for trading, investing, and social networking among traders. ",
+    "description": "TradingView is a platform for financial market analysis and trading charts.",
     "long_description": "📈 Validate TradingView cookies and retrieve account details.\n💳 Capture subscription and payment information.\n🌍 Fast and works without proxies.\n✅ Ideal for account management.",
     "requirements": "✅ No specific requirements.",
     "image": "assets/checkers-pic/tradingview.jpg",
