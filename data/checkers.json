@@ -416,39 +416,6 @@
   },
   {
     "type": "Checker",
-    "name": "Hulu Cookie Checker",
-    "description": "Hulu is a streaming service for TV shows, movies, and exclusive content.",
-    "long_description": "📺 Automatically detects and validates Hulu cookies.\n🔄 Sorts cookies based on access levels.\n🟢 Fast and works without proxies.",
-    "requirements": "✅ No specific requirements. However, finding Hulu cookies can be challenging due to low demand.",
-    "image": "assets/checkers-pic/hulu.jpg",
-    "video": "",
-    "images": [
-      "assets/checkers-pic/checking/hulu1.png"
-    ],
-    "discount": null,
-    "offer": null,
-    "offer_expiry": null,
-    "release_date": "2025-03-19",
-    "update_date": "2025-04-01",
-    "tags": ["hulu"],
-    "keywords": [
-      "hulu cookie check",
-      "validate hulu login",
-      "detect hulu subscription",
-      "auto-check hulu account"
-    ],
-    "contact": "telegram",
-    "stock": "unlimited",
-    "pricing": {
-      "1 Day": "$1",
-      "1 Week": "$4",
-      "30 Days": "$7",
-      "Lifetime (Inc Patch)": "$12",
-      "Source Code": "$15"
-    }
-  },
-  {
-    "type": "Checker",
     "name": "Freepik Cookie Checker",
     "description": "Freepik is a platform for designers to access images, vectors, and design resources.",
     "long_description": "🖼️ Check Freepik cookies for free or premium accounts.\n🔍 Detects account credits and basic details.\n📊 Efficient and works without proxies.\n🌍 Optional payment capture available for an additional $2.",
@@ -752,40 +719,6 @@
       "Lifetime (No Patch)": "$10",
       "Lifetime (Inc Patch)": "$12",
       "Source Code": "$15"
-    } 
-  },
-  {
-    "type": "Checker",
-    "name": "Nord Cookie Checker",
-    "description": "NordVPN is a VPN service for secure and private internet access.",
-    "long_description": "🔒 Check NordVPN cookies to retrieve account details, including payment information and services.\n💻 Use valid cookies to log in via browser and app (for PC users).",
-    "requirements": "✅ No specific requirements, but finding cookies can be challenging. Ensure good logs.",
-    "image": "assets/checkers-pic/nordvpn.png",
-    "video": "",
-    "images": [
-      "assets/checkers-pic/checking/nordvpn1.png"
-    ],
-    "discount": null,
-    "offer": null,
-    "offer_expiry": null,
-    "release_date": "2025-04-20",
-    "update_date": "2025-04-20",
-    "tags": ["nordvpn", "vpn"],
-    "keywords": [
-      "nordvpn cookie checker",
-      "check nordvpn cookies",
-      "nordvpn account status",
-      "slot capture nordvpn",
-      "nordvpn cookies tool"
-    ],
-    "contact": "telegram",
-    "stock": "unlimited",
-    "pricing": {
-      "1 Day": "$1",
-      "1 Week": "$4",
-      "30 Days": "$8",
-      "Lifetime (Inc Patch)": "$10",
-      "Source Code": "$12"
     } 
   },
   {
