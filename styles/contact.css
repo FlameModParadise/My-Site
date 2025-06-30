@@ -1,7 +1,6 @@
 /* ========================= */
 /*       Contact Page        */
 /* ========================= */
-
 /* HERO HEADER */
 .contact-hero {
     position: relative;
@@ -94,11 +93,11 @@
     transform-style: preserve-3d;
 }
 
-/* 
-   By default, we use hover to flip on desktops that support hover.
-   If you have click-based flipping in JS for mobile, this won't conflict:
-   the .flipped class also triggers transform. 
-*/
+/**
+ * By default, we use hover to flip on desktops that support hover.
+ * If you have click-based flipping in JS for mobile, this won't conflict:
+ * the .flipped class also triggers transform.
+ */
 @media (hover: hover) {
     .flip-card:hover .flip-card-inner {
         transform: rotateY(180deg);
@@ -217,27 +216,31 @@ body.dark .flip-card-back a:hover {
 /* ========================= */
 /*      RESPONSIVE STYLES    */
 /* ========================= */
-
 /* Tablet (max-width: 768px) */
 @media (max-width: 768px) {
     .contact-hero {
         height: 250px;
     }
+    
     .hero-content h1 {
         font-size: 2.2rem;
     }
+    
     .hero-content p {
         font-size: 1rem;
     }
+    
     .contact-card-wrapper {
         gap: 1.5rem;
         margin: 1.5rem 0;
     }
+    
     .flip-card {
         width: 90%;
         max-width: 320px;
         height: auto;
     }
+    
     .flip-card-inner {
         min-height: 320px;
     }
@@ -248,28 +251,35 @@ body.dark .flip-card-back a:hover {
     .contact-hero {
         height: 200px;
     }
+    
     .hero-content h1 {
         font-size: 1.8rem;
     }
+    
     .hero-content p {
         font-size: 0.9rem;
     }
+    
     .contact-card-wrapper {
         gap: 1rem;
         margin: 1.2rem 0;
     }
+    
     .flip-card {
         width: 100%;
         max-width: 300px;
         height: auto;
     }
+    
     .flip-card-inner {
         min-height: 300px;
     }
+    
     .flip-card-front h3,
     .flip-card-back h3 {
         font-size: 1.3rem;
     }
+    
     .flip-card-front p,
     .flip-card-back p {
         font-size: 0.9rem;
