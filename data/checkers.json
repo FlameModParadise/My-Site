@@ -17,7 +17,9 @@
     "offer_expiry": null,
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
-    "tags": ["netflix"],
+    "tags": [
+      "netflix"
+    ],
     "keywords": [
       "netflix slot checker",
       "check netflix cookies",
@@ -50,7 +52,10 @@
     "offer_expiry": null,
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
-    "tags": ["netflix", "privatizer"],
+    "tags": [
+      "netflix",
+      "privatizer"
+    ],
     "keywords": [
       "netflix cookie privatizer",
       "make netflix cookies private",
@@ -84,7 +89,10 @@
     "offer_expiry": null,
     "release_date": "2025-03-19",
     "update_date": "2025-04-22",
-    "tags": ["gpt", "chatgpt"],
+    "tags": [
+      "gpt",
+      "chatgpt"
+    ],
     "keywords": [
       "chatgpt cookie check",
       "validate gpt cookies",
@@ -120,13 +128,18 @@
       "assets/checkers-pic/checking/outlook5.png",
       "assets/checkers-pic/checking/outlook6.png",
       "assets/checkers-pic/checking/outlook7.png"
-    ], 
+    ],
     "discount": null,
     "offer": null,
     "offer_expiry": null,
     "release_date": "2025-05-13",
     "update_date": "2025-05-13",
-    "tags": ["outlook", "microsoft", "hotmail", "inbox searcher"],
+    "tags": [
+      "outlook",
+      "microsoft",
+      "hotmail",
+      "inbox searcher"
+    ],
     "keywords": [
       "outlook cookie checker",
       "outlook cookie checker and inbox searcher",
@@ -162,7 +175,7 @@
     "requirements": "✅ Please don't ask me how to make rdp using azure cookies.",
     "video": "",
     "images": [
-      "assets/checkers-pic/checking/azure1.png", 
+      "assets/checkers-pic/checking/azure1.png",
       "assets/checkers-pic/checking/azure2.png",
       "assets/checkers-pic/checking/azure3.png",
       "assets/checkers-pic/checking/azure4.png",
@@ -177,7 +190,12 @@
     "offer_expiry": null,
     "release_date": "2025-05-22",
     "update_date": "2025-05-22",
-    "tags": ["azure", "microsoft", "cloud", "rdp"],
+    "tags": [
+      "azure",
+      "microsoft",
+      "cloud",
+      "rdp"
+    ],
     "keywords": [
       "azure cookie checker",
       "detect azure cookies",
@@ -212,7 +230,9 @@
     "offer_expiry": null,
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
-    "tags": ["spotify"],
+    "tags": [
+      "spotify"
+    ],
     "keywords": [
       "spotify cookie checker",
       "check spotify login",
@@ -250,7 +270,9 @@
     "offer_expiry": null,
     "release_date": "2025-03-19",
     "update_date": "2025-04-22",
-    "tags": ["jio hotstar"],
+    "tags": [
+      "jio hotstar"
+    ],
     "keywords": [
       "hotstar cookie check",
       "validate hotstar cookie",
@@ -284,7 +306,9 @@
     "offer_expiry": null,
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
-    "tags": ["prime"],
+    "tags": [
+      "prime"
+    ],
     "keywords": [
       "prime video cookie check",
       "amazon prime cookie tool",
@@ -318,7 +342,9 @@
     "offer_expiry": null,
     "release_date": "2025-03-19",
     "update_date": "2025-06-003",
-    "tags": ["crunchyroll"],
+    "tags": [
+      "crunchyroll"
+    ],
     "keywords": [
       "crunchyroll cookie checker",
       "anime login checker",
@@ -345,14 +371,15 @@
     "requirements": "✅ Ip Ban Issue So i dont recommend, good if you want only payment info from valid ones.",
     "image": "assets/checkers-pic/crunchyroll.png",
     "video": "",
-    "images": [
-    ],
+    "images": [],
     "discount": null,
     "offer": null,
     "offer_expiry": null,
     "release_date": "2025-06-03",
     "update_date": "2025-06-03",
-    "tags": ["crunchyroll"],
+    "tags": [
+      "crunchyroll"
+    ],
     "keywords": [
       "crunchyroll accounr checker",
       "anime login checker",
@@ -388,7 +415,9 @@
     "offer_expiry": null,
     "release_date": "2025-05-29",
     "update_date": "2025-05-29",
-    "tags": ["Genspark ai"],
+    "tags": [
+      "Genspark ai"
+    ],
     "keywords": [
       "genspark ai cookie",
       "AI",
@@ -433,7 +462,9 @@
     "offer_expiry": null,
     "release_date": "2025-04-29",
     "update_date": "2025-04-29",
-    "tags": ["freepik"],
+    "tags": [
+      "freepik"
+    ],
     "keywords": [
       "freepik cookie checker"
     ],
@@ -445,6 +476,48 @@
       "30 Days": "$7",
       "Lifetime (No Patch)": "$15",
       "Source Code": "$17"
+    }
+  },
+  {
+    "type": "Checker",
+    "name": "MyCanal+ Cookie Checker",
+    "description": "MyCanal+ is a premium streaming service offering TV, movies, and live sports.",
+    "long_description": "💎 Detects whether the cookie is premium or not.\n⚠️ Cannot retrieve service provider, specific plan, or sender information — due to MyCanal site maintenance.\n🚀 Fast and proxyless operation.",
+    "requirements": "✅ No specific requirements, but using a VPN with a French IP is recommended (fully optional).",
+    "image": "assets/checkers-pic/mycanal+.jpg",
+    "video": "",
+    "images": [
+      "assets/checkers-pic/checking/mycanal1.png",
+      "assets/checkers-pic/checking/mycanal2.png",
+      "assets/checkers-pic/checking/mycanal3.png"
+    ],
+    "discount": null,
+    "offer": null,
+    "offer_expiry": null,
+    "release_date": "2025-04-29",
+    "update_date": "2025-04-29",
+    "tags": [
+      "mycanal",
+      "canalplus",
+      "streaming",
+      "france"
+    ],
+    "keywords": [
+      "mycanal+ cookie checker",
+      "canalplus login validator",
+      "check canal cookies",
+      "validate mycanal session",
+      "french streaming checker"
+    ],
+    "contact": "telegram",
+    "stock": "unlimited",
+    "pricing": {
+      "1 Day": "$1",
+      "1 Week": "$4",
+      "30 Days": "$7",
+      "Lifetime (No Patch)": "$13",
+      "Lifetime (Inc Patch)": "$15",
+      "Source Code": "18"
     }
   },
   {
@@ -463,7 +536,9 @@
     "offer_expiry": null,
     "release_date": "2025-03-19",
     "update_date": "2025-05-30",
-    "tags": ["blackbox"],
+    "tags": [
+      "blackbox"
+    ],
     "keywords": [
       "blackbox ai login",
       "check blackbox cookie",
@@ -498,7 +573,9 @@
     "offer_expiry": null,
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
-    "tags": ["2captcha"],
+    "tags": [
+      "2captcha"
+    ],
     "keywords": [
       "2captcha api key check",
       "balance checker 2captcha",
@@ -531,7 +608,9 @@
     "offer_expiry": null,
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
-    "tags": ["perplexity"],
+    "tags": [
+      "perplexity"
+    ],
     "keywords": [
       "perplexity ai login checker",
       "perplexity cookies status",
@@ -565,7 +644,9 @@
     "offer_expiry": null,
     "release_date": "2025-03-25",
     "update_date": "2025-04-01",
-    "tags": ["eneba"],
+    "tags": [
+      "eneba"
+    ],
     "keywords": [
       "eneba balance check",
       "eneba account checker",
@@ -601,7 +682,11 @@
     "offer_expiry": null,
     "release_date": "2025-05-05",
     "update_date": "2025-05-05",
-    "tags": ["claude", "ai", "chatbot"],
+    "tags": [
+      "claude",
+      "ai",
+      "chatbot"
+    ],
     "keywords": [
       "claude ai login checker",
       "validate claude cookies",
@@ -637,7 +722,9 @@
     "offer_expiry": null,
     "release_date": "2025-04-23",
     "update_date": "2025-04-23",
-    "tags": ["peacock tv"],
+    "tags": [
+      "peacock tv"
+    ],
     "keywords": [
       "peacock tv cookie checker",
       "validate peacock cookies"
@@ -669,7 +756,10 @@
     "offer_expiry": null,
     "release_date": "2025-06-18",
     "update_date": "2025-06-18",
-    "tags": ["klingai", "ai"],
+    "tags": [
+      "klingai",
+      "ai"
+    ],
     "keywords": [
       "klingai cookie checker",
       "check klingai cookies",
@@ -685,7 +775,7 @@
       "Lifetime (No Patch)": "$10",
       "Lifetime (Inc Patch)": "$12",
       "Source Code": "$15"
-    } 
+    }
   },
   {
     "type": "Checker",
@@ -703,7 +793,10 @@
     "offer_expiry": null,
     "release_date": "2025-06-18",
     "update_date": "2025-06-18",
-    "tags": ["hailuoai", "ai"],
+    "tags": [
+      "hailuoai",
+      "ai"
+    ],
     "keywords": [
       "hailuoai cookie checker",
       "check hailuoai cookies",
@@ -719,7 +812,7 @@
       "Lifetime (No Patch)": "$10",
       "Lifetime (Inc Patch)": "$12",
       "Source Code": "$15"
-    } 
+    }
   },
   {
     "type": "Checker",
@@ -741,7 +834,11 @@
     "offer_expiry": null,
     "release_date": "2025-05-20",
     "update_date": "2025-05-20",
-    "tags": ["tradingview", "finance", "stock market"],
+    "tags": [
+      "tradingview",
+      "finance",
+      "stock market"
+    ],
     "keywords": [
       "tradingview cookie checker",
       "check tradingview cookies",
@@ -757,6 +854,6 @@
       "30 Days": "$7",
       "Lifetime (Inc Patch)": "$10",
       "Source Code": "$12"
-    } 
-  } 
+    }
+  }
 ]
