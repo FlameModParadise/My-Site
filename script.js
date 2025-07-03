@@ -1,85 +1,92 @@
-// ================ SIMPLE NAVBAR FIX ================ 
-// Add this to the TOP of your script.js file
-
+// ================ MOBILE NAVBAR FIX (TOP PRIORITY) ================ 
 document.addEventListener('DOMContentLoaded', function() {
-  console.log('Setting up mobile navbar...');
+  console.log('🚀 Setting up mobile navbar...');
   
   const toggle = document.getElementById('navbarToggle');
   const menu = document.getElementById('navbarMenu');
   
   if (!toggle || !menu) {
-    console.error('Navbar elements not found!');
+    console.error('❌ Navbar elements not found!');
+    console.error('Toggle:', toggle);
+    console.error('Menu:', menu);
     return;
   }
   
-  console.log('Navbar elements found:', { toggle, menu });
+  console.log('✅ Navbar elements found:', { toggle, menu });
   
   // Simple toggle function
   function toggleMobileMenu() {
     const isOpen = menu.classList.contains('show-menu');
-    console.log('Toggle clicked, menu is open:', isOpen);
+    console.log('🔄 Toggle clicked, menu is open:', isOpen);
     
     if (isOpen) {
+      // Close menu
       menu.classList.remove('show-menu');
       toggle.innerHTML = '☰';
+      toggle.setAttribute('aria-label', 'Open menu');
       document.body.style.overflow = '';
-      console.log('Menu closed');
+      console.log('❌ Menu closed');
     } else {
+      // Open menu
       menu.classList.add('show-menu');
       toggle.innerHTML = '✕';
+      toggle.setAttribute('aria-label', 'Close menu');
       document.body.style.overflow = 'hidden';
-      console.log('Menu opened');
+      console.log('✅ Menu opened');
     }
   }
   
-  // Click event for hamburger
+  // Click event for hamburger button
   toggle.addEventListener('click', function(e) {
     e.preventDefault();
     e.stopPropagation();
+    console.log('🍔 Hamburger clicked');
     toggleMobileMenu();
   });
   
-  // Close menu when clicking links
-  const links = menu.querySelectorAll('a, button');
-  console.log('Found', links.length, 'menu links');
+  // Close menu when clicking on menu links
+  const menuLinks = menu.querySelectorAll('a, button');
+  console.log(`🔗 Found ${menuLinks.length} menu links:`, Array.from(menuLinks).map(l => l.textContent.trim()));
   
-  links.forEach(link => {
-    link.addEventListener('click', function() {
+  menuLinks.forEach((link, index) => {
+    link.addEventListener('click', function(e) {
+      console.log(`🔗 Link ${index} clicked: ${link.textContent.trim()}`);
       if (menu.classList.contains('show-menu')) {
-        console.log('Closing menu via link click');
+        console.log('📱 Closing menu via link click');
         toggleMobileMenu();
       }
     });
   });
   
-  // Close menu when clicking outside
+  // Close menu when clicking outside (on overlay)
   document.addEventListener('click', function(e) {
-    if (!toggle.contains(e.target) && !menu.contains(e.target)) {
-      if (menu.classList.contains('show-menu')) {
-        console.log('Closing menu via outside click');
-        toggleMobileMenu();
-      }
+    const isClickInsideNav = toggle.contains(e.target) || menu.contains(e.target);
+    
+    if (!isClickInsideNav && menu.classList.contains('show-menu')) {
+      console.log('🖱️ Closing menu via outside click');
+      toggleMobileMenu();
     }
   });
   
-  // Close on escape key
+  // Close menu on escape key
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape' && menu.classList.contains('show-menu')) {
-      console.log('Closing menu via escape key');
+      console.log('⌨️ Closing menu via Escape key');
       toggleMobileMenu();
     }
   });
   
-  // Close menu on resize
+  // Close menu on window resize to desktop size
   window.addEventListener('resize', function() {
     if (window.innerWidth > 768 && menu.classList.contains('show-menu')) {
-      console.log('Closing menu due to resize');
+      console.log('📱➡️💻 Closing menu due to resize');
       toggleMobileMenu();
     }
   });
   
-  console.log('Mobile navbar setup complete!');
+  console.log('✅ Mobile navbar setup complete!');
 });
+
 /* === CSS PATCHES (auto‑injected) === */
 (() => {
   const css = `
@@ -124,8 +131,6 @@ const scrollToTopBtn   = document.getElementById("scrollToTopBtn");
 const darkToggle       = document.getElementById("darkToggle");
 const banner           = document.getElementById("announcement-banner");
 const closeBanner      = document.getElementById("close-banner");
-const navbarToggle     = document.getElementById("navbarToggle");
-const navbarMenu       = document.getElementById("navbarMenu");
 const imageModal       = document.getElementById("imageModal");
 const autocompleteBox  = document.getElementById("autocompleteBox");
 
@@ -271,15 +276,18 @@ if (darkToggle) {
     );
   });
 }
-if (localStorage.getItem(THEME_KEY) === "dark")
+
+if (localStorage.getItem(THEME_KEY) === "dark") {
   document.body.classList.add("dark");
+}
 
 document.addEventListener("keydown", (e) => {
   if (
     e.key.toLowerCase() === "d" &&
     !e.target.matches("input,textarea,[contenteditable]")
-  )
+  ) {
     darkToggle?.click();
+  }
 });
 
 /* ----------  BANNER  ---------- */
@@ -386,17 +394,6 @@ async function loadData() {
       seen.add(k);
       return true;
     });
-
-    // Insert static heading and separator for "Special Offers"
-    const offersSection = document.getElementById("offers-section");
-    offersSection.insertAdjacentHTML(
-      "afterbegin",
-      `<h2 class="section-heading">Special Offers</h2>`
-    );
-    offersSection.insertAdjacentHTML(
-      "afterend",
-      `<div class="animated-separator"></div>`
-    );
 
     generateFilterButtons();
     applyFiltersAndRender();
