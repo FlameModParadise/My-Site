@@ -86,18 +86,6 @@ body {
     pointer-events: none;
 }
 
-/* Fade in animation for container */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
 /* Staggered animation for FAQ items */
 .faq-item {
     animation: slideInFade 0.5s ease-out backwards;
@@ -114,10 +102,34 @@ body {
 .faq-item:nth-child(9) { animation-delay: 0.9s; }
 .faq-item:nth-child(10) { animation-delay: 1s; }
 
+/* Fade in animation for container */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Staggered animation for FAQ items */
 @keyframes slideInFade {
     from {
         opacity: 0;
         transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
     }
     to {
         opacity: 1;
@@ -476,7 +488,7 @@ body {
 }
 
 /* ====================================== */
-/*           INTERACTIVE ELEMENTS        */
+/*         INTERACTIVE ELEMENTS          */
 /* ====================================== */
 
 /* Focus states for accessibility */
@@ -547,7 +559,6 @@ body.dark #faq-container::before {
     background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 37%, #f0f0f0 63%);
     background-size: 400px 100%;
     animation: shimmer 1.5s infinite;
-}1;
 }
 
 body.dark .faq-controls button:hover {
@@ -622,7 +633,6 @@ body.dark .faq-answer {
 
 body.dark .faq-item.loading .faq-question {
     background: linear-gradient(90deg, #1e293b 25%, #334155 37%, #1e293b 63%);
-}1;
 }
 
 body.dark .faq-controls button:hover {

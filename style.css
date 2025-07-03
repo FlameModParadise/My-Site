@@ -2231,9 +2231,11 @@ body.dark, body.dark .navbar, body.dark .banner, body.dark .install-box, body.da
 
 /* Optimize images */
 img {
-  loading: lazy;
-  decoding: async;
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
+
 
 /* ================ FINAL MOBILE TOUCHES ================ */
 /* Prevent text selection on UI elements */
