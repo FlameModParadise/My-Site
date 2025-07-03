@@ -2274,19 +2274,27 @@ img {
     bottom: max(20px, env(safe-area-inset-bottom));
   }
 }
-/* SIMPLE NAVBAR CSS - Add this to your style.css */
-/* Remove or comment out your existing navbar CSS first */
+/* ================ MOBILE MENU QUICK FIX ================ */
+
+/* Remove all conflicting navbar styles first, then add this: */
 
 .navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   background: rgba(255, 255, 255, 0.95);
-  padding: 0.5rem 1rem;
+  backdrop-filter: blur(10px);
+  padding: 0.75rem 1rem;
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+body.dark .navbar {
+  background: rgba(31, 31, 31, 0.95);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .navbar-left {
@@ -2295,9 +2303,8 @@ img {
 }
 
 .logo {
-  display: inline-block;
-  width: 55px;
-  height: 55px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   overflow: hidden;
 }
@@ -2322,7 +2329,7 @@ img {
 .navbar-right {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .navbar-right a,
@@ -2344,7 +2351,12 @@ img {
   background: rgba(13, 110, 253, 0.1);
 }
 
-/* MOBILE STYLES */
+.navbar-right a.active {
+  color: #0d6efd;
+  font-weight: 600;
+}
+
+/* ================ MOBILE STYLES ================ */
 @media (max-width: 768px) {
   .navbar-toggle {
     display: block !important;
@@ -2360,10 +2372,15 @@ img {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 2rem;
+    gap: 3rem;
     transform: translateX(100%);
     transition: transform 0.3s ease;
-    z-index: 1000;
+    z-index: 999;
+    padding: 2rem;
+  }
+  
+  body.dark .navbar-right {
+    background: #1f1f1f;
   }
   
   .navbar-right.show-menu {
@@ -2372,28 +2389,49 @@ img {
   
   .navbar-right a,
   .navbar-right button {
-    font-size: 1.2rem;
-    padding: 1rem 2rem;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    min-width: 150px;
-    text-align: center;
+    font-size: 1.4rem !important;
+    padding: 1rem 2rem !important;
+    border: 2px solid #0d6efd !important;
+    border-radius: 12px !important;
+    min-width: 200px !important;
+    text-align: center !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+    color: #333 !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  body.dark .navbar-right a,
+  body.dark .navbar-right button {
+    background: rgba(31, 31, 31, 0.9) !important;
+    color: #e0e0e0 !important;
+    border-color: #0d6efd !important;
+  }
+  
+  .navbar-right a:hover,
+  .navbar-right button:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(13, 110, 253, 0.3) !important;
+  }
+  
+  #darkToggle {
+    font-size: 1.5rem !important;
+    padding: 1rem !important;
+    min-width: 60px !important;
+    min-height: 60px !important;
+    border-radius: 50% !important;
   }
 }
 
-/* DARK MODE */
-body.dark .navbar {
-  background: rgba(31, 31, 31, 0.95);
-  color: white;
-}
-
-body.dark .navbar-right {
-  background: #1f1f1f;
-  color: white;
-}
-
-body.dark .navbar-right a,
-body.dark .navbar-right button {
-  color: white;
-  border-color: #444;
+/* Force visibility of all menu items on mobile */
+@media (max-width: 768px) {
+  .navbar-right.show-menu a,
+  .navbar-right.show-menu button {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    z-index: 1000 !important;
+  }
 }

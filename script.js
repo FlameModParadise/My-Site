@@ -1,3 +1,85 @@
+// ================ SIMPLE NAVBAR FIX ================ 
+// Add this to the TOP of your script.js file
+
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('Setting up mobile navbar...');
+  
+  const toggle = document.getElementById('navbarToggle');
+  const menu = document.getElementById('navbarMenu');
+  
+  if (!toggle || !menu) {
+    console.error('Navbar elements not found!');
+    return;
+  }
+  
+  console.log('Navbar elements found:', { toggle, menu });
+  
+  // Simple toggle function
+  function toggleMobileMenu() {
+    const isOpen = menu.classList.contains('show-menu');
+    console.log('Toggle clicked, menu is open:', isOpen);
+    
+    if (isOpen) {
+      menu.classList.remove('show-menu');
+      toggle.innerHTML = '☰';
+      document.body.style.overflow = '';
+      console.log('Menu closed');
+    } else {
+      menu.classList.add('show-menu');
+      toggle.innerHTML = '✕';
+      document.body.style.overflow = 'hidden';
+      console.log('Menu opened');
+    }
+  }
+  
+  // Click event for hamburger
+  toggle.addEventListener('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    toggleMobileMenu();
+  });
+  
+  // Close menu when clicking links
+  const links = menu.querySelectorAll('a, button');
+  console.log('Found', links.length, 'menu links');
+  
+  links.forEach(link => {
+    link.addEventListener('click', function() {
+      if (menu.classList.contains('show-menu')) {
+        console.log('Closing menu via link click');
+        toggleMobileMenu();
+      }
+    });
+  });
+  
+  // Close menu when clicking outside
+  document.addEventListener('click', function(e) {
+    if (!toggle.contains(e.target) && !menu.contains(e.target)) {
+      if (menu.classList.contains('show-menu')) {
+        console.log('Closing menu via outside click');
+        toggleMobileMenu();
+      }
+    }
+  });
+  
+  // Close on escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && menu.classList.contains('show-menu')) {
+      console.log('Closing menu via escape key');
+      toggleMobileMenu();
+    }
+  });
+  
+  // Close menu on resize
+  window.addEventListener('resize', function() {
+    if (window.innerWidth > 768 && menu.classList.contains('show-menu')) {
+      console.log('Closing menu due to resize');
+      toggleMobileMenu();
+    }
+  });
+  
+  console.log('Mobile navbar setup complete!');
+});
 /* === CSS PATCHES (auto‑injected) === */
 (() => {
   const css = `
@@ -572,7 +654,7 @@ container?.addEventListener("click", e => {
 
 /* ----------  FILTER BUTTONS ---------- */
 function generateFilterButtons() {
-  if (!filtersContainer) return;                     // ← added guard
+  if (!filtersContainer) return;
   const types = [...new Set(
     allTools.map(t => (t.type || "").toLowerCase()).filter(Boolean)
   )];
@@ -648,7 +730,7 @@ function showToolDetail(tool, initial = false) {
             <p><strong>Updated:</strong><br>${escapeHTML(tool.update_date  || 'N/A')}</p><br>
 
             <div style="display:flex;gap:1rem;flex-wrap:wrap;">
-              <a href="${getContactLink(tool.contact)}" target="_blank" class="contact-btn">💬 Contact</a>
+              <a href="${getContactLink(tool.contact)}" target="_blank" class="contact-btn">💬 Contact</a>
               <button class="requirements-btn" onclick="showRequirementsPopup('${escapeHTML(tool.name)}')">
                 Requirements
               </button>
@@ -810,71 +892,86 @@ function showRequirementsPopup(name) {
   setTimeout(() => box.classList.add("hidden"), 4000);
 }
 
-/* ----------  NAV & SCROLL ---------- */
-/* SIMPLE NAVBAR JAVASCRIPT - Add this to your script.js */
-/* Comment out or remove your existing navbar JavaScript first */
-
-// Wait for DOM to load
+/* ----------  FIXED NAVBAR JAVASCRIPT ---------- */
+// Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
   console.log('DOM loaded, initializing navbar...');
   
   const navbarToggle = document.getElementById('navbarToggle');
   const navbarMenu = document.getElementById('navbarMenu');
   
-  console.log('Toggle element:', navbarToggle);
-  console.log('Menu element:', navbarMenu);
-  
   if (navbarToggle && navbarMenu) {
-    console.log('Both elements found, adding event listener...');
+    console.log('Navbar elements found, setting up event listeners...');
     
-    navbarToggle.addEventListener('click', function(e) {
-      e.preventDefault();
-      console.log('Hamburger clicked!');
-      
+    // Toggle menu function
+    function toggleMenu() {
       const isOpen = navbarMenu.classList.contains('show-menu');
-      console.log('Menu is currently open:', isOpen);
       
       if (isOpen) {
+        // Close menu
         navbarMenu.classList.remove('show-menu');
-        navbarToggle.textContent = '☰';
+        navbarToggle.innerHTML = '☰';
+        navbarToggle.setAttribute('aria-label', 'Open menu');
+        document.body.style.overflow = ''; // Restore scroll
         console.log('Menu closed');
       } else {
+        // Open menu
         navbarMenu.classList.add('show-menu');
-        navbarToggle.textContent = '✕';
+        navbarToggle.innerHTML = '✕';
+        navbarToggle.setAttribute('aria-label', 'Close menu');
+        document.body.style.overflow = 'hidden'; // Prevent background scroll
         console.log('Menu opened');
       }
-      
-      console.log('Menu classes after toggle:', navbarMenu.classList.toString());
+    }
+    
+    // Click event for hamburger button
+    navbarToggle.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      toggleMenu();
     });
     
-    // Close menu when clicking links
-    navbarMenu.addEventListener('click', function(e) {
-      if (e.target.tagName === 'A') {
-        console.log('Link clicked, closing menu');
-        navbarMenu.classList.remove('show-menu');
-        navbarToggle.textContent = '☰';
+    // Close menu when clicking on menu links
+    const menuLinks = navbarMenu.querySelectorAll('a');
+    menuLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        if (navbarMenu.classList.contains('show-menu')) {
+          toggleMenu();
+          console.log('Menu closed via link click');
+        }
+      });
+    });
+    
+    // Close menu when clicking outside (on overlay)
+    document.addEventListener('click', function(e) {
+      const isClickInsideNav = navbarToggle.contains(e.target) || navbarMenu.contains(e.target);
+      
+      if (!isClickInsideNav && navbarMenu.classList.contains('show-menu')) {
+        toggleMenu();
+        console.log('Menu closed via outside click');
+      }
+    });
+    
+    // Close menu on window resize to desktop size
+    window.addEventListener('resize', function() {
+      if (window.innerWidth > 768 && navbarMenu.classList.contains('show-menu')) {
+        toggleMenu();
+        console.log('Menu closed due to resize');
+      }
+    });
+    
+    // Handle escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && navbarMenu.classList.contains('show-menu')) {
+        toggleMenu();
+        console.log('Menu closed via Escape key');
       }
     });
     
   } else {
     console.error('Navbar elements not found!');
-    console.error('Toggle:', navbarToggle);
+    console.error('Toggle button:', navbarToggle);
     console.error('Menu:', navbarMenu);
-  }
-});
-
-// Additional debugging
-window.addEventListener('load', function() {
-  console.log('Window loaded, checking elements again...');
-  const toggle = document.getElementById('navbarToggle');
-  const menu = document.getElementById('navbarMenu');
-  
-  console.log('Final check - Toggle:', toggle);
-  console.log('Final check - Menu:', menu);
-  
-  if (menu) {
-    console.log('Menu innerHTML:', menu.innerHTML);
-    console.log('Menu children count:', menu.children.length);
   }
 });
 
