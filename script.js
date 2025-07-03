@@ -811,31 +811,72 @@ function showRequirementsPopup(name) {
 }
 
 /* ----------  NAV & SCROLL ---------- */
-/* ── NAV MENU ─────────────────────────────── */
-if (navbarToggle && navbarMenu) {
-  // open / close with ☰
-  navbarToggle.addEventListener("click", () =>
-    navbarMenu.classList.toggle("show-menu")
-  );
+/* SIMPLE NAVBAR JAVASCRIPT - Add this to your script.js */
+/* Comment out or remove your existing navbar JavaScript first */
 
-  // close after any link (or anything inside a link) is tapped
-  navbarMenu.addEventListener("click", e => {
-    if (e.target.closest("a")) navbarMenu.classList.remove("show-menu");
-  });
-}
+// Wait for DOM to load
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('DOM loaded, initializing navbar...');
+  
+  const navbarToggle = document.getElementById('navbarToggle');
+  const navbarMenu = document.getElementById('navbarMenu');
+  
+  console.log('Toggle element:', navbarToggle);
+  console.log('Menu element:', navbarMenu);
+  
+  if (navbarToggle && navbarMenu) {
+    console.log('Both elements found, adding event listener...');
+    
+    navbarToggle.addEventListener('click', function(e) {
+      e.preventDefault();
+      console.log('Hamburger clicked!');
+      
+      const isOpen = navbarMenu.classList.contains('show-menu');
+      console.log('Menu is currently open:', isOpen);
+      
+      if (isOpen) {
+        navbarMenu.classList.remove('show-menu');
+        navbarToggle.textContent = '☰';
+        console.log('Menu closed');
+      } else {
+        navbarMenu.classList.add('show-menu');
+        navbarToggle.textContent = '✕';
+        console.log('Menu opened');
+      }
+      
+      console.log('Menu classes after toggle:', navbarMenu.classList.toString());
+    });
+    
+    // Close menu when clicking links
+    navbarMenu.addEventListener('click', function(e) {
+      if (e.target.tagName === 'A') {
+        console.log('Link clicked, closing menu');
+        navbarMenu.classList.remove('show-menu');
+        navbarToggle.textContent = '☰';
+      }
+    });
+    
+  } else {
+    console.error('Navbar elements not found!');
+    console.error('Toggle:', navbarToggle);
+    console.error('Menu:', navbarMenu);
+  }
+});
 
-/* ── SCROLL‑TO‑TOP BUTTON ─────────────────── */
-if (scrollToTopBtn) {
-  window.addEventListener(
-    "scroll",
-    () => scrollToTopBtn.classList.toggle("show", scrollY > 300),
-    { passive: true }
-  );
-
-  scrollToTopBtn.addEventListener("click", () =>
-    window.scrollTo({ top: 0, behavior: "smooth" })
-  );
-}
+// Additional debugging
+window.addEventListener('load', function() {
+  console.log('Window loaded, checking elements again...');
+  const toggle = document.getElementById('navbarToggle');
+  const menu = document.getElementById('navbarMenu');
+  
+  console.log('Final check - Toggle:', toggle);
+  console.log('Final check - Menu:', menu);
+  
+  if (menu) {
+    console.log('Menu innerHTML:', menu.innerHTML);
+    console.log('Menu children count:', menu.children.length);
+  }
+});
 
 /* ----------  AUTOCOMPLETE ---------- */
 let selectedIndex = -1;
