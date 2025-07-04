@@ -633,7 +633,7 @@
     "description": "Codashop is a platform for purchasing game credits and digital content.",
     "long_description": "Finds out if has wallet connected or not, have active subscription or not including any cashback amount.\nNote: Cookies of codashop is very very hard to find, so please ensure you have good big logs.",
     "requirements": "✅ No specific requirements, but finding Codashop cookies can be challenging.",
-    "image": "assets/checkers-pic/codashop.jgp",
+    "image": "assets/checkers-pic/codashop.jpg", 
     "video": "",
     "images": [
     ],
