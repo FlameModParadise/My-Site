@@ -629,38 +629,35 @@
   },
   {
     "type": "Checker",
-    "name": "Eneba Cookie Checker",
-    "description": "Eneba is an online marketplace for digital games and gift cards.",
-    "long_description": "💰 Display account balances and loyalty points.\n🎯 Ideal for log sorting and account management.\n✅ Provides real-time results without proxies.",
-    "requirements": "✅ No specific requirements.",
-    "image": "assets/checkers-pic/eneba.png",
+    "name": "CodaShop Cookie Checker",
+    "description": "Codashop is a platform for purchasing game credits and digital content.",
+    "long_description": "Finds out if has wallet connected or not, have active subscription or not including any cashback amount.\nNote: Cookies of codashop is very very hard to find, so please ensure you have good big logs.",
+    "requirements": "✅ No specific requirements, but finding Codashop cookies can be challenging.",
+    "image": "assets/checkers-pic/codashop.jgp",
     "video": "",
     "images": [
-      "assets/checkers-pic/checking/eneba1.png"
     ],
     "discount": null,
     "offer": null,
     "offer_expiry": null,
-    "release_date": "2025-03-25",
-    "update_date": "2025-04-01",
+    "release_date": "2025-07-04",
+    "update_date": "2025-07-04",
     "tags": [
-      "eneba"
+      "codashop"
     ],
     "keywords": [
-      "eneba balance check",
-      "eneba account checker",
-      "loyalty point validator",
-      "eneba cookie status"
+      "codashop cookie checker",
+      "check codashop cookies",
+      "codashop account status",
+      "codashop wallet checker",
+      "codashop cashback",
+      "gaming points"
     ],
     "contact": "telegram",
     "stock": "unlimited",
     "pricing": {
-      "1 Day": "$1",
-      "1 Week": "$4",
-      "30 Days": "$10",
-      "Lifetime (No Patch)": "$13",
-      "Lifetime (Inc Patch)": "$15",
-      "Source Code": "$20"
+      "Lifetime (Inc Patch)": "$7",
+      "Source Code": "$10"
     }
   },
   {
