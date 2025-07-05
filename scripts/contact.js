@@ -1,9 +1,12 @@
+// Updated Contact Page JavaScript
 document.addEventListener("DOMContentLoaded", () => {
   const cardWrapper = document.getElementById("contact-card-wrapper");
-  // Optional fallback icon if 'icon' is missing
   const FALLBACK_ICON = "assets/icons/default-contact.png";
   
-  // Fetch the contact data from contact.json
+  // Show loading state with spinner
+  cardWrapper.innerHTML = '<div class="loading">Loading contacts</div>';
+  
+  // Fetch contact data
   fetch("../json/contact.json")
     .then(response => {
       if (!response.ok) {
@@ -12,18 +15,18 @@ document.addEventListener("DOMContentLoaded", () => {
       return response.json();
     })
     .then(data => {
-      // Clear existing content
+      // Clear wrapper
       cardWrapper.innerHTML = "";
       
       if (!Array.isArray(data) || !data.length) {
-        cardWrapper.innerHTML = "<p>No contact methods found.</p>";
+        cardWrapper.innerHTML = '<p style="text-align: center; color: #666;">No contact methods found.</p>';
         return;
       }
       
-      // Create a flip card for each contact method
-      data.forEach(item => {
+      // Create cards with staggered animation
+      data.forEach((item, index) => {
         const {
-          icon = FALLBACK_ICON, // fallback icon
+          icon = FALLBACK_ICON,
           type = "Contact",
           title = "Untitled",
           description = "",
@@ -31,22 +34,27 @@ document.addEventListener("DOMContentLoaded", () => {
           buttonText = "Contact"
         } = item;
         
-        // Main flip card container
+        // Create flip card
         const flipCard = document.createElement("div");
         flipCard.classList.add("flip-card");
+        // Set custom property for staggered animation
+        flipCard.style.setProperty("--index", index);
         
-        // Inner container
         const flipCardInner = document.createElement("div");
         flipCardInner.classList.add("flip-card-inner");
         
         // ========== FRONT SIDE ==========
         const frontSide = document.createElement("div");
         frontSide.classList.add("flip-card-front");
-        frontSide.title = type; // Add tooltip with the contact type
+        frontSide.title = type;
         
         const frontImg = document.createElement("img");
         frontImg.src = icon;
         frontImg.alt = `${type} Icon`;
+        frontImg.loading = "lazy"; // Lazy load images
+        frontImg.onerror = function() {
+          this.src = FALLBACK_ICON; // Fallback if image fails
+        };
         
         const frontTitle = document.createElement("h3");
         frontTitle.textContent = title;
@@ -71,32 +79,64 @@ document.addEventListener("DOMContentLoaded", () => {
         const backLink = document.createElement("a");
         backLink.href = link;
         backLink.target = "_blank";
+        backLink.rel = "noopener noreferrer"; // Security
         backLink.textContent = buttonText;
         
         backSide.appendChild(backTitle);
         backSide.appendChild(backDesc);
         backSide.appendChild(backLink);
         
-        // ========== Assemble Flip Card ==========
+        // ========== Assemble Card ==========
         flipCardInner.appendChild(frontSide);
         flipCardInner.appendChild(backSide);
         flipCard.appendChild(flipCardInner);
         cardWrapper.appendChild(flipCard);
         
-        // For mobile/non-hover devices, toggle 'flipped' on click
-        flipCard.addEventListener("click", () => {
-          flipCardInner.classList.toggle("flipped");
+        // ========== Interaction Handlers ==========
+        // Click to flip (for mobile and accessibility)
+        flipCard.addEventListener("click", (e) => {
+          // Don't flip if clicking the link
+          if (e.target.tagName !== 'A') {
+            flipCardInner.classList.toggle("flipped");
+          }
         });
         
-        // (Optional) If you want to prevent the flip if user only clicks the link on the back:
-        backLink.addEventListener("click", event => {
-          event.stopPropagation(); // ensures link opens without flipping card again
+        // Keyboard accessibility
+        flipCard.setAttribute("tabindex", "0");
+        flipCard.setAttribute("role", "button");
+        flipCard.setAttribute("aria-label", `${title} contact card. Press Enter to flip.`);
+        
+        flipCard.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            flipCardInner.classList.toggle("flipped");
+          }
+        });
+        
+        // Prevent flip when clicking the link
+        backLink.addEventListener("click", (e) => {
+          e.stopPropagation();
         });
       });
     })
     .catch(error => {
       console.error("Error loading contact data:", error);
-      cardWrapper.innerHTML =
-        "<p>Unable to load contact information at this time.</p>";
+      cardWrapper.innerHTML = `
+        <div style="text-align: center; padding: 2rem;">
+          <p style="color: #d32f2f; margin-bottom: 1rem;">
+            Unable to load contact information.
+          </p>
+          <button onclick="location.reload()" style="
+            padding: 0.5rem 1rem;
+            background: #0288d1;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+          ">
+            Retry
+          </button>
+        </div>
+      `;
     });
 });
