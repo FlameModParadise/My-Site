@@ -20,6 +20,10 @@
     "answer": "Digital products such as Steam keys and tools are typically delivered immediately after payment confirmation. For custom orders, I will provide an estimated delivery timeframe during the ordering process."
   },
   {
+    "question": "Do i take custom orders?",
+    "answer": "Yes, I do take custom orders for mods and tools. If you have a specific request, please contact me with details about what you need, and I’ll let you know if it’s something I can create for you."
+  },
+  {
     "question": "What support is available if I encounter issues?",
     "answer": "If you experience any issues after your purchase, just message me on the same platform you used to order—Telegram or Discord—and I’ll personally help you troubleshoot or guide you through using the product."
   },
@@ -30,6 +34,14 @@
   {
     "question": "Are time-unlimited offers or discounts valid beyond 24 hours?",
     "answer": "No. Even if an offer, discount, or deal is given without a specific time limit—whether private or public—it is only valid for 24 hours. After that, it will no longer be honored."
+  },
+  {
+    "question": "Can i resell or share the tools or checkers?",
+    "answer": "No. All tools and checkers are licensed for 1 device only and cannot be resold or shared. If you want to resell, you must buy the source code, which allows you to resell the source code of the tools and checkers. However, you cannot resell the EXE versions of the tools or checkers."
+  },
+  {
+    "question": "Should I buy the source code or EXE version?",
+    "answer": "If you want to resell or update or customize the tools or checkers, you must buy the source code. If you just want to use the tools without any modifications, the EXE version is sufficient."
   },
   {
     "question": "How does licensing work, and is the activation script safe?",

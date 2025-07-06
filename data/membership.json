@@ -30,6 +30,36 @@
     "stock": 14
   },
   {
+    "name": "Source Code Membership",
+    "type": "Membership",
+    "description": "Access to all private tools and cookie checkers with source code",
+    "long_description": "🛠️ Source Code Membership\n• Private channel access for all current and future tools.\n• Includes 15+ working cookie checkers.\n• Tools may take time — not daily posts.\n• Source code provided for all tools.",
+    "requirements": "Resell or not doesn't matter.",
+    "image": "assets/membership/sourcecodemembership.png",
+    "images": [
+    ],
+    "tags": [
+      "tools",
+      "checkers",
+      "membership",
+      "source code"
+    ],
+    "release_date": "2025-05-02",
+    "update_date": "2025-06-13",
+    "price": "Entry: $100 (Inc 1st month)\nMonthly (after entry): $20\nLifetime: $200\n(No entry or monthly fees for lifetime plan)",
+    "contact": "telegram",
+    "keywords": [
+      "tools membership",
+      "cookie checker access",
+      "software license",
+      "exclusive tools",
+      "membership",
+      "source code",
+      "source code access"
+    ],
+    "stock": 7
+  },
+  {
     "name": "Cookie Membership",
     "type": "Membership",
     "description": "Private cookie drops not posted elsewhere",
@@ -78,7 +108,36 @@
       "ai access",
       "gpt cookies",
       "browser gpt",
-      "chatgpt"
+      "chatgpt",
+      "gptplus",
+      "gpt+"
+    ],
+    "stock": "Unlimited"
+  },
+  {
+    "name": "ClaudeAi Membership",
+    "type": "Membership",
+    "description": "Claude Ai is the best ai chatbot for coding purposes.",
+    "long_description": "🤖 ClaudeAi Cookie Plan\n• Use ClaudeAi through browser cookies.",
+    "requirements": "Cookies are browser-based only.\nNo sharing or misuse.\nReplacement only within limits.",
+    "image": "assets/membership/claudeai.png",
+    "tags": [
+      "claude",
+      "cookies",
+      "browser",
+      "ai",
+      "membership"
+    ],
+    "release_date": "2025-05-02",
+    "update_date": "2025-05-02",
+    "price": "10days: 1$ \n15days: 1.5$ \n1month: $4",
+    "contact": "telegram",
+    "keywords": [
+      "claude membership",
+      "ai access",
+      "claude cookies",
+      "browser claude",
+      "claude ai"
     ],
     "stock": "Unlimited"
   },
