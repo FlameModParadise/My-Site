@@ -221,6 +221,30 @@
     "stock": "Unlimited"
   },
   {
+    "name": "CanalPlus Membership",
+    "type": "Membership",
+    "description": "CanalPlus access for 1 month.q",
+    "long_description": "📺 CanalPlus Membership\n• 1 month access.\nBrowser only.",
+    "requirements": "No sharing or misuse.\nNeed laptop browser.",
+    "image": "assets/membership/canalplus.jpg",
+    "tags": [
+      "canalplus",
+      "streaming",
+      "membership"
+    ],
+    "release_date": "2025-07-09",
+    "update_date": "2025-07-09",
+    "price": "$2/month",
+    "contact": "telegram",
+    "keywords": [
+      "canalplus membership",
+      "streaming access",
+      "canalplus plan",
+      "membership"
+    ],
+    "stock": "10"
+  },
+  {
     "name": "Spotify Membership",
     "type": "Membership",
     "description": "Spotify access for 1 month.",

@@ -149,6 +149,21 @@
     "stock": "0"
   },
   {
+    "name": "CanalPlus Cookies",
+    "type": "Cookie",
+    "description": "CanalPlus is a French premium television channel offering movies, series, and sports.",
+    "long_description": "CanalPlus provides access to exclusive films, series, and live sports events in France.",
+    "requirements": "For france based 1$ per 1.",
+    "tags": ["canalplus", "cookies"],
+    "release_date": "2025-07-09",
+    "update_date": "2025-07-09",
+    "price": "0.5$ per 2",
+    "contact": "telegram",
+    "keywords": ["canalplus", "cookies", "france", "television", "movies", "series", "sports" ],
+    "image": "assets/images/canalplus.jpg",
+    "stock": "20"
+  },
+  {
     "name": "TradingView Cookies",
     "type": "Cookie",
     "description": "TradingView is a platform for financial market analysis and trading charts.",
