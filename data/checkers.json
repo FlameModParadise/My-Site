@@ -482,20 +482,22 @@
     "type": "Checker",
     "name": "MyCanal+ Cookie Checker",
     "description": "MyCanal+ is a premium streaming service offering TV, movies, and live sports.",
-    "long_description": "💎 Detects whether the cookie is premium or not.\n⚠️ Cannot retrieve service provider, specific plan, or sender information — due to MyCanal site maintenance.\n🚀 Fast and proxyless operation.",
-    "requirements": "✅ No specific requirements, but using a VPN with a French IP is recommended (fully optional).",
+    "long_description": "💎 Detects whether the cookie is premium or not.\n⚠️ Cannot retrieve service provider, specific plan, or sender information — due to canalplus site maintenance except for France based cookies.\n🚀 Fast and proxyless operation.",
+    "requirements": "✅ No specific requirements, but details like plans, and others is only availble for france based cookies, it is not from my side it is from canal+ side.",
     "image": "assets/checkers-pic/mycanal+.jpg",
     "video": "",
     "images": [
       "assets/checkers-pic/checking/mycanal1.png",
       "assets/checkers-pic/checking/mycanal2.png",
-      "assets/checkers-pic/checking/mycanal3.png"
+      "assets/checkers-pic/checking/mycanal3.png",
+      "assets/checkers-pic/checking/mycanal4.png",
+      "assets/checkers-pic/checking/mycanal5.png"
     ],
     "discount": null,
     "offer": null,
     "offer_expiry": null,
     "release_date": "2025-07-03",
-    "update_date": "2025-07-03",
+    "update_date": "2025-07-09",
     "tags": [
       "mycanal",
       "canalplus",
