@@ -816,7 +816,7 @@
     "name": "Surfshark Cookie Checker",
     "description": "A tool to validate Surfshark VPN cookies and check account status.",
     "long_description": "🌐 Validate Surfshark cookies and retrieve account details.\n🔍 Detects subscription status and plan type.\n🚀 Uses Selenium and undetected browser. Follow these important steps:\n1. Make sure Chrome browser and the correct ChromeDriver are installed.\n2. If you encounter a captcha or repeated invalid results:\n   - Stop the checker\n   - Connect to a VPN and try again\n   - If the problem persists, restart your device and retry with VPN.\n\n✅ Example output:\n- [Invalid - No email] Cookiename.txt - Good condition\n- [Invalid] Cookiename.txt - Bad condition | Captcha detected. Follow troubleshooting steps.",
-    "requirements": "✅ Chrome browser and matching ChromeDriver required.",
+    "requirements": "✅ Chrome browser and matching ChromeDriver required.\nAnd a good vpn.\n⚠️ If you encounter a captcha or repeated invalid results, follow these steps:\n1. Stop the checker.\n2. Connect to a VPN and try again.\n3. If the problem persists, restart your device and retry with VPN.",
     "image": "assets/checkers-pic/surfshark.png",
     "video": "",
     "images": [
