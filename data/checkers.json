@@ -635,10 +635,9 @@
     "description": "Codashop is a platform for purchasing game credits and digital content.",
     "long_description": "Finds out if has wallet connected or not, have active subscription or not including any cashback amount.\nNote: Cookies of codashop is very very hard to find, so please ensure you have good big logs.",
     "requirements": "✅ No specific requirements, but finding Codashop cookies can be challenging.",
-    "image": "assets/checkers-pic/codashop.jpg", 
+    "image": "assets/checkers-pic/codashop.jpg",
     "video": "",
-    "images": [
-    ],
+    "images": [],
     "discount": null,
     "offer": null,
     "offer_expiry": null,
@@ -810,6 +809,38 @@
       "Lifetime (No Patch)": "$10",
       "Lifetime (Inc Patch)": "$12",
       "Source Code": "$15"
+    }
+  },
+  {
+    "type": "Checker",
+    "name": "Surfshark Cookie Checker",
+    "description": "A tool to validate Surfshark VPN cookies and check account status.",
+    "long_description": "🌐 Validate Surfshark cookies and retrieve account details.\n🔍 Detects subscription status and plan type.\n🚀 Uses Selenium and undetected browser. Follow these important steps:\n1. Make sure Chrome browser and the correct ChromeDriver are installed.\n2. If you encounter a captcha or repeated invalid results:\n   - Stop the checker\n   - Connect to a VPN and try again\n   - If the problem persists, restart your device and retry with VPN.\n\n✅ Example output:\n- [Invalid - No email] Cookiename.txt - Good condition\n- [Invalid] Cookiename.txt - Bad condition | Captcha detected. Follow troubleshooting steps.",
+    "requirements": "✅ Chrome browser and matching ChromeDriver required.",
+    "image": "assets/checkers-pic/surfshark.png",
+    "video": "",
+    "images": [
+      "assets/checkers-pic/checking/surfshark1.png"
+    ],
+    "discount": null,
+    "offer": null,
+    "offer_expiry": null,
+    "release_date": "2025-07-11",
+    "update_date": "2025-07-11",
+    "tags": [
+      "surfshark",
+      "vpn"
+    ],
+    "keywords": [
+      "surfshark cookie checker",
+      "check surfshark cookies",
+      "surfshark account status",
+      "surfshark cookies tool"
+    ],
+    "contact": "telegram",
+    "stock": "unlimited",
+    "pricing": {
+      "Source Code (only)": "$12"
     }
   },
   {
