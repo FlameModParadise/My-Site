@@ -1,6 +1,323 @@
 [
   {
     "type": "Checker",
+    "name": "ChatGPT Cookie Checker",
+    "description": "ChatGPT is an AI-powered chatbot platform developed by OpenAI for conversational tasks.",
+    "long_description": "🤖 Supports GPT+ cookies validation.\n🟢 Identifies valid, invalid, and expired cookies.\n⚡ Optimized for performance and works without proxies.\n📈 Ideal for bulk validation tasks.\n📝 Now includes detection for half-pro subscriptions.",
+    "requirements": "✅ No specific requirements.",
+    "image": "assets/checkers-pic/chatgpt.jpg",
+    "video": "",
+    "images": [
+      "assets/checkers-pic/checking/gpt1.png",
+      "assets/checkers-pic/checking/gpt2.png",
+      "assets/checkers-pic/checking/gpt3.png",
+      "assets/checkers-pic/checking/gpt4.png"
+    ],
+    "discount": null,
+    "offer": null,
+    "offer_expiry": null,
+    "release_date": "2025-03-19",
+    "update_date": "2025-04-22",
+    "tags": [
+      "gpt",
+      "chatgpt"
+    ],
+    "keywords": [
+      "chatgpt cookie check",
+      "validate gpt cookies",
+      "gpt plus status checker",
+      "chatgpt login session",
+      "gpt access tool",
+      "chatgpt",
+      "gpt"
+    ],
+    "contact": "telegram",
+    "stock": "unlimited",
+    "pricing": {
+      "1 Day": "$1",
+      "1 Month": "$4",
+      "2 Months": "$6",
+      "Lifetime (No Patch)": "$13",
+      "Lifetime (Inc Patch)": "$17",
+      "Source Code": "$20"
+    }
+  },
+  {
+    "type": "Checker",  
+    "name": "GrokAi Cookie Checker",
+    "description": "GrokAi is an AI-powered coding assistant designed to help developers with code generation and debugging.",
+    "long_description": "🤖 Validate GrokAi cookies and retrieve account details.\n🔍 Detects free or premium accounts.\n🌍 Fast and user-friendly interface.",
+    "requirements": "✅ Grok is not known as chatgpt or claude so paid cookies are hard to find, ensure you have good logs.",
+    "image": "assets/checkers-pic/grok.jpg",
+    "video": "",
+    "images": [
+      "assets/checkers-pic/checking/grok1.png"
+    ],
+    "discount": null,
+    "offer": null,
+    "offer_expiry": null,
+    "release_date": "2025-07-11",
+    "update_date": "2025-07-11",
+    "tags": [
+      "grok",
+      "ai",
+      "chatbot"
+    ],
+    "keywords": [
+      "grok ai login checker",
+      "validate grok cookies",
+      "check grok session",
+      "grok ai tool",
+      "ai plan validation",
+      "chatgpt",
+      "ai"
+    ],
+    "contact": "telegram",
+    "stock": "unlimited",
+    "pricing": {
+      "1 Day": "$1",
+      "1 Month": "$4",
+      "Lifetime (No Patch)": "$10",
+      "Lifetime (Inc Patch)": "$13",
+      "Source Code": "$16"
+    }
+  },
+  {
+    "type": "Checker",
+    "name": "Claude Ai Cookie Checker",
+    "description": "Claude AI is an advanced AI chatbot platform for coding and productivity.",
+    "long_description": "🤖 Validate Claude AI cookies and retrieve account details.\n🔍 Detects free or premium.\n🌍 Fast and user-friendly interface.",
+    "requirements": "✅ No specific requirements.",
+    "image": "assets/checkers-pic/claudeai.png",
+    "video": "",
+    "images": [
+      "assets/checkers-pic/checking/claudeai1.png",
+      "assets/checkers-pic/checking/claudeai2.png",
+      "assets/checkers-pic/checking/claudeai3.png"
+    ],
+    "discount": null,
+    "offer": null,
+    "offer_expiry": null,
+    "release_date": "2025-05-05",
+    "update_date": "2025-05-05",
+    "tags": [
+      "claude",
+      "ai",
+      "chatbot"
+    ],
+    "keywords": [
+      "claude ai login checker",
+      "validate claude cookies",
+      "check claude session",
+      "claude ai tool",
+      "ai plan validation",
+      "chatgpt",
+      "ai"
+    ],
+    "contact": "telegram",
+    "stock": "unlimited",
+    "pricing": {
+      "1 Day": "$1",
+      "1 Week": "$4",
+      "30 Days": "$7",
+      "Lifetime (No Patch)": "$12",
+      "Source Code": "$15"
+    }
+  },
+  {
+    "type": "Checker",
+    "name": "Perplexity AI Cookie Checker",
+    "description": "Perplexity AI is an AI-powered search and conversational assistant platform.",
+    "long_description": "😲 Optimized for Perplexity.ai accounts.\n🤖 Automatically detects plan type, region, and status.\n🌍 Fast and user-friendly interface.",
+    "requirements": "✅ No specific requirements.",
+    "image": "assets/checkers-pic/perplexityai.jpg",
+    "video": "",
+    "images": [
+      "assets/checkers-pic/checking/perplexityai1.png"
+    ],
+    "discount": null,
+    "offer": null,
+    "offer_expiry": null,
+    "release_date": "2025-03-19",
+    "update_date": "2025-04-01",
+    "tags": [
+      "perplexity"
+    ],
+    "keywords": [
+      "perplexity ai login checker",
+      "perplexity cookies status",
+      "check perplexity session",
+      "perplexity ai tool",
+      "ai plan validation"
+    ],
+    "contact": "telegram",
+    "stock": "unlimited",
+    "pricing": {
+      "1 Day": "$1",
+      "1 Week": "$4",
+      "30 Days": "$7",
+      "Lifetime (No Patch)": "$12",
+      "Source Code": "$15"
+    }
+  },
+  {
+    "type": "Checker",
+    "name": "Genspark AI Cookie Checker",
+    "description": "GenSpark AI is a generative AI platform for business automation and creative tasks.",
+    "long_description": "GenSpark AI is a state-of-the-art generative AI platform designed to streamline and enhance various business and creative processes. With its suite of intelligent agents, GenSpark AI can automate repetitive tasks, generate high-quality content, and offer data-driven insights that enable smarter decision-making. \n🔄 Sorts cookies based on plan.\n🟢 Fast and works without proxies.",
+    "requirements": "✅ No specific requirements. \nHowever, finding Genspark cookies can be challenging due to low demand.",
+    "image": "assets/checkers-pic/genspark.png",
+    "video": "",
+    "images": [
+      "assets/checkers-pic/checking/genspark1.png",
+      "assets/checkers-pic/checking/genspark2.png"
+    ],
+    "discount": null,
+    "offer": null,
+    "offer_expiry": null,
+    "release_date": "2025-05-29",
+    "update_date": "2025-05-29",
+    "tags": [
+      "Genspark ai"
+    ],
+    "keywords": [
+      "genspark ai cookie",
+      "AI",
+      "cookie checker",
+      "genspark ai cookie checker",
+      "gpt",
+      "chatgpt",
+      "gpt plus",
+      "gemini",
+      "gpt-4",
+      "claude ai",
+      "gemini ai",
+      "deepseek"
+    ],
+    "contact": "telegram",
+    "stock": "unlimited",
+    "pricing": {
+      "1 Day": "$1",
+      "1 Week": "$4",
+      "30 Days": "$7",
+      "Lifetime (No Patch)": "$10",
+      "Lifetime (Inc Patch)": "$12",
+      "Source Code": "$15"
+    }
+  },
+  {
+    "type": "Checker",
+    "name": "Blackbox AI Cookie Checker",
+    "description": "Blackbox AI is a platform for AI-powered coding and developer tools.",
+    "long_description": "🤖 Detect valid, expired, and duplicate cookies.\n📊 Retrieve email and subscription ID details.\n🚀 Smooth and proxyless operation.",
+    "requirements": "✅ No specific requirements.",
+    "image": "assets/checkers-pic/blackboxai.png",
+    "video": "",
+    "images": [
+      "assets/checkers-pic/checking/blackboxai1.png"
+    ],
+    "discount": null,
+    "offer": null,
+    "offer_expiry": null,
+    "release_date": "2025-03-19",
+    "update_date": "2025-05-30",
+    "tags": [
+      "blackbox"
+    ],
+    "keywords": [
+      "blackbox ai login",
+      "check blackbox cookie",
+      "detect blackbox subscription",
+      "ai tool checker",
+      "ai"
+    ],
+    "contact": "telegram",
+    "stock": "unlimited",
+    "pricing": {
+      "1 Day": "$1",
+      "1 Week": "$4",
+      "30 Days": "$7",
+      "Lifetime (No Patch)": "$12",
+      "Source Code": "$15"
+    }
+  },
+  {
+    "type": "Checker",
+    "name": "Klingai Cookie Checker",
+    "description": "Kling AI is a platform for generative AI-based image and video creation.",
+    "long_description": "Kling AI, tools for creating imaginative images and videos, based on state-of-art generative AI methods.",
+    "requirements": "✅ No specific requirements, but finding cookies can be challenging. Ensure good logs.",
+    "image": "assets/checkers-pic/klingai.png",
+    "video": "",
+    "images": [
+      "assets/checkers-pic/checking/klingai1.png",
+      "assets/checkers-pic/checking/klingai2.png"
+    ],
+    "discount": null,
+    "offer": null,
+    "offer_expiry": null,
+    "release_date": "2025-06-18",
+    "update_date": "2025-06-18",
+    "tags": [
+      "klingai",
+      "ai"
+    ],
+    "keywords": [
+      "klingai cookie checker",
+      "check klingai cookies",
+      "klingai account status",
+      "klingai cookies tool"
+    ],
+    "contact": "telegram",
+    "stock": "unlimited",
+    "pricing": {
+      "1 Day": "$1",
+      "1 Week": "$4",
+      "30 Days": "$8",
+      "Lifetime (No Patch)": "$10",
+      "Lifetime (Inc Patch)": "$12",
+      "Source Code": "$15"
+    }
+  },
+  {
+    "type": "Checker",
+    "name": "Hailuoai Cookie Checker",
+    "description": "Hailuo AI is a platform for automated video production using AI.",
+    "long_description": "Hailuo AI automates the video production process, making intelligent video editing easy. With machine learning, AI video creators can analyze content and quickly produce high-quality videos. This reduces the effort needed for traditional video editing and ensures consistent results.",
+    "requirements": "✅ No specific requirements, but finding cookies can be challenging. Ensure good logs.",
+    "image": "assets/checkers-pic/hailuoai.png",
+    "video": "",
+    "images": [
+      "assets/checkers-pic/checking/hailuoai1.png"
+    ],
+    "discount": null,
+    "offer": null,
+    "offer_expiry": null,
+    "release_date": "2025-06-18",
+    "update_date": "2025-06-18",
+    "tags": [
+      "hailuoai",
+      "ai"
+    ],
+    "keywords": [
+      "hailuoai cookie checker",
+      "check hailuoai cookies",
+      "hailuoai account status",
+      "hailuoai cookies tool"
+    ],
+    "contact": "telegram",
+    "stock": "unlimited",
+    "pricing": {
+      "1 Day": "$1",
+      "1 Week": "$4",
+      "30 Days": "$8",
+      "Lifetime (No Patch)": "$10",
+      "Lifetime (Inc Patch)": "$12",
+      "Source Code": "$15"
+    }
+  },
+  {
+    "type": "Checker",
     "name": "Netflix Cookie Checker",
     "description": "Netflix is a global streaming service for movies, TV shows, and original content.",
     "long_description": "✅ Capture complete slot details with precision.\n🌐 Recommended to use a VPN to bypass IP restrictions.\n⚙️ Compatible with all cookie types.\n⏱️ Provides reliable output without skipping.",
@@ -72,17 +389,163 @@
   },
   {
     "type": "Checker",
-    "name": "ChatGPT Cookie Checker",
-    "description": "ChatGPT is an AI-powered chatbot platform developed by OpenAI for conversational tasks.",
-    "long_description": "🤖 Supports GPT+ cookies validation.\n🟢 Identifies valid, invalid, and expired cookies.\n⚡ Optimized for performance and works without proxies.\n📈 Ideal for bulk validation tasks.\n📝 Now includes detection for half-pro subscriptions.",
+    "name": "Prime Video Cookie Checker",
+    "description": "Prime Video is Amazon's streaming service for movies, TV series, and originals.",
+    "long_description": "🎥 Detect valid, invalid, and region-specific Prime Video cookies.\n✅ Highlights account details with minimal setup.\n💡 Works seamlessly across regions.",
     "requirements": "✅ No specific requirements.",
-    "image": "assets/checkers-pic/chatgpt.jpg",
+    "image": "assets/checkers-pic/primevideo.jpg",
     "video": "",
     "images": [
-      "assets/checkers-pic/checking/gpt1.png",
-      "assets/checkers-pic/checking/gpt2.png",
-      "assets/checkers-pic/checking/gpt3.png",
-      "assets/checkers-pic/checking/gpt4.png"
+      "assets/checkers-pic/checking/primevideo1.png"
+    ],
+    "discount": null,
+    "offer": null,
+    "offer_expiry": null,
+    "release_date": "2025-03-19",
+    "update_date": "2025-04-01",
+    "tags": [
+      "prime"
+    ],
+    "keywords": [
+      "prime video cookie check",
+      "amazon prime cookie tool",
+      "validate prime account",
+      "check amazon video cookie"
+    ],
+    "contact": "telegram",
+    "stock": "unlimited",
+    "pricing": {
+      "1 Day": "$1",
+      "1 Month": "$3",
+      "2 Months": "$5",
+      "Lifetime (No Patch)": "$8",
+      "Source Code": "$8 (Offer until 2025-06-25)"
+    }
+  },
+  {
+    "type": "Checker",
+    "name": "Spotify Cookie Checker",
+    "description": "Spotify is a digital music streaming service with millions of songs and podcasts.",
+    "long_description": "📦 Capture region and subscription details.\n🛡️ Efficient and works without proxies.\nCaptures spotify links and address.",
+    "requirements": "✅ No specific requirements.",
+    "image": "assets/checkers-pic/spotify.jpg",
+    "video": "",
+    "images": [
+      "assets/checkers-pic/checking/spotify1.png",
+      "assets/checkers-pic/checking/spotify2.png"
+    ],
+    "discount": null,
+    "offer": null,
+    "offer_expiry": null,
+    "release_date": "2025-03-19",
+    "update_date": "2025-04-01",
+    "tags": [
+      "spotify"
+    ],
+    "keywords": [
+      "spotify cookie checker",
+      "check spotify login",
+      "spotify subscription detector",
+      "detect premium spotify",
+      "spotify access tool"
+    ],
+    "contact": "telegram",
+    "stock": "unlimited",
+    "pricing": {
+      "1 Day": "$1",
+      "1 Month": "$3",
+      "2 Months": "$5",
+      "Lifetime (No Patch)": "$10",
+      "Source Code": "$13"
+    }
+  },
+  {
+    "type": "Checker",
+    "name": "Crunchyroll Cookie Checker",
+    "description": "Crunchyroll is a streaming platform for anime, manga, and Asian dramas.",
+    "long_description": "📺 Designed for Crunchyroll cookie validation.\n🔓 Includes auto-captcha solving and works without proxies.\n🤖 Captures session, subscription, and region details.\n🎯 Organizes cookies for easy sorting.",
+    "requirements": "✅ No specific requirements.",
+    "image": "assets/checkers-pic/crunchyroll.png",
+    "video": "",
+    "images": [
+      "assets/checkers-pic/checking/crunchyroll1.png",
+      "assets/checkers-pic/checking/crunchyroll2.png"
+    ],
+    "discount": null,
+    "offer": null,
+    "offer_expiry": null,
+    "release_date": "2025-03-19",
+    "update_date": "2025-06-003",
+    "tags": [
+      "crunchyroll"
+    ],
+    "keywords": [
+      "crunchyroll cookie checker",
+      "anime login checker",
+      "crunchyroll session status",
+      "region anime cookie check",
+      "anime"
+    ],
+    "contact": "telegram",
+    "stock": "unlimited",
+    "pricing": {
+      "1 Day": "$1",
+      "1 Week": "$4",
+      "30 Days": "$7",
+      "Lifetime (No Patch)": "$10",
+      "Lifetime (Inc Patch)": "$12",
+      "Source Code": "$15"
+    }
+  },
+  {
+    "type": "Checker",
+    "name": "Crunchyroll Account Checker",
+    "description": "Crunchyroll is a streaming platform for anime, manga, and Asian dramas.",
+    "long_description": "📺 Designed for Crunchyroll account validation.\n🔓 Includes auto-captcha solving and works without proxies.\n🤖 Captures session, subscription, and region details.\n🎯 Organizes cookies for easy sorting.",
+    "requirements": "✅ Ip Ban Issue So i dont recommend, good if you want only payment info from valid ones.",
+    "image": "assets/checkers-pic/crunchyroll.png",
+    "video": "",
+    "images": [],
+    "discount": null,
+    "offer": null,
+    "offer_expiry": null,
+    "release_date": "2025-06-03",
+    "update_date": "2025-06-03",
+    "tags": [
+      "crunchyroll"
+    ],
+    "keywords": [
+      "crunchyroll accounr checker",
+      "anime login checker",
+      "crunchyroll session status",
+      "region anime cookie check",
+      "anime"
+    ],
+    "contact": "telegram",
+    "stock": "unlimited",
+    "pricing": {
+      "1 Day": "$1",
+      "1 Week": "$4",
+      "30 Days": "$7",
+      "Lifetime (No Patch)": "$10",
+      "Lifetime (Inc Patch)": "$12",
+      "Source Code": "$15"
+    }
+  },
+  {
+    "type": "Checker",
+    "name": "Jio Hotstar Cookie Checker",
+    "description": "Jio Hotstar is a streaming platform for movies, TV shows, sports, and live events in India.",
+    "long_description": "📺 Validate active Jio Hotstar cookies instantly.\n📍 Display region and package information.\n⚙️ Features a clean UI with fast, proxyless responses.",
+    "requirements": "✅ Use a VPN if you are not located in India.",
+    "image": "assets/checkers-pic/hotstar.png",
+    "video": "",
+    "images": [
+      "assets/checkers-pic/checking/hotstar1.png",
+      "assets/checkers-pic/checking/hotstar2.png",
+      "assets/checkers-pic/checking/hotstar3.png",
+      "assets/checkers-pic/checking/hotstar4.png",
+      "assets/checkers-pic/checking/hotstar5.png"
     ],
     "discount": null,
     "offer": null,
@@ -90,27 +553,99 @@
     "release_date": "2025-03-19",
     "update_date": "2025-04-22",
     "tags": [
-      "gpt",
-      "chatgpt"
+      "jio hotstar"
     ],
     "keywords": [
-      "chatgpt cookie check",
-      "validate gpt cookies",
-      "gpt plus status checker",
-      "chatgpt login session",
-      "gpt access tool",
-      "chatgpt",
-      "gpt"
+      "hotstar cookie check",
+      "validate hotstar cookie",
+      "check hotstar region",
+      "detect hotstar access",
+      "jio hotstar"
     ],
     "contact": "telegram",
     "stock": "unlimited",
     "pricing": {
       "1 Day": "$1",
-      "1 Month": "$4",
-      "2 Months": "$6",
+      "1 Month": "$3",
+      "2 Months": "$5",
+      "Lifetime (No Patch)": "$10",
+      "Source Code": "$15"
+    }
+  },
+  {
+    "type": "Checker",
+    "name": "Peacock TV Cookie Checker",
+    "description": "Peacock TV is a streaming service for movies, TV shows, and live sports.",
+    "long_description": "📺 Check Peacock TV cookies for plan and payment details.\n💳 Capture subscription and payment information.\n🌍 Fast and works without proxies.\n✅ Ideal for account management.",
+    "requirements": "✅ Must be a US citizen or use a VPN to validate cookies.",
+    "image": "assets/checkers-pic/peacocktv.jpg",
+    "video": "",
+    "images": [
+      "assets/checkers-pic/checking/peacock1.png"
+    ],
+    "discount": null,
+    "offer": null,
+    "offer_expiry": null,
+    "release_date": "2025-04-23",
+    "update_date": "2025-04-23",
+    "tags": [
+      "peacock tv"
+    ],
+    "keywords": [
+      "peacock tv cookie checker",
+      "validate peacock cookies"
+    ],
+    "contact": "telegram",
+    "stock": "unlimited",
+    "pricing": {
+      "1 Day": "$1",
+      "1 Week": "$4",
+      "30 Days": "$8",
       "Lifetime (No Patch)": "$13",
-      "Lifetime (Inc Patch)": "$17",
-      "Source Code": "$20"
+      "Source Code": "$15"
+    }
+  },
+  {
+    "type": "Checker",
+    "name": "MyCanal+ Cookie Checker",
+    "description": "MyCanal+ is a premium streaming service offering TV, movies, and live sports.",
+    "long_description": "💎 Detects whether the cookie is premium or not.\n⚠️ Cannot retrieve service provider, specific plan, or sender information — due to canalplus site maintenance except for France based cookies.\n🚀 Fast and proxyless operation.",
+    "requirements": "✅ No specific requirements, but details like plans, and others is only availble for france based cookies, it is not from my side it is from canal+ side.",
+    "image": "assets/checkers-pic/mycanal+.jpg",
+    "video": "",
+    "images": [
+      "assets/checkers-pic/checking/mycanal1.png",
+      "assets/checkers-pic/checking/mycanal2.png",
+      "assets/checkers-pic/checking/mycanal3.png",
+      "assets/checkers-pic/checking/mycanal4.png",
+      "assets/checkers-pic/checking/mycanal5.png"
+    ],
+    "discount": null,
+    "offer": null,
+    "offer_expiry": null,
+    "release_date": "2025-07-03",
+    "update_date": "2025-07-09",
+    "tags": [
+      "mycanal",
+      "canalplus",
+      "streaming"
+    ],
+    "keywords": [
+      "mycanal+ cookie checker",
+      "canalplus login validator",
+      "check canal cookies",
+      "validate mycanal session",
+      "french streaming checker"
+    ],
+    "contact": "telegram",
+    "stock": "unlimited",
+    "pricing": {
+      "1 Day": "$1",
+      "1 Week": "$4",
+      "30 Days": "$7",
+      "Lifetime (No Patch)": "$13",
+      "Lifetime (Inc Patch)": "$15",
+      "Source Code": "18"
     }
   },
   {
@@ -215,236 +750,6 @@
   },
   {
     "type": "Checker",
-    "name": "Spotify Cookie Checker",
-    "description": "Spotify is a digital music streaming service with millions of songs and podcasts.",
-    "long_description": "📦 Capture region and subscription details.\n🛡️ Efficient and works without proxies.\nCaptures spotify links and address.",
-    "requirements": "✅ No specific requirements.",
-    "image": "assets/checkers-pic/spotify.jpg",
-    "video": "",
-    "images": [
-      "assets/checkers-pic/checking/spotify1.png",
-      "assets/checkers-pic/checking/spotify2.png"
-    ],
-    "discount": null,
-    "offer": null,
-    "offer_expiry": null,
-    "release_date": "2025-03-19",
-    "update_date": "2025-04-01",
-    "tags": [
-      "spotify"
-    ],
-    "keywords": [
-      "spotify cookie checker",
-      "check spotify login",
-      "spotify subscription detector",
-      "detect premium spotify",
-      "spotify access tool"
-    ],
-    "contact": "telegram",
-    "stock": "unlimited",
-    "pricing": {
-      "1 Day": "$1",
-      "1 Month": "$3",
-      "2 Months": "$5",
-      "Lifetime (No Patch)": "$10",
-      "Source Code": "$13"
-    }
-  },
-  {
-    "type": "Checker",
-    "name": "Jio Hotstar Cookie Checker",
-    "description": "Jio Hotstar is a streaming platform for movies, TV shows, sports, and live events in India.",
-    "long_description": "📺 Validate active Jio Hotstar cookies instantly.\n📍 Display region and package information.\n⚙️ Features a clean UI with fast, proxyless responses.",
-    "requirements": "✅ Use a VPN if you are not located in India.",
-    "image": "assets/checkers-pic/hotstar.png",
-    "video": "",
-    "images": [
-      "assets/checkers-pic/checking/hotstar1.png",
-      "assets/checkers-pic/checking/hotstar2.png",
-      "assets/checkers-pic/checking/hotstar3.png",
-      "assets/checkers-pic/checking/hotstar4.png",
-      "assets/checkers-pic/checking/hotstar5.png"
-    ],
-    "discount": null,
-    "offer": null,
-    "offer_expiry": null,
-    "release_date": "2025-03-19",
-    "update_date": "2025-04-22",
-    "tags": [
-      "jio hotstar"
-    ],
-    "keywords": [
-      "hotstar cookie check",
-      "validate hotstar cookie",
-      "check hotstar region",
-      "detect hotstar access",
-      "jio hotstar"
-    ],
-    "contact": "telegram",
-    "stock": "unlimited",
-    "pricing": {
-      "1 Day": "$1",
-      "1 Month": "$3",
-      "2 Months": "$5",
-      "Lifetime (No Patch)": "$10",
-      "Source Code": "$15"
-    }
-  },
-  {
-    "type": "Checker",
-    "name": "Prime Video Cookie Checker",
-    "description": "Prime Video is Amazon's streaming service for movies, TV series, and originals.",
-    "long_description": "🎥 Detect valid, invalid, and region-specific Prime Video cookies.\n✅ Highlights account details with minimal setup.\n💡 Works seamlessly across regions.",
-    "requirements": "✅ No specific requirements.",
-    "image": "assets/checkers-pic/primevideo.jpg",
-    "video": "",
-    "images": [
-      "assets/checkers-pic/checking/primevideo1.png"
-    ],
-    "discount": null,
-    "offer": null,
-    "offer_expiry": null,
-    "release_date": "2025-03-19",
-    "update_date": "2025-04-01",
-    "tags": [
-      "prime"
-    ],
-    "keywords": [
-      "prime video cookie check",
-      "amazon prime cookie tool",
-      "validate prime account",
-      "check amazon video cookie"
-    ],
-    "contact": "telegram",
-    "stock": "unlimited",
-    "pricing": {
-      "1 Day": "$1",
-      "1 Month": "$3",
-      "2 Months": "$5",
-      "Lifetime (No Patch)": "$8",
-      "Source Code": "$8 (Offer until 2025-06-25)"
-    }
-  },
-  {
-    "type": "Checker",
-    "name": "Crunchyroll Cookie Checker",
-    "description": "Crunchyroll is a streaming platform for anime, manga, and Asian dramas.",
-    "long_description": "📺 Designed for Crunchyroll cookie validation.\n🔓 Includes auto-captcha solving and works without proxies.\n🤖 Captures session, subscription, and region details.\n🎯 Organizes cookies for easy sorting.",
-    "requirements": "✅ No specific requirements.",
-    "image": "assets/checkers-pic/crunchyroll.png",
-    "video": "",
-    "images": [
-      "assets/checkers-pic/checking/crunchyroll1.png",
-      "assets/checkers-pic/checking/crunchyroll2.png"
-    ],
-    "discount": null,
-    "offer": null,
-    "offer_expiry": null,
-    "release_date": "2025-03-19",
-    "update_date": "2025-06-003",
-    "tags": [
-      "crunchyroll"
-    ],
-    "keywords": [
-      "crunchyroll cookie checker",
-      "anime login checker",
-      "crunchyroll session status",
-      "region anime cookie check",
-      "anime"
-    ],
-    "contact": "telegram",
-    "stock": "unlimited",
-    "pricing": {
-      "1 Day": "$1",
-      "1 Week": "$4",
-      "30 Days": "$7",
-      "Lifetime (No Patch)": "$10",
-      "Lifetime (Inc Patch)": "$12",
-      "Source Code": "$15"
-    }
-  },
-  {
-    "type": "Checker",
-    "name": "Crunchyroll Account Checker",
-    "description": "Crunchyroll is a streaming platform for anime, manga, and Asian dramas.",
-    "long_description": "📺 Designed for Crunchyroll account validation.\n🔓 Includes auto-captcha solving and works without proxies.\n🤖 Captures session, subscription, and region details.\n🎯 Organizes cookies for easy sorting.",
-    "requirements": "✅ Ip Ban Issue So i dont recommend, good if you want only payment info from valid ones.",
-    "image": "assets/checkers-pic/crunchyroll.png",
-    "video": "",
-    "images": [],
-    "discount": null,
-    "offer": null,
-    "offer_expiry": null,
-    "release_date": "2025-06-03",
-    "update_date": "2025-06-03",
-    "tags": [
-      "crunchyroll"
-    ],
-    "keywords": [
-      "crunchyroll accounr checker",
-      "anime login checker",
-      "crunchyroll session status",
-      "region anime cookie check",
-      "anime"
-    ],
-    "contact": "telegram",
-    "stock": "unlimited",
-    "pricing": {
-      "1 Day": "$1",
-      "1 Week": "$4",
-      "30 Days": "$7",
-      "Lifetime (No Patch)": "$10",
-      "Lifetime (Inc Patch)": "$12",
-      "Source Code": "$15"
-    }
-  },
-  {
-    "type": "Checker",
-    "name": "Genspark AI Cookie Checker",
-    "description": "GenSpark AI is a generative AI platform for business automation and creative tasks.",
-    "long_description": "GenSpark AI is a state-of-the-art generative AI platform designed to streamline and enhance various business and creative processes. With its suite of intelligent agents, GenSpark AI can automate repetitive tasks, generate high-quality content, and offer data-driven insights that enable smarter decision-making. \n🔄 Sorts cookies based on plan.\n🟢 Fast and works without proxies.",
-    "requirements": "✅ No specific requirements. \nHowever, finding Genspark cookies can be challenging due to low demand.",
-    "image": "assets/checkers-pic/genspark.png",
-    "video": "",
-    "images": [
-      "assets/checkers-pic/checking/genspark1.png",
-      "assets/checkers-pic/checking/genspark2.png"
-    ],
-    "discount": null,
-    "offer": null,
-    "offer_expiry": null,
-    "release_date": "2025-05-29",
-    "update_date": "2025-05-29",
-    "tags": [
-      "Genspark ai"
-    ],
-    "keywords": [
-      "genspark ai cookie",
-      "AI",
-      "cookie checker",
-      "genspark ai cookie checker",
-      "gpt",
-      "chatgpt",
-      "gpt plus",
-      "gemini",
-      "gpt-4",
-      "claude ai",
-      "gemini ai",
-      "deepseek"
-    ],
-    "contact": "telegram",
-    "stock": "unlimited",
-    "pricing": {
-      "1 Day": "$1",
-      "1 Week": "$4",
-      "30 Days": "$7",
-      "Lifetime (No Patch)": "$10",
-      "Lifetime (Inc Patch)": "$12",
-      "Source Code": "$15"
-    }
-  },
-  {
-    "type": "Checker",
     "name": "Freepik Cookie Checker",
     "description": "Freepik is a platform for designers to access images, vectors, and design resources.",
     "long_description": "🖼️ Check Freepik cookies for free or premium accounts.\n🔍 Detects account credits and basic details.\n📊 Efficient and works without proxies.\n🌍 Optional payment capture available for an additional $2.",
@@ -480,85 +785,6 @@
   },
   {
     "type": "Checker",
-    "name": "MyCanal+ Cookie Checker",
-    "description": "MyCanal+ is a premium streaming service offering TV, movies, and live sports.",
-    "long_description": "💎 Detects whether the cookie is premium or not.\n⚠️ Cannot retrieve service provider, specific plan, or sender information — due to canalplus site maintenance except for France based cookies.\n🚀 Fast and proxyless operation.",
-    "requirements": "✅ No specific requirements, but details like plans, and others is only availble for france based cookies, it is not from my side it is from canal+ side.",
-    "image": "assets/checkers-pic/mycanal+.jpg",
-    "video": "",
-    "images": [
-      "assets/checkers-pic/checking/mycanal1.png",
-      "assets/checkers-pic/checking/mycanal2.png",
-      "assets/checkers-pic/checking/mycanal3.png",
-      "assets/checkers-pic/checking/mycanal4.png",
-      "assets/checkers-pic/checking/mycanal5.png"
-    ],
-    "discount": null,
-    "offer": null,
-    "offer_expiry": null,
-    "release_date": "2025-07-03",
-    "update_date": "2025-07-09",
-    "tags": [
-      "mycanal",
-      "canalplus",
-      "streaming"
-    ],
-    "keywords": [
-      "mycanal+ cookie checker",
-      "canalplus login validator",
-      "check canal cookies",
-      "validate mycanal session",
-      "french streaming checker"
-    ],
-    "contact": "telegram",
-    "stock": "unlimited",
-    "pricing": {
-      "1 Day": "$1",
-      "1 Week": "$4",
-      "30 Days": "$7",
-      "Lifetime (No Patch)": "$13",
-      "Lifetime (Inc Patch)": "$15",
-      "Source Code": "18"
-    }
-  },
-  {
-    "type": "Checker",
-    "name": "Blackbox AI Cookie Checker",
-    "description": "Blackbox AI is a platform for AI-powered coding and developer tools.",
-    "long_description": "🤖 Detect valid, expired, and duplicate cookies.\n📊 Retrieve email and subscription ID details.\n🚀 Smooth and proxyless operation.",
-    "requirements": "✅ No specific requirements.",
-    "image": "assets/checkers-pic/blackboxai.png",
-    "video": "",
-    "images": [
-      "assets/checkers-pic/checking/blackboxai1.png"
-    ],
-    "discount": null,
-    "offer": null,
-    "offer_expiry": null,
-    "release_date": "2025-03-19",
-    "update_date": "2025-05-30",
-    "tags": [
-      "blackbox"
-    ],
-    "keywords": [
-      "blackbox ai login",
-      "check blackbox cookie",
-      "detect blackbox subscription",
-      "ai tool checker",
-      "ai"
-    ],
-    "contact": "telegram",
-    "stock": "unlimited",
-    "pricing": {
-      "1 Day": "$1",
-      "1 Week": "$4",
-      "30 Days": "$7",
-      "Lifetime (No Patch)": "$12",
-      "Source Code": "$15"
-    }
-  },
-  {
-    "type": "Checker",
     "name": "2Captcha Cookie Checker",
     "description": "2Captcha is a service for solving CAPTCHAs and automating web tasks.",
     "long_description": "🔑 Extract API keys and account balances.\n🦾 Stable and works without proxies.\n📊 Fast and efficient for token-based access validation.",
@@ -582,42 +808,6 @@
       "balance checker 2captcha",
       "validate 2captcha token",
       "captcha solver access"
-    ],
-    "contact": "telegram",
-    "stock": "unlimited",
-    "pricing": {
-      "1 Day": "$1",
-      "1 Week": "$4",
-      "30 Days": "$7",
-      "Lifetime (No Patch)": "$12",
-      "Source Code": "$15"
-    }
-  },
-  {
-    "type": "Checker",
-    "name": "Perplexity AI Cookie Checker",
-    "description": "Perplexity AI is an AI-powered search and conversational assistant platform.",
-    "long_description": "😲 Optimized for Perplexity.ai accounts.\n🤖 Automatically detects plan type, region, and status.\n🌍 Fast and user-friendly interface.",
-    "requirements": "✅ No specific requirements.",
-    "image": "assets/checkers-pic/perplexityai.jpg",
-    "video": "",
-    "images": [
-      "assets/checkers-pic/checking/perplexityai1.png"
-    ],
-    "discount": null,
-    "offer": null,
-    "offer_expiry": null,
-    "release_date": "2025-03-19",
-    "update_date": "2025-04-01",
-    "tags": [
-      "perplexity"
-    ],
-    "keywords": [
-      "perplexity ai login checker",
-      "perplexity cookies status",
-      "check perplexity session",
-      "perplexity ai tool",
-      "ai plan validation"
     ],
     "contact": "telegram",
     "stock": "unlimited",
@@ -659,156 +849,6 @@
     "pricing": {
       "Lifetime (Inc Patch)": "$7",
       "Source Code": "$10"
-    }
-  },
-  {
-    "type": "Checker",
-    "name": "Claude Ai Cookie Checker",
-    "description": "Claude AI is an advanced AI chatbot platform for coding and productivity.",
-    "long_description": "🤖 Validate Claude AI cookies and retrieve account details.\n🔍 Detects free or premium.\n🌍 Fast and user-friendly interface.",
-    "requirements": "✅ No specific requirements.",
-    "image": "assets/checkers-pic/claudeai.png",
-    "video": "",
-    "images": [
-      "assets/checkers-pic/checking/claudeai1.png",
-      "assets/checkers-pic/checking/claudeai2.png",
-      "assets/checkers-pic/checking/claudeai3.png"
-    ],
-    "discount": null,
-    "offer": null,
-    "offer_expiry": null,
-    "release_date": "2025-05-05",
-    "update_date": "2025-05-05",
-    "tags": [
-      "claude",
-      "ai",
-      "chatbot"
-    ],
-    "keywords": [
-      "claude ai login checker",
-      "validate claude cookies",
-      "check claude session",
-      "claude ai tool",
-      "ai plan validation",
-      "chatgpt",
-      "ai"
-    ],
-    "contact": "telegram",
-    "stock": "unlimited",
-    "pricing": {
-      "1 Day": "$1",
-      "1 Week": "$4",
-      "30 Days": "$7",
-      "Lifetime (No Patch)": "$12",
-      "Source Code": "$15"
-    }
-  },
-  {
-    "type": "Checker",
-    "name": "Peacock TV Cookie Checker",
-    "description": "Peacock TV is a streaming service for movies, TV shows, and live sports.",
-    "long_description": "📺 Check Peacock TV cookies for plan and payment details.\n💳 Capture subscription and payment information.\n🌍 Fast and works without proxies.\n✅ Ideal for account management.",
-    "requirements": "✅ Must be a US citizen or use a VPN to validate cookies.",
-    "image": "assets/checkers-pic/peacocktv.jpg",
-    "video": "",
-    "images": [
-      "assets/checkers-pic/checking/peacock1.png"
-    ],
-    "discount": null,
-    "offer": null,
-    "offer_expiry": null,
-    "release_date": "2025-04-23",
-    "update_date": "2025-04-23",
-    "tags": [
-      "peacock tv"
-    ],
-    "keywords": [
-      "peacock tv cookie checker",
-      "validate peacock cookies"
-    ],
-    "contact": "telegram",
-    "stock": "unlimited",
-    "pricing": {
-      "1 Day": "$1",
-      "1 Week": "$4",
-      "30 Days": "$8",
-      "Lifetime (No Patch)": "$13",
-      "Source Code": "$15"
-    }
-  },
-  {
-    "type": "Checker",
-    "name": "Klingai Cookie Checker",
-    "description": "Kling AI is a platform for generative AI-based image and video creation.",
-    "long_description": "Kling AI, tools for creating imaginative images and videos, based on state-of-art generative AI methods.",
-    "requirements": "✅ No specific requirements, but finding cookies can be challenging. Ensure good logs.",
-    "image": "assets/checkers-pic/klingai.png",
-    "video": "",
-    "images": [
-      "assets/checkers-pic/checking/klingai1.png",
-      "assets/checkers-pic/checking/klingai2.png"
-    ],
-    "discount": null,
-    "offer": null,
-    "offer_expiry": null,
-    "release_date": "2025-06-18",
-    "update_date": "2025-06-18",
-    "tags": [
-      "klingai",
-      "ai"
-    ],
-    "keywords": [
-      "klingai cookie checker",
-      "check klingai cookies",
-      "klingai account status",
-      "klingai cookies tool"
-    ],
-    "contact": "telegram",
-    "stock": "unlimited",
-    "pricing": {
-      "1 Day": "$1",
-      "1 Week": "$4",
-      "30 Days": "$8",
-      "Lifetime (No Patch)": "$10",
-      "Lifetime (Inc Patch)": "$12",
-      "Source Code": "$15"
-    }
-  },
-  {
-    "type": "Checker",
-    "name": "Hailuoai Cookie Checker",
-    "description": "Hailuo AI is a platform for automated video production using AI.",
-    "long_description": "Hailuo AI automates the video production process, making intelligent video editing easy. With machine learning, AI video creators can analyze content and quickly produce high-quality videos. This reduces the effort needed for traditional video editing and ensures consistent results.",
-    "requirements": "✅ No specific requirements, but finding cookies can be challenging. Ensure good logs.",
-    "image": "assets/checkers-pic/hailuoai.png",
-    "video": "",
-    "images": [
-      "assets/checkers-pic/checking/hailuoai1.png"
-    ],
-    "discount": null,
-    "offer": null,
-    "offer_expiry": null,
-    "release_date": "2025-06-18",
-    "update_date": "2025-06-18",
-    "tags": [
-      "hailuoai",
-      "ai"
-    ],
-    "keywords": [
-      "hailuoai cookie checker",
-      "check hailuoai cookies",
-      "hailuoai account status",
-      "hailuoai cookies tool"
-    ],
-    "contact": "telegram",
-    "stock": "unlimited",
-    "pricing": {
-      "1 Day": "$1",
-      "1 Week": "$4",
-      "30 Days": "$8",
-      "Lifetime (No Patch)": "$10",
-      "Lifetime (Inc Patch)": "$12",
-      "Source Code": "$15"
     }
   },
   {
