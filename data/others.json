@@ -66,5 +66,26 @@
     "offer_expiry": "",
     "contact": "telegram",
     "keywords": ["surfshark", "vpn", "subscription", "trial", "starter", "privacy", "security", "internet", "full", "premium"]
+  },
+  {
+    "name": "Licensing System",
+    "type": "Others",
+    "description": "Advanced licensing system for software developers to manage licenses and subscriptions.",
+    "long_description": "A robust licensing system designed for software developers to manage their licenses and subscriptions effectively. Ideal for those looking to implement a secure and efficient licensing solution.\nIt will completely same as mine and there is no limit on how many users how many tools you can add.",
+    "image": "assets/others/license.png",
+    "requirements": "",
+    "images": [],
+    "video": "",
+    "tags": ["licensing", "tool"],
+    "release_date": "2025-07-12",
+    "update_date": "2025-07-12",
+    "pricing": {
+      "Full setup guide for 1 tool including python code": "$10"
+    },
+    "discount": null,
+    "offer": null,
+    "offer_expiry": "",
+    "contact": "telegram",
+    "keywords": ["licensing", "system", "software", "developer", "subscription", "management", "tool", "secure"]
   }
 ]
