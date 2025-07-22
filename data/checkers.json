@@ -11,7 +11,8 @@
       "assets/checkers-pic/checking/gpt1.png",
       "assets/checkers-pic/checking/gpt2.png",
       "assets/checkers-pic/checking/gpt3.png",
-      "assets/checkers-pic/checking/gpt4.png"
+      "assets/checkers-pic/checking/gpt4.png",
+      "assets/checkers-pic/checking/gpt5.png"
     ],
     "discount": null,
     "offer": null,
@@ -924,6 +925,44 @@
       "30 Days": "$7",
       "Lifetime (Inc Patch)": "$10",
       "Source Code": "$12"
+    }
+  },
+  {
+    "type": "Checker",
+    "name": "SMS-virtual Cookie Checker",
+    "description": "SMS-virtual is a service for receiving SMS online.You can rent or buy virtual phone numbers to receive SMS for account verification.",
+    "long_description": "📱 Validate SMS-virtual cookies and retrieve account details.\n🔍 Detects subscription status and plan type.\nDetects if account have any balance or not.\nSite : https://smsvirtual.org/",
+    "requirements": "✅ No specific requirements but use good private logs cuz hard to find cookies.",
+    "image": "assets/checkers-pic/smsvirtual.png",
+    "video": "",
+    "images": [
+    ],
+    "discount": null,
+    "offer": null,
+    "offer_expiry": null,
+    "release_date": "2025-07-22",
+    "update_date": "2025-07-22",
+    "tags": [
+      "smsvirtual",
+      "sms",
+      "virtual number"
+    ],
+    "keywords": [
+      "smsvirtual cookie checker",
+      "check smsvirtual cookies",
+      "smsvirtual account status",
+      "smsvirtual cookies tool",
+      "sms virtual number"
+    ],
+    "contact": "telegram",
+    "stock": "unlimited",
+    "pricing": {
+      "1 Day": "$1",
+      "1 Week": "$4",
+      "30 Days": "$7",
+      "Lifetime (No Patch)": "$10",
+      "Lifetime (Inc Patch)": "$12",
+      "Source Code": "$15"
     }
   }
 ]
