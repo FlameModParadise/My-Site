@@ -931,7 +931,7 @@
     "type": "Checker",
     "name": "SMS-virtual Cookie Checker",
     "description": "SMS-virtual is a service for receiving SMS online.You can rent or buy virtual phone numbers to receive SMS for account verification.",
-    "long_description": "📱 Validate SMS-virtual cookies and retrieve account details.\n🔍 Detects subscription status and plan type.\nDetects if account have any balance or not.\nSite : https://smsvirtual.org/",
+    "long_description": "📱 Validate SMS-virtual cookies and retrieve account details.\n🔍 Detects subscription status and plan type.\nDetects if account have any balance or not.\nCan find if any rented or bought number still active.\nIf has balance you can buy new no matter premium subscriber or not.\nSite : https://smsvirtual.org/",
     "requirements": "✅ No specific requirements but use good private logs cuz hard to find cookies.",
     "image": "assets/checkers-pic/smsvirtual.png",
     "video": "",
