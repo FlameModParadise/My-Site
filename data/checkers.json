@@ -936,6 +936,8 @@
     "image": "assets/checkers-pic/smsvirtual.png",
     "video": "",
     "images": [
+      "assets/checkers-pic/checking/smsv1.png",
+      "assets/checkers-pic/checking/smsv2.png"
     ],
     "discount": null,
     "offer": null,
