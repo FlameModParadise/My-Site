@@ -8,7 +8,8 @@
     "image": "assets/membership/tools.png",
     "images": [
       "assets/membership/toolchannel1.png",
-      "assets/membership/toolchannel2.png"
+      "assets/membership/toolchannel2.png",
+      "assets/membership/toolchannel3.png"
     ],
     "tags": [
       "tools",
