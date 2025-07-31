@@ -319,6 +319,41 @@
   },
   {
     "type": "Checker",
+    "name": "OttPlay Cookie Checker",
+    "description": "OttPlay is a platform for discovering and streaming movies, TV shows, and web series.",
+    "long_description": "📺 Validate OttPlay cookies for active subscriptions.\n⚡ Fast and works without proxies.",
+    "requirements": "✅ No specific requirements but hard to find cookies and have device limit.",
+    "image": "assets/checkers-pic/ottplay.png",
+    "video": "",
+    "images": [
+      "assets/checkers-pic/ottplay1.png"
+    ],
+    "discount": null,
+    "offer": null,
+    "offer_expiry": null,
+    "release_date": "2025-07-31",
+    "update_date": "2025-07-31",
+    "tags": [
+      "netflix"
+    ],
+    "keywords": [
+      "ottplay cookie checker",
+      "validate ottplay cookies",
+      "check ottplay subscription",
+      "ottplay access tool"
+    ],
+    "contact": "telegram",
+    "stock": "unlimited",
+    "pricing": {
+      "1 Day": "$1",
+      "1 Week": "$4",
+      "30 Days": "$7",
+      "Lifetime (No Patch)": "$12",
+      "Source Code": "$15"
+    }
+  },
+  {
+    "type": "Checker",
     "name": "Netflix Cookie Checker",
     "description": "Netflix is a global streaming service for movies, TV shows, and original content.",
     "long_description": "✅ Capture complete slot details with precision.\n🌐 Recommended to use a VPN to bypass IP restrictions.\n⚙️ Compatible with all cookie types.\n⏱️ Provides reliable output without skipping.",
@@ -348,6 +383,7 @@
     "contact": "telegram",
     "stock": "unlimited",
     "pricing": {
+      "1 Day": "$1",
       "1 Month": "$8",
       "2 Months": "$14",
       "3 Months": "$17",
@@ -382,6 +418,7 @@
     "contact": "telegram",
     "stock": "unlimited",
     "pricing": {
+      "1 Day": "$1",
       "1 Month": "$10",
       "3 Months": "$20",
       "Lifetime": "$25",
