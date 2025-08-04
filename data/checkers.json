@@ -1004,5 +1004,38 @@
       "Lifetime (Inc Patch)": "$12",
       "Source Code": "$15"
     }
+  },
+  {
+    "type": "Checker",
+    "name": "PyProxy Cookie Checker",
+    "description": "Pyproxy provides IP proxy services with reasonable price and high quality, including static IP proxy, rotating IP proxy, static ISP proxy, HTTP proxy, SOCKS5 proxy, and more.",
+    "long_description": "📡 Validate PyProxy cookies and retrieve account details.\n🔍 Detects subscription status and plan type.\n🌐 Fast and works without proxies.\n✅ Site: https://www.pyproxy.com",
+    "requirements": "✅ Aww to be honest very very very hard to find valid cookies with token present.",
+    "image": "assets/checkers-pic/pyproxy.png",
+    "video": "",
+    "images": [
+    ],
+    "discount": null,
+    "offer": null,
+    "offer_expiry": null,
+    "release_date": "2025-08-04",
+    "update_date": "2025-08-04",
+    "tags": [
+      "pyproxy",
+      "proxy",
+      "ip proxy"
+    ],
+    "keywords": [
+      "pyproxy cookie checker",
+      "check pyproxy cookies",
+      "pyproxy account status",
+      "pyproxy cookies tool",
+      "ip proxy checker"
+    ],
+    "contact": "telegram",
+    "stock": "5",
+    "pricing": {
+      "Source Code": "$10"
+    }
   }
 ]
