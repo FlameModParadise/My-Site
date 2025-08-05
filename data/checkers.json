@@ -44,7 +44,7 @@
     }
   },
   {
-    "type": "Checker",  
+    "type": "Checker",
     "name": "GrokAi Cookie Checker",
     "description": "GrokAi is an AI-powered coding assistant designed to help developers with code generation and debugging.",
     "long_description": "🤖 Validate GrokAi cookies and retrieve account details.\n🔍 Detects free or premium accounts.\n🌍 Fast and user-friendly interface.",
@@ -334,7 +334,7 @@
     "release_date": "2025-07-31",
     "update_date": "2025-07-31",
     "tags": [
-      "netflix"
+      "Ottplay"
     ],
     "keywords": [
       "ottplay cookie checker",
@@ -356,26 +356,27 @@
   {
     "type": "Checker",
     "name": "Netflix Cookie Checker",
-    "description": "Netflix is a global streaming service for movies, TV shows, and original content.",
-    "long_description": "✅ Capture complete slot details with precision.\n🌐 Recommended to use a VPN to bypass IP restrictions.\n⚙️ Compatible with all cookie types.\n⏱️ Provides reliable output without skipping.",
-    "requirements": "✅ A VPN is required to avoid IP bans.\nFor unknown based cookie please recheck after restarting the checker.",
+    "description": "Netflix Cookie Checker – Verify and validate Netflix cookies with precision and reliability.",
+    "long_description": "✅ Capture complete slot details with accuracy.\n🌐 Supports rotating proxies for safe and consistent checking. If no proxies are available, you may proceed without one, but in case of 20+ consecutive network errors or IP bans, use a reliable VPN and switch servers/countries as needed.\n🍪 New Feature: Automatically extract and convert session IDs from valid combo formats (id:pass:cookie:details) into standard Netscape cookies for easy checking.\n⚙️ Fully compatible with all Netflix cookie types.\n⏱️ Designed for stable and reliable results without skipping accounts.",
+    "requirements": "✅ A Rotating, Valid, and Checked Proxy is strongly recommended to prevent IP bans.\n⚡ If you don’t have a proxy, use a VPN and rotate servers/countries if errors persist.\n🔁 For unknown-based cookies, please recheck after restarting the checker.",
     "image": "assets/checkers-pic/netflix.png",
     "video": "",
     "images": [
       "assets/checkers-pic/netflix.png",
       "assets/checkers-pic/checking.png",
-      "assets/checkers-pic/checking/netflix2.png"
+      "assets/checkers-pic/checking/netflix2.png",
+      "assets/checkers-pic/checking/netflix3.png"
     ],
     "discount": null,
     "offer": null,
     "offer_expiry": null,
     "release_date": "2025-03-19",
-    "update_date": "2025-04-01",
+    "update_date": "2025-08-05",
     "tags": [
       "netflix"
     ],
     "keywords": [
-      "netflix slot checker",
+      "netflix cookie checker",
       "check netflix cookies",
       "netflix account status",
       "slot capture netflix",
@@ -1013,8 +1014,7 @@
     "requirements": "✅ Aww to be honest very very very hard to find valid cookies with token present.",
     "image": "assets/checkers-pic/pyproxy.png",
     "video": "",
-    "images": [
-    ],
+    "images": [],
     "discount": null,
     "offer": null,
     "offer_expiry": null,
