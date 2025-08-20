@@ -825,6 +825,36 @@
   },
   {
     "type": "Checker",
+    "name": "Musicful.ai Cookie Checker",
+    "description": "Transform your words into captivating songs with our AI music generator. Simply input your text, choose a style or genre, and let our AI create unique songs.",
+    "long_description": "Musicful AI is the ultimate AI-driven music generator for inspiration and creativity. Simply enter your lyrics or ideas, click .Create Song,and get studio-quality tracks in an instant. Create Rap, Rock, Pop, Country, Auto-Tune, Jazz, Lo-fi, Acapella, Beats, and more—Musicful AI adapts to your style",
+    "requirements": "Lol rare to find good format cookies.",
+    "image": "assets/checkers-pic/music.png",
+    "video": "",
+    "images": [],
+    "discount": null,
+    "offer": null,
+    "offer_expiry": null,
+    "release_date": "2025-04-29",
+    "update_date": "2025-04-29",
+    "tags": [
+      
+    ],
+    "keywords": [
+
+    ],
+    "contact": "telegram",
+    "stock": "unlimited",
+    "pricing": {
+      "1 Day": "$1",
+      "1 Week": "$4",
+      "30 Days": "$7",
+      "Lifetime (No Patch)": "$15",
+      "Source Code": "$17"
+    }
+  },
+  {
+    "type": "Checker",
     "name": "2Captcha Cookie Checker",
     "description": "2Captcha is a service for solving CAPTCHAs and automating web tasks.",
     "long_description": "🔑 Extract API keys and account balances.\n🦾 Stable and works without proxies.\n📊 Fast and efficient for token-based access validation.",

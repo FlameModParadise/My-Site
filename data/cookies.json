@@ -110,13 +110,13 @@
     "long_description": "Utilize Anthropic’s Claude AI for creative writing, coding help and research support.",
     "tags": ["claude", "cookies"],
     "release_date": "2025-03-19",
-    "update_date": "2025-04-01",
-    "price": "- Mixed: $0.5 per 1",
+    "update_date": "2025-08-20",
+    "price": "- Pro: $0.5 per 1\nMax: $1 per 1",
     "contact": "telegram",
     "keywords": ["claude", "cookies", "anthropic", "ai", "assistant", "nlp", "chatbot"],
     "image": "assets/images/claudeai.png",
     "requirements": "✅ None.",
-    "stock": "2"
+    "stock": "20"
   },
   {
     "name": "Perplexity AI Cookies",
