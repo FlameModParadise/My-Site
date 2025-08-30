@@ -64,7 +64,7 @@
     "name": "Cookie Membership",
     "type": "Membership",
     "description": "Private cookie drops not posted elsewhere",
-    "long_description": "🍪 Cookie Membership\n• Private cookies from multiple sites.\n• Drops every 3–4 days (minimum).\n• These are not posted in public or other channels.\n• Netflix cookies will be dropped very rarely so don't join group for only netflix.\n• Max 5 members only.",
+    "long_description": "🍪 Cookie Membership\n• Private cookies from multiple sites.\n• Drops every once or twice in a week.\n• These are not posted in public or other channels.\n• New : Private cracked Netflix Account will also be posted.\n• Max 5 members only.",
     "requirements": "Drops based on what’s extracted. No direct requests. Quality over quantity.\nNo sharing or misuse.",
     "image": "assets/membership/cookie.png",
     "tags": [
@@ -74,15 +74,16 @@
       "membership"
     ],
     "release_date": "2025-05-02",
-    "update_date": "2025-05-02",
-    "price": "$5/month \n$25 Lifetime",
+    "update_date": "2025-08-30",
+    "price": "$7/month \n$30 Lifetime",
     "contact": "telegram",
     "keywords": [
       "cookie membership",
       "exclusive cookies",
       "site cookies",
       "hidden drops",
-      "membership"
+      "membership",
+      "netflix account"
     ],
     "stock": 5
   },
