@@ -119,6 +119,21 @@
     "stock": "20"
   },
   {
+    "name": "Cursor AI Cookies",
+    "type": "Cookie",
+    "description": "Cursor is an AI-powered coding assistant designed to help developers with code generation and debugging.",
+    "long_description": "The main thing you can login to cursor desktop app with the cookie too, so you can directly use cursor desktop app",
+    "tags": ["cursor", "cookies"],
+    "release_date": "2025-08-30",
+    "update_date": "2025-08-30",
+    "price": "$1 per 1",
+    "contact": "telegram",
+    "keywords": ["cursor", "cookies", "assistant", "ai", "chatbot"],
+    "image": "assets/checkers-pic/cursor.png",
+    "requirements": "✅ None.",
+    "stock": "1"
+  },
+  {
     "name": "Perplexity AI Cookies",
     "type": "Cookie",
     "description": "Perplexity AI is an AI-powered search and conversational assistant platform.",
