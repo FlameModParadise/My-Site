@@ -120,7 +120,8 @@
     "images": [
       "../assets/reviews/freepik1.png",
       "../assets/reviews/freepik2.png",
-      "../assets/reviews/freepik3.png"
+      "../assets/reviews/freepik3.png",
+      "../assets/reviews/freepik4.png"
     ]
   },
   {
@@ -148,6 +149,12 @@
     "category": "Log Extractor Sold",
     "images": [
       "../assets/reviews/logextractor1.png"
+    ]
+  },
+  {
+    "category": "Licenseing System",
+    "images": [
+      "../assets/reviews/freepik4.png"
     ]
   }
 ]
