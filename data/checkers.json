@@ -47,7 +47,7 @@
     "type": "Checker",
     "name": "Cursor Cookie Checker",
     "description": "Cursor is an AI-powered coding assistant designed to help developers with code generation and debugging.",
-    "long_description": "🤖 Validate Cursor cookies and retrieve account details.\n🔍 Detects free or premium accounts.\n🌍 Fast and user-friendly interface.\nAnd main thing you can login to cursor desktop app with the cookie too, so you can directly use cursor desktop app.",
+    "long_description": "🤖 Validate Cursor cookies and quickly retrieve account details.\n🔍 Automatically detects free or premium accounts.\n🌍 Fast, reliable, and user-friendly interface.\n💻 Plus, you can log in to the Cursor desktop app with your cookie for seamless access.",
     "requirements": "✅ No specific requirements.",
     "image": "assets/checkers-pic/cursor.png",
     "video": "",
