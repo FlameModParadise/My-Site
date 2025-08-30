@@ -45,6 +45,50 @@
   },
   {
     "type": "Checker",
+    "name": "Cursor Cookie Checker",
+    "description": "Cursor is an AI-powered coding assistant designed to help developers with code generation and debugging.",
+    "long_description": "🤖 Validate Cursor cookies and retrieve account details.\n🔍 Detects free or premium accounts.\n🌍 Fast and user-friendly interface.\nAnd main thing you can login to cursor desktop app with the cookie too, so you can directly use cursor desktop app.",
+    "requirements": "✅ No specific requirements.",
+    "image": "assets/checkers-pic/cursor.png",
+    "video": "",
+    "images": [
+      "assets/checkers-pic/checking/cursor1.png",
+      "assets/checkers-pic/checking/cursor2.png",
+      "assets/checkers-pic/checking/cursor3.png",
+      "assets/checkers-pic/checking/cursor4.png"
+    ],
+    "discount": null,
+    "offer": null,
+    "offer_expiry": null,
+    "release_date": "2025-08-30",
+    "update_date": "2025-08-30",
+    "tags": [
+      "Cursor ai",
+      "chatbot",
+      "coding assistant"
+    ],
+    "keywords": [
+      "cursor ai login checker",
+      "validate cursor cookies",
+      "check cursor session",
+      "cursor ai tool",
+      "ai plan validation",
+      "chatgpt",
+      "ai"
+    ],
+    "contact": "telegram",
+    "stock": "unlimited",
+    "pricing": {
+      "1 Day": "$1",
+      "1 Month": "$4",
+      "2 Months": "$6",
+      "Lifetime (No Patch)": "$12",
+      "Lifetime (Inc Patch)": "$15",
+      "Source Code": "$18"
+    }
+  },
+  {
+    "type": "Checker",
     "name": "GrokAi Cookie Checker",
     "description": "GrokAi is an AI-powered coding assistant designed to help developers with code generation and debugging.",
     "long_description": "🤖 Validate GrokAi cookies and retrieve account details.\n🔍 Detects free or premium accounts.\n🌍 Fast and user-friendly interface.",
