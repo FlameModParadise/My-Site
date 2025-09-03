@@ -88,6 +88,46 @@
     }
   },
   {
+    "type": "BoltAi",
+    "name": "Bolt Cookie Checker",
+    "description": "Bolt is an AI-powered coding assistant designed to help developers with code generation and debugging.",
+    "long_description": "🤖 Validate Bolt cookies and retrieve account details.\n🔍 Detects free or premium accounts.\n🌍 Fast and user-friendly interface.\nSite: bolt.new",
+    "requirements": "✅ Bolt is not known as chatgpt or claude so paid cookies are hard to find, ensure you have good logs.",
+    "image": "assets/checkers-pic/bolt.png",
+    "video": "",
+    "images": [
+      "assets/checkers-pic/checking/bolt1.png"
+    ],
+    "discount": null,
+    "offer": null,
+    "offer_expiry": null,
+    "release_date": "2025-09-03",
+    "update_date": "2025-09-03",
+    "tags": [
+      "bolt",
+      "ai",
+      "chatbot"
+    ],
+    "keywords": [
+      "grok ai login checker",
+      "validate grok cookies",
+      "check grok session",
+      "bolt ai tool",
+      "ai plan validation",
+      "chatgpt",
+      "ai"
+    ],
+    "contact": "telegram",
+    "stock": "unlimited",
+    "pricing": {
+      "1 Day": "$1",
+      "1 Month": "$4",
+      "Lifetime (No Patch)": "$10",
+      "Lifetime (Inc Patch)": "$15",
+      "Source Code": "$20"
+    }
+  },
+  {
     "type": "Checker",
     "name": "GrokAi Cookie Checker",
     "description": "GrokAi is an AI-powered coding assistant designed to help developers with code generation and debugging.",
