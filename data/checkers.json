@@ -1128,11 +1128,11 @@
     "description": "PingProxies is a service providing high-quality residential and datacenter proxies for various online activities.",
     "long_description": "📡 Validate PingProxies cookies or combo and retrieve account details.\n🔍 Detects subscription status and plan type.\n🌐 Fast and works without proxies.\nIf has balance you want buy new too and if already brought generate and use.\n✅ Site: https://www.pingproxies.com \n(It can check both combos and cookie).",
     "requirements": "If you use good private logs then no specific requirements.",
-    "image": "assets/checkers-pingproxies.png",
+    "image": "assets/checkers-pic/pingproxies.png",
     "video": "",
     "images": [
-      "assets/checkers-pic/checking/pingproxies1.png",
-      "assets/checkers-pic/checking/pingproxies2.png"
+      "assets/checkers-pic/checking/pingproxy1.png",
+      "assets/checkers-pic/checking/pingproxy2.png"
     ],
     "discount": null,
     "offer": null,
@@ -1158,7 +1158,7 @@
       "1 month": "$4",
       "Lifetime (No Patch)": "$12",
       "Lifetime (Inc Patch)": "$15",
-      "Source Code": "$18"
+      "Source Code": "$20"
     }
   },
   {
