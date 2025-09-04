@@ -6,9 +6,12 @@ document.addEventListener("DOMContentLoaded", () => {
   // Show loading state with spinner
   cardWrapper.innerHTML = '<div class="loading">Loading contacts</div>';
   
-  // Fetch contact data
-  fetch("../json/contact.json")
+  // Fetch contact data with corrected path
+  fetch("/My-Site/json/contact.json")  // Updated path
     .then(response => {
+      if (response.status === 404) {
+        throw new Error('Contact data file not found. Please check if the file exists at the correct location.');
+      }
       if (!response.ok) {
         throw new Error(`Network response was not ok: ${response.status}`);
       }
