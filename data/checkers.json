@@ -1124,6 +1124,45 @@
   },
   {
     "type": "Checker",
+    "name": "PingProxies Cookie Checker",
+    "description": "PingProxies is a service providing high-quality residential and datacenter proxies for various online activities.",
+    "long_description": "📡 Validate PingProxies cookies or combo and retrieve account details.\n🔍 Detects subscription status and plan type.\n🌐 Fast and works without proxies.\nIf has balance you want buy new too and if already brought generate and use.\n✅ Site: https://www.pingproxies.com \n(It can check both combos and cookie).",
+    "requirements": "If you use good private logs then no specific requirements.",
+    "image": "assets/checkers-pingproxies.png",
+    "video": "",
+    "images": [
+      "assets/checkers-pic/checking/pingproxies1.png",
+      "assets/checkers-pic/checking/pingproxies2.png"
+    ],
+    "discount": null,
+    "offer": null,
+    "offer_expiry": null,
+    "release_date": "2025-09-05",
+    "update_date": "2025-09-05",
+    "tags": [
+      "pingproxies",
+      "proxy",
+      "ip proxy"
+    ],
+    "keywords": [
+      "pingproxies cookie checker",
+      "check pingproxies cookies",
+      "pingproxies account status",
+      "pingproxies cookies tool",
+      "ip proxy checker"
+    ],
+    "contact": "telegram",
+    "stock": "unlimited",
+    "pricing": {
+      "1 Day": "$1",
+      "1 month": "$4",
+      "Lifetime (No Patch)": "$12",
+      "Lifetime (Inc Patch)": "$15",
+      "Source Code": "$18"
+    }
+  },
+  {
+    "type": "Checker",
     "name": "PyProxy Cookie Checker",
     "description": "Pyproxy provides IP proxy services with reasonable price and high quality, including static IP proxy, rotating IP proxy, static ISP proxy, HTTP proxy, SOCKS5 proxy, and more.",
     "long_description": "📡 Validate PyProxy cookies and retrieve account details.\n🔍 Detects subscription status and plan type.\n🌐 Fast and works without proxies.\n✅ Site: https://www.pyproxy.com",
