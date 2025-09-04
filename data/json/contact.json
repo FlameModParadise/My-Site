@@ -43,7 +43,7 @@
     "type": "Payment",
     "icon": "../assets/icons/payment.png",
     "title": "Accepted Payments",
-    "description": "We accept payments via Binance and major cryptocurrencies including BTC, ETH, LTC, and other popular coins.",
+    "description": "We accept payments via Binance and major cryptocurrencies including BTC, ETH, LTC, and other popular coins. We also accept PayPal but tax on your side.",
     "link": "#",
     "buttonText": "Payment Info"
   }

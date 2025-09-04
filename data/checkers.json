@@ -88,7 +88,7 @@
     }
   },
   {
-    "type": "BoltAi",
+    "type": "Checker",
     "name": "Bolt Cookie Checker",
     "description": "Bolt is an AI-powered coding assistant designed to help developers with code generation and debugging.",
     "long_description": "🤖 Validate Bolt cookies and retrieve account details.\n🔍 Detects free or premium accounts.\n🌍 Fast and user-friendly interface.\nSite: bolt.new",
