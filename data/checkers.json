@@ -1124,7 +1124,7 @@
   },
   {
     "type": "Checker",
-    "name": "PingProxies Cookie Checker",
+    "name": "PingProxies Cookie And Combo Checker",
     "description": "PingProxies is a service providing high-quality residential and datacenter proxies for various online activities.",
     "long_description": "📡 Validate PingProxies cookies or combo and retrieve account details.\n🔍 Detects subscription status and plan type.\n🌐 Fast and works without proxies.\nIf has balance you want buy new too and if already brought generate and use.\n✅ Site: https://www.pingproxies.com \n(It can check both combos and cookie).",
     "requirements": "If you use good private logs then no specific requirements.",
