@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const closeAllBtn = document.getElementById("closeAllBtn");
 
   // Fetch the JSON data for FAQs
-  fetch("../json/faq.json")
+  fetch("../data/json/faq.json")
     .then((response) => {
       if (!response.ok) {
         throw new Error(`Network response was not ok: ${response.status}`);
