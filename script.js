@@ -1029,6 +1029,8 @@ sortSelect?.addEventListener("change", () => {
 /* ----------  SCROLL PROGRESS ---------- */
 document.addEventListener("scroll", () => {
   const scrollProgress = document.getElementById("scrollProgress");
+  if (!scrollProgress) return; // Exit if element doesn't exist
+  
   const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
   const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
   const scrollPercentage = (scrollTop / scrollHeight) * 100;
