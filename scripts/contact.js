@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   cardWrapper.innerHTML = '<div class="loading">Loading contacts</div>';
   
   // Fetch contact data with corrected path
-  fetch("/My-Site/json/contact.json")  // Updated path
+  fetch("../data/json/contact.json")  // Updated path
     .then(response => {
       if (response.status === 404) {
         throw new Error('Contact data file not found. Please check if the file exists at the correct location.');
