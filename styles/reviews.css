@@ -46,8 +46,8 @@
 #categoryOverview {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 2rem;
-  margin: 2rem auto;
+  gap: 1.5rem;
+  margin: 1.5rem auto;
   padding: 0 1rem;
 }
 .category-card {
@@ -109,7 +109,7 @@
   display: none;
 }
 #categoryDetail {
-  margin: 2rem auto;
+  margin: 1.5rem auto;
   padding: 0 1rem;
 }
 .back-btn {
@@ -130,7 +130,7 @@
 .detail-photos-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 2rem;
+  gap: 1.5rem;
   justify-items: center;
 }
 .detail-photos-grid img {

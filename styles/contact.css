@@ -55,8 +55,8 @@
 .contact-card-wrapper {
     display: flex;
     flex-wrap: wrap;
-    gap: 2rem;
-    margin: 2rem 0;
+    gap: 1.5rem;
+    margin: 1.5rem 0;
     justify-content: center;
 }
 
@@ -231,8 +231,8 @@ body.dark .flip-card-back a:hover {
     }
     
     .contact-card-wrapper {
-        gap: 1.5rem;
-        margin: 1.5rem 0;
+        gap: 1rem;
+        margin: 1rem 0;
     }
     
     .flip-card {
@@ -261,8 +261,8 @@ body.dark .flip-card-back a:hover {
     }
     
     .contact-card-wrapper {
-        gap: 1rem;
-        margin: 1.2rem 0;
+        gap: 0.8rem;
+        margin: 0.8rem 0;
     }
     
     .flip-card {

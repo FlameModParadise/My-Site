@@ -41,7 +41,6 @@
 </head>
 <body>
   <div id="scrollProgress"></div>
-  <div class="mymain" id="mymain">
     <!-- Fixed Navbar -->
     <nav class="navbar" role="navigation">
       <div class="navbar-left">
@@ -84,14 +83,6 @@
       <div class="filter-tags" id="filters"></div>
     </header>
 
-    <!-- Announcement Banner -->
-    <div class="banner hidden" id="announcement-banner">
-      <p>
-        🎁 Special Offer: 25% OFF on selected tools this week!
-        <a href="#">Learn more</a>
-      </p>
-      <button id="close-banner">✖</button>
-    </div>
 
     <!-- Main Content -->
     <main class="container">
@@ -117,12 +108,6 @@
       <section class="main-grid" id="main-tool-list"></section>
     </main>
 
-    <!-- Install Prompt -->
-    <div class="install-box hidden" id="install-prompt">
-      <p>📲 Install Tool Store as an app?</p>
-      <button id="install-now">Install Now</button>
-      <button id="install-later">Later</button>
-    </div>
 
     <!-- Image Modal -->
     <div class="image-modal hidden" id="imageModal">
@@ -204,7 +189,6 @@
         <p>Use these tools responsibly. No refunds for digital items after purchase.</p>
       </div>
     </footer>
-  </div>
 
   <!-- Scripts -->
   <script src="script.js" defer></script>
@@ -213,7 +197,6 @@
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => {
         navigator.serviceWorker.register("./service-worker.js")
-          .then((reg) => console.log("✅ Service Worker registered:", reg.scope))
           .catch((err) => console.error("❌ Service Worker error:", err));
       });
     }
@@ -236,38 +219,6 @@
     function closeImageModal() { document.getElementById("imageModal").classList.add("hidden"); }
     function closePopup()       { document.getElementById("popupMessage").classList.add("hidden"); }
 
-    // Carousel auto‑slide + manual arrows
-    function autoSlide(id, interval = 4000) {
-      const box = document.getElementById(id);
-      if (!box) return;
-      let next = 0;
-      const step = () => {
-        const card = box.querySelector(".tool-card");
-        if (!card) return;
-        const gap = parseFloat(getComputedStyle(box).gap) || 16;
-        const w = card.offsetWidth + gap;
-        const max = box.scrollWidth - box.clientWidth;
-        next = next + w > max ? 0 : next + w;
-        box.scrollTo({ left: next, behavior: "smooth" });
-      };
-      setInterval(step, interval);
-    }
-    ["offers-list","recommended-list","limited-list"].forEach(autoSlide);
-
-    document.querySelectorAll(".arrow").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const box = document.getElementById(btn.dataset.target);
-        const dir = btn.classList.contains("right") ? 1 : -1;
-        if (box) {
-          const gap = parseFloat(getComputedStyle(box).gap) || 16;
-          const card = box.querySelector(".tool-card");
-          if (card) {
-            const delta = dir * (card.offsetWidth + gap);
-            box.scrollBy({ left: delta, behavior: "smooth" });
-          }
-        }
-      });
-    });
   </script>
   <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
   <noscript>

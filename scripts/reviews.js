@@ -1,3 +1,4 @@
+// Optimized Reviews JavaScript
 document.addEventListener("DOMContentLoaded", () => {
   const categoryOverview = document.getElementById("categoryOverview");
   const categoryDetail = document.getElementById("categoryDetail");
@@ -5,9 +6,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const detailTitle = document.getElementById("detailTitle");
   const detailPhotosDiv = document.getElementById("detailPhotos");
 
+  if (!categoryOverview || !categoryDetail || !backButton || !detailTitle || !detailPhotosDiv) {
+    console.error("Required elements not found");
+    return;
+  }
+
   let groupedReviews = {};
 
-  // Fetch reviews data from data/json/reviews.json
+  // Fetch reviews data
   fetch("../data/json/reviews.json")
     .then((response) => {
       if (!response.ok) {
@@ -21,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // New compact format: each category contains an array of images
+      // Group reviews by category
       groupedReviews = {};
       data.forEach((item) => {
         const cat = item.category || "Others";
@@ -35,47 +41,55 @@ document.addEventListener("DOMContentLoaded", () => {
       categoryOverview.innerHTML = "<p>Sorry, no reviews are available at this time.</p>";
     });
 
-  // Build the category overview (stacked collage)
+  // Build category overview
   function buildCategoryOverview() {
     categoryOverview.innerHTML = "";
+    const fragment = document.createDocumentFragment();
+    
     Object.keys(groupedReviews).forEach((category) => {
       const images = groupedReviews[category] || [];
-
-      const catCard = document.createElement("div");
-      catCard.classList.add("category-card");
-
-      const collage = document.createElement("div");
-      collage.classList.add("stacked-collage");
-
-      // Use up to 3 images for the collage
-      const coverImages = images.slice(0, 3);
-      coverImages.forEach((imgSrc, idx) => {
-        const img = document.createElement("img");
-        img.src = imgSrc || "../assets/placeholder.jpg";
-        img.alt = `${category} cover ${idx + 1}`;
-        img.onerror = () => {
-          img.src = "../assets/placeholder.jpg";
-        };
-        img.classList.add(`stacked-${idx + 1}`);
-        collage.appendChild(img);
-      });
-
-      const label = document.createElement("h3");
-      label.textContent = `${category} (${images.length} images)`;
-
-      catCard.appendChild(collage);
-      catCard.appendChild(label);
-
-      // Click event => show detail for this category
-      catCard.addEventListener("click", () => {
-        showCategoryDetail(category);
-      });
-
-      categoryOverview.appendChild(catCard);
+      const catCard = createCategoryCard(category, images);
+      fragment.appendChild(catCard);
     });
+    
+    categoryOverview.appendChild(fragment);
   }
 
-  // Show full detail gallery for a selected category
+  function createCategoryCard(category, images) {
+    const catCard = document.createElement("div");
+    catCard.classList.add("category-card");
+
+    const collage = document.createElement("div");
+    collage.classList.add("stacked-collage");
+
+    // Use up to 3 images for the collage
+    const coverImages = images.slice(0, 3);
+    coverImages.forEach((imgSrc, idx) => {
+      const img = document.createElement("img");
+      img.src = imgSrc || "../assets/placeholder.jpg";
+      img.alt = `${category} cover ${idx + 1}`;
+      img.onerror = () => {
+        img.src = "../assets/placeholder.jpg";
+      };
+      img.classList.add(`stacked-${idx + 1}`);
+      collage.appendChild(img);
+    });
+
+    const label = document.createElement("h3");
+    label.textContent = `${category} (${images.length} images)`;
+
+    catCard.appendChild(collage);
+    catCard.appendChild(label);
+
+    // Click event
+    catCard.addEventListener("click", () => {
+      showCategoryDetail(category);
+    });
+
+    return catCard;
+  }
+
+  // Show category detail
   function showCategoryDetail(category) {
     categoryOverview.classList.add("hidden");
     categoryDetail.classList.remove("hidden");
@@ -88,6 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    const fragment = document.createDocumentFragment();
     images.forEach((src) => {
       const img = document.createElement("img");
       img.src = src || "../assets/placeholder.jpg";
@@ -95,17 +110,19 @@ document.addEventListener("DOMContentLoaded", () => {
       img.onerror = () => {
         img.src = "../assets/placeholder.jpg";
       };
-      detailPhotosDiv.appendChild(img);
+      fragment.appendChild(img);
     });
+    
+    detailPhotosDiv.appendChild(fragment);
   }
 
-  // "Back" button returns to overview
+  // Back button
   backButton.addEventListener("click", () => {
     categoryDetail.classList.add("hidden");
     categoryOverview.classList.remove("hidden");
   });
 
-  // Add a single event listener to detailPhotosDiv to open modal on image click
+  // Image modal functionality
   detailPhotosDiv.addEventListener("click", (e) => {
     if (e.target && e.target.tagName === "IMG") {
       openImageModal(e.target.src, e.target.alt);

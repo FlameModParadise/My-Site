@@ -1,7 +1,5 @@
 // ================ MOBILE NAVBAR FIX (SINGLE IMPLEMENTATION) ================ 
 document.addEventListener('DOMContentLoaded', function() {
-  console.log('🚀 Initializing mobile navbar...');
-  
   const toggle = document.getElementById('navbarToggle');
   const menu = document.getElementById('navbarMenu');
   
@@ -10,12 +8,9 @@ document.addEventListener('DOMContentLoaded', function() {
     return;
   }
   
-  console.log('✅ Navbar elements found');
-  
   // Simple toggle function
   function toggleMobileMenu() {
     const isOpen = menu.classList.contains('show-menu');
-    console.log('🔄 Toggle clicked, current state:', isOpen ? 'open' : 'closed');
     
     if (isOpen) {
       // Close menu
@@ -80,9 +75,8 @@ document.addEventListener('DOMContentLoaded', function() {
 /* === CSS PATCHES (auto‑injected) === */
 (() => {
   const css = `
-:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
-html{scroll-behavior:smooth;}
-.tool-card.skeleton{animation:pulse 1.2s infinite ease-in-out;background:var(--skeleton-bg);border-radius:.75rem;height:180px;}
+:focus-visible{outline:2px solid var(--color-primary);outline-offset:2px;}
+.tool-card.skeleton{animation:pulse 1s infinite ease-in-out;background:#f0f0f0;border-radius:.75rem;height:180px;}
 @keyframes pulse{0%,100%{opacity:.6}50%{opacity:1}}
 .tool-thumb-wrapper{aspect-ratio:16/9;position:relative;}
 .tool-thumb-wrapper img{object-fit:cover;width:100%;height:100%;}
@@ -95,7 +89,7 @@ html{scroll-behavior:smooth;}
 /* ----------  CONSTANTS & DOM REFS  ---------- */
 const DATA_FILES = [
   "data/tools.json",
-  "data/bots.json",
+  "data/bots.json", 
   "data/checkers.json",
   "data/game.json",
   "data/others.json",
@@ -108,25 +102,26 @@ const THEME_KEY   = "theme";
 const SEARCH_KEY  = "search";
 const SORT_KEY    = "sort";
 const FILTER_KEY  = "filter";
-const BANNER_KEY  = "hideBanner";
 const RECENT_KEY  = "recentSearches";
 const MAX_RECENTS = 5;
 
-/* DOM */
-const container        = document.getElementById("main-tool-list");
-const filtersContainer = document.getElementById("filters");
-const searchInput      = document.getElementById("searchInput");
-const sortSelect       = document.getElementById("sortSelect");
-const scrollToTopBtn   = document.getElementById("scrollToTopBtn");
-const darkToggle       = document.getElementById("darkToggle");
-const banner           = document.getElementById("announcement-banner");
-const closeBanner      = document.getElementById("close-banner");
-const imageModal       = document.getElementById("imageModal");
-const autocompleteBox  = document.getElementById("autocompleteBox");
-
-const offersList      = document.getElementById("offers-list");
-const recommendedList = document.getElementById("recommended-list");
-const limitedList     = document.getElementById("limited-list");
+/* DOM - Cached references */
+const DOM = {
+  container: document.getElementById("main-tool-list"),
+  filtersContainer: document.getElementById("filters"),
+  searchInput: document.getElementById("searchInput"),
+  sortSelect: document.getElementById("sortSelect"),
+  scrollToTopBtn: document.getElementById("scrollToTopBtn"),
+  darkToggle: document.getElementById("darkToggle"),
+  imageModal: document.getElementById("imageModal"),
+  autocompleteBox: document.getElementById("autocompleteBox"),
+  offersList: document.getElementById("offers-list"),
+  recommendedList: document.getElementById("recommended-list"),
+  limitedList: document.getElementById("limited-list"),
+  offersSection: document.getElementById("offers-section"),
+  recommendedSection: document.getElementById("recommended-section"),
+  limitedSection: document.getElementById("limited-section")
+};
 
 let allTools = [];
 
@@ -196,42 +191,16 @@ const io = new IntersectionObserver(
       }
     });
   },
-  { rootMargin: "100px" }
+  { rootMargin: "50px" }
 );
 
 function smartImg(src, alt = "") {
-  const fallbacks = [
-    src,
-    "/assets/placeholder.jpg",
-    "../assets/placeholder.jpg",
-    "assets/placeholder.jpg"
-  ];
-  const fbList = JSON.stringify(fallbacks).replace(/"/g, "&quot;");
   return `
     <img loading="lazy"
          data-src="${src}"
-         data-fallbacks="${fbList}"
-         data-fb-index="0"
-         src="${fallbacks[3]}"
+         src="assets/placeholder.jpg"
          alt="${escapeHTML(alt)}"
-         onerror="
-           (() => {
-             const fbs = JSON.parse(this.dataset.fallbacks);
-             let idx = Number(this.dataset.fbIndex) || 0;
-             console.error('Image failed to load:', fbs[idx]);
-             idx++;
-             if (idx < fbs.length) {
-               this.dataset.fbIndex = idx;
-               this.src = fbs[idx];
-             } else {
-               console.error('All image fallbacks failed for:', fbs[0]);
-               const div = document.createElement('div');
-               div.className = 'no-image';
-               div.textContent = this.alt || 'No image';
-               this.replaceWith(div);
-             }
-           })()
-         "
+         onerror="this.src='assets/placeholder.jpg'"
     >
   `.trim();
 }
@@ -240,25 +209,18 @@ function activateLazyImages(root = document) {
   const images = root.querySelectorAll("img[data-src]");
   images.forEach((img) => {
     if (img.complete && img.naturalWidth > 0) {
-      // If the image is already loaded, skip observing
       img.src = img.dataset.src;
     } else {
       io.observe(img);
-      // Fallback: Load image manually if not loaded within 3 seconds
-      setTimeout(() => {
-        if (img.dataset.src && img.src === "assets/placeholder.jpg") {
-          img.src = img.dataset.src;
-        }
-      }, 3000);
     }
   });
 }
 
 /* ----------  DARK MODE  ---------- */
-if (darkToggle) {
-  darkToggle.setAttribute("aria-label", "Toggle dark mode");
-  darkToggle.setAttribute("title", "Toggle dark mode (D)");
-  darkToggle.addEventListener("click", () => {
+if (DOM.darkToggle) {
+  DOM.darkToggle.setAttribute("aria-label", "Toggle dark mode");
+  DOM.darkToggle.setAttribute("title", "Toggle dark mode (D)");
+  DOM.darkToggle.addEventListener("click", () => {
     document.body.classList.toggle("dark");
     localStorage.setItem(
       THEME_KEY,
@@ -276,39 +238,30 @@ document.addEventListener("keydown", (e) => {
     e.key.toLowerCase() === "d" &&
     !e.target.matches("input,textarea,[contenteditable]")
   ) {
-    darkToggle?.click();
+    DOM.darkToggle?.click();
   }
 });
 
-/* ----------  BANNER  ---------- */
-if (banner && closeBanner && !localStorage.getItem(BANNER_KEY)) {
-  setTimeout(() => banner.classList.remove("hidden"), 500);
-  closeBanner.addEventListener("click", () => {
-    banner.classList.add("hidden");
-    localStorage.setItem(BANNER_KEY, true);
-  });
-}
 
-/* ----------  AUTO REFRESH FOR MOBILE OR UNKNOWN DEVICES  ---------- */
-if (/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || !navigator.userAgent) {
-  if (!sessionStorage.getItem("refreshed")) {
-    sessionStorage.setItem("refreshed", "true");
-    location.reload(true); // Force a hard refresh
-  }
+/* ----------  MOBILE OPTIMIZATION  ---------- */
+if (/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+  document.documentElement.style.setProperty('--transition', '0.1s ease');
 }
 
 /* --------------------------------------------------
      RENDER UTIL THAT WORKS FOR *ANY* CONTAINER
    -------------------------------------------------- */
-function renderTools(list, target = container) {
+function renderTools(list, target = DOM.container) {
+  if (!target) return;
+  
   target.className = "main-grid";
 
   if (!list.length) {
-    target.replaceChildren(document.createElement("p").appendChild(document.createTextNode("No tools found.")));
+    target.innerHTML = "<p>No tools found.</p>";
     return;
   }
 
-  // Build everything in a DocumentFragment
+  // Build everything in a DocumentFragment for better performance
   const frag = document.createDocumentFragment();
   list.forEach((tool) => {
     const card = document.createElement("div");
@@ -320,7 +273,7 @@ function renderTools(list, target = container) {
       tool._matches || [],
       "description"
     );
-    desc = nl2br(desc); // Convert \n to <br> for card descriptions
+    desc = nl2br(desc);
 
     const name = highlightMatch(
       tool.name || "Unnamed",
@@ -362,8 +315,10 @@ function renderInto(selector, list) {
 
 /* ----------  LOAD DATA  ---------- */
 async function loadData() {
-  container.className = "main-grid";
-  container.innerHTML = "<div class='tool-card skeleton'></div>".repeat(12);
+  if (!DOM.container) return;
+  
+  DOM.container.className = "main-grid";
+  DOM.container.innerHTML = "<div class='tool-card skeleton'></div>".repeat(6);
 
   try {
     const data = await Promise.allSettled(
@@ -390,11 +345,13 @@ async function loadData() {
     applyURLHash();
   } catch (err) {
     console.error("Error loading data:", err);
-    container.innerHTML = "<p>Error loading data.</p>";
+    DOM.container.innerHTML = "<p>Error loading data.</p>";
   }
 }
 
 function renderOrHide(list, wrapper, section) {
+  if (!wrapper || !section) return;
+  
   if (list.length) {
     renderTools(list, wrapper);
     section.classList.remove("hidden");
@@ -414,30 +371,29 @@ function populateSpecialSections() {
     return hasKeyword || disc || off;
   });
 
-  const offersList = document.getElementById("offers-list");
-  renderOrHide(offers, offersList, document.getElementById("offers-section"));
+  renderOrHide(offers, DOM.offersList, DOM.offersSection);
 
   /* RECOMMENDED */
   const recommended = allTools.filter(t =>
     (t.keywords || []).includes("recommended")
   );
-  renderOrHide(recommended, recommendedList, document.getElementById("recommended-section"));
+  renderOrHide(recommended, DOM.recommendedList, DOM.recommendedSection);
 
   /* LIMITED‑TIME */
   const limited = allTools.filter(t =>
     (t.keywords || []).includes("limited") || t.stock === 1
   );
-  renderOrHide(limited, limitedList, document.getElementById("limited-section"));
+  renderOrHide(limited, DOM.limitedList, DOM.limitedSection);
 }
 
 /* allow clicking cards in the extra lists */
-["offers-list","recommended-list","limited-list"].forEach(id=>{
-  const el = document.getElementById(id);
-  el?.addEventListener("click", e=>{
+const specialLists = [DOM.offersList, DOM.recommendedList, DOM.limitedList];
+specialLists.forEach(el => {
+  el?.addEventListener("click", e => {
     const c = e.target.closest(".tool-card");
-    if(!c) return;
-    const tool = allTools.find(t=>t.name===c.dataset.toolName);
-    if(tool) showToolDetail(tool);
+    if (!c) return;
+    const tool = allTools.find(t => t.name === c.dataset.toolName);
+    if (tool) showToolDetail(tool);
   });
 });
 
@@ -484,23 +440,19 @@ function runSearch(raw = "") {
 }
 
 function applyFiltersAndRender() {
-  const offersSection      = document.getElementById("offers-section");
-  const recommendedSection = document.getElementById("recommended-section");
-  const limitedSection     = document.getElementById("limited-section");
-
   const searchRaw = sessionStorage.getItem(SEARCH_KEY) || "";
   const sortKey   = sessionStorage.getItem(SORT_KEY)   || "name";
   const typeKey   = sessionStorage.getItem(FILTER_KEY) || "all";
 
   // Hide special sections when filtering anything but "all"
   if (typeKey !== "all") {
-    offersSection?.classList.add("hidden");
-    recommendedSection?.classList.add("hidden");
-    limitedSection?.classList.add("hidden");
+    DOM.offersSection?.classList.add("hidden");
+    DOM.recommendedSection?.classList.add("hidden");
+    DOM.limitedSection?.classList.add("hidden");
   } else {
-    offersSection?.classList.remove("hidden");
-    recommendedSection?.classList.remove("hidden");
-    limitedSection?.classList.remove("hidden");
+    DOM.offersSection?.classList.remove("hidden");
+    DOM.recommendedSection?.classList.remove("hidden");
+    DOM.limitedSection?.classList.remove("hidden");
   }
 
   let list = [...allTools];
@@ -516,7 +468,7 @@ function applyFiltersAndRender() {
       threshold: 0.3,
       distance: 100,
       ignoreLocation: true,
-      minMatchCharLength: 2, // Ensure matches are at least 2 characters long
+      minMatchCharLength: 2,
       keys: [
         { name: "name", weight: 1.0 },
         { name: "keywords", weight: 0.6 },
@@ -590,8 +542,8 @@ function applyFiltersAndRender() {
         b.textContent.toLowerCase() === typeKey
       )
     );
-  searchInput.value = searchRaw;
-  sortSelect.value = sortKey;
+  DOM.searchInput.value = searchRaw;
+  DOM.sortSelect.value = sortKey;
 
   // Dynamically hide or show special sections
   if (typeKey === "all") {
@@ -632,7 +584,7 @@ function getCardBadges(tool) {
 }
 
 /* ----------  MAIN LIST CLICK‑THROUGH ---------- */
-container?.addEventListener("click", e => {
+DOM.container?.addEventListener("click", e => {
   const card = e.target.closest(".tool-card");
   if (!card) return;
   const tool = allTools.find(t => t.name === card.dataset.toolName);
@@ -641,13 +593,13 @@ container?.addEventListener("click", e => {
 
 /* ----------  FILTER BUTTONS ---------- */
 function generateFilterButtons() {
-  if (!filtersContainer) return;
+  if (!DOM.filtersContainer) return;
   const types = [...new Set(
     allTools.map(t => (t.type || "").toLowerCase()).filter(Boolean)
   )];
-  filtersContainer.innerHTML = "";
-  filtersContainer.appendChild(createFilterBtn("All"));
-  types.forEach(t => filtersContainer.appendChild(createFilterBtn(t)));
+  DOM.filtersContainer.innerHTML = "";
+  DOM.filtersContainer.appendChild(createFilterBtn("All"));
+  types.forEach(t => DOM.filtersContainer.appendChild(createFilterBtn(t)));
 }
 
 function createFilterBtn(label) {
@@ -685,8 +637,8 @@ function showToolDetail(tool, initial = false) {
   document.getElementById("recommended-section")?.classList.add("hidden");
   document.getElementById("limited-section")?.classList.add("hidden");
 
-  container.className = 'detail-wrapper';
-  container.innerHTML = `
+  DOM.container.className = 'detail-wrapper';
+  DOM.container.innerHTML = `
     <div class="tool-detail fade-in">
       <div class="tool-detail-top">
         <button class="back-btn" onclick="clearHash()">← Back</button>
@@ -845,21 +797,26 @@ function renderPricing(tool) {
 function renderRecommendations(tool) {
   const rec = allTools
     .filter((t) => t.name !== tool.name && (t.type || "").toLowerCase() === (tool.type || "").toLowerCase())
-    .slice(0, 6);
+    .slice(0, 5);
   if (!rec.length) return "";
   return `
     <section class="recommended-section fade-in">
       <h3>You may also like</h3>
-      <div class="recommended-scroll">
+      <div class="recommended-grid">
         ${rec
           .map(
             (r) => `
           <div class="recommended-card" onclick='location.hash="tool=${encodeURIComponent(r.name)}"'>
-            <img src="${r.image || 'assets/placeholder.jpg'}"
-                 alt="${escapeHTML(r.name)}">
-            <h4>${escapeHTML(r.name)}</h4>
-            <p>${escapeHTML((r.description || r.long_description || "")
-              .split("\n")[0] || "No description")}…</p>
+            <div class="recommended-image">
+              <img src="${r.image || 'assets/placeholder.jpg'}"
+                   alt="${escapeHTML(r.name)}"
+                   loading="lazy">
+            </div>
+            <div class="recommended-content">
+              <h4>${escapeHTML(r.name)}</h4>
+              <p>${escapeHTML((r.description || r.long_description || "")
+                .split("\n")[0] || "No description")}</p>
+            </div>
           </div>`
           )
           .join("")}
@@ -895,42 +852,49 @@ const getWeightedFuseList = () => {
 const updateSelectedItem = (it) =>
   it.forEach((el, i) => el.classList.toggle("selected", i === selectedIndex));
 const renderAutocomplete = (res) => {
-  autocompleteBox.innerHTML = res
+  DOM.autocompleteBox.innerHTML = res
     .map(({ item }) => `<div data-name="${escapeHTML(item.name)}">${escapeHTML(item.name)}</div>`)
     .join("");
-  autocompleteBox.classList.remove("hidden");
+  DOM.autocompleteBox.classList.remove("hidden");
   selectedIndex = -1;
-  autocompleteBox.querySelectorAll("div").forEach((d) =>
+  DOM.autocompleteBox.querySelectorAll("div").forEach((d) =>
     d.addEventListener("mousedown", () => {
       runSearch(d.dataset.name);
-      autocompleteBox.classList.add("hidden");
+      DOM.autocompleteBox.classList.add("hidden");
     })
   );
 };
 const showRecentSearches = () => {
   const r = JSON.parse(localStorage.getItem(RECENT_KEY) || "[]");
   if (!r.length) return;
-  autocompleteBox.innerHTML = r.map((n) => `<div data-name="${escapeHTML(n)}">${escapeHTML(n)}</div>`).join("");
-  autocompleteBox.classList.remove("hidden");
+  DOM.autocompleteBox.innerHTML = r.map((n) => `<div data-name="${escapeHTML(n)}">${escapeHTML(n)}</div>`).join("");
+  DOM.autocompleteBox.classList.remove("hidden");
   selectedIndex = -1;
-  autocompleteBox.querySelectorAll("div").forEach((d) =>
+  DOM.autocompleteBox.querySelectorAll("div").forEach((d) =>
     d.addEventListener("mousedown", () => {
       addToRecents(d.dataset.name);
-      searchInput.value = d.dataset.name;
+      DOM.searchInput.value = d.dataset.name;
       sessionStorage.setItem(SEARCH_KEY, d.dataset.name);
       applyFiltersAndRender();
-      autocompleteBox.classList.add("hidden");
+      DOM.autocompleteBox.classList.add("hidden");
     })
   );
 };
 
-const debouncedSearch = debounce(runSearch, 250);
+const debouncedSearch = debounce(runSearch, 500);
 
 searchInput?.addEventListener("input", () => {
-  const q = searchInput.value.trim();
+  const q = DOM.searchInput.value.trim();
   if (!q) {
-    autocompleteBox.classList.add("hidden");
+    DOM.autocompleteBox.classList.add("hidden");
     debouncedSearch("");
+    return;
+  }
+
+  // Only show autocomplete for longer queries
+  if (q.length < 2) {
+    DOM.autocompleteBox.classList.add("hidden");
+    debouncedSearch(q);
     return;
   }
 
@@ -951,13 +915,13 @@ searchInput?.addEventListener("input", () => {
     ]
   });
 
-  const results = fuse.search(q).slice(0, 5);
-  results.length ? renderAutocomplete(results) : autocompleteBox.classList.add("hidden");
+  const results = fuse.search(q).slice(0, 3);
+  results.length ? renderAutocomplete(results) : DOM.autocompleteBox.classList.add("hidden");
   debouncedSearch(q);
 });
 
 searchInput?.addEventListener("keydown", (e) => {
-  const items = autocompleteBox.querySelectorAll("div");
+  const items = DOM.autocompleteBox.querySelectorAll("div");
   if (!items.length) return;
 
   if (e.key === "ArrowDown") {
@@ -971,16 +935,16 @@ searchInput?.addEventListener("keydown", (e) => {
   } else if (e.key === "Enter") {
     e.preventDefault();
     if (selectedIndex !== -1) items[selectedIndex].dispatchEvent(new Event("mousedown"));
-    else debouncedSearch(searchInput.value);
-    autocompleteBox.classList.add("hidden");
+    else debouncedSearch(DOM.searchInput.value);
+    DOM.autocompleteBox.classList.add("hidden");
   }
 });
 
 searchInput?.addEventListener("focus", () => {
-  if (!searchInput.value.trim()) showRecentSearches();
+  if (!DOM.searchInput.value.trim()) showRecentSearches();
 });
 
-searchInput?.addEventListener("blur", () => { setTimeout(() => autocompleteBox.classList.add("hidden"), 150)});
+searchInput?.addEventListener("blur", () => { setTimeout(() => DOM.autocompleteBox.classList.add("hidden"), 150)});
 
 /* ================= LIVE COUNTDOWN ================= */
 function updateBadges() {
@@ -996,7 +960,7 @@ function updateBadges() {
     el.textContent = formatTimeRemaining(el.dataset.expiry);
   });
 }
-setInterval(updateBadges, 60_000);
+setInterval(updateBadges, 300_000);
 
 /* ----------  HASH & MODAL ---------- */
 window.addEventListener("hashchange", applyURLHash);
@@ -1004,8 +968,8 @@ window.addEventListener("hashchange", applyURLHash);
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") closeImageModal();
 });
-imageModal?.addEventListener("click", (e) => {
-  if (e.target === imageModal) closeImageModal();
+DOM.imageModal?.addEventListener("click", (e) => {
+  if (e.target === DOM.imageModal) closeImageModal();
 });
 function openImageModal(src) {
   const modal = document.getElementById("imageModal");
@@ -1022,38 +986,46 @@ function closeImageModal() {
 
 /* ----------  SORT SELECT ---------- */
 sortSelect?.addEventListener("change", () => {
-  sessionStorage.setItem(SORT_KEY, sortSelect.value);
+  sessionStorage.setItem(SORT_KEY, DOM.sortSelect.value);
   applyFiltersAndRender();
 });
 
 /* ----------  SCROLL PROGRESS ---------- */
+let scrollTimeout;
 document.addEventListener("scroll", () => {
   const scrollProgress = document.getElementById("scrollProgress");
-  if (!scrollProgress) return; // Exit if element doesn't exist
+  if (!scrollProgress) return;
   
-  const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-  const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  const scrollPercentage = (scrollTop / scrollHeight) * 100;
-  scrollProgress.style.width = `${scrollPercentage}%`;
+  clearTimeout(scrollTimeout);
+  scrollTimeout = setTimeout(() => {
+    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrollPercentage = (scrollTop / scrollHeight) * 100;
+    scrollProgress.style.width = `${scrollPercentage}%`;
+  }, 16);
 });
 
 /* ----------  SCROLL TO TOP ---------- */
+let scrollToTopTimeout;
 window.addEventListener("scroll", () => {
-  if (scrollToTopBtn) {
-    if (window.scrollY > 300) {
-      scrollToTopBtn.classList.add("show");
-    } else {
-      scrollToTopBtn.classList.remove("show");
-    }
+  if (DOM.scrollToTopBtn) {
+    clearTimeout(scrollToTopTimeout);
+    scrollToTopTimeout = setTimeout(() => {
+      if (window.scrollY > 300) {
+        DOM.scrollToTopBtn.classList.add("show");
+      } else {
+        DOM.scrollToTopBtn.classList.remove("show");
+      }
+    }, 16);
   }
 });
 
-scrollToTopBtn?.addEventListener("click", () => {
+DOM.scrollToTopBtn?.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
 /* ----------  GO ---------- */
-if (container) loadData();
+if (DOM.container) loadData();
 
 // Smooth scrolling for internal links
 document.addEventListener("DOMContentLoaded", () => {

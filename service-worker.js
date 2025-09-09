@@ -4,11 +4,10 @@ const PRECACHE        = "fmp-precache-v1";   // install‑time assets
 const RUNTIME_IMG     = "fmp-img-v1";        // runtime images
 const RUNTIME_JSON    = "fmp-json-v1";       // runtime data
 const urlsToCache = [
-  "/", "/index.html", "/styles/main.css", "/scripts/main.js",
+  "/", "/index.html", "/style.css", "/script.js",
   "/manifest.json",
   "/assets/logo.png", "/assets/icons/icon-192.png", "/assets/icons/icon-512.png",
-  "/data/tools.json", "/data/bots.json", "/data/checkers.json",
-  "/data/game.json", "/data/others.json", "/data/cookies.json", "/data/methods.json"
+  "/assets/placeholder.jpg"
 ];
 
 /* ---------- INSTALL (pre‑cache shell) ---------- */
