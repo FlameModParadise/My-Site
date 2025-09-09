@@ -7,8 +7,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let groupedReviews = {};
 
-  // Fetch reviews data from json/reviews.json
-  fetch("../json/reviews.json")
+  // Fetch reviews data from data/json/reviews.json
+  fetch("../data/json/reviews.json")
     .then((response) => {
       if (!response.ok) {
         throw new Error(`Failed to load reviews data. Status: ${response.status}`);
