@@ -45,6 +45,21 @@
     "requirements": "✅ Need spotify cookie according to plan needed, for c2p any and for invite family/duo owner based.\n✅ In invite, prefer new or never invite account."
   },
   {
+    "name": "Surfshark c2p Methods",
+    "type": "Method",
+    "description": "Master Surfshark account conversion techniques.",
+    "long_description": " Surfshark c2p Methods: Convert the account from the owner's email to your own.",
+    "tags": ["surfshark", "method", "invite", "c2p"],
+    "release_date": "2025-03-19",
+    "update_date": "2025-04-01",
+    "price": "-C2P: $3\n-Template Receipt only (Googleplay or Paypal): $4\n",
+    "contact": "telegram",
+    "stock": "Always",
+    "keywords": ["surfshark", "invite", "trick", "c2p", "surfshark c2p", "method", "access", "conversion"],
+    "image": "assets/methods-pic/surfshark.png",
+    "requirements": "✅ Need surfshark cookie according to plan needed, for c2p any and need to make receipt at own."
+  },
+  {
     "name": "Hotstar Method",
     "type": "Method",
     "description": "Convert Hotstar accounts to your own using simple techniques.",
