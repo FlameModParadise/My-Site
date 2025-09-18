@@ -171,7 +171,7 @@
     "type": "Checker",
     "name": "Claude Ai Cookie Checker",
     "description": "Claude AI is an advanced AI chatbot platform for coding and productivity.",
-    "long_description": "🤖 Validate Claude AI cookies and retrieve account details.\n🔍 Detects free or premium.\n🌍 Fast and user-friendly interface.",
+    "long_description": "🤖 Validate Claude AI cookies and retrieve account details.\n🔍 Detects free or premium.\n🌍 Fast and user-friendly interface.\nNew: Find pro or max plan and in max plan what is usage.",
     "requirements": "✅ No specific requirements.",
     "image": "assets/checkers-pic/claudeai.png",
     "video": "",
@@ -185,7 +185,7 @@
     "offer": null,
     "offer_expiry": null,
     "release_date": "2025-05-05",
-    "update_date": "2025-05-05",
+    "update_date": "2025-09-18",
     "tags": [
       "claude",
       "ai",

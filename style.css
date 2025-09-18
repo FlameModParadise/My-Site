@@ -663,6 +663,7 @@ body.dark .recommended-content p {
 
 .filter-tags button:hover {
   background: rgba(13, 110, 253, 0.1);
+  color: #333;
   border-color: rgba(13, 110, 253, 0.3);
   transform: translateY(-3px) scale(1.05);
   box-shadow: 0 8px 25px rgba(13, 110, 253, 0.15);
@@ -1550,6 +1551,11 @@ body.dark .requirements-btn:hover {
   color: #000 !important;
   box-shadow: 0 0 20px rgba(241, 196, 15, 0.5);
   transform: scale(1.05) rotate(2deg);
+}
+
+/* Dark mode filter button hover fix */
+body.dark .filter-tags button:hover {
+  color: #fff;
 }
 
 .popup-box {

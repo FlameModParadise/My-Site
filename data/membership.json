@@ -121,7 +121,7 @@
     "type": "Membership",
     "description": "Claude Ai is the best ai chatbot for coding purposes.",
     "long_description": "🤖 ClaudeAi Cookie Plan\n• Use ClaudeAi through browser cookies.",
-    "requirements": "Cookies are browser-based only.\nNo sharing or misuse.\nReplacement only within limits.(Any but paid)",
+    "requirements": "Cookies are browser-based only.\nNo sharing or misuse.\nReplacement only within limits.(Don't ask for max plan, it will be always mixed.)",
     "image": "assets/membership/claudeai.png",
     "tags": [
       "claude",
