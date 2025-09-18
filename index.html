@@ -19,8 +19,10 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="preload" href="style.css" as="style" />
+  <link rel="preload" href="script.js" as="script" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
+  <link rel="stylesheet" href="style.css" />
 
   <title>Flame Mod Paradise - Premium Mods, Tools, and Free Offers</title>
 
@@ -48,19 +50,19 @@
           <img src="assets/icons/fmp-icon.gif" alt="FMP Logo" />
         </a>
       </div>
-      <button aria-label="Toggle menu" class="navbar-toggle" id="navbarToggle">☰</button>
+        <button class="navbar-toggle" id="navbarToggle">☰</button>
       <div class="navbar-right" id="navbarMenu">
         <a href="index.html" class="active">Home</a>
         <a href="pages/reviews.html">Reviews</a>
         <a href="pages/contact.html">Contact</a>
         <a href="pages/faq.html">FAQ</a>
-        <button id="darkToggle" title="Toggle Dark Mode">💡</button>
+        <button id="darkToggle">💡</button>
       </div>
     </nav>
 
     <!-- Search bar -->
     <div class="search-bar-true-right">
-      <div class="search-group" style="position: relative;">
+      <div class="search-group">
         <input id="searchInput" type="text" placeholder="Search..." />
         <div id="autocompleteBox" class="autocomplete-box hidden" role="listbox"></div>
         <select id="sortSelect">
@@ -127,7 +129,7 @@
     </div>
 
     <!-- Scroll To Top -->
-    <button id="scrollToTopBtn" title="Go to top">
+    <button id="scrollToTopBtn">
       <img src="assets/icons/turn-up.gif" alt="Scroll to top" />
     </button>
 
@@ -191,16 +193,13 @@
     </footer>
 
   <!-- Scripts -->
-  <script src="script.js" defer></script>
   <script>
     // Service Worker registration
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => {
-        navigator.serviceWorker.register("./service-worker.js")
-          .catch((err) => console.error("❌ Service Worker error:", err));
+        navigator.serviceWorker.register("./service-worker.js");
       });
     }
-
     // Image modal & gallery
     document.addEventListener("DOMContentLoaded", () => {
       const mainImg = document.querySelector(".tool-main-img");
@@ -217,9 +216,9 @@
       modal.classList.remove("hidden");
     }
     function closeImageModal() { document.getElementById("imageModal").classList.add("hidden"); }
-    function closePopup()       { document.getElementById("popupMessage").classList.add("hidden"); }
-
+    function closePopup() { document.getElementById("popupMessage").classList.add("hidden"); }
   </script>
+  <script src="script.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
   <noscript>
     <p>Enable JavaScript for better site readability.<br />Thank You.<hr /></p>

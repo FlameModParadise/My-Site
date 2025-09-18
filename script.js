@@ -3,10 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const toggle = document.getElementById('navbarToggle');
   const menu = document.getElementById('navbarMenu');
   
-  if (!toggle || !menu) {
-    console.error('❌ Navbar elements not found!');
-    return;
-  }
+  if (!toggle || !menu) return;
   
   // Simple toggle function
   function toggleMobileMenu() {
@@ -76,7 +73,6 @@ document.addEventListener('DOMContentLoaded', function() {
 (() => {
   const css = `
 :focus-visible{outline:2px solid var(--color-primary);outline-offset:2px;}
-.tool-card.skeleton{animation:pulse 1s infinite ease-in-out;background:#f0f0f0;border-radius:.75rem;height:180px;}
 @keyframes pulse{0%,100%{opacity:.6}50%{opacity:1}}
 .tool-thumb-wrapper{aspect-ratio:16/9;position:relative;}
 .tool-thumb-wrapper img{object-fit:cover;width:100%;height:100%;}
@@ -318,7 +314,7 @@ async function loadData() {
   if (!DOM.container) return;
   
   DOM.container.className = "main-grid";
-  DOM.container.innerHTML = "<div class='tool-card skeleton'></div>".repeat(6);
+  DOM.container.innerHTML = "<p>Loading...</p>";
 
   try {
     const data = await Promise.allSettled(
@@ -344,7 +340,6 @@ async function loadData() {
     applyFiltersAndRender();
     applyURLHash();
   } catch (err) {
-    console.error("Error loading data:", err);
     DOM.container.innerHTML = "<p>Error loading data.</p>";
   }
 }

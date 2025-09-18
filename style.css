@@ -1,5 +1,5 @@
 /* ================ BASE RESET ================ */
-* {
+*, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -34,6 +34,12 @@ html, body {
   --badge-offer: #d9534f;
 
   --transition: 0.3s ease;
+  --transition-fast: 0.2s ease;
+  --transition-slow: 0.6s ease;
+  
+  --shadow-light: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-strong: 0 4px 15px rgba(13, 110, 253, 0.3);
 
   --tag-bg: #2c2c2c;
   --tag-text: #ddd;
@@ -65,6 +71,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   position: relative;
   overflow-x: hidden;
+  will-change: background, color;
 }
 
 /* Simplified background */
@@ -93,7 +100,7 @@ a, button {
   color: var(--color-primary);
   text-decoration: none;
   cursor: pointer;
-  transition: color 0.2s ease, opacity 0.2s, transform 0.2s ease;
+  transition: color var(--transition-fast), opacity var(--transition-fast), transform var(--transition-fast);
   position: relative;
 }
 
@@ -105,7 +112,7 @@ a::after, button::after {
   width: 0;
   height: 2px;
   background: var(--gradient-primary);
-  transition: width 0.3s ease;
+  transition: width var(--transition);
 }
 
 a:hover::after, button:hover::after {
@@ -114,18 +121,18 @@ a:hover::after, button:hover::after {
 
 a:hover, button:hover {
   color: var(--color-accent);
-  transform: translateY(-1px);
+  transform: translate3d(0, -1px, 0);
 }
 
 a:active, button:active {
   opacity: 0.8;
-  transform: translateY(0);
+  transform: translate3d(0, 0, 0);
 }
 
 img {
   max-width: 100%;
   display: block;
-  transition: transform 0.3s ease;
+  transition: transform var(--transition);
 }
 
 .hidden {
@@ -139,7 +146,7 @@ img {
   justify-content: space-between;
   background: rgba(255, 255, 255, 0.95);
   padding: 0.8rem 2.5rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--shadow-light);
   position: sticky;
   top: 0;
   z-index: 100;
@@ -169,6 +176,7 @@ body.dark .navbar {
   font-weight: 700;
   color: var(--color-primary);
   transition: transform var(--transition);
+  will-change: transform;
 }
 
 .logo img {
@@ -180,7 +188,7 @@ body.dark .navbar {
   object-fit: cover;
   border-radius: 50%;
   transform: translate(-50%, -50%);
-  transition: transform 0.3s ease;
+  transition: transform var(--transition);
 }
 
 .logo:hover {
@@ -202,7 +210,8 @@ body.dark .logo img {
   border: none;
   cursor: pointer;
   color: inherit;
-  transition: transform 0.3s ease;
+  transition: transform var(--transition);
+  will-change: transform;
 }
 
 .navbar-toggle:hover {
@@ -227,7 +236,7 @@ body.dark .logo img {
   background: transparent;
   border: none;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all var(--transition);
   padding: 0.5rem 1rem;
   border-radius: 8px;
   position: relative;
@@ -311,13 +320,13 @@ body.dark .logo img {
     border-top: 1px solid #eee;
     transform: translateY(-20px);
     opacity: 0;
-    transition: all 0.3s ease;
+    transition: all var(--transition);
     z-index: 200;
     backdrop-filter: blur(10px);
   }
   .navbar-right.show-menu {
     display: flex;
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
     opacity: 1;
     animation: slideDown 0.3s ease;
   }
@@ -328,7 +337,7 @@ body.dark .logo img {
       opacity: 0;
     }
     to {
-      transform: translateY(0);
+      transform: translate3d(0, 0, 0);
       opacity: 1;
     }
   }
@@ -359,12 +368,12 @@ body.dark .logo img {
   width: 200%;
   height: 200%;
   background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
-  animation: shimmer 3s infinite;
+  animation: shimmer 4s infinite;
 }
 
 @keyframes shimmer {
-  0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-  100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+  0% { transform: translate3d(-100%, -100%, 0) rotate(45deg); }
+  100% { transform: translate3d(100%, 100%, 0) rotate(45deg); }
 }
 
 /* ================ RECOMMENDED SECTION ================ */
@@ -478,7 +487,7 @@ body.dark .logo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.4s ease;
+  transition: transform var(--transition);
 }
 
 .recommended-card:hover .recommended-image img {
@@ -607,7 +616,7 @@ body.dark .recommended-content p {
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
   }
 }
 
@@ -619,7 +628,7 @@ body.dark .recommended-content p {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: textGlow 2s ease-in-out infinite alternate;
+  animation: textGlow 3s ease-in-out infinite alternate;
 }
 
 @keyframes textGlow {
@@ -653,19 +662,20 @@ body.dark .recommended-content p {
   border-radius: 20px;
   padding: 0.4rem 0.8rem;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all var(--transition);
   position: relative;
   overflow: hidden;
   font-weight: 500;
   font-size: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  will-change: transform, background, box-shadow;
 }
 
 .filter-tags button:hover {
   background: rgba(13, 110, 253, 0.1);
   color: #333;
   border-color: rgba(13, 110, 253, 0.3);
-  transform: translateY(-3px) scale(1.05);
+  transform: translate3d(0, -3px, 0) scale(1.05);
   box-shadow: 0 8px 25px rgba(13, 110, 253, 0.15);
 }
 
@@ -674,7 +684,7 @@ body.dark .recommended-content p {
   color: #fff;
   border-color: rgba(13, 110, 253, 0.5);
   box-shadow: 0 0 0 0 rgba(13, 110, 253, 0.4);
-  animation: pulse 2s infinite;
+  animation: pulse 3s infinite;
 }
 
 @keyframes pulse {
@@ -695,11 +705,11 @@ body.dark .recommended-content p {
 @keyframes slideIn {
   from {
     opacity: 0;
-    transform: translateY(20px) scale(0.95);
+    transform: translate3d(0, 20px, 0) scale(0.95);
   }
   to {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translate3d(0, 0, 0) scale(1);
   }
 }
 
@@ -716,7 +726,7 @@ body.dark .recommended-content p {
   background: #fff;
   padding: 1rem;
   border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--shadow-light);
   cursor: pointer;
   transition: all var(--transition);
   position: relative;
@@ -724,12 +734,13 @@ body.dark .recommended-content p {
   border: 1px solid rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
-  height: auto; /* Allow dynamic height */
-  min-height: 180px; /* Minimum height for consistency */
+  height: auto;
+  min-height: 180px;
+  will-change: transform, box-shadow;
 }
 
 .tool-card:hover {
-  transform: translateY(-8px);
+  transform: translate3d(0, -8px, 0);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
   border-color: rgba(13, 110, 253, 0.2);
 }
@@ -751,8 +762,9 @@ body.dark .recommended-content p {
   border-radius: 8px;
   position: relative;
   flex-direction: column;
-  transition: transform 0.3s ease;
-  flex-shrink: 0; /* Prevent image from shrinking */
+  transition: transform var(--transition);
+  flex-shrink: 0;
+  will-change: transform;
 }
 
 .tool-card:hover .tool-thumb-wrapper {
@@ -819,7 +831,7 @@ body.dark .tool-desc {
   border-radius: 20px;
   background: #e0e0e0;
   color: #333;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all var(--transition);
   cursor: pointer;
   position: relative;
   overflow: hidden;
@@ -950,8 +962,8 @@ body.dark .tool-detail {
   border-radius: 16px;
   background: #f0f0f0;
   padding: 8px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease;
+  box-shadow: var(--shadow-light);
+  transition: all var(--transition);
   cursor: zoom-in;
 }
 
@@ -973,7 +985,7 @@ body.dark .tool-detail {
   border-radius: 8px;
   object-fit: cover;
   opacity: 0.6;
-  transition: all 0.3s ease;
+  transition: all var(--transition);
   cursor: pointer;
 }
 
@@ -990,7 +1002,7 @@ body.dark .tool-detail {
   border-radius: 10px;
   margin-top: 1rem;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+  transition: transform var(--transition);
 }
 
 .tool-video:hover {
@@ -1014,7 +1026,7 @@ body.dark .tool-detail {
   padding: 0.5rem 1rem;
   border-radius: 6px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all var(--transition);
   position: relative;
   overflow: hidden;
 }
@@ -1051,7 +1063,7 @@ body.dark .tool-detail {
   transition: all var(--transition);
   position: relative;
   overflow: hidden;
-  box-shadow: 0 4px 15px rgba(13, 110, 253, 0.3);
+  box-shadow: var(--shadow-strong);
 }
 
 .contact-btn::before {
@@ -1093,7 +1105,7 @@ body.dark .tool-detail {
   white-space: nowrap;
   z-index: 2;
   backdrop-filter: blur(6px);
-  transition: all 0.3s ease;
+  transition: all var(--transition);
   justify-self: start;
   animation: bounceIn 0.8s ease;
 }
@@ -1101,17 +1113,17 @@ body.dark .tool-detail {
 @keyframes bounceIn {
   0% {
     opacity: 0;
-    transform: scale(0.3);
+    transform: scale3d(0.3, 0.3, 1);
   }
   50% {
-    transform: scale(1.05);
+    transform: scale3d(1.05, 1.05, 1);
   }
   70% {
-    transform: scale(0.9);
+    transform: scale3d(0.9, 0.9, 1);
   }
   100% {
     opacity: 1;
-    transform: scale(1);
+    transform: scale3d(1, 1, 1);
   }
 }
 
@@ -1135,34 +1147,34 @@ body.dark .tool-detail {
   font-weight: 600;
   color: #fff;
   display: inline-block;
-  transition: all 0.3s ease;
+  transition: all var(--transition);
   animation: fadeIn 0.5s ease;
 }
 
 /* === BADGE COLORS: Light/Dark Dynamic Using CSS Vars === */
 .tool-badge.discount-badge {
   background: linear-gradient(135deg, #dc3545, #c82333);
-  animation: glow 2s ease-in-out infinite alternate;
+  animation: glow 3s ease-in-out infinite alternate;
 }
 
 .tool-badge.offer-badge {
   background: linear-gradient(135deg, #ff9800, #f57c00);
-  animation: glow 2s ease-in-out infinite alternate;
+  animation: glow 3s ease-in-out infinite alternate;
 }
 
 .tool-badge.lifetime-badge {
   background: linear-gradient(135deg, #6f42c1, #5a32a3);
-  animation: glow 2s ease-in-out infinite alternate;
+  animation: glow 3s ease-in-out infinite alternate;
 }
 
 .tool-badge.new-badge {
   background: linear-gradient(135deg, #28a745, #218838);
-  animation: glow 2s ease-in-out infinite alternate;
+  animation: glow 3s ease-in-out infinite alternate;
 }
 
 .tool-badge.updated-badge {
   background: linear-gradient(135deg, #17a2b8, #138496);
-  animation: glow 2s ease-in-out infinite alternate;
+  animation: glow 3s ease-in-out infinite alternate;
 }
 
 @keyframes glow {
@@ -1241,10 +1253,11 @@ body:not(.dark) .lifetime-badge {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+  box-shadow: var(--shadow-medium);
+  transition: all var(--transition);
   z-index: 999;
   animation: bounceIn 0.5s ease;
+  will-change: transform, box-shadow;
 }
 
 #scrollToTopBtn.show {
@@ -1264,7 +1277,7 @@ body:not(.dark) .lifetime-badge {
   width: 60%;
   height: auto;
   border-radius: 50%;
-  transition: transform 0.3s ease;
+  transition: transform var(--transition);
 }
 
 #scrollToTopBtn:hover img {
@@ -1276,15 +1289,15 @@ body.dark #scrollToTopBtn {
 }
 
 
-/* ================ OLD FOOTER (IF STILL USED) ================ */
+
+/* ================ FOOTER ================ */
 .footer {
   background: #fff;
   position: relative;
   padding: 2rem;
   border-top: 1px solid #eee;
-  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow-light);
   color: var(--text-light);
-  will-change: transform;
 }
 
 .footer-content {
@@ -1332,7 +1345,7 @@ body.dark #scrollToTopBtn {
   text-decoration: none;
   color: var(--color-primary);
   font-weight: 500;
-  transition: color 0.2s ease;
+  transition: color var(--transition-fast);
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -1374,7 +1387,7 @@ body.dark #scrollToTopBtn {
   text-align: center;
 }
 
-
+/* Dark mode footer */
 body.dark .footer {
   background: #1f1f1f;
   border-top: 1px solid #333;
@@ -1391,7 +1404,7 @@ body.dark .footer-section p {
   color: var(--text-dark);
 }
 
-/* ================ FOOTER RESPONSIVE ================ */
+/* Footer responsive */
 @media (max-width: 768px) {
   .footer {
     padding: 1.5rem 1rem;
@@ -1469,7 +1482,7 @@ body.dark .footer-section p {
   font-size: 15px;
   background: #fff;
   color: #111;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all var(--transition);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
@@ -1619,7 +1632,7 @@ body.dark .filter-tags button:hover {
   border-radius: 6px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all var(--transition);
   box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3);
 }
 
@@ -1637,9 +1650,6 @@ body.dark .popup-content p,
 body.dark #popupText {
   color: #ddd;
 }
-
-
-
 
 @media (max-width: 768px) {
   .container {
@@ -1666,13 +1676,13 @@ body.dark #popupText {
     border-top: 1px solid #eee;
     transform: translateY(-20px);
     opacity: 0;
-    transition: all 0.3s ease;
+    transition: all var(--transition);
     z-index: 200;
     backdrop-filter: blur(10px);
   }
   .navbar-right.show-menu {
     display: flex;
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
     opacity: 1;
   }
   
@@ -2060,7 +2070,7 @@ body.dark #limited-section h2 {
   border: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.1) inset;
   transform: perspective(800px) translateZ(0);
-  transition: all 0.3s ease;
+  transition: all var(--transition);
   scroll-snap-align: start;
   position: relative;
   overflow: hidden;
