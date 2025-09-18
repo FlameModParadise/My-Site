@@ -92,7 +92,7 @@
     "type": "Membership",
     "description": "Access GPT via cookie with limited daily usage",
     "long_description": "🤖 GPT Cookie Plan\n• Use GPT through browser cookies.\n• Limit: 1 cookie every 2 days.\n• Replacement if expired.\n• Works only on browser (Firefox preferred).\n• Only replacement.",
-    "requirements": "Cookies are browser-based only.\nNo sharing or misuse.\nReplacement only within limits.",
+    "requirements": "Cookies are browser-based only.\nNo sharing or misuse.\nReplacement only within limits.\n(Any but paid)",
     "image": "assets/membership/gpt.png",
     "tags": [
       "gpt",
@@ -121,7 +121,7 @@
     "type": "Membership",
     "description": "Claude Ai is the best ai chatbot for coding purposes.",
     "long_description": "🤖 ClaudeAi Cookie Plan\n• Use ClaudeAi through browser cookies.",
-    "requirements": "Cookies are browser-based only.\nNo sharing or misuse.\nReplacement only within limits.",
+    "requirements": "Cookies are browser-based only.\nNo sharing or misuse.\nReplacement only within limits.(Any but paid)",
     "image": "assets/membership/claudeai.png",
     "tags": [
       "claude",
@@ -251,7 +251,7 @@
     "type": "Membership",
     "description": "Spotify access for 1 month.",
     "long_description": "🎵 Spotify Membership\n• 1 month access.\n• Only replacement.",
-    "requirements": "Must be in India. No sharing or misuse.",
+    "requirements": "No sharing or misuse.",
     "image": "assets/membership/spotify.png",
     "tags": [
       "spotify",
