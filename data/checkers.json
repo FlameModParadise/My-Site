@@ -1195,5 +1195,45 @@
     "pricing": {
       "Source Code": "$10"
     }
+  },
+  {
+    "type": "Checker",
+    "name": "Quillbot Account Checker",
+    "description": "Quillbot is an AI-powered writing assistant that helps improve writing quality through paraphrasing, grammar checking, and style enhancement.",
+    "long_description": "🤖 Validate Quillbot accounts and check subscription status.\n🔍 Automatically detects free, premium accounts.\n📊 Detailed account information including subscription type and expiry.",
+    "requirements": "✅ No specific requirements.",
+    "image": "assets/checkers-pic/quillbot.png",
+    "video": "",
+    "images": [
+      "assets/checkers-pic/checking/quillbot1.png"
+    ],
+    "discount": null,
+    "offer": null,
+    "offer_expiry": null,
+    "release_date": "2025-09-23",
+    "update_date": "2025-09-23",
+    "tags": [
+      "quillbot",
+      "writing",
+      "ai"
+    ],
+    "keywords": [
+      "quillbot account check",
+      "validate quillbot accounts",
+      "quillbot premium checker",
+      "quillbot subscription status",
+      "quillbot login checker",
+      "quillbot",
+      "writing assistant"
+    ],
+    "contact": "telegram",
+    "stock": "unlimited",
+    "pricing": {
+      "1 Day": "$1",
+      "1 Month": "$4",
+      "Lifetime (No Patch)": "$10",
+      "Lifetime (Inc Patch)": "$13",
+      "Source Code": "$15"
+    }
   }
 ]
