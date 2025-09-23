@@ -227,3 +227,141 @@ self.addEventListener("fetch", (e) => {
       })
   );
 });
+
+/* ---------- MESSAGE HANDLING ---------- */
+self.addEventListener("message", (e) => {
+  if (e.data && e.data.type === "SKIP_WAITING") {
+    self.skipWaiting();
+  }
+  
+  if (e.data && e.data.type === "GET_CACHE_SIZE") {
+    caches.keys().then((cacheNames) => {
+      const cacheSizes = {};
+      const promises = cacheNames.map((name) => {
+        return caches.open(name).then((cache) => {
+          return cache.keys().then((keys) => {
+            cacheSizes[name] = keys.length;
+          });
+        });
+      });
+      
+      Promise.all(promises).then(() => {
+        e.ports[0].postMessage(cacheSizes);
+      });
+    });
+  }
+  
+  if (e.data && e.data.type === "CLEAR_CACHE") {
+    const cacheName = e.data.cacheName;
+    if (cacheName) {
+      caches.delete(cacheName).then(() => {
+        e.ports[0].postMessage({ success: true, message: `Cache ${cacheName} cleared` });
+      });
+    } else {
+      caches.keys().then((keys) => {
+        const deletePromises = keys.map((key) => caches.delete(key));
+        Promise.all(deletePromises).then(() => {
+          e.ports[0].postMessage({ success: true, message: "All caches cleared" });
+        });
+      });
+    }
+  }
+});
+
+/* ---------- BACKGROUND SYNC ---------- */
+self.addEventListener("sync", (e) => {
+  if (e.tag === "background-sync") {
+    e.waitUntil(doBackgroundSync());
+  }
+});
+
+async function doBackgroundSync() {
+  try {
+    console.log("Service Worker: Background sync started");
+    // Add any background sync logic here
+    console.log("Service Worker: Background sync completed");
+  } catch (error) {
+    console.error("Service Worker: Background sync failed", error);
+  }
+}
+
+/* ---------- PUSH NOTIFICATIONS ---------- */
+self.addEventListener("push", (e) => {
+  if (e.data) {
+    const data = e.data.json();
+    const options = {
+      body: data.body,
+      icon: "/assets/icons/icon-192.png",
+      badge: "/assets/icons/icon-192.png",
+      vibrate: [100, 50, 100],
+      data: {
+        dateOfArrival: Date.now(),
+        primaryKey: data.primaryKey || 1
+      },
+      actions: [
+        {
+          action: "explore",
+          title: "View Details",
+          icon: "/assets/icons/icon-192.png"
+        },
+        {
+          action: "close",
+          title: "Close",
+          icon: "/assets/icons/icon-192.png"
+        }
+      ]
+    };
+    
+    e.waitUntil(
+      self.registration.showNotification(data.title, options)
+    );
+  }
+});
+
+/* ---------- NOTIFICATION CLICK ---------- */
+self.addEventListener("notificationclick", (e) => {
+  e.notification.close();
+  
+  if (e.action === "explore") {
+    e.waitUntil(
+      clients.openWindow("/")
+    );
+  } else if (e.action === "close") {
+    // Just close the notification
+  } else {
+    // Default action - open the app
+    e.waitUntil(
+      clients.openWindow("/")
+    );
+  }
+});
+
+/* ---------- UTILITY FUNCTIONS ---------- */
+function isImageRequest(url) {
+  return /\.(png|jpe?g|webp|gif|svg|ico)$/i.test(url.pathname);
+}
+
+function isJsonRequest(url) {
+  return url.pathname.endsWith(".json");
+}
+
+function isHtmlRequest(url) {
+  return url.pathname.endsWith(".html") || url.pathname === "/";
+}
+
+function isAssetRequest(url) {
+  return /\.(css|js)$/i.test(url.pathname);
+}
+
+/* ---------- CACHE MANAGEMENT ---------- */
+async function cleanupOldCaches() {
+  const cacheNames = await caches.keys();
+  const currentCaches = [PRECACHE, RUNTIME_IMG, RUNTIME_JSON, RUNTIME_PAGES];
+  
+  const deletePromises = cacheNames
+    .filter((name) => !currentCaches.includes(name))
+    .map((name) => caches.delete(name));
+    
+  await Promise.all(deletePromises);
+  console.log("Service Worker: Old caches cleaned up");
+}
