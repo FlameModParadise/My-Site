@@ -65,7 +65,7 @@
     "type": "Membership",
     "description": "Private cookie drops not posted elsewhere",
     "long_description": "🍪 Cookie Membership\n• Private cookies from multiple sites.\n• Drops every once or twice in a week.\n• These are not posted in public or other channels.\n• New : Private cracked Netflix Account will also be posted.\n• Max 5 members only.",
-    "requirements": "Drops based on what’s extracted. No direct requests. Quality over quantity.\nNo sharing or misuse.",
+    "requirements": "Drops based on what's extracted. No direct requests. Quality over quantity.\nNo sharing or misuse.",
     "image": "assets/membership/cookie.png",
     "tags": [
       "cookies",
@@ -103,7 +103,7 @@
     ],
     "release_date": "2025-05-02",
     "update_date": "2025-05-02",
-    "price": "10days: 1$ \n15days: 1.5$ \n1month: $4\n (Invite on mail : 4$ | 100% autopay but luck based random life.)",
+    "price": "10days: 1$ \n15days: 1.5$\n (Invite on mail : 4$ | 100% autopay but luck based random life.)",
     "contact": "telegram",
     "keywords": [
       "gpt membership",
@@ -132,7 +132,7 @@
     ],
     "release_date": "2025-05-02",
     "update_date": "2025-05-02",
-    "price": "10days: 2$ \n15days: 3$ \n1month: $4",
+    "price": "10days: 2$ \n17days: 3$",
     "contact": "telegram",
     "keywords": [
       "claude membership",
@@ -140,6 +140,59 @@
       "claude cookies",
       "browser claude",
       "claude ai"
+    ],
+    "stock": "Unlimited"
+  },
+  {
+    "name": "Cursor Membership",
+    "type": "Membership",
+    "description": "Cursor is an AI-powered coding assistant designed to help developers with code generation and debugging.",
+    "long_description": "🤖 Cursor AI Plan\n• Use Cursor through browser cookies.\n• AI-powered code editor with smart features.\n• Can login to cursor desktop app with the cookie.",
+    "requirements": "Cookies are browser-based only.\nNo sharing or misuse.\nReplacement only within limits.",
+    "image": "assets/checkers-pic/cursor.png",
+    "tags": [
+      "cursor",
+      "cookies",
+      "browser",
+      "ai",
+      "membership"
+    ],
+    "release_date": "2025-08-30",
+    "update_date": "2025-08-30",
+    "price": "10days: 2$ \n15days: 3$\n (Invite on mail : 4$ | 100% autopay but luck based random life.)",
+    "contact": "telegram",
+    "keywords": [
+      "cursor membership",
+      "ai access",
+      "cursor cookies",
+      "browser cursor",
+      "cursor ai"
+    ],
+    "stock": "Unlimited"
+  },
+  {
+    "name": "Spotify Membership",
+    "type": "Membership",
+    "description": "Spotify access for 1 month.",
+    "long_description": "🎵 Spotify Membership\n• 1 month access.\n• Only replacement.",
+    "requirements": "No sharing or misuse.",
+    "image": "assets/membership/spotify.png",
+    "tags": [
+      "spotify",
+      "music",
+      "streaming",
+      "membership"
+    ],
+    "release_date": "2025-05-02",
+    "update_date": "2025-05-02",
+    "price": "$1/month",
+    "contact": "telegram",
+    "keywords": [
+      "spotify membership",
+      "music streaming",
+      "india spotify",
+      "spotify plan",
+      "membership"
     ],
     "stock": "Unlimited"
   },
@@ -245,31 +298,5 @@
       "membership"
     ],
     "stock": "10"
-  },
-  {
-    "name": "Spotify Membership",
-    "type": "Membership",
-    "description": "Spotify access for 1 month.",
-    "long_description": "🎵 Spotify Membership\n• 1 month access.\n• Only replacement.",
-    "requirements": "No sharing or misuse.",
-    "image": "assets/membership/spotify.png",
-    "tags": [
-      "spotify",
-      "music",
-      "streaming",
-      "membership"
-    ],
-    "release_date": "2025-05-02",
-    "update_date": "2025-05-02",
-    "price": "$1/month",
-    "contact": "telegram",
-    "keywords": [
-      "spotify membership",
-      "music streaming",
-      "india spotify",
-      "spotify plan",
-      "membership"
-    ],
-    "stock": "Unlimited"
   }
 ]
