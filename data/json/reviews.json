@@ -62,7 +62,7 @@
     ]
   },
   {
-    "category": "Netflix Cookie Privatzing Sold",
+    "category": "Netflix Cookie Privatizer Sold",
     "images": [
       "../assets/reviews/nfprivatizer1.png",
       "../assets/reviews/nfprivatizer2.png",
@@ -96,6 +96,12 @@
     "category": "Chatgpt 15days membership Sold",
     "images": [
       "../assets/reviews/gptmem1.png"
+    ]
+  },
+  {
+    "category": "Chatgpt Invite on Mail Sold",
+    "images": [
+      "../assets/reviews/chatgptinvite1.png"
     ]
   },
   {
