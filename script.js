@@ -174,7 +174,21 @@ function getShortDescription(tool, query = "") {
     (tool.long_description
       ? tool.long_description.split("\n")[0] + "…"
       : "No description available.");
-  return query ? highlightMatch(raw, query) : escapeHTML(raw);
+  
+  // Enhance description with key benefits
+  let enhanced = raw;
+  if (tool.pricing && Object.keys(tool.pricing).length > 0) {
+    const prices = Object.values(tool.pricing);
+    const lowestPrice = prices.reduce((min, price) => {
+      const num = parseFloat(price.replace(/[^0-9.]/g, ''));
+      return num < min ? num : min;
+    }, Infinity);
+    if (lowestPrice !== Infinity) {
+      enhanced += ` • Starting from $${lowestPrice}`;
+    }
+  }
+  
+  return query ? highlightMatch(enhanced, query) : escapeHTML(enhanced);
 }
 
 /* ----------  LAZY‑IMAGE SYSTEM ---------- */
@@ -652,16 +666,11 @@ function showToolDetail(tool, initial = false) {
 
         <div class="tool-detail-right">
           <div class="tool-info">
-            <p class="desc"><strong>Description:</strong><br>${escapeHTML(
-              tool.long_description || tool.description || 'No description available.'
-            ).replace(/\n/g, "<br>")}</p><br>
-
+            ${renderEnhancedDescription(tool)}
+            
             ${renderPricing(tool)}
-            ${tool.discount       ? `<p><strong>Discount:</strong> ${tool.discount}%</p><br>` : ''}
-            ${tool.offer_expiry   ? `<p>⏳ Offer ends in ${daysLeft(tool.offer_expiry)} days</p><br>` : ''}
-            <p><strong>Stock:</strong><br>${getStockStatus(tool.stock)}</p><br>
-            <p><strong>Released:</strong><br>${escapeHTML(tool.release_date || 'N/A')}</p><br>
-            <p><strong>Updated:</strong><br>${escapeHTML(tool.update_date  || 'N/A')}</p><br>
+            
+            ${renderToolInfo(tool)}
 
             <div style="display:flex;gap:1rem;flex-wrap:wrap;">
               <a href="${getContactLink(tool.contact)}" target="_blank" class="contact-btn">💬 Contact</a>
@@ -776,6 +785,64 @@ const getContactLink = (t) =>
   ({ telegram: "https://t.me/fmpChatBot", discord: "https://discord.gg/kfJfP3aNwC", email: "mailto:flamemodparadiscord@gmail.com" }[
     t?.toLowerCase()
   ] || "#");
+
+function renderEnhancedDescription(tool) {
+  const description = tool.long_description || tool.description || 'No description available.';
+  return `<p class="desc"><strong>Description:</strong><br>${escapeHTML(description).replace(/\n/g, "<br>")}</p><br>`;
+}
+
+function extractFeatures(description) {
+  const features = [];
+  const lines = description.split('\n');
+  
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (trimmed.startsWith('•') || trimmed.startsWith('-') || trimmed.startsWith('*')) {
+      features.push(trimmed.substring(1).trim());
+    } else if (trimmed.includes('✓') || trimmed.includes('✅')) {
+      features.push(trimmed.replace(/[✓✅]/g, '').trim());
+    }
+  }
+  
+  return features.slice(0, 5); // Limit to 5 features
+}
+
+function extractBenefits(description) {
+  const benefits = [];
+  const text = description.toLowerCase();
+  
+  if (text.includes('fast') || text.includes('quick')) benefits.push('Fast and efficient performance');
+  if (text.includes('stable') || text.includes('reliable')) benefits.push('Stable and reliable operation');
+  if (text.includes('easy') || text.includes('simple')) benefits.push('Easy to use interface');
+  if (text.includes('automation') || text.includes('automatic')) benefits.push('Automated processes');
+  if (text.includes('proxyless') || text.includes('no proxy')) benefits.push('No proxy required');
+  if (text.includes('update') || text.includes('support')) benefits.push('Regular updates and support');
+  
+  return benefits.slice(0, 3); // Limit to 3 benefits
+}
+
+function renderToolInfo(tool) {
+  const info = [];
+  
+  if (tool.discount) {
+    info.push(`<p><strong>Discount:</strong> ${tool.discount}%</p><br>`);
+  }
+  
+  if (tool.offer_expiry) {
+    const days = daysLeft(tool.offer_expiry);
+    info.push(`<p>⏳ Offer ends in ${days} days</p><br>`);
+  }
+  
+  info.push(`<p><strong>Stock:</strong><br>${getStockStatus(tool.stock)}</p><br>`);
+  info.push(`<p><strong>Released:</strong><br>${escapeHTML(tool.release_date || 'N/A')}</p><br>`);
+  info.push(`<p><strong>Updated:</strong><br>${escapeHTML(tool.update_date || 'N/A')}</p><br>`);
+  
+  if (tool.tags && tool.tags.length > 0) {
+    info.push(`<p><strong>Tags:</strong> ${tool.tags.map(tag => `<span class="tag">${escapeHTML(tag)}</span>`).join(' ')}</p><br>`);
+  }
+  
+  return info.join('');
+}
 
 function renderPricing(tool) {
   if (tool.pricing) {
