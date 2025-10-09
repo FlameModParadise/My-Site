@@ -2,14 +2,15 @@
   {
     "name": "Tools Membership",
     "type": "Membership",
-    "description": "Access to all private tools and cookie checkers with license",
-    "long_description": "🛠️ Tools Membership\n• Private channel access for all current and future tools.\n• Includes 15+ working cookie checkers.\n• Tools may take time — not daily posts.\n• Limited to 15 members max.",
-    "requirements": "Tools are .exe only.\nNo source code.\nNo leak.",
+    "description": "Access to all private tools i.e cookie checkers with license",
+    "long_description": "🛠️ Tools Membership\n• Private channel access for all current and future cookie checkers.\n• Includes 15+ working cookie checkers.\n• Tools may take time — not daily posts.\n• Limited to 15 members max.",
+    "requirements": "Tools are .exe only.\nNo source code.\nNo leak.\nNo sharing else direct ban no warning.",
     "image": "assets/membership/tools.png",
     "images": [
       "assets/membership/toolchannel1.png",
       "assets/membership/toolchannel2.png",
-      "assets/membership/toolchannel3.png"
+      "assets/membership/toolchannel3.png",
+      "assets/membership/toolchannel4.png"
     ],
     "tags": [
       "tools",
@@ -28,7 +29,7 @@
       "exclusive tools",
       "membership"
     ],
-    "stock": 14
+    "stock": 13
   },
   {
     "name": "Source Code Membership",
