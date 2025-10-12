@@ -3,7 +3,7 @@
     "name": "Log Extractor",
     "type": "Tools",
     "description": "Extract cookies from logs quickly and cleanly.",
-    "long_description": "🔧 LOG EXTRACTOR (Cookies Only)\n\n• Parses logs and extracts valid cookies.\n• Skips corrupt lines and sorts automatically.\n• Proxyless — no external access required.\n\n💰 Pricing:\n- 1 Day: $0.5\n- 1 Month: $2\n- Lifetime (No Update): $5\n- Lifetime (With Updates): $8\n- Source Code: $10\n\n🛠 Updates include speed improvements & performance tweaks.",
+    "long_description": "🔧 LOG EXTRACTOR (Cookies Only)\n\n•It extract cookies from logs, you can extract multiple site cookies at once too.\nNote: It extract all site cookies then u need to check with checker.It is just extractor not checker.",
     "image": "assets/tools/logextractor.png",
     "images": [],
     "video": "",
@@ -18,8 +18,7 @@
     "pricing": {
       "1 Day": "$0.5",
       "1 Month": "$2",
-      "Lifetime (No Update)": "$5",
-      "Lifetime (With Updates)": "$8",
+      "Lifetime": "$8",
       "Source Code": "$10"
     },
     "discount": null,
