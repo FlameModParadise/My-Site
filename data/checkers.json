@@ -1045,7 +1045,7 @@
     "type": "Checker",
     "name": "Pia VPN Account Checker",
     "description": "PivateInternetAccess is a VPN service for online privacy and security.",
-    "long_description": "PIA VPN Account/Combo Checker - Validate PIA VPN cookies and retrieve account details.\n🔍 Detects subscription status and plan type.\n Note: This is checker not combo extractor and need good proxy.",
+    "long_description": "PIA VPN Account/Combo Checker - Validate PIA VPN cookies and retrieve account details.\n🔍 Detects subscription status and plan type.\n Note: This checker can extract combo too so no need of extra tool and need good proxy.",
     "requirements": "Need proxy",
     "image": "assets/checkers-pic/pia.png",
     "video": "",
@@ -1073,7 +1073,7 @@
       "1 Day": "$1",
       "30 Days": "$7",
       "Lifetime (No Patch)": "$10",
-      "Source Code (for solo)": "$15"
+      "Source Code (for solo)": "$17"
     }
   },
   {
