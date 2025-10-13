@@ -1043,6 +1043,41 @@
   },
   {
     "type": "Checker",
+    "name": "Pia VPN Account Checker",
+    "description": "PivateInternetAccess is a VPN service for online privacy and security.",
+    "long_description": "PIA VPN Account/Combo Checker - Validate PIA VPN cookies and retrieve account details.\n🔍 Detects subscription status and plan type.\n Note: This is checker not combo extractor and need good proxy.",
+    "requirements": "Need proxy",
+    "image": "assets/checkers-pic/pia.png",
+    "video": "",
+    "images": [
+      "assets/checkers-pic/checking/pia1.png"
+    ],
+    "discount": null,
+    "offer": null,
+    "offer_expiry": null,
+    "release_date": "2025-10-13",
+    "update_date": "2025-10-13",
+    "tags": [
+      "pia",
+      "vpn"
+    ],
+    "keywords": [
+      "pia cookie checker",
+      "check pia account",
+      "pia account status",
+      "pia cookies tool"
+    ],
+    "contact": "telegram",
+    "stock": "unlimited",
+    "pricing": {
+      "1 Day": "$1",
+      "30 Days": "$7",
+      "Lifetime (No Patch)": "$10",
+      "Source Code (for solo)": "$15"
+    }
+  },
+  {
+    "type": "Checker",
     "name": "TradingView Cookie Checker",
     "description": "TradingView is a platform for financial market analysis and trading charts.",
     "long_description": "📈 Validate TradingView cookies and retrieve account details.\n💳 Capture subscription and payment information.\n🌍 Fast and works without proxies.\n✅ Ideal for account management.",
