@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://flamemodparadise.github.io/My-Site/sitemap.xml

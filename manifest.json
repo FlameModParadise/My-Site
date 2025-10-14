@@ -1,8 +1,8 @@
 {
   "id": "/?source=pwa",
-  "name": "FMP – Store",
-  "short_name": "FMP Store",
-  "description": "Discover premium bots, custom tools, checkers and automation scripts.",
+  "name": "Flame Mod Paradise - Cookie Checkers & Python Tools",
+  "short_name": "FMP Tools",
+  "description": "Premium cookie checkers for Netflix, Spotify, ChatGPT, Claude AI & Python automation tools. Best FMP tools for developers and automation enthusiasts.",
   "start_url": "/?source=pwa",
   "scope": "/",
   "display": "standalone",
@@ -12,7 +12,8 @@
   "background_color": "#121212",
   "theme_color": "#0d6efd",
 
-  "categories": ["utilities", "productivity"],
+  "categories": ["utilities", "productivity", "developer", "automation"],
+  "keywords": ["cookie checker", "python tools", "netflix checker", "spotify checker", "chatgpt checker", "automation", "FMP", "flame mod paradise"],
 
   "icons": [
     {
@@ -41,16 +42,21 @@
 
   "shortcuts": [
     {
-      "name": "Browse Tools",
-      "short_name": "Tools",
-      "url": "/#tools"
+      "name": "Cookie Checkers",
+      "short_name": "Checkers",
+      "url": "/?filter=checker"
     },
     {
-      "name": "Contact",
+      "name": "Python Tools",
+      "short_name": "Python",
+      "url": "/?filter=tools"
+    },
+    {
+      "name": "Contact FMP",
       "url": "/#contact"
     },
     {
-      "name": "View Offers",
+      "name": "Premium Offers",
       "short_name": "Offers",
       "url": "/#offers"
     }

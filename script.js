@@ -227,9 +227,24 @@ const imageObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach(({ target, isIntersecting }) => {
       if (isIntersecting && target.dataset.src) {
-        target.src = target.dataset.src;
-        target.removeAttribute('data-src');
-        imageObserver.unobserve(target);
+        const img = target;
+        const src = img.dataset.src;
+        
+        // Create a new image to test if the source loads
+        const testImg = new Image();
+        testImg.onload = () => {
+          img.src = src;
+          img.removeAttribute('data-src');
+          img.classList.add('loaded');
+          imageObserver.unobserve(img);
+        };
+        testImg.onerror = () => {
+          // If the image fails to load, keep the placeholder
+          img.removeAttribute('data-src');
+          img.classList.add('loaded');
+          imageObserver.unobserve(img);
+        };
+        testImg.src = src;
       }
     });
   },
@@ -245,15 +260,22 @@ window.addEventListener('beforeunload', () => {
 });
 
 function smartImg(src, alt = "") {
-  const safeSrc = isValidUrl(src) ? src : "assets/placeholder.jpg";
+  // Use the provided src if it exists and is not empty, otherwise use placeholder
+  const safeSrc = (src && src.trim() && src !== 'undefined') ? src : "assets/placeholder.jpg";
   const safeAlt = escapeHTML(alt || '');
+  
+  // Debug logging (remove in production)
+  if (src !== safeSrc) {
+    console.warn(`Image source replaced: "${src}" -> "${safeSrc}"`);
+  }
   
   return `
     <img loading="lazy"
          data-src="${safeSrc}"
          src="assets/placeholder.jpg"
          alt="${safeAlt}"
-         onerror="this.src='assets/placeholder.jpg'; this.onerror=null;"
+         onerror="this.src='assets/placeholder.jpg'; this.onerror=null; console.warn('Image failed to load:', this.dataset.src);"
+         onload="this.classList.add('loaded');"
          role="img"
          aria-label="${safeAlt}"
     >
@@ -264,9 +286,12 @@ function activateLazyImages(root = document) {
   const images = root.querySelectorAll("img[data-src]");
   images.forEach((img) => {
     if (img.complete && img.naturalWidth > 0) {
+      // Image is already loaded, set the source directly
       img.src = img.dataset.src;
       img.removeAttribute('data-src');
+      img.classList.add('loaded');
     } else {
+      // Start observing for lazy loading
       imageObserver.observe(img);
     }
   });
@@ -975,10 +1000,17 @@ function showToolDetail(tool, initial = false) {
   // Force load images in the detail view
   const mainImg = document.querySelector('.tool-main-img');
   const galleryImgs = document.querySelectorAll('.tool-gallery img');
-  if (mainImg && mainImg.dataset.src) mainImg.src = mainImg.dataset.src;
+  
+  if (mainImg && mainImg.dataset.src) {
+    mainImg.src = mainImg.dataset.src;
+    mainImg.removeAttribute('data-src');
+  }
 
   galleryImgs.forEach(img => {
-    if (img.dataset.src) img.src = img.dataset.src;
+    if (img.dataset.src) {
+      img.src = img.dataset.src;
+      img.removeAttribute('data-src');
+    }
     img.style.cursor = 'pointer';
     img.addEventListener('click', () => swapMainImage(img));
   });
