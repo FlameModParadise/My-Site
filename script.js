@@ -377,7 +377,12 @@ const mobileOptimizer = new MobileOptimizer();
 /* ----------  WILL-CHANGE OPTIMIZATION  ---------- */
 class WillChangeOptimizer {
   constructor() {
-    this.optimizeWillChange();
+    // Delay initialization to ensure DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => this.optimizeWillChange());
+    } else {
+      this.optimizeWillChange();
+    }
   }
   
   optimizeWillChange() {
@@ -1461,6 +1466,15 @@ const scrollToTopManager = new ScrollToTopManager();
 
 /* ----------  INITIALIZATION ---------- */
 document.addEventListener('DOMContentLoaded', () => {
+  // Verify all required DOM elements are present
+  const requiredElements = ['container', 'searchInput', 'filtersContainer', 'sortSelect'];
+  const missingElements = requiredElements.filter(key => !DOM[key]);
+  
+  if (missingElements.length > 0) {
+    console.error('Missing required DOM elements:', missingElements);
+    return;
+  }
+  
   // Initialize the application
   if (DOM.container) {
     loadData();
