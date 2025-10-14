@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
   if (!toggle || !menu) return;
   
-  // Simple toggle function with improved accessibility
+  // Simple toggle function
   function toggleMobileMenu() {
     const isOpen = menu.classList.contains('show-menu');
     
@@ -14,42 +14,50 @@ document.addEventListener('DOMContentLoaded', function() {
       menu.classList.remove('show-menu');
       toggle.innerHTML = '☰';
       toggle.setAttribute('aria-label', 'Open menu');
-      toggle.setAttribute('aria-expanded', 'false');
       document.body.style.overflow = '';
     } else {
       // Open menu
       menu.classList.add('show-menu');
       toggle.innerHTML = '✕';
       toggle.setAttribute('aria-label', 'Close menu');
-      toggle.setAttribute('aria-expanded', 'true');
       document.body.style.overflow = 'hidden';
     }
   }
   
-  // Event delegation for better performance
+  // Single click handler
+  toggle.addEventListener('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    toggleMobileMenu();
+  });
+  
+  // Close on link click
+  const menuLinks = menu.querySelectorAll('a, button');
+  menuLinks.forEach(link => {
+    link.addEventListener('click', function() {
+      if (menu.classList.contains('show-menu')) {
+        toggleMobileMenu();
+      }
+    });
+  });
+  
+  // Close on outside click
   document.addEventListener('click', function(e) {
-    if (e.target === toggle) {
-      e.preventDefault();
-      e.stopPropagation();
-      toggleMobileMenu();
-    } else if (menu.classList.contains('show-menu') && 
-               !toggle.contains(e.target) && 
-               !menu.contains(e.target)) {
-      toggleMobileMenu();
-    } else if (menu.contains(e.target) && (e.target.tagName === 'A' || e.target.tagName === 'BUTTON')) {
+    if (menu.classList.contains('show-menu') && 
+        !toggle.contains(e.target) && 
+        !menu.contains(e.target)) {
       toggleMobileMenu();
     }
   });
   
-  // Improved keyboard navigation
+  // Close on escape
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape' && menu.classList.contains('show-menu')) {
       toggleMobileMenu();
-      toggle.focus(); // Return focus to toggle button
     }
   });
   
-  // Debounced resize handler
+  // Close on resize to desktop
   let resizeTimer;
   window.addEventListener('resize', function() {
     clearTimeout(resizeTimer);
@@ -68,8 +76,6 @@ document.addEventListener('DOMContentLoaded', function() {
 @keyframes pulse{0%,100%{opacity:.6}50%{opacity:1}}
 .tool-thumb-wrapper{aspect-ratio:16/9;position:relative;}
 .tool-thumb-wrapper img{object-fit:cover;width:100%;height:100%;}
-.skip-link{position:absolute;top:-40px;left:6px;background:var(--color-primary);color:#fff;padding:8px;text-decoration:none;border-radius:4px;z-index:1000;}
-.skip-link:focus{top:6px;}
 `;
   const style = document.createElement("style");
   style.textContent = css;
@@ -88,24 +94,14 @@ const DATA_FILES = [
   "data/membership.json"
 ];
 
-const STORAGE_KEYS = {
-  THEME: "theme",
-  SEARCH: "search",
-  SORT: "sort",
-  FILTER: "filter",
-  RECENT: "recentSearches"
-};
+const THEME_KEY   = "theme";
+const SEARCH_KEY  = "search";
+const SORT_KEY    = "sort";
+const FILTER_KEY  = "filter";
+const RECENT_KEY  = "recentSearches";
+const MAX_RECENTS = 5;
 
-const CONFIG = {
-  MAX_RECENTS: 5,
-  SEARCH_DEBOUNCE: 300,
-  RESIZE_DEBOUNCE: 250,
-  SCROLL_DEBOUNCE: 16,
-  BADGE_UPDATE_INTERVAL: 300000, // 5 minutes
-  MOBILE_BREAKPOINT: 768
-};
-
-/* DOM - Cached references with null checks */
+/* DOM - Cached references */
 const DOM = {
   container: document.getElementById("main-tool-list"),
   filtersContainer: document.getElementById("filters"),
@@ -123,65 +119,24 @@ const DOM = {
   limitedSection: document.getElementById("limited-section")
 };
 
-// Validate DOM elements
-const missingElements = Object.entries(DOM).filter(([key, element]) => !element);
-if (missingElements.length > 0) {
-  console.warn('Missing DOM elements:', missingElements.map(([key]) => key));
-}
-
 let allTools = [];
 
 /* ----------  HELPERS  ---------- */
 const debounce = (fn, delay) => {
-  let timeoutId;
-  return (...args) => {
-    clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => fn(...args), delay);
+  let t;
+  return (...a) => {
+    clearTimeout(t);
+    t = setTimeout(() => fn(...a), delay);
   };
 };
 
-const throttle = (fn, delay) => {
-  let lastCall = 0;
-  return (...args) => {
-    const now = Date.now();
-    if (now - lastCall >= delay) {
-      lastCall = now;
-      fn(...args);
-    }
-  };
-};
+const escapeHTML = (s = "") =>
+  s.replace(/&/g, "&amp;")
+   .replace(/</g, "&lt;")
+   .replace(/>/g, "&gt;")
+   .replace(/"/g, "&quot;");
 
-const escapeHTML = (s = "") => {
-  if (typeof s !== 'string') return '';
-  return s.replace(/&/g, "&amp;")
-           .replace(/</g, "&lt;")
-           .replace(/>/g, "&gt;")
-           .replace(/"/g, "&quot;")
-           .replace(/'/g, "&#x27;");
-};
-
-const nl2br = (txt = "") => {
-  if (typeof txt !== 'string') return '';
-  return txt.replace(/\n/g, "<br>");
-};
-
-const isValidUrl = (url) => {
-  try {
-    new URL(url);
-    return true;
-  } catch {
-    return false;
-  }
-};
-
-const formatDate = (dateString) => {
-  if (!dateString) return 'N/A';
-  try {
-    return new Date(dateString).toLocaleDateString();
-  } catch {
-    return 'Invalid Date';
-  }
-};
+const nl2br = (txt = "") => txt.replace(/\n/g, "<br>");
 
 function highlightMatch(text, matches, key) {
   const m = matches?.find((x) => x.key === key);
@@ -223,61 +178,25 @@ function getShortDescription(tool, query = "") {
 }
 
 /* ----------  LAZY‑IMAGE SYSTEM ---------- */
-const imageObserver = new IntersectionObserver(
+const io = new IntersectionObserver(
   (entries) => {
     entries.forEach(({ target, isIntersecting }) => {
-      if (isIntersecting && target.dataset.src) {
-        const img = target;
-        const src = img.dataset.src;
-        
-        // Create a new image to test if the source loads
-        const testImg = new Image();
-        testImg.onload = () => {
-          img.src = src;
-          img.removeAttribute('data-src');
-          img.classList.add('loaded');
-          imageObserver.unobserve(img);
-        };
-        testImg.onerror = () => {
-          // If the image fails to load, keep the placeholder
-          img.removeAttribute('data-src');
-          img.classList.add('loaded');
-          imageObserver.unobserve(img);
-        };
-        testImg.src = src;
+      if (isIntersecting) {
+        target.src = target.dataset.src;
+        io.unobserve(target);
       }
     });
   },
-  { 
-    rootMargin: "50px",
-    threshold: 0.1
-  }
+  { rootMargin: "50px" }
 );
 
-// Cleanup observer on page unload
-window.addEventListener('beforeunload', () => {
-  imageObserver.disconnect();
-});
-
 function smartImg(src, alt = "") {
-  // Use the provided src if it exists and is not empty, otherwise use placeholder
-  const safeSrc = (src && src.trim() && src !== 'undefined') ? src : "assets/placeholder.jpg";
-  const safeAlt = escapeHTML(alt || '');
-  
-  // Debug logging (remove in production)
-  if (src !== safeSrc) {
-    console.warn(`Image source replaced: "${src}" -> "${safeSrc}"`);
-  }
-  
   return `
     <img loading="lazy"
-         data-src="${safeSrc}"
+         data-src="${src}"
          src="assets/placeholder.jpg"
-         alt="${safeAlt}"
-         onerror="this.src='assets/placeholder.jpg'; this.onerror=null; console.warn('Image failed to load:', this.dataset.src);"
-         onload="this.classList.add('loaded');"
-         role="img"
-         aria-label="${safeAlt}"
+         alt="${escapeHTML(alt)}"
+         onerror="this.src='assets/placeholder.jpg'"
     >
   `.trim();
 }
@@ -286,150 +205,44 @@ function activateLazyImages(root = document) {
   const images = root.querySelectorAll("img[data-src]");
   images.forEach((img) => {
     if (img.complete && img.naturalWidth > 0) {
-      // Image is already loaded, set the source directly
       img.src = img.dataset.src;
-      img.removeAttribute('data-src');
-      img.classList.add('loaded');
     } else {
-      // Start observing for lazy loading
-      imageObserver.observe(img);
+      io.observe(img);
     }
   });
 }
 
 /* ----------  DARK MODE  ---------- */
-class ThemeManager {
-  constructor() {
-    this.init();
-    this.bindEvents();
-  }
-  
-  init() {
-    const savedTheme = localStorage.getItem(STORAGE_KEYS.THEME);
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const shouldUseDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
-    
-    if (shouldUseDark) {
-      document.body.classList.add("dark");
-    }
-    
-    if (DOM.darkToggle) {
-      DOM.darkToggle.setAttribute("aria-label", "Toggle dark mode");
-      DOM.darkToggle.setAttribute("title", "Toggle dark mode (D)");
-      DOM.darkToggle.setAttribute("aria-pressed", shouldUseDark.toString());
-    }
-  }
-  
-  toggle() {
-    const isDark = document.body.classList.contains("dark");
-    
-    if (isDark) {
-      document.body.classList.remove("dark");
-      localStorage.setItem(STORAGE_KEYS.THEME, "light");
-    } else {
-      document.body.classList.add("dark");
-      localStorage.setItem(STORAGE_KEYS.THEME, "dark");
-    }
-    
-    if (DOM.darkToggle) {
-      DOM.darkToggle.setAttribute("aria-pressed", (!isDark).toString());
-    }
-  }
-  
-  bindEvents() {
-    DOM.darkToggle?.addEventListener("click", () => this.toggle());
-    
-    document.addEventListener("keydown", (e) => {
-      if (
-        e.key.toLowerCase() === "d" &&
-        !e.target.matches("input,textarea,[contenteditable]") &&
-        !e.ctrlKey && !e.metaKey
-      ) {
-        e.preventDefault();
-        this.toggle();
-      }
-    });
-    
-    // Listen for system theme changes
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-      if (!localStorage.getItem(STORAGE_KEYS.THEME)) {
-        if (e.matches) {
-          document.body.classList.add("dark");
-        } else {
-          document.body.classList.remove("dark");
-        }
-        if (DOM.darkToggle) {
-          DOM.darkToggle.setAttribute("aria-pressed", e.matches.toString());
-        }
-      }
-    });
-  }
+if (DOM.darkToggle) {
+  DOM.darkToggle.setAttribute("aria-label", "Toggle dark mode");
+  DOM.darkToggle.setAttribute("title", "Toggle dark mode (D)");
+  DOM.darkToggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
+    localStorage.setItem(
+      THEME_KEY,
+      document.body.classList.contains("dark") ? "dark" : "light"
+    );
+  });
 }
 
-// Initialize theme manager
-const themeManager = new ThemeManager();
+if (localStorage.getItem(THEME_KEY) === "dark") {
+  document.body.classList.add("dark");
+}
+
+document.addEventListener("keydown", (e) => {
+  if (
+    e.key.toLowerCase() === "d" &&
+    !e.target.matches("input,textarea,[contenteditable]")
+  ) {
+    DOM.darkToggle?.click();
+  }
+});
 
 
 /* ----------  MOBILE OPTIMIZATION  ---------- */
-class MobileOptimizer {
-  constructor() {
-    this.isMobile = this.detectMobile();
-    this.applyOptimizations();
-  }
-  
-  detectMobile() {
-    return /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || 
-           window.innerWidth <= CONFIG.MOBILE_BREAKPOINT;
-  }
-  
-  applyOptimizations() {
-    if (this.isMobile) {
-      document.documentElement.style.setProperty('--transition', '0.1s ease');
-      // Disable hover effects on mobile
-      document.body.classList.add('mobile-device');
-    }
-    
-    // Add touch class for better touch handling
-    if ('ontouchstart' in window) {
-      document.body.classList.add('touch-device');
-    }
-  }
+if (/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+  document.documentElement.style.setProperty('--transition', '0.1s ease');
 }
-
-// Initialize mobile optimizer
-const mobileOptimizer = new MobileOptimizer();
-
-/* ----------  WILL-CHANGE OPTIMIZATION  ---------- */
-class WillChangeOptimizer {
-  constructor() {
-    // Delay initialization to ensure DOM is ready
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', () => this.optimizeWillChange());
-    } else {
-      this.optimizeWillChange();
-    }
-  }
-  
-  optimizeWillChange() {
-    // Only apply will-change on hover for interactive elements
-    const interactiveElements = document.querySelectorAll('.tool-card, .recommended-card, .tag, .filter-tags button, .logo');
-    
-    interactiveElements.forEach(element => {
-      element.addEventListener('mouseenter', () => {
-        if (!mobileOptimizer.isMobile) {
-          element.style.willChange = 'transform';
-        }
-      });
-      
-      element.addEventListener('mouseleave', () => {
-        element.style.willChange = 'auto';
-      });
-    });
-  }
-}
-
-// Initialize will-change optimizer
-const willChangeOptimizer = new WillChangeOptimizer();
 
 /* --------------------------------------------------
      RENDER UTIL THAT WORKS FOR *ANY* CONTAINER
@@ -497,101 +310,38 @@ function renderInto(selector, list) {
 }
 
 /* ----------  LOAD DATA  ---------- */
-class DataLoader {
-  constructor() {
-    this.cache = new Map();
-    this.retryAttempts = 3;
-  }
-  
-  async fetchWithRetry(url, attempts = this.retryAttempts) {
-    try {
-      const response = await fetch(url, {
-        method: 'GET',
-        headers: {
-          'Accept': 'application/json',
-          'Cache-Control': 'max-age=300' // 5 minutes cache
-        }
-      });
-      
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-      }
-      
-      return await response.json();
-    } catch (error) {
-      if (attempts > 1) {
-        console.warn(`Retrying fetch for ${url}, attempts left: ${attempts - 1}`);
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        return this.fetchWithRetry(url, attempts - 1);
-      }
-      throw error;
-    }
-  }
-  
-  async loadData() {
-    if (!DOM.container) {
-      console.error('Main container not found');
-      return;
-    }
-    
-    DOM.container.className = "main-grid";
-    DOM.container.innerHTML = '<div class="loading-spinner">Loading...</div>';
-    
-    try {
-      const dataPromises = DATA_FILES.map(async (url) => {
-        if (this.cache.has(url)) {
-          return this.cache.get(url);
-        }
-        
-        const data = await this.fetchWithRetry(url);
-        this.cache.set(url, data);
-        return data;
-      });
-      
-      const results = await Promise.allSettled(dataPromises);
-      
-      const successfulResults = results
-        .filter((result) => result.status === "fulfilled")
-        .map((result) => result.value);
-      
-      const failedResults = results.filter((result) => result.status === "rejected");
-      
-      if (failedResults.length > 0) {
-        console.warn('Some data files failed to load:', failedResults);
-      }
-      
-      const merged = successfulResults.flat();
-      
-      // Deduplicate and validate tools
-      const seen = new Set();
-      allTools = merged.filter((tool) => {
-        if (!tool || typeof tool !== 'object') return false;
-        if (!tool.name || !tool.type) return false;
-        
-        const key = tool.name.toLowerCase().trim();
-        if (seen.has(key)) return false;
-        seen.add(key);
-        return true;
-      });
-      
-      console.log(`Loaded ${allTools.length} tools successfully`);
-      
-      generateFilterButtons();
-      applyFiltersAndRender();
-      applyURLHash();
-      
-    } catch (error) {
-      console.error('Error loading data:', error);
-      DOM.container.innerHTML = '<div class="error-message">Error loading data. Please try refreshing the page.</div>';
-    }
-  }
-}
-
-const dataLoader = new DataLoader();
-
-// Main load function
 async function loadData() {
-  await dataLoader.loadData();
+  if (!DOM.container) return;
+  
+  DOM.container.className = "main-grid";
+  DOM.container.innerHTML = "<p>Loading...</p>";
+
+  try {
+    const data = await Promise.allSettled(
+      DATA_FILES.map((u) =>
+        fetch(u).then((r) => (r.ok ? r.json() : Promise.reject(r.statusText)))
+      )
+    );
+
+    const merged = data
+      .filter((result) => result.status === "fulfilled")
+      .flatMap((result) => result.value);
+
+    const seen = new Set();
+    allTools = merged.filter((t) => {
+      if (!t.name || !t.type) return false;
+      const k = t.name.toLowerCase();
+      if (seen.has(k)) return false;
+      seen.add(k);
+      return true;
+    });
+
+    generateFilterButtons();
+    applyFiltersAndRender();
+    applyURLHash();
+  } catch (err) {
+    DOM.container.innerHTML = "<p>Error loading data.</p>";
+  }
 }
 
 function renderOrHide(list, wrapper, section) {
@@ -679,104 +429,15 @@ applySectionScripts();
 window.addEventListener("resize", applySectionScripts);
 
 /* ----------  SEARCH / FILTER / SORT  ---------- */
-class SearchManager {
-  constructor() {
-    this.fuse = null;
-    this.searchCache = new Map();
-    this.initFuse();
-  }
-  
-  initFuse() {
-    if (typeof Fuse === 'undefined') {
-      console.warn('Fuse.js not loaded, search will be limited');
-      return;
-    }
-  }
-  
-  createFuseInstance() {
-    if (!this.fuse || this.searchCache.size === 0) {
-      const weightedList = this.getWeightedFuseList();
-      this.fuse = new Fuse(weightedList, {
-        includeScore: true,
-        includeMatches: true,
-        threshold: 0.3,
-        distance: 100,
-        ignoreLocation: true,
-        minMatchCharLength: 2,
-        keys: [
-          { name: "name", weight: 1.0 },
-          { name: "keywords", weight: 0.6 },
-          { name: "tags", weight: 0.5 },
-          { name: "description", weight: 0.3 },
-          { name: "long_description", weight: 0.2 },
-          { name: "type", weight: 0.1 },
-          { name: "_boost", weight: 0.8 }
-        ]
-      });
-    }
-    return this.fuse;
-  }
-  
-  getWeightedFuseList() {
-    const recent = JSON.parse(localStorage.getItem(STORAGE_KEYS.RECENT) || "[]");
-    return allTools.map((tool) => ({ 
-      ...tool, 
-      _boost: recent.filter((name) => name === tool.name).length 
-    }));
-  }
-  
-  search(query) {
-    const trimmedQuery = query.trim();
-    
-    if (!trimmedQuery) {
-      return allTools;
-    }
-    
-    // Check cache first
-    if (this.searchCache.has(trimmedQuery)) {
-      return this.searchCache.get(trimmedQuery);
-    }
-    
-    if (!this.fuse) {
-      // Fallback to simple search if Fuse.js not available
-      return this.simpleSearch(trimmedQuery);
-    }
-    
-    const results = this.createFuseInstance()
-      .search(trimmedQuery)
-      .map(({ item, matches }) => ({ ...item, _matches: matches }));
-    
-    // Cache results (limit cache size)
-    if (this.searchCache.size > 50) {
-      const firstKey = this.searchCache.keys().next().value;
-      this.searchCache.delete(firstKey);
-    }
-    this.searchCache.set(trimmedQuery, results);
-    
-    return results;
-  }
-  
-  simpleSearch(query) {
-    const lowerQuery = query.toLowerCase();
-    return allTools.filter(tool => 
-      tool.name?.toLowerCase().includes(lowerQuery) ||
-      tool.description?.toLowerCase().includes(lowerQuery) ||
-      tool.tags?.some(tag => tag.toLowerCase().includes(lowerQuery))
-    );
-  }
-}
-
-const searchManager = new SearchManager();
-
 function runSearch(raw = "") {
-  sessionStorage.setItem(STORAGE_KEYS.SEARCH, raw);
+  sessionStorage.setItem(SEARCH_KEY, raw);
   applyFiltersAndRender();
 }
 
 function applyFiltersAndRender() {
-  const searchRaw = sessionStorage.getItem(STORAGE_KEYS.SEARCH) || "";
-  const sortKey   = sessionStorage.getItem(STORAGE_KEYS.SORT)   || "name";
-  const typeKey   = sessionStorage.getItem(STORAGE_KEYS.FILTER) || "all";
+  const searchRaw = sessionStorage.getItem(SEARCH_KEY) || "";
+  const sortKey   = sessionStorage.getItem(SORT_KEY)   || "name";
+  const typeKey   = sessionStorage.getItem(FILTER_KEY) || "all";
 
   // Hide special sections when filtering anything but "all"
   if (typeKey !== "all") {
@@ -796,7 +457,26 @@ function applyFiltersAndRender() {
     );
 
   if (searchRaw.trim()) {
-    list = searchManager.search(searchRaw.trim());
+    const fuse = new Fuse(getWeightedFuseList(), {
+      includeScore: true,
+      includeMatches: true,
+      threshold: 0.3,
+      distance: 100,
+      ignoreLocation: true,
+      minMatchCharLength: 2,
+      keys: [
+        { name: "name", weight: 1.0 },
+        { name: "keywords", weight: 0.6 },
+        { name: "tags", weight: 0.5 },
+        { name: "description", weight: 0.3 },
+        { name: "long_description", weight: 0.2 },
+        { name: "type", weight: 0.1 },
+        { name: "_boost", weight: 0.8 }
+      ]
+    });
+    list = fuse
+      .search(searchRaw.trim())
+      .map(({ item, matches }) => ({ ...item, _matches: matches }));
   }
 
   switch (sortKey) {
@@ -857,8 +537,8 @@ function applyFiltersAndRender() {
         b.textContent.toLowerCase() === typeKey
       )
     );
-  if (DOM.searchInput) DOM.searchInput.value = searchRaw;
-  if (DOM.sortSelect) DOM.sortSelect.value = sortKey;
+  DOM.searchInput.value = searchRaw;
+  DOM.sortSelect.value = sortKey;
 
   // Dynamically hide or show special sections
   if (typeKey === "all") {
@@ -921,7 +601,7 @@ function createFilterBtn(label) {
   const b = document.createElement("button");
   b.textContent = label.charAt(0).toUpperCase() + label.slice(1);
   b.addEventListener("click", () => {
-    sessionStorage.setItem(STORAGE_KEYS.FILTER, label.toLowerCase());
+    sessionStorage.setItem(FILTER_KEY, label.toLowerCase());
     applyFiltersAndRender();
   });
   return b;
@@ -1000,17 +680,10 @@ function showToolDetail(tool, initial = false) {
   // Force load images in the detail view
   const mainImg = document.querySelector('.tool-main-img');
   const galleryImgs = document.querySelectorAll('.tool-gallery img');
-  
-  if (mainImg && mainImg.dataset.src) {
-    mainImg.src = mainImg.dataset.src;
-    mainImg.removeAttribute('data-src');
-  }
+  if (mainImg && mainImg.dataset.src) mainImg.src = mainImg.dataset.src;
 
   galleryImgs.forEach(img => {
-    if (img.dataset.src) {
-      img.src = img.dataset.src;
-      img.removeAttribute('data-src');
-    }
+    if (img.dataset.src) img.src = img.dataset.src;
     img.style.cursor = 'pointer';
     img.addEventListener('click', () => swapMainImage(img));
   });
@@ -1159,253 +832,130 @@ function showRequirementsPopup(name) {
 }
 
 /* ----------  AUTOCOMPLETE ---------- */
-class AutocompleteManager {
-  constructor() {
-    this.selectedIndex = -1;
-    this.autocompleteCache = new Map();
-  }
-  
-  addToRecents(name) {
-    const recent = JSON.parse(localStorage.getItem(STORAGE_KEYS.RECENT) || "[]");
-    const updated = [name, ...recent.filter((x) => x !== name)].slice(0, CONFIG.MAX_RECENTS);
-    localStorage.setItem(STORAGE_KEYS.RECENT, JSON.stringify(updated));
-    
-    // Clear search cache when recents change
-    searchManager.searchCache.clear();
-  }
-  
-  getRecentSearches() {
-    return JSON.parse(localStorage.getItem(STORAGE_KEYS.RECENT) || "[]");
-  }
-  
-  searchAutocomplete(query) {
-    if (query.length < 2) return [];
-    
-    // Check cache
-    if (this.autocompleteCache.has(query)) {
-      return this.autocompleteCache.get(query);
-    }
-    
-    const fuse = new Fuse(allTools, {
-      includeScore: true,
-      includeMatches: true,
-      threshold: 0.4,
-      ignoreLocation: true,
-      minMatchCharLength: 2,
-      keys: [
-        { name: "name", weight: 0.4 },
-        { name: "keywords", weight: 0.3 },
-        { name: "tags", weight: 0.1 },
-        { name: "type", weight: 0.1 },
-        { name: "description", weight: 0.3 },
-        { name: "long_description", weight: 0.2 }
-      ]
-    });
-    
-    const results = fuse.search(query).slice(0, 3);
-    
-    // Cache results
-    if (this.autocompleteCache.size > 20) {
-      const firstKey = this.autocompleteCache.keys().next().value;
-      this.autocompleteCache.delete(firstKey);
-    }
-    this.autocompleteCache.set(query, results);
-    
-    return results;
-  }
-}
-
-const autocompleteManager = new AutocompleteManager();
-const updateSelectedItem = (items) => {
-  items.forEach((el, i) => el.classList.toggle("selected", i === autocompleteManager.selectedIndex));
+let selectedIndex = -1;
+const addToRecents = (n) => {
+  const r = [n, ...JSON.parse(localStorage.getItem(RECENT_KEY) || "[]").filter((x) => x !== n)].slice(
+    0,
+    MAX_RECENTS
+  );
+  localStorage.setItem(RECENT_KEY, JSON.stringify(r));
 };
-
-const renderAutocomplete = (results) => {
-  if (!DOM.autocompleteBox) return;
-  
-  DOM.autocompleteBox.innerHTML = results
-    .map(({ item }) => `<div data-name="${escapeHTML(item.name)}" role="option">${escapeHTML(item.name)}</div>`)
+const getWeightedFuseList = () => {
+  const r = JSON.parse(localStorage.getItem(RECENT_KEY) || "[]");
+  return allTools.map((t) => ({ ...t, _boost: r.filter((x) => x === t.name).length }));
+};
+const updateSelectedItem = (it) =>
+  it.forEach((el, i) => el.classList.toggle("selected", i === selectedIndex));
+const renderAutocomplete = (res) => {
+  DOM.autocompleteBox.innerHTML = res
+    .map(({ item }) => `<div data-name="${escapeHTML(item.name)}">${escapeHTML(item.name)}</div>`)
     .join("");
-  
   DOM.autocompleteBox.classList.remove("hidden");
-  DOM.autocompleteBox.setAttribute('aria-expanded', 'true');
-  autocompleteManager.selectedIndex = -1;
-  
-  // Use event delegation for better performance
-  DOM.autocompleteBox.querySelectorAll("div").forEach((item) => {
-    item.addEventListener("mousedown", (e) => {
-      e.preventDefault();
-      selectAutocompleteItem(item.dataset.name);
-    });
-  });
+  selectedIndex = -1;
+  DOM.autocompleteBox.querySelectorAll("div").forEach((d) =>
+    d.addEventListener("mousedown", () => {
+      runSearch(d.dataset.name);
+      DOM.autocompleteBox.classList.add("hidden");
+    })
+  );
 };
-
 const showRecentSearches = () => {
-  if (!DOM.autocompleteBox) return;
-  
-  const recent = autocompleteManager.getRecentSearches();
-  if (!recent.length) return;
-  
-  DOM.autocompleteBox.innerHTML = recent
-    .map((name) => `<div data-name="${escapeHTML(name)}" role="option">${escapeHTML(name)}</div>`)
-    .join("");
-  
+  const r = JSON.parse(localStorage.getItem(RECENT_KEY) || "[]");
+  if (!r.length) return;
+  DOM.autocompleteBox.innerHTML = r.map((n) => `<div data-name="${escapeHTML(n)}">${escapeHTML(n)}</div>`).join("");
   DOM.autocompleteBox.classList.remove("hidden");
-  DOM.autocompleteBox.setAttribute('aria-expanded', 'true');
-  autocompleteManager.selectedIndex = -1;
-  
-  DOM.autocompleteBox.querySelectorAll("div").forEach((item) => {
-    item.addEventListener("mousedown", (e) => {
-      e.preventDefault();
-      selectAutocompleteItem(item.dataset.name, true);
-    });
-  });
+  selectedIndex = -1;
+  DOM.autocompleteBox.querySelectorAll("div").forEach((d) =>
+    d.addEventListener("mousedown", () => {
+      addToRecents(d.dataset.name);
+      DOM.searchInput.value = d.dataset.name;
+      sessionStorage.setItem(SEARCH_KEY, d.dataset.name);
+      applyFiltersAndRender();
+      DOM.autocompleteBox.classList.add("hidden");
+    })
+  );
 };
 
-const selectAutocompleteItem = (name, isRecent = false) => {
-  if (isRecent) {
-    autocompleteManager.addToRecents(name);
-    DOM.searchInput.value = name;
-    sessionStorage.setItem(STORAGE_KEYS.SEARCH, name);
-  } else {
-    runSearch(name);
-  }
-  
-  DOM.autocompleteBox.classList.add("hidden");
-  DOM.autocompleteBox.setAttribute('aria-expanded', 'false');
-};
+const debouncedSearch = debounce(runSearch, 500);
 
-const debouncedSearch = debounce(runSearch, CONFIG.SEARCH_DEBOUNCE);
-
-DOM.searchInput?.addEventListener("input", () => {
-  const query = DOM.searchInput.value.trim();
-  
-  if (!query) {
-    DOM.autocompleteBox?.classList.add("hidden");
-    DOM.autocompleteBox?.setAttribute('aria-expanded', 'false');
+searchInput?.addEventListener("input", () => {
+  const q = DOM.searchInput.value.trim();
+  if (!q) {
+    DOM.autocompleteBox.classList.add("hidden");
     debouncedSearch("");
     return;
   }
 
   // Only show autocomplete for longer queries
-  if (query.length < 2) {
-    DOM.autocompleteBox?.classList.add("hidden");
-    DOM.autocompleteBox?.setAttribute('aria-expanded', 'false');
-    debouncedSearch(query);
+  if (q.length < 2) {
+    DOM.autocompleteBox.classList.add("hidden");
+    debouncedSearch(q);
     return;
   }
 
-  const results = autocompleteManager.searchAutocomplete(query);
-  
-  if (results.length) {
-    renderAutocomplete(results);
-  } else {
-    DOM.autocompleteBox?.classList.add("hidden");
-    DOM.autocompleteBox?.setAttribute('aria-expanded', 'false');
-  }
-  
-  debouncedSearch(query);
+  const fuse = new Fuse(getWeightedFuseList(), {
+    includeScore: true,
+    includeMatches: true,
+    threshold: 0.4,
+    ignoreLocation: true,
+    minMatchCharLength: 2,
+    keys: [
+      { name: "name", weight: 0.4 },
+      { name: "keywords", weight: 0.3 },
+      { name: "tags", weight: 0.1 },
+      { name: "type", weight: 0.1 },
+      { name: "description", weight: 0.3 },
+      { name: "long_description", weight: 0.2 },
+      { name: "_boost", weight: 0.8 }
+    ]
+  });
+
+  const results = fuse.search(q).slice(0, 3);
+  results.length ? renderAutocomplete(results) : DOM.autocompleteBox.classList.add("hidden");
+  debouncedSearch(q);
 });
 
-DOM.searchInput?.addEventListener("keydown", (e) => {
-  const items = DOM.autocompleteBox?.querySelectorAll("div");
-  if (!items?.length) return;
+searchInput?.addEventListener("keydown", (e) => {
+  const items = DOM.autocompleteBox.querySelectorAll("div");
+  if (!items.length) return;
 
-  switch (e.key) {
-    case "ArrowDown":
-      e.preventDefault();
-      autocompleteManager.selectedIndex = (autocompleteManager.selectedIndex + 1) % items.length;
-      updateSelectedItem(items);
-      break;
-      
-    case "ArrowUp":
-      e.preventDefault();
-      autocompleteManager.selectedIndex = (autocompleteManager.selectedIndex - 1 + items.length) % items.length;
-      updateSelectedItem(items);
-      break;
-      
-    case "Enter":
-      e.preventDefault();
-      if (autocompleteManager.selectedIndex !== -1) {
-        items[autocompleteManager.selectedIndex].dispatchEvent(new Event("mousedown"));
-      } else {
-        debouncedSearch(DOM.searchInput.value);
-      }
-      DOM.autocompleteBox?.classList.add("hidden");
-      DOM.autocompleteBox?.setAttribute('aria-expanded', 'false');
-      break;
-      
-    case "Escape":
-      DOM.autocompleteBox?.classList.add("hidden");
-      DOM.autocompleteBox?.setAttribute('aria-expanded', 'false');
-      break;
+  if (e.key === "ArrowDown") {
+    e.preventDefault();
+    selectedIndex = (selectedIndex + 1) % items.length;
+    updateSelectedItem(items);
+  } else if (e.key === "ArrowUp") {
+    e.preventDefault();
+    selectedIndex = (selectedIndex - 1 + items.length) % items.length;
+    updateSelectedItem(items);
+  } else if (e.key === "Enter") {
+    e.preventDefault();
+    if (selectedIndex !== -1) items[selectedIndex].dispatchEvent(new Event("mousedown"));
+    else debouncedSearch(DOM.searchInput.value);
+    DOM.autocompleteBox.classList.add("hidden");
   }
 });
 
-DOM.searchInput?.addEventListener("focus", () => {
-  if (!DOM.searchInput.value.trim()) {
-    showRecentSearches();
-  }
+searchInput?.addEventListener("focus", () => {
+  if (!DOM.searchInput.value.trim()) showRecentSearches();
 });
 
-DOM.searchInput?.addEventListener("blur", () => { 
-  setTimeout(() => {
-    DOM.autocompleteBox?.classList.add("hidden");
-    DOM.autocompleteBox?.setAttribute('aria-expanded', 'false');
-  }, 150);
-});
+searchInput?.addEventListener("blur", () => { setTimeout(() => DOM.autocompleteBox.classList.add("hidden"), 150)});
 
 /* ================= LIVE COUNTDOWN ================= */
-class CountdownManager {
-  constructor() {
-    this.updateInterval = null;
-    this.start();
-  }
-  
-  start() {
-    this.updateInterval = setInterval(() => this.updateBadges(), CONFIG.BADGE_UPDATE_INTERVAL);
-  }
-  
-  stop() {
-    if (this.updateInterval) {
-      clearInterval(this.updateInterval);
-      this.updateInterval = null;
+function updateBadges() {
+  const now = Date.now();
+  document.querySelectorAll("[data-expiry]").forEach((el) => {
+    const expiry = Date.parse(el.dataset.expiry);
+    if (isNaN(expiry)) return;
+    const diff = expiry - now;
+    if (diff <= 0) {
+      el.remove();
+      return;
     }
-  }
-  
-  updateBadges() {
-    const now = Date.now();
-    const expiryElements = document.querySelectorAll("[data-expiry]");
-    
-    expiryElements.forEach((element) => {
-      const expiry = Date.parse(element.dataset.expiry);
-      if (isNaN(expiry)) {
-        element.remove();
-        return;
-      }
-      
-      const diff = expiry - now;
-      if (diff <= 0) {
-        element.remove();
-        return;
-      }
-      
-      const timeRemaining = formatTimeRemaining(element.dataset.expiry);
-      if (timeRemaining) {
-        element.textContent = timeRemaining;
-      } else {
-        element.remove();
-      }
-    });
-  }
+    el.textContent = formatTimeRemaining(el.dataset.expiry);
+  });
 }
-
-const countdownManager = new CountdownManager();
-
-// Cleanup on page unload
-window.addEventListener('beforeunload', () => {
-  countdownManager.stop();
-});
+setInterval(updateBadges, 300_000);
 
 /* ----------  HASH & MODAL ---------- */
 window.addEventListener("hashchange", applyURLHash);
@@ -1413,7 +963,6 @@ window.addEventListener("hashchange", applyURLHash);
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") closeImageModal();
 });
-
 DOM.imageModal?.addEventListener("click", (e) => {
   if (e.target === DOM.imageModal) closeImageModal();
 });
@@ -1431,89 +980,47 @@ function closeImageModal() {
 }
 
 /* ----------  SORT SELECT ---------- */
-DOM.sortSelect?.addEventListener("change", () => {
-  sessionStorage.setItem(STORAGE_KEYS.SORT, DOM.sortSelect.value);
+sortSelect?.addEventListener("change", () => {
+  sessionStorage.setItem(SORT_KEY, DOM.sortSelect.value);
   applyFiltersAndRender();
 });
 
 /* ----------  SCROLL PROGRESS ---------- */
-class ScrollProgressManager {
-  constructor() {
-    this.scrollProgress = document.getElementById("scrollProgress");
-    this.throttledUpdate = throttle(() => this.updateProgress(), CONFIG.SCROLL_DEBOUNCE);
-    this.bindEvents();
-  }
+let scrollTimeout;
+document.addEventListener("scroll", () => {
+  const scrollProgress = document.getElementById("scrollProgress");
+  if (!scrollProgress) return;
   
-  bindEvents() {
-    if (!this.scrollProgress) return;
-    
-    document.addEventListener("scroll", this.throttledUpdate, { passive: true });
-  }
-  
-  updateProgress() {
-    if (!this.scrollProgress) return;
-    
+  clearTimeout(scrollTimeout);
+  scrollTimeout = setTimeout(() => {
     const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
     const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const scrollPercentage = Math.min((scrollTop / scrollHeight) * 100, 100);
-    
-    this.scrollProgress.style.width = `${scrollPercentage}%`;
-  }
-}
-
-const scrollProgressManager = new ScrollProgressManager();
+    const scrollPercentage = (scrollTop / scrollHeight) * 100;
+    scrollProgress.style.width = `${scrollPercentage}%`;
+  }, 16);
+});
 
 /* ----------  SCROLL TO TOP ---------- */
-class ScrollToTopManager {
-  constructor() {
-    this.scrollToTopBtn = DOM.scrollToTopBtn;
-    this.throttledUpdate = throttle(() => this.updateVisibility(), CONFIG.SCROLL_DEBOUNCE);
-    this.bindEvents();
-  }
-  
-  bindEvents() {
-    if (!this.scrollToTopBtn) return;
-    
-    window.addEventListener("scroll", this.throttledUpdate, { passive: true });
-    
-    this.scrollToTopBtn.addEventListener("click", () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-  }
-  
-  updateVisibility() {
-    if (!this.scrollToTopBtn) return;
-    
-    if (window.scrollY > 300) {
-      this.scrollToTopBtn.classList.add("show");
-    } else {
-      this.scrollToTopBtn.classList.remove("show");
-    }
-  }
-}
-
-const scrollToTopManager = new ScrollToTopManager();
-
-// Scroll to top functionality is now handled by ScrollToTopManager
-
-/* ----------  INITIALIZATION ---------- */
-document.addEventListener('DOMContentLoaded', () => {
-  // Verify all required DOM elements are present
-  const requiredElements = ['container', 'searchInput', 'filtersContainer', 'sortSelect'];
-  const missingElements = requiredElements.filter(key => !DOM[key]);
-  
-  if (missingElements.length > 0) {
-    console.error('Missing required DOM elements:', missingElements);
-    return;
-  }
-  
-  // Initialize the application
-  if (DOM.container) {
-    loadData();
-  } else {
-    console.error('Main container not found. Application cannot initialize.');
+let scrollToTopTimeout;
+window.addEventListener("scroll", () => {
+  if (DOM.scrollToTopBtn) {
+    clearTimeout(scrollToTopTimeout);
+    scrollToTopTimeout = setTimeout(() => {
+      if (window.scrollY > 300) {
+        DOM.scrollToTopBtn.classList.add("show");
+      } else {
+        DOM.scrollToTopBtn.classList.remove("show");
+      }
+    }, 16);
   }
 });
+
+DOM.scrollToTopBtn?.addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+/* ----------  GO ---------- */
+if (DOM.container) loadData();
 
 // Smooth scrolling for internal links
 document.addEventListener("DOMContentLoaded", () => {
