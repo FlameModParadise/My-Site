@@ -19,9 +19,10 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preload" href="style.css" as="style" />
-  <link rel="preload" href="script.js" as="script" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
+  <link rel="preload" href="style.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="style.css" /></noscript>
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js" as="script" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
   <link rel="stylesheet" href="style.css" />
 
   <title>Flame Mod Paradise - Premium Mods, Tools, and Free Offers</title>
@@ -63,14 +64,17 @@
     <!-- Search bar -->
     <div class="search-bar-true-right">
       <div class="search-group">
-        <input id="searchInput" type="text" placeholder="Search..." />
-        <div id="autocompleteBox" class="autocomplete-box hidden" role="listbox"></div>
-        <select id="sortSelect">
+        <label for="searchInput" class="sr-only">Search tools and services</label>
+        <input id="searchInput" type="text" placeholder="Search tools and services..." aria-describedby="searchHelp" autocomplete="off" />
+        <div id="autocompleteBox" class="autocomplete-box hidden" role="listbox" aria-label="Search suggestions"></div>
+        <label for="sortSelect" class="sr-only">Sort results by</label>
+        <select id="sortSelect" aria-label="Sort results">
           <option value="name">Name A → Z</option>
           <option value="release_date">Newest</option>
           <option value="update_date">Updated</option>
           <option value="discount">Top Discount</option>
         </select>
+        <div id="searchHelp" class="sr-only">Use arrow keys to navigate suggestions, Enter to select, Escape to close</div>
       </div>
     </div>
 
@@ -89,48 +93,48 @@
     <!-- Main Content -->
     <main class="container">
       <!-- Offers Carousel -->
-      <section id="offers-section" class="carousel-section">
+      <section id="offers-section" class="carousel-section" aria-label="Special offers and discounts">
         <h2 class="section-title">🔥 Offers &amp; Discounts</h2>
-        <div id="offers-list" class="main-grid carousel"></div>
+        <div id="offers-list" class="main-grid carousel" role="list" aria-label="Offers and discounts"></div>
       </section>
 
       <!-- Recommended Carousel -->
-      <section id="recommended-section" class="carousel-section">
+      <section id="recommended-section" class="carousel-section" aria-label="Recommended tools">
         <h2 class="section-title">⭐ Recommended</h2>
-        <div id="recommended-list" class="main-grid carousel"></div>
+        <div id="recommended-list" class="main-grid carousel" role="list" aria-label="Recommended tools"></div>
       </section>
 
       <!-- Limited‑Time Carousel -->
-      <section id="limited-section" class="carousel-section">
+      <section id="limited-section" class="carousel-section" aria-label="Limited time offers">
         <h2 class="section-title">⏰ Limited‑Time Item</h2>
-        <div id="limited-list" class="main-grid carousel"></div>
+        <div id="limited-list" class="main-grid carousel" role="list" aria-label="Limited time items"></div>
       </section>
 
       <!-- Master tool list (populated by script.js) -->
-      <section class="main-grid" id="main-tool-list"></section>
+      <section class="main-grid" id="main-tool-list" role="main" aria-label="All available tools"></section>
     </main>
 
 
     <!-- Image Modal -->
-    <div class="image-modal hidden" id="imageModal">
+    <div class="image-modal hidden" id="imageModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
       <div class="image-modal-content">
-        <button class="image-close-btn" onclick="closeImageModal()">✖</button>
-        <img id="modalImage" src="" alt="Preview" />
+        <button class="image-close-btn" onclick="closeImageModal()" aria-label="Close image modal">✖</button>
+        <img id="modalImage" src="" alt="Tool preview image" />
       </div>
     </div>
 
     <!-- Requirements Popup -->
-    <div class="popup-box hidden" id="popupMessage">
+    <div class="popup-box hidden" id="popupMessage" role="dialog" aria-modal="true" aria-labelledby="popupTitle">
       <div class="popup-content">
         <h3 id="popupTitle">Requirements</h3>
         <p id="popupText"></p>
-        <button class="close-popup-btn" onclick="closePopup()">Close</button>
+        <button class="close-popup-btn" onclick="closePopup()" aria-label="Close requirements popup">Close</button>
       </div>
     </div>
 
     <!-- Scroll To Top -->
-    <button id="scrollToTopBtn">
-      <img src="assets/icons/turn-up.gif" alt="Scroll to top" />
+    <button id="scrollToTopBtn" aria-label="Scroll to top of page">
+      <img src="assets/icons/turn-up.gif" alt="" role="presentation" />
     </button>
 
     <!-- Footer -->
