@@ -10,12 +10,12 @@
     <priority>1.0</priority>
     <image:image>
       <image:loc>https://flamemodparadise.github.io/My-Site/assets/icons/fmp-icon.gif</image:loc>
-      <image:title>FMP - Best Cookie Checkers, Free Netflix, ChatGPT, Claude AI Cookies</image:title>
-      <image:caption>Flame Mod Paradise - Premium cookie checkers: Netflix checker, ChatGPT checker, Claude AI checker, Spotify checker, Cursor checker, free cookies, free Netflix cookies, free ChatGPT cookies, free AI, Python automation tools, log extractor, ULP combo maker, giveaway server, best Discord server, best Telegram channel, cybersecurity tools, hacking tools, free course</image:caption>
+      <image:title>Flame Mod Paradise - Professional Cookie Checkers & Account Checkers</image:title>
+      <image:caption>Premium cookie checkers, account checkers, combo checkers for Netflix, ChatGPT, Claude AI, Cursor, Spotify, Crunchyroll, Surfshark VPN, Freepik, Outlook, Azure and 40+ platforms. Python source code available.</image:caption>
     </image:image>
   </url>
 
-  <!-- Netflix Cookie Checker Images -->
+  <!-- Netflix Cookie Checker -->
   <url>
     <loc>https://flamemodparadise.github.io/My-Site/</loc>
     <lastmod>2025-10-14</lastmod>
@@ -23,12 +23,12 @@
     <priority>0.95</priority>
     <image:image>
       <image:loc>https://flamemodparadise.github.io/My-Site/assets/checkers-pic/netflix.png</image:loc>
-      <image:title>Netflix Cookie Checker - Free Netflix Cookies</image:title>
-      <image:caption>Best Netflix cookie checker, free Netflix cookies, Netflix account validator, slot capture tool, premium Netflix checker</image:caption>
+      <image:title>Netflix Cookie Checker - Professional Netflix Account Validator</image:title>
+      <image:caption>Best Netflix cookie checker, Netflix account checker, premium Netflix validator, Netflix combo checker, slot capture tool</image:caption>
     </image:image>
   </url>
 
-  <!-- ChatGPT Cookie Checker Images -->
+  <!-- ChatGPT Cookie Checker -->
   <url>
     <loc>https://flamemodparadise.github.io/My-Site/</loc>
     <lastmod>2025-10-14</lastmod>
@@ -36,12 +36,12 @@
     <priority>0.95</priority>
     <image:image>
       <image:loc>https://flamemodparadise.github.io/My-Site/assets/checkers-pic/chatgpt.jpg</image:loc>
-      <image:title>ChatGPT Cookie Checker - Free ChatGPT Plus Cookies</image:title>
-      <image:caption>Best ChatGPT cookie checker, free ChatGPT cookies, GPT Plus validator, GPT-4 access, free AI cookies, ChatGPT session checker</image:caption>
+      <image:title>ChatGPT Cookie Checker - GPT+ Account Validator</image:title>
+      <image:caption>Professional ChatGPT cookie checker, GPT+ validator, ChatGPT combo checker, AI account checker, GPT-4 access checker</image:caption>
     </image:image>
   </url>
 
-  <!-- Claude AI Cookie Checker Images -->
+  <!-- Claude AI Cookie Checker -->
   <url>
     <loc>https://flamemodparadise.github.io/My-Site/</loc>
     <lastmod>2025-10-14</lastmod>
@@ -49,25 +49,12 @@
     <priority>0.95</priority>
     <image:image>
       <image:loc>https://flamemodparadise.github.io/My-Site/assets/checkers-pic/claudeai.png</image:loc>
-      <image:title>Claude AI Cookie Checker - Free Claude Cookies</image:title>
-      <image:caption>Best Claude AI cookie checker, free Claude cookies, Claude Pro validator, Claude Max checker, free AI access</image:caption>
+      <image:title>Claude AI Cookie Checker - Claude Pro Account Validator</image:title>
+      <image:caption>Professional Claude AI cookie checker, Claude Pro validator, Claude combo checker, AI account validator, Claude Max checker</image:caption>
     </image:image>
   </url>
 
-  <!-- Spotify Cookie Checker Images -->
-  <url>
-    <loc>https://flamemodparadise.github.io/My-Site/</loc>
-    <lastmod>2025-10-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <image:image>
-      <image:loc>https://flamemodparadise.github.io/My-Site/assets/checkers-pic/spotify.jpg</image:loc>
-      <image:title>Spotify Cookie Checker - Free Spotify Premium Cookies</image:title>
-      <image:caption>Best Spotify cookie checker, free Spotify cookies, Spotify premium validator, music streaming checker</image:caption>
-    </image:image>
-  </url>
-
-  <!-- Cursor AI Cookie Checker Images -->
+  <!-- Cursor Cookie Checker -->
   <url>
     <loc>https://flamemodparadise.github.io/My-Site/</loc>
     <lastmod>2025-10-14</lastmod>
@@ -75,12 +62,25 @@
     <priority>0.9</priority>
     <image:image>
       <image:loc>https://flamemodparadise.github.io/My-Site/assets/checkers-pic/cursor.png</image:loc>
-      <image:title>Cursor Cookie Checker - Free Cursor AI Cookies</image:title>
-      <image:caption>Best Cursor cookie checker, free Cursor cookies, AI coding assistant validator, developer tools</image:caption>
+      <image:title>Cursor Cookie Checker - AI Coding Assistant Validator</image:title>
+      <image:caption>Professional Cursor cookie checker, Cursor AI validator, coding assistant checker, developer tools validator</image:caption>
     </image:image>
   </url>
 
-  <!-- Crunchyroll Cookie Checker Images -->
+  <!-- Spotify Cookie Checker -->
+  <url>
+    <loc>https://flamemodparadise.github.io/My-Site/</loc>
+    <lastmod>2025-10-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://flamemodparadise.github.io/My-Site/assets/checkers-pic/spotify.jpg</image:loc>
+      <image:title>Spotify Cookie Checker - Premium Music Validator</image:title>
+      <image:caption>Professional Spotify cookie checker, Spotify premium validator, music streaming checker, Spotify combo checker</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Crunchyroll Cookie Checker -->
   <url>
     <loc>https://flamemodparadise.github.io/My-Site/</loc>
     <lastmod>2025-10-14</lastmod>
@@ -88,34 +88,112 @@
     <priority>0.85</priority>
     <image:image>
       <image:loc>https://flamemodparadise.github.io/My-Site/assets/checkers-pic/crunchyroll.png</image:loc>
-      <image:title>Crunchyroll Cookie Checker - Free Anime Cookies</image:title>
-      <image:caption>Best Crunchyroll cookie checker, free anime cookies, Crunchyroll premium validator</image:caption>
+      <image:title>Crunchyroll Cookie Checker - Anime Streaming Validator</image:title>
+      <image:caption>Professional Crunchyroll cookie checker, anime streaming validator, Crunchyroll premium checker, anime combo checker</image:caption>
     </image:image>
   </url>
 
-  <!-- Jio Hotstar Cookie Checker Images -->
+  <!-- Surfshark VPN Cookie Checker -->
   <url>
     <loc>https://flamemodparadise.github.io/My-Site/</loc>
     <lastmod>2025-10-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://flamemodparadise.github.io/My-Site/assets/checkers-pic/surfshark.png</image:loc>
+      <image:title>Surfshark VPN Cookie Checker - VPN Account Validator</image:title>
+      <image:caption>Professional Surfshark VPN cookie checker, VPN account validator, Surfshark combo checker, VPN subscription checker</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Freepik Cookie Checker -->
+  <url>
+    <loc>https://flamemodparadise.github.io/My-Site/</loc>
+    <lastmod>2025-10-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://flamemodparadise.github.io/My-Site/assets/checkers-pic/freepik.png</image:loc>
+      <image:title>Freepik Cookie Checker - Design Resources Validator</image:title>
+      <image:caption>Professional Freepik cookie checker, design resources validator, Freepik premium checker, graphic design checker</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Outlook Cookie Checker -->
+  <url>
+    <loc>https://flamemodparadise.github.io/My-Site/</loc>
+    <lastmod>2025-10-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://flamemodparadise.github.io/My-Site/assets/checkers-pic/outlook.png</image:loc>
+      <image:title>Outlook Cookie Checker - Email Inbox Searcher</image:title>
+      <image:caption>Professional Outlook cookie checker, Outlook inbox searcher, Hotmail checker, email validator, Microsoft account checker</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Azure Cookie Checker -->
+  <url>
+    <loc>https://flamemodparadise.github.io/My-Site/</loc>
+    <lastmod>2025-10-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://flamemodparadise.github.io/My-Site/assets/checkers-pic/azure.png</image:loc>
+      <image:title>Azure Cookie Checker - Cloud Account Validator</image:title>
+      <image:caption>Professional Azure cookie checker, Microsoft Azure validator, cloud account checker, Azure combo checker</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Hotstar Cookie Checker -->
+  <url>
+    <loc>https://flamemodparadise.github.io/My-Site/</loc>
+    <lastmod>2025-10-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
     <image:image>
       <image:loc>https://flamemodparadise.github.io/My-Site/assets/checkers-pic/hotstar.png</image:loc>
-      <image:title>Jio Hotstar Cookie Checker - Free Hotstar Cookies</image:title>
-      <image:caption>Best Jio Hotstar cookie checker, free Hotstar cookies, Indian streaming validator</image:caption>
+      <image:title>Hotstar Cookie Checker - Indian Streaming Validator</image:title>
+      <image:caption>Professional Hotstar cookie checker, Indian streaming validator, Hotstar premium checker, Disney+ Hotstar checker</image:caption>
     </image:image>
   </url>
 
-  <!-- Prime Video Cookie Checker Images -->
+  <!-- Prime Video Cookie Checker -->
   <url>
     <loc>https://flamemodparadise.github.io/My-Site/</loc>
     <lastmod>2025-10-14</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.8</priority>
     <image:image>
       <image:loc>https://flamemodparadise.github.io/My-Site/assets/checkers-pic/primevideo.jpg</image:loc>
-      <image:title>Prime Video Cookie Checker - Free Amazon Prime Cookies</image:title>
-      <image:caption>Best Prime Video cookie checker, free Amazon Prime cookies, streaming validator</image:caption>
+      <image:title>Prime Video Cookie Checker - Amazon Streaming Validator</image:title>
+      <image:caption>Professional Prime Video cookie checker, Amazon Prime validator, streaming checker, Prime combo checker</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Log Extractor Tool -->
+  <url></url>
+    <loc>https://flamemodparadise.github.io/My-Site/</loc>
+    <lastmod>2025-10-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://flamemodparadise.github.io/My-Site/assets/tools/logextractor.png</image:loc>
+      <image:title>Log Extractor - Cookie Extractor from Logs</image:title>
+      <image:caption>Professional log extractor, cookie extractor from logs, ULP worker, combo maker, automation tools</image:caption>
+    </image:image>
+  </url>
+
+  <!-- ULP Worker Tool -->
+  <url>
+    <loc>https://flamemodparadise.github.io/My-Site/</loc>
+    <lastmod>2025-10-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://flamemodparadise.github.io/My-Site/assets/tools/ulp.png</image:loc>
+      <image:title>ULP Worker - Combo Maker Tool</image:title>
+      <image:caption>Professional ULP worker, combo maker, automation tool, cookie processing, account validation</image:caption>
     </image:image>
   </url>
 
@@ -127,7 +205,7 @@
     <priority>0.8</priority>
   </url>
  
-  <!-- Contact Page - Telegram & Discord -->
+  <!-- Contact Page -->
   <url>
     <loc>https://flamemodparadise.github.io/My-Site/pages/contact.html</loc>
     <lastmod>2025-10-14</lastmod>
@@ -135,7 +213,7 @@
     <priority>0.7</priority>
   </url>
  
-  <!-- FAQ Page - Cookie Checker Help -->
+  <!-- FAQ Page -->
   <url>
     <loc>https://flamemodparadise.github.io/My-Site/pages/faq.html</loc>
     <lastmod>2025-10-14</lastmod>

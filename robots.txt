@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
 
+# Sitemap location
 Sitemap: https://flamemodparadise.github.io/My-Site/sitemap.xml
+
+# Additional sitemap for resources
+Sitemap: https://flamemodparadise.github.io/My-Site/resources/sitemap.html
