@@ -1,253 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
- 
-  <!-- Homepage - Main Landing Page with All Cookie Checkers -->
-  <url>
-    <loc>https://flamemodparadise.github.io/My-Site/</loc>
-    <lastmod>2025-10-14</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-    <image:image>
-      <image:loc>https://flamemodparadise.github.io/My-Site/assets/icons/fmp-icon.gif</image:loc>
-      <image:title>FMP - Flame Mod Paradise - Professional Cookie Checkers &amp; Account Checkers</image:title>
-      <image:caption>Premium cookie checkers, account checkers, combo checkers for Netflix, ChatGPT, Claude AI, Cursor, Spotify, Crunchyroll, Surfshark VPN, Freepik, Outlook, Azure and 40+ platforms. Python source code available.</image:caption>
-    </image:image>
-  </url>
-
-  <!-- Netflix Cookie Checker -->
-  <url>
-    <loc>https://flamemodparadise.github.io/My-Site/</loc>
-    <lastmod>2025-10-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
-    <image:image>
-      <image:loc>https://flamemodparadise.github.io/My-Site/assets/checkers-pic/netflix.png</image:loc>
-      <image:title>Netflix Cookie Checker - Professional Netflix Account Validator</image:title>
-      <image:caption>Best Netflix cookie checker, Netflix account checker, premium Netflix validator, Netflix combo checker, slot capture tool</image:caption>
-    </image:image>
-  </url>
-
-  <!-- ChatGPT Cookie Checker -->
-  <url>
-    <loc>https://flamemodparadise.github.io/My-Site/</loc>
-    <lastmod>2025-10-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
-    <image:image>
-      <image:loc>https://flamemodparadise.github.io/My-Site/assets/checkers-pic/chatgpt.jpg</image:loc>
-      <image:title>ChatGPT Cookie Checker - GPT+ Account Validator</image:title>
-      <image:caption>Professional ChatGPT cookie checker, GPT+ validator, ChatGPT combo checker, AI account checker, GPT-4 access checker</image:caption>
-    </image:image>
-  </url>
-
-  <!-- Claude AI Cookie Checker -->
-  <url>
-    <loc>https://flamemodparadise.github.io/My-Site/</loc>
-    <lastmod>2025-10-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
-    <image:image>
-      <image:loc>https://flamemodparadise.github.io/My-Site/assets/checkers-pic/claudeai.png</image:loc>
-      <image:title>Claude AI Cookie Checker - Claude Pro Account Validator</image:title>
-      <image:caption>Professional Claude AI cookie checker, Claude Pro validator, Claude combo checker, AI account validator, Claude Max checker</image:caption>
-    </image:image>
-  </url>
-
-  <!-- Cursor Cookie Checker -->
-  <url>
-    <loc>https://flamemodparadise.github.io/My-Site/</loc>
-    <lastmod>2025-10-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <image:image>
-      <image:loc>https://flamemodparadise.github.io/My-Site/assets/checkers-pic/cursor.png</image:loc>
-      <image:title>Cursor Cookie Checker - AI Coding Assistant Validator</image:title>
-      <image:caption>Professional Cursor cookie checker, Cursor AI validator, coding assistant checker, developer tools validator</image:caption>
-    </image:image>
-  </url>
-
-  <!-- Spotify Cookie Checker -->
-  <url>
-    <loc>https://flamemodparadise.github.io/My-Site/</loc>
-    <lastmod>2025-10-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <image:image>
-      <image:loc>https://flamemodparadise.github.io/My-Site/assets/checkers-pic/spotify.jpg</image:loc>
-      <image:title>Spotify Cookie Checker - Premium Music Validator</image:title>
-      <image:caption>Professional Spotify cookie checker, Spotify premium validator, music streaming checker, Spotify combo checker</image:caption>
-    </image:image>
-  </url>
-
-  <!-- Crunchyroll Cookie Checker -->
-  <url>
-    <loc>https://flamemodparadise.github.io/My-Site/</loc>
-    <lastmod>2025-10-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-    <image:image>
-      <image:loc>https://flamemodparadise.github.io/My-Site/assets/checkers-pic/crunchyroll.png</image:loc>
-      <image:title>Crunchyroll Cookie Checker - Anime Streaming Validator</image:title>
-      <image:caption>Professional Crunchyroll cookie checker, anime streaming validator, Crunchyroll premium checker, anime combo checker</image:caption>
-    </image:image>
-  </url>
-
-  <!-- Surfshark VPN Cookie Checker -->
-  <url>
-    <loc>https://flamemodparadise.github.io/My-Site/</loc>
-    <lastmod>2025-10-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-    <image:image>
-      <image:loc>https://flamemodparadise.github.io/My-Site/assets/checkers-pic/surfshark.png</image:loc>
-      <image:title>Surfshark VPN Cookie Checker - VPN Account Validator</image:title>
-      <image:caption>Professional Surfshark VPN cookie checker, VPN account validator, Surfshark combo checker, VPN subscription checker</image:caption>
-    </image:image>
-  </url>
-
-  <!-- Freepik Cookie Checker -->
-  <url>
-    <loc>https://flamemodparadise.github.io/My-Site/</loc>
-    <lastmod>2025-10-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-    <image:image>
-      <image:loc>https://flamemodparadise.github.io/My-Site/assets/checkers-pic/freepik.png</image:loc>
-      <image:title>Freepik Cookie Checker - Design Resources Validator</image:title>
-      <image:caption>Professional Freepik cookie checker, design resources validator, Freepik premium checker, graphic design checker</image:caption>
-    </image:image>
-  </url>
-
-  <!-- Outlook Cookie Checker -->
-  <url>
-    <loc>https://flamemodparadise.github.io/My-Site/</loc>
-    <lastmod>2025-10-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-    <image:image>
-      <image:loc>https://flamemodparadise.github.io/My-Site/assets/checkers-pic/outlook.png</image:loc>
-      <image:title>Outlook Cookie Checker - Email Inbox Searcher</image:title>
-      <image:caption>Professional Outlook cookie checker, Outlook inbox searcher, Hotmail checker, email validator, Microsoft account checker</image:caption>
-    </image:image>
-  </url>
-
-  <!-- Azure Cookie Checker -->
-  <url>
-    <loc>https://flamemodparadise.github.io/My-Site/</loc>
-    <lastmod>2025-10-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-    <image:image>
-      <image:loc>https://flamemodparadise.github.io/My-Site/assets/checkers-pic/azure.png</image:loc>
-      <image:title>Azure Cookie Checker - Cloud Account Validator</image:title>
-      <image:caption>Professional Azure cookie checker, Microsoft Azure validator, cloud account checker, Azure combo checker</image:caption>
-    </image:image>
-  </url>
-
-  <!-- Hotstar Cookie Checker -->
-  <url>
-    <loc>https://flamemodparadise.github.io/My-Site/</loc>
-    <lastmod>2025-10-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>https://flamemodparadise.github.io/My-Site/assets/checkers-pic/hotstar.png</image:loc>
-      <image:title>Hotstar Cookie Checker - Indian Streaming Validator</image:title>
-      <image:caption>Professional Hotstar cookie checker, Indian streaming validator, Hotstar premium checker, Disney+ Hotstar checker</image:caption>
-    </image:image>
-  </url>
-
-  <!-- Prime Video Cookie Checker -->
-  <url>
-    <loc>https://flamemodparadise.github.io/My-Site/</loc>
-    <lastmod>2025-10-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>https://flamemodparadise.github.io/My-Site/assets/checkers-pic/primevideo.jpg</image:loc>
-      <image:title>Prime Video Cookie Checker - Amazon Streaming Validator</image:title>
-      <image:caption>Professional Prime Video cookie checker, Amazon Prime validator, streaming checker, Prime combo checker</image:caption>
-    </image:image>
-  </url>
-
-  <!-- Log Extractor Tool -->
-  <url>
-    <loc>https://flamemodparadise.github.io/My-Site/</loc>
-    <lastmod>2025-10-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>https://flamemodparadise.github.io/My-Site/assets/tools/logextractor.png</image:loc>
-      <image:title>Log Extractor - Cookie Extractor from Logs</image:title>
-      <image:caption>Professional log extractor, cookie extractor from logs, ULP worker, combo maker, automation tools</image:caption>
-    </image:image>
-  </url>
-
-  <!-- ULP Worker Tool -->
-  <url>
-    <loc>https://flamemodparadise.github.io/My-Site/</loc>
-    <lastmod>2025-10-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>https://flamemodparadise.github.io/My-Site/assets/tools/ulp.png</image:loc>
-      <image:title>ULP Worker - Combo Maker Tool</image:title>
-      <image:caption>Professional ULP worker, combo maker, automation tool, cookie processing, account validation</image:caption>
-    </image:image>
-  </url>
-
-  <!-- Reviews Page -->
-  <url>
-    <loc>https://flamemodparadise.github.io/My-Site/pages/reviews.html</loc>
-    <lastmod>2025-10-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
- 
-  <!-- Contact Page -->
-  <url>
-    <loc>https://flamemodparadise.github.io/My-Site/pages/contact.html</loc>
-    <lastmod>2025-10-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
- 
-  <!-- FAQ Page -->
-  <url>
-    <loc>https://flamemodparadise.github.io/My-Site/pages/faq.html</loc>
-    <lastmod>2025-10-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
- 
-  <!-- Resources Pages -->
-  <url>
-    <loc>https://flamemodparadise.github.io/My-Site/resources/about.html</loc>
-    <lastmod>2025-10-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
- 
-  <url>
-    <loc>https://flamemodparadise.github.io/My-Site/resources/privacy.html</loc>
-    <lastmod>2025-10-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
- 
-  <url>
-    <loc>https://flamemodparadise.github.io/My-Site/resources/tos.html</loc>
-    <lastmod>2025-10-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
- 
-  <url>
-    <loc>https://flamemodparadise.github.io/My-Site/resources/sitemap.html</loc>
-    <lastmod>2025-10-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
- 
+<urlset
+	xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+	<url>
+		<loc>https://flamemodparadise.github.io/My-Site/</loc>
+		<lastmod>2025-10-14</lastmod>
+		<changefreq>daily</changefreq>
+		<priority>1.0</priority>
+	</url>
+	<url>
+		<loc>https://flamemodparadise.github.io/My-Site/pages/reviews.html</loc>
+		<lastmod>2025-10-14</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://flamemodparadise.github.io/My-Site/pages/contact.html</loc>
+		<lastmod>2025-10-14</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.7</priority>
+	</url>
+	<url>
+		<loc>https://flamemodparadise.github.io/My-Site/pages/faq.html</loc>
+		<lastmod>2025-10-14</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.7</priority>
+	</url>
+	<url>
+		<loc>https://flamemodparadise.github.io/My-Site/resources/about.html</loc>
+		<lastmod>2025-10-14</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.6</priority>
+	</url>
+	<url>
+		<loc>https://flamemodparadise.github.io/My-Site/resources/privacy.html</loc>
+		<lastmod>2025-10-14</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://flamemodparadise.github.io/My-Site/resources/tos.html</loc>
+		<lastmod>2025-10-14</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://flamemodparadise.github.io/My-Site/resources/sitemap.html</loc>
+		<lastmod>2025-10-14</lastmod>
+		<changefreq>monthly</changefreq>
+		<priority>0.4</priority>
+	</url>
 </urlset>
