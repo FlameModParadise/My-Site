@@ -71,7 +71,7 @@
     "name": "License System + EXE Maker",
     "type": "Others",
     "description": "License system + EXE maker 🔒 - Add license to your Python software and convert .py into an irreversible EXE.",
-    "long_description": "What it is:\n\nLicense system + EXE maker 🔒\nAdd license to your Python software and convert .py into an irreversible EXE.\n\nWhat it does:\n\n• Add license checks to your Python app\n• Convert .py → protected, hard-to-reverse EXE\n\nWhat's different:\n\n• License hosting 100% free — no matter how many users\n• Supports trial, lifetime, single-device, group licenses\n• Auto-expire when license time ends (no manual checks)\n• EXE is hard to reverse — safe to share (only deep experts can try)",
+    "long_description": "What it is:License system + EXE maker 🔒\nAdd license to your Python software and convert .py into an irreversible EXE.\n\nWhat it does:• Add license checks to your Python app\n• Convert .py → protected, hard-to-reverse EXE\n\nWhat's different:• License hosting 100% free — no matter how many users\n• Supports trial, lifetime, single-device, group licenses\n• Auto-expire when license time ends (no manual checks)\n• EXE is hard to reverse — safe to share (only deep experts can try)",
     "image": "assets/others/license.png",
     "requirements": "You must provide your .py source; after I deliver, you can manage licenses yourself.",
     "images": [],
