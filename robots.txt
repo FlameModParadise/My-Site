@@ -1,8 +1,26 @@
 User-agent: *
 Allow: /
 
-# Sitemap location
-Sitemap: https://flamemodparadise.github.io/My-Site/sitemap.xml
+# Important: Allow crawling of all content
+Allow: /assets/
+Allow: /pages/
+Allow: /resources/
+Allow: /data/
+Allow: /scripts/
+Allow: /styles/
 
-# Additional sitemap for resources
+# Sitemap locations
+Sitemap: https://flamemodparadise.github.io/My-Site/sitemap.xml
 Sitemap: https://flamemodparadise.github.io/My-Site/resources/sitemap.html
+
+# Crawl delay for better indexing
+Crawl-delay: 1
+
+# Specific instructions for major search engines
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
