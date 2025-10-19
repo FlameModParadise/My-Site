@@ -68,24 +68,28 @@
     "keywords": ["surfshark", "vpn", "subscription", "trial", "starter", "privacy", "security", "internet", "full", "premium"]
   },
   {
-    "name": "Licensing System",
+    "name": "License System + EXE Maker",
     "type": "Others",
-    "description": "Advanced licensing system for software developers to manage licenses and subscriptions.",
-    "long_description": "A robust licensing system designed for software developers to manage their licenses and subscriptions effectively. Ideal for those looking to implement a secure and efficient licensing solution.\nIt will completely same as mine and there is no limit on how many users how many tools you can add.",
+    "description": "License system + EXE maker 🔒 - Add license to your Python software and convert .py into an irreversible EXE.",
+    "long_description": "What it is:\n\nLicense system + EXE maker 🔒\nAdd license to your Python software and convert .py into an irreversible EXE.\n\nWhat it does:\n\n• Add license checks to your Python app\n• Convert .py → protected, hard-to-reverse EXE\n\nWhat's different:\n\n• License hosting 100% free — no matter how many users\n• Supports trial, lifetime, single-device, group licenses\n• Auto-expire when license time ends (no manual checks)\n• EXE is hard to reverse — safe to share (only deep experts can try)",
     "image": "assets/others/license.png",
-    "requirements": "",
+    "requirements": "You must provide your .py source; after I deliver, you can manage licenses yourself.",
     "images": [],
     "video": "",
-    "tags": ["licensing", "tool"],
+    "tags": ["licensing", "tool", "exe", "python", "protection"],
     "release_date": "2025-07-12",
-    "update_date": "2025-07-12",
+    "update_date": "2025-10-19",
     "pricing": {
-      "Full setup guide for 1 tool including python code": "$10"
+      ".py → .exe": "$3",
+      ".py → .exe with license": "$12",
+      "License source code (you setup)": "$15",
+      ".py → .py with license (I integrate)": "$20",
+      "Info only (no src)": "$5"
     },
     "discount": null,
     "offer": null,
     "offer_expiry": "",
     "contact": "telegram",
-    "keywords": ["licensing", "system", "software", "developer", "subscription", "management", "tool", "secure"]
+    "keywords": ["licensing", "system", "exe", "python", "protection", "license", "software", "developer", "subscription", "management", "tool", "secure", "irreversible"]
   }
 ]
