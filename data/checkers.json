@@ -40,7 +40,7 @@
       "2 Months": "$6",
       "Lifetime (No Patch)": "$13",
       "Lifetime (Inc Patch)": "$17",
-      "Source Code": "$20"
+      "Source Code": "$25"
     }
   },
   {
@@ -82,9 +82,9 @@
       "1 Day": "$1",
       "1 Month": "$4",
       "2 Months": "$6",
-      "Lifetime (No Patch)": "$12",
-      "Lifetime (Inc Patch)": "$15",
-      "Source Code": "$18"
+      "Lifetime (No Patch)": "$13",
+      "Lifetime (Inc Patch)": "$17",
+      "Source Code": "$25"
     }
   },
   {
@@ -122,9 +122,9 @@
     "pricing": {
       "1 Day": "$1",
       "1 Month": "$4",
-      "Lifetime (No Patch)": "$10",
-      "Lifetime (Inc Patch)": "$15",
-      "Source Code": "$20"
+      "Lifetime (No Patch)": "$12",
+      "Lifetime (Inc Patch)": "$17",
+      "Source Code": "$25"
     }
   },
   {
@@ -162,9 +162,9 @@
     "pricing": {
       "1 Day": "$1",
       "1 Month": "$4",
-      "Lifetime (No Patch)": "$10",
-      "Lifetime (Inc Patch)": "$13",
-      "Source Code": "$16"
+      "Lifetime (No Patch)": "$13",
+      "Lifetime (Inc Patch)": "$17",
+      "Source Code": "$25"
     }
   },
   {
@@ -206,8 +206,9 @@
       "1 Day": "$1",
       "1 Week": "$4",
       "30 Days": "$7",
-      "Lifetime (No Patch)": "$12",
-      "Source Code": "$15"
+      "Lifetime (No Patch)": "$13",
+      "Lifetime (Inc Patch)": "$17",
+      "Source Code": "$25"
     }
   },
   {
@@ -242,8 +243,9 @@
       "1 Day": "$1",
       "1 Week": "$4",
       "30 Days": "$7",
-      "Lifetime (No Patch)": "$12",
-      "Source Code": "$15"
+      "Lifetime (No Patch)": "$13",
+      "Lifetime (Inc Patch)": "$17",
+      "Source Code": "$25"
     }
   },
   {
@@ -288,7 +290,7 @@
       "30 Days": "$7",
       "Lifetime (No Patch)": "$10",
       "Lifetime (Inc Patch)": "$12",
-      "Source Code": "$15"
+      "Source Code": "$18"
     }
   },
   {
@@ -324,7 +326,7 @@
       "1 Week": "$4",
       "30 Days": "$7",
       "Lifetime (No Patch)": "$12",
-      "Source Code": "$15"
+      "Source Code": "$18"
     }
   },
   {
@@ -435,7 +437,7 @@
       "30 Days": "$7",
       "Lifetime (No Patch)": "$10",
       "Lifetime (Inc Patch)": "$12",
-      "Source Code": "$15"
+      "Source Code": "$17"
     }
   },
   {
@@ -472,10 +474,9 @@
     "pricing": {
       "1 Day": "$1",
       "1 Month": "$8",
-      "2 Months": "$14",
-      "3 Months": "$17",
-      "Lifetime": "$23",
-      "Source Code": "$25",
+      "Lifetime(no patch)": "$23",
+      "Lifetime(Inc patch)": "$27",
+      "Source Code": "$35",
       "Custom Function": "+$5"
     }
   },
@@ -509,7 +510,7 @@
       "1 Month": "$10",
       "3 Months": "$20",
       "Lifetime": "$25",
-      "Source Code": "$30"
+      "Source Code": "$35"
     }
   },
   {
@@ -544,7 +545,8 @@
       "1 Month": "$3",
       "2 Months": "$5",
       "Lifetime (No Patch)": "$8",
-      "Source Code": "$8 (Offer until 2025-06-25)"
+      "Lifetime (Inc Patch)": "$15",
+      "Source Code": "$20"
     }
   },
   {
@@ -579,9 +581,9 @@
     "pricing": {
       "1 Day": "$1",
       "1 Month": "$3",
-      "2 Months": "$5",
       "Lifetime (No Patch)": "$10",
-      "Source Code": "$13"
+      "Lifetime (Inx Patch)": "$15",
+      "Source Code": "$20"
     }
   },
   {
@@ -618,8 +620,8 @@
       "1 Week": "$4",
       "30 Days": "$7",
       "Lifetime (No Patch)": "$10",
-      "Lifetime (Inc Patch)": "$12",
-      "Source Code": "$15"
+      "Lifetime (Inc Patch)": "$15",
+      "Source Code": "$20"
     }
   },
   {
@@ -694,7 +696,8 @@
       "1 Month": "$3",
       "2 Months": "$5",
       "Lifetime (No Patch)": "$10",
-      "Source Code": "$15"
+      "Lifetime (Inc Patch)": "$15",
+      "Source Code": "$20"
     }
   },
   {
@@ -727,7 +730,8 @@
       "1 Week": "$4",
       "30 Days": "$8",
       "Lifetime (No Patch)": "$13",
-      "Source Code": "$15"
+      "Lifetime (Inc Patch)": "$17",
+      "Source Code": "$20"
     }
   },
   {
@@ -770,7 +774,7 @@
       "30 Days": "$7",
       "Lifetime (No Patch)": "$13",
       "Lifetime (Inc Patch)": "$15",
-      "Source Code": "18"
+      "Source Code": "$20"
     }
   },
   {
@@ -905,7 +909,8 @@
       "1 Week": "$4",
       "30 Days": "$7",
       "Lifetime (No Patch)": "$15",
-      "Source Code": "$17"
+      "Lifetime (Inc Patch)": "$20",
+      "Source Code": "$25"
     }
   },
   {
@@ -934,7 +939,7 @@
       "1 Day": "$1",
       "1 Week": "$4",
       "30 Days": "$7",
-      "Lifetime (No Patch)": "$15",
+      "Lifetime (No Patch)": "$12",
       "Source Code": "$17"
     }
   },
@@ -972,7 +977,8 @@
       "1 Week": "$4",
       "30 Days": "$7",
       "Lifetime (No Patch)": "$12",
-      "Source Code": "$15"
+      "Lifetime (Inc Patch)": "$17",
+      "Source Code": "$20"
     }
   },
   {
@@ -1037,8 +1043,8 @@
     "contact": "telegram",
     "stock": "unlimited",
     "pricing": {
-      "Source Code (for solo)": "$10",
-      "Source Code (for both)": "$16"
+      "Source Code (for solo)": "$20",
+      "Source Code (for both)": "$35"
     }
   },
   {
@@ -1073,7 +1079,8 @@
       "1 Day": "$1",
       "30 Days": "$7",
       "Lifetime (No Patch)": "$10",
-      "Source Code (for solo)": "$17"
+      "Lifetime (Inc Patch)": "$15",
+      "Source Code (for solo)": "$20"
     }
   },
   {
@@ -1114,8 +1121,9 @@
       "1 Day": "$1",
       "1 Week": "$4",
       "30 Days": "$7",
-      "Lifetime (Inc Patch)": "$10",
-      "Source Code": "$12"
+      "Lifetime (No Patch)": "$10",
+      "Lifetime (Inc Patch)": "$15",
+      "Source Code": "$20"
     }
   },
   {
@@ -1228,7 +1236,7 @@
     "contact": "telegram",
     "stock": "5",
     "pricing": {
-      "Source Code": "$10"
+      "Source Code": "$15"
     }
   },
   {
@@ -1267,8 +1275,8 @@
       "1 Day": "$1",
       "1 Month": "$4",
       "Lifetime (No Patch)": "$10",
-      "Lifetime (Inc Patch)": "$13",
-      "Source Code": "$15"
+      "Lifetime (Inc Patch)": "$15",
+      "Source Code": "$20"
     }
   }
 ]
