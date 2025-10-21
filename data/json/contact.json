@@ -1,7 +1,7 @@
 [
   {
     "type": "Telegram",
-    "icon": "../assets/icons/tgbot.png",
+    "icon": "../assets/icons/tgbot.webp",
     "title": "Telegram Bot",
     "description": "Connect with our Telegram Bot for immediate support.",
     "link": "https://t.me/fmpChatBot",
@@ -9,7 +9,7 @@
   },
   {
     "type": "Telegram",
-    "icon": "../assets/icons/telegram.png",
+    "icon": "../assets/icons/telegram.webp",
     "title": "Telegram Channel",
     "description": "Join our channel for support.",
     "link": "https://t.me/flamemodparadiseofficial",
