@@ -1,9 +1,9 @@
 /* ========= My-Site Service Worker v3.0 ========= */
 
-const PRECACHE        = "mysite-precache-v3";   // install‑time assets
-const RUNTIME_IMG     = "mysite-img-v3";        // runtime images
-const RUNTIME_JSON    = "mysite-json-v3";       // runtime data
-const RUNTIME_PAGES   = "mysite-pages-v3";     // runtime pages
+const PRECACHE        = "mysite-precache-v4";   // install‑time assets
+const RUNTIME_IMG     = "mysite-img-v4";        // runtime images
+const RUNTIME_JSON    = "mysite-json-v4";       // runtime data
+const RUNTIME_PAGES   = "mysite-pages-v4";     // runtime pages
 
 const urlsToCache = [
   // Core files
@@ -160,54 +160,46 @@ self.addEventListener("fetch", (e) => {
     return;
   }
 
-  /* 3 HTML PAGES – Cache First Strategy */
+  /* 3 HTML PAGES – Network First Strategy */
   if (url.pathname.endsWith(".html") || url.pathname === "/") {
     e.respondWith(
-      caches.open(RUNTIME_PAGES).then(async (cache) => {
-        try {
-          const cached = await cache.match(req);
-          if (cached) {
-            console.log("Service Worker: Page served from cache", url.pathname);
-            return cached;
+      fetch(req)
+        .then((resp) => {
+          if (resp.ok) {
+            const clone = resp.clone();
+            caches.open(RUNTIME_PAGES).then((cache) => {
+              cache.put(req, clone);
+              console.log("Service Worker: Page cached", url.pathname);
+            });
           }
-          
-          const fresh = await fetch(req);
-          if (fresh.ok) {
-            cache.put(req, fresh.clone());
-            console.log("Service Worker: Page cached", url.pathname);
-          }
-          return fresh;
-        } catch (error) {
-          console.error("Service Worker: Page fetch failed", url.pathname, error);
-          return new Response("Page not available", { status: 404 });
-        }
-      })
+          return resp;
+        })
+        .catch(() => {
+          console.log("Service Worker: Page served from cache", url.pathname);
+          return caches.match(req);
+        })
     );
     return;
   }
 
-  /* 4 CSS/JS FILES – Cache First Strategy */
+  /* 4 CSS/JS FILES – Network First Strategy */
   if (/\.(css|js)$/i.test(url.pathname)) {
     e.respondWith(
-      caches.open(PRECACHE).then(async (cache) => {
-        try {
-          const cached = await cache.match(req);
-          if (cached) {
-            console.log("Service Worker: Asset served from cache", url.pathname);
-            return cached;
+      fetch(req)
+        .then((resp) => {
+          if (resp.ok) {
+            const clone = resp.clone();
+            caches.open(PRECACHE).then((cache) => {
+              cache.put(req, clone);
+              console.log("Service Worker: Asset cached", url.pathname);
+            });
           }
-          
-          const fresh = await fetch(req);
-          if (fresh.ok) {
-            cache.put(req, fresh.clone());
-            console.log("Service Worker: Asset cached", url.pathname);
-          }
-          return fresh;
-        } catch (error) {
-          console.error("Service Worker: Asset fetch failed", url.pathname, error);
-          return new Response("Asset not available", { status: 404 });
-        }
-      })
+          return resp;
+        })
+        .catch(() => {
+          console.log("Service Worker: Asset served from cache", url.pathname);
+          return caches.match(req);
+        })
     );
     return;
   }
@@ -232,6 +224,16 @@ self.addEventListener("fetch", (e) => {
 self.addEventListener("message", (e) => {
   if (e.data && e.data.type === "SKIP_WAITING") {
     self.skipWaiting();
+  }
+  
+  if (e.data && e.data.type === "CLEAR_ALL_CACHES") {
+    caches.keys().then((keys) => {
+      const deletePromises = keys.map((key) => caches.delete(key));
+      Promise.all(deletePromises).then(() => {
+        console.log("Service Worker: All caches cleared");
+        e.ports[0].postMessage({ success: true, message: "All caches cleared" });
+      });
+    });
   }
   
   if (e.data && e.data.type === "GET_CACHE_SIZE") {

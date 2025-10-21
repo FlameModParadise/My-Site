@@ -173,30 +173,72 @@ function getShortDescription(tool, query = "") {
 
 /* ----------  SIMPLE IMAGE SYSTEM ---------- */
 
-// Simple, fast image function - no complex lazy loading
-function smartImg(src, alt = "") {
+// Smart image compression for large images
+function compressImageIfNeeded(src, options = {}) {
+  // Only compress if it's a local image (not external URLs)
+  if (!src.startsWith('assets/') && !src.startsWith('./assets/')) {
+    return src;
+  }
+  
+  // Check if it's already a compressed URL
+  if (src.includes('?')) {
+    return src; // Already has parameters
+  }
+  
+  const { 
+    quality = 85, 
+    maxWidth = 800, 
+    type = 'general' 
+  } = options;
+  
+  // Different compression for different image types
+  let compressionParams = new URLSearchParams();
+  
+  if (type === 'gallery') {
+    // Gallery images - smaller, more compressed
+    compressionParams.set('q', '80');
+    compressionParams.set('w', '200');
+    compressionParams.set('h', '200');
+  } else if (type === 'main') {
+    // Main images - balanced compression
+    compressionParams.set('q', '85');
+    compressionParams.set('w', '800');
+  } else if (type === 'thumbnail') {
+    // Thumbnails - more compressed
+    compressionParams.set('q', '75');
+    compressionParams.set('w', '300');
+  } else {
+    // General images - moderate compression
+    compressionParams.set('q', '85');
+    compressionParams.set('w', '600');
+  }
+  
+  return `${src}?${compressionParams.toString()}`;
+}
+
+// Enhanced image function with smart compression
+function smartImg(src, alt = "", options = {}) {
+  const compressedSrc = compressImageIfNeeded(src, options);
+  
   return `
     <img loading="lazy"
-         src="${src}"
+         src="${compressedSrc}"
          alt="${escapeHTML(alt)}"
          onerror="this.src='assets/placeholder.jpg'"
     >
   `.trim();
 }
 
-// Preload critical images
-function preloadCriticalImages() {
-  const criticalImages = [
-    'assets/icons/fmp-icon.gif',
-    'assets/logo.png'
-  ];
-  
-  criticalImages.forEach(src => {
-    const link = document.createElement('link');
-    link.rel = 'preload';
-    link.as = 'image';
-    link.href = src;
-    document.head.appendChild(link);
+// Monitor image sizes for optimization
+function monitorImageSizes() {
+  const images = document.querySelectorAll('img');
+  images.forEach(img => {
+    img.addEventListener('load', () => {
+      // Check if image is large (this is approximate)
+      if (img.naturalWidth > 1000 || img.naturalHeight > 1000) {
+        console.log(`Large image detected: ${img.src} (${img.naturalWidth}x${img.naturalHeight})`);
+      }
+    });
   });
 }
 
@@ -224,6 +266,14 @@ document.addEventListener("keydown", (e) => {
     !e.target.matches("input,textarea,[contenteditable]")
   ) {
     DOM.darkToggle?.click();
+  }
+  
+  // Clear cache shortcut (Ctrl+Shift+R)
+  if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "r") {
+    e.preventDefault();
+    clearServiceWorkerCache();
+    console.log("Cache cleared! Reloading page...");
+    setTimeout(() => location.reload(), 1000);
   }
 });
 
@@ -269,7 +319,7 @@ function renderTools(list, target = DOM.container) {
     card.innerHTML = `
       <div class="tool-thumb-wrapper">
         ${getCardBadges(tool)}
-        ${smartImg(tool.image || "assets/placeholder.jpg", tool.name).trim()}
+        ${smartImg(tool.image || "assets/placeholder.jpg", tool.name, { type: 'thumbnail' }).trim()}
       </div>
       <div class="tool-card-body">
         <h3 class="tool-title">${name}</h3>
@@ -602,9 +652,9 @@ function showToolDetail(tool, initial = false) {
 
       <div class="tool-detail-content">
         <div class="tool-detail-left">
-          ${smartImg(tool.image || 'assets/placeholder.jpg', tool.name).replace('<img ', '<img class="tool-main-img" onclick="openImageModal(this.src)" ')}
+          ${smartImg(tool.image || 'assets/placeholder.jpg', tool.name, { type: 'main' }).replace('<img ', '<img class="tool-main-img" onclick="openImageModal(this.src)" ')}
           <div class="tool-gallery">
-            ${(tool.images || []).map(img => smartImg(img, 'gallery')).join('')}
+            ${(tool.images || []).map(img => smartImg(img, 'gallery', { type: 'gallery' })).join('')}
           </div>
           ${tool.video ? `<iframe src="${tool.video}" class="tool-video" allowfullscreen></iframe>` : ''}
         </div>
@@ -789,9 +839,7 @@ function renderRecommendations(tool) {
             (r) => `
           <div class="recommended-card" onclick='location.hash="tool=${encodeURIComponent(r.name)}"'>
             <div class="recommended-image">
-              <img src="${r.image || 'assets/placeholder.jpg'}"
-                   alt="${escapeHTML(r.name)}"
-                   loading="lazy">
+              ${smartImg(r.image || 'assets/placeholder.jpg', r.name, { type: 'thumbnail' })}
             </div>
             <div class="recommended-content">
               <h4>${escapeHTML(r.name)}</h4>
@@ -1005,8 +1053,23 @@ DOM.scrollToTopBtn?.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
+// Cache busting utility
+function clearServiceWorkerCache() {
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.ready.then(registration => {
+      const messageChannel = new MessageChannel();
+      messageChannel.port1.onmessage = (event) => {
+        console.log('Cache cleared:', event.data.message);
+      };
+      registration.active.postMessage({ type: 'CLEAR_ALL_CACHES' }, [messageChannel.port2]);
+    });
+  }
+}
+
 /* ----------  GO ---------- */
 if (DOM.container) {
+  // Monitor image sizes for optimization
+  monitorImageSizes();
   loadData();
 }
 
