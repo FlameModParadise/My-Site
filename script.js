@@ -559,7 +559,7 @@ function getCardBadges(tool) {
   const out = [];
   if (isDiscount) {
     if (isNumeric) {
-      out.push(`<span class="tool-badge discount-badge">-${tool.discount}%</span>`);
+      out.push(`<span class="tool-badge discount-badge">-${tool.discount}</span>`);
       if (discountEnd) {
         const left = formatTimeRemaining(tool.discount_expiry);
         if (left) {
@@ -657,7 +657,7 @@ function showToolDetail(tool, initial = false) {
             ).replace(/\n/g, "<br>")}</p><br>
 
             ${renderPricing(tool)}
-            ${tool.discount       ? `<p><strong>Discount:</strong> ${tool.discount}%</p><br>` : ''}
+            ${tool.discount       ? `<p><strong>Discount:</strong> ${tool.discount}</p><br>` : ''}
             ${tool.offer_expiry   ? `<p>⏳ Offer ends in ${daysLeft(tool.offer_expiry)} days</p><br>` : ''}
             <p><strong>Stock:</strong><br>${getStockStatus(tool.stock)}</p><br>
             <p><strong>Released:</strong><br>${escapeHTML(tool.release_date || 'N/A')}</p><br>
@@ -758,7 +758,7 @@ function getBadges(tool) {
   const discActive = tool.discount && (!discEnd || discEnd > now);
   if (discActive) {
     const numeric = !isNaN(parseFloat(tool.discount));
-    const lbl = numeric ? `-${tool.discount}%` : escapeHTML(tool.discount);
+    const lbl = numeric ? `-${tool.discount}` : escapeHTML(tool.discount);
     out.push(`<span class="badge discount-badge">${lbl}</span>`);
     if (numeric && discEnd) {
       const c = formatTimeRemaining(tool.discount_expiry);
@@ -779,9 +779,40 @@ const getContactLink = (t) =>
 
 function renderPricing(tool) {
   if (tool.pricing) {
+    const discountPercent = tool.discount ? parseFloat(tool.discount.replace('%', '')) : 0;
+    const hasActiveDiscount = discountPercent > 0 && (!tool.offer_expiry || new Date(tool.offer_expiry) > new Date());
+    
     const li = Object.entries(tool.pricing)
-      .map(([k, v]) => `<li>${escapeHTML(k)}: ${escapeHTML(v)}</li>`)
+      .map(([key, value]) => {
+        const originalPrice = parseFloat(value.replace('$', ''));
+        let displayPrice = value;
+        
+        if (hasActiveDiscount && originalPrice > 0) {
+          // Check if this specific plan should get discount
+          const shouldDiscount = !tool.discount_plans || tool.discount_plans.includes(key);
+          
+          if (shouldDiscount) {
+            const discountedPrice = originalPrice * (1 - discountPercent / 100);
+            const formattedDiscountedPrice = discountedPrice.toFixed(2);
+            displayPrice = `<span style="text-decoration: line-through;">${value}</span> ${formattedDiscountedPrice}`;
+          }
+        }
+        
+        // Add context to pricing
+        const contextKey = key.toLowerCase();
+        let context = '';
+        if (contextKey.includes('day')) context = ' (per day)';
+        else if (contextKey.includes('month')) context = ' (per month)';
+        else if (contextKey.includes('week')) context = ' (per week)';
+        else if (contextKey.includes('year')) context = ' (per year)';
+        else if (contextKey.includes('piece')) context = ' (per piece)';
+        else if (contextKey.includes('lifetime')) context = ' (one-time)';
+        else if (contextKey.includes('source')) context = ' (one-time)';
+        
+        return `<li>${escapeHTML(key)}${context}: ${displayPrice}</li>`;
+      })
       .join("");
+    
     return `<p><strong>Pricing:</strong></p><ul class="pricing-list">${li}</ul><br>`;
   }
   if (tool.price)

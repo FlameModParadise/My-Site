@@ -14,9 +14,10 @@
       "assets/checkers-pic/checking/gpt4.png",
       "assets/checkers-pic/checking/gpt5.png"
     ],
-    "discount": null,
-    "offer": null,
-    "offer_expiry": null,
+    "discount": "10%",
+    "discount_plans": ["Lifetime (No Patch)", "Lifetime (Inc Patch)", "Source Code"],
+    "offer": "Limited Time 10% OFF - Expires Soon!",
+    "offer_expiry": "2025-10-24",
     "release_date": "2025-03-19",
     "update_date": "2025-04-22",
     "tags": [
@@ -56,9 +57,10 @@
       "assets/checkers-pic/checking/cursor3.png",
       "assets/checkers-pic/checking/cursor4.png"
     ],
-    "discount": null,
-    "offer": null,
-    "offer_expiry": null,
+    "discount": "10%",
+    "discount_plans": ["Lifetime (No Patch)", "Lifetime (Inc Patch)", "Source Code"],
+    "offer": "Limited Time 10% OFF - Expires Soon!",
+    "offer_expiry": "2025-10-24",
     "release_date": "2025-08-30",
     "update_date": "2025-08-30",
     "tags": [
@@ -97,9 +99,10 @@
     "images": [
       "assets/checkers-pic/checking/bolt1.png"
     ],
-    "discount": null,
-    "offer": null,
-    "offer_expiry": null,
+    "discount": "10%",
+    "discount_plans": ["Lifetime (No Patch)", "Lifetime (Inc Patch)", "Source Code"],
+    "offer": "Limited Time 10% OFF - Expires Soon!",
+    "offer_expiry": "2025-10-24",
     "release_date": "2025-09-03",
     "update_date": "2025-09-03",
     "tags": [
@@ -137,9 +140,10 @@
     "images": [
       "assets/checkers-pic/checking/grok1.png"
     ],
-    "discount": null,
-    "offer": null,
-    "offer_expiry": null,
+    "discount": "10%",
+    "discount_plans": ["Lifetime (No Patch)", "Lifetime (Inc Patch)", "Source Code"],
+    "offer": "Limited Time 10% OFF - Expires Soon!",
+    "offer_expiry": "2025-10-24",
     "release_date": "2025-07-11",
     "update_date": "2025-07-11",
     "tags": [
@@ -180,9 +184,10 @@
       "assets/checkers-pic/checking/claudeai3.png",
       "assets/checkers-pic/checking/claudeai4.png"
     ],
-    "discount": null,
-    "offer": null,
-    "offer_expiry": null,
+    "discount": "10%",
+    "discount_plans": ["Lifetime (No Patch)", "Lifetime (Inc Patch)", "Source Code"],
+    "offer": "Limited Time 10% OFF - Expires Soon!",
+    "offer_expiry": "2025-10-24",
     "release_date": "2025-05-05",
     "update_date": "2025-09-18",
     "tags": [
@@ -221,9 +226,10 @@
     "images": [
       "assets/checkers-pic/checking/perplexityai1.png"
     ],
-    "discount": null,
-    "offer": null,
-    "offer_expiry": null,
+    "discount": "10%",
+    "discount_plans": ["Lifetime (No Patch)", "Lifetime (Inc Patch)", "Source Code"],
+    "offer": "Limited Time 10% OFF - Expires Soon!",
+    "offer_expiry": "2025-10-24",
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
     "tags": [
@@ -259,9 +265,10 @@
       "assets/checkers-pic/checking/genspark1.png",
       "assets/checkers-pic/checking/genspark2.png"
     ],
-    "discount": null,
-    "offer": null,
-    "offer_expiry": null,
+    "discount": "10%",
+    "discount_plans": ["Lifetime (No Patch)", "Lifetime (Inc Patch)", "Source Code"],
+    "offer": "Limited Time 10% OFF - Expires Soon!",
+    "offer_expiry": "2025-10-24",
     "release_date": "2025-05-29",
     "update_date": "2025-05-29",
     "tags": [
@@ -303,9 +310,10 @@
     "images": [
       "assets/checkers-pic/checking/blackboxai1.png"
     ],
-    "discount": null,
-    "offer": null,
-    "offer_expiry": null,
+    "discount": "10%",
+    "discount_plans": ["Lifetime (No Patch)", "Lifetime (Inc Patch)", "Source Code"],
+    "offer": "Limited Time 10% OFF - Expires Soon!",
+    "offer_expiry": "2025-10-24",
     "release_date": "2025-03-19",
     "update_date": "2025-05-30",
     "tags": [
@@ -340,9 +348,10 @@
       "assets/checkers-pic/checking/klingai1.png",
       "assets/checkers-pic/checking/klingai2.png"
     ],
-    "discount": null,
-    "offer": null,
-    "offer_expiry": null,
+    "discount": "10%",
+    "discount_plans": ["Lifetime (No Patch)", "Lifetime (Inc Patch)", "Source Code"],
+    "offer": "Limited Time 10% OFF - Expires Soon!",
+    "offer_expiry": "2025-10-24",
     "release_date": "2025-06-18",
     "update_date": "2025-06-18",
     "tags": [
@@ -377,9 +386,10 @@
     "images": [
       "assets/checkers-pic/checking/hailuoai1.png"
     ],
-    "discount": null,
-    "offer": null,
-    "offer_expiry": null,
+    "discount": "10%",
+    "discount_plans": ["Lifetime (No Patch)", "Lifetime (Inc Patch)", "Source Code"],
+    "offer": "Limited Time 10% OFF - Expires Soon!",
+    "offer_expiry": "2025-10-24",
     "release_date": "2025-06-18",
     "update_date": "2025-06-18",
     "tags": [
@@ -414,9 +424,10 @@
     "images": [
       "assets/checkers-pic/checking/ottplay1.png"
     ],
-    "discount": null,
-    "offer": null,
-    "offer_expiry": null,
+    "discount": "10%",
+    "discount_plans": ["Lifetime (No Patch)", "Lifetime (Inc Patch)", "Source Code"],
+    "offer": "Limited Time 10% OFF - Expires Soon!",
+    "offer_expiry": "2025-10-24",
     "release_date": "2025-07-31",
     "update_date": "2025-07-31",
     "tags": [
@@ -453,9 +464,10 @@
       "assets/checkers-pic/checking/netflix2.png",
       "assets/checkers-pic/checking/netflix3.png"
     ],
-    "discount": null,
-    "offer": null,
-    "offer_expiry": null,
+    "discount": "10%",
+    "discount_plans": ["Lifetime (No Patch)", "Lifetime (Inc Patch)", "Source Code"],
+    "offer": "Limited Time 10% OFF - Expires Soon!",
+    "offer_expiry": "2025-10-24",
     "release_date": "2025-03-19",
     "update_date": "2025-08-05",
     "tags": [
@@ -488,9 +500,10 @@
     "image": "assets/checkers-pic/netflix.png",
     "video": "",
     "images": [],
-    "discount": null,
-    "offer": null,
-    "offer_expiry": null,
+    "discount": "10%",
+    "discount_plans": ["Lifetime (No Patch)", "Lifetime (Inc Patch)", "Source Code"],
+    "offer": "Limited Time 10% OFF - Expires Soon!",
+    "offer_expiry": "2025-10-24",
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
     "tags": [
@@ -523,9 +536,10 @@
     "images": [
       "assets/checkers-pic/checking/primevideo1.png"
     ],
-    "discount": null,
-    "offer": null,
-    "offer_expiry": null,
+    "discount": "10%",
+    "discount_plans": ["Lifetime (No Patch)", "Lifetime (Inc Patch)", "Source Code"],
+    "offer": "Limited Time 10% OFF - Expires Soon!",
+    "offer_expiry": "2025-10-24",
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
     "tags": [
@@ -560,9 +574,10 @@
       "assets/checkers-pic/checking/spotify1.png",
       "assets/checkers-pic/checking/spotify2.png"
     ],
-    "discount": null,
-    "offer": null,
-    "offer_expiry": null,
+    "discount": "10%",
+    "discount_plans": ["Lifetime (No Patch)", "Lifetime (Inc Patch)", "Source Code"],
+    "offer": "Limited Time 10% OFF - Expires Soon!",
+    "offer_expiry": "2025-10-24",
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
     "tags": [
@@ -597,9 +612,10 @@
       "assets/checkers-pic/checking/crunchyroll1.png",
       "assets/checkers-pic/checking/crunchyroll2.png"
     ],
-    "discount": null,
-    "offer": null,
-    "offer_expiry": null,
+    "discount": "10%",
+    "discount_plans": ["Lifetime (No Patch)", "Lifetime (Inc Patch)", "Source Code"],
+    "offer": "Limited Time 10% OFF - Expires Soon!",
+    "offer_expiry": "2025-10-24",
     "release_date": "2025-03-19",
     "update_date": "2025-06-003",
     "tags": [
@@ -632,9 +648,10 @@
     "image": "assets/checkers-pic/crunchyroll.png",
     "video": "",
     "images": [],
-    "discount": null,
-    "offer": null,
-    "offer_expiry": null,
+    "discount": "10%",
+    "discount_plans": ["Lifetime (No Patch)", "Lifetime (Inc Patch)", "Source Code"],
+    "offer": "Limited Time 10% OFF - Expires Soon!",
+    "offer_expiry": "2025-10-24",
     "release_date": "2025-06-03",
     "update_date": "2025-06-03",
     "tags": [
@@ -673,9 +690,10 @@
       "assets/checkers-pic/checking/hotstar4.png",
       "assets/checkers-pic/checking/hotstar5.png"
     ],
-    "discount": null,
-    "offer": null,
-    "offer_expiry": null,
+    "discount": "10%",
+    "discount_plans": ["Lifetime (No Patch)", "Lifetime (Inc Patch)", "Source Code"],
+    "offer": "Limited Time 10% OFF - Expires Soon!",
+    "offer_expiry": "2025-10-24",
     "release_date": "2025-03-19",
     "update_date": "2025-04-22",
     "tags": [
@@ -710,9 +728,10 @@
     "images": [
       "assets/checkers-pic/checking/peacock1.png"
     ],
-    "discount": null,
-    "offer": null,
-    "offer_expiry": null,
+    "discount": "10%",
+    "discount_plans": ["Lifetime (No Patch)", "Lifetime (Inc Patch)", "Source Code"],
+    "offer": "Limited Time 10% OFF - Expires Soon!",
+    "offer_expiry": "2025-10-24",
     "release_date": "2025-04-23",
     "update_date": "2025-04-23",
     "tags": [
@@ -748,9 +767,10 @@
       "assets/checkers-pic/checking/mycanal4.png",
       "assets/checkers-pic/checking/mycanal5.png"
     ],
-    "discount": null,
-    "offer": null,
-    "offer_expiry": null,
+    "discount": "10%",
+    "discount_plans": ["Lifetime (No Patch)", "Lifetime (Inc Patch)", "Source Code"],
+    "offer": "Limited Time 10% OFF - Expires Soon!",
+    "offer_expiry": "2025-10-24",
     "release_date": "2025-07-03",
     "update_date": "2025-07-09",
     "tags": [
@@ -792,9 +812,10 @@
       "assets/checkers-pic/checking/outlook6.png",
       "assets/checkers-pic/checking/outlook7.png"
     ],
-    "discount": null,
-    "offer": null,
-    "offer_expiry": null,
+    "discount": "10%",
+    "discount_plans": ["Lifetime (No Patch)", "Lifetime (Inc Patch)", "Source Code"],
+    "offer": "Limited Time 10% OFF - Expires Soon!",
+    "offer_expiry": "2025-10-24",
     "release_date": "2025-05-13",
     "update_date": "2025-05-13",
     "tags": [
@@ -848,9 +869,10 @@
       "assets/checkers-pic/checking/azure8.png",
       "assets/checkers-pic/checking/azure9.png"
     ],
-    "discount": null,
-    "offer": null,
-    "offer_expiry": null,
+    "discount": "10%",
+    "discount_plans": ["Lifetime (No Patch)", "Lifetime (Inc Patch)", "Source Code"],
+    "offer": "Limited Time 10% OFF - Expires Soon!",
+    "offer_expiry": "2025-10-24",
     "release_date": "2025-05-22",
     "update_date": "2025-05-22",
     "tags": [
@@ -890,9 +912,10 @@
       "assets/checkers-pic/checking/freepik3.png",
       "assets/checkers-pic/checking/freepik4.png"
     ],
-    "discount": null,
-    "offer": null,
-    "offer_expiry": null,
+    "discount": "10%",
+    "discount_plans": ["Lifetime (No Patch)", "Lifetime (Inc Patch)", "Source Code"],
+    "offer": "Limited Time 10% OFF - Expires Soon!",
+    "offer_expiry": "2025-10-24",
     "release_date": "2025-04-29",
     "update_date": "2025-04-29",
     "tags": [
@@ -921,9 +944,10 @@
     "image": "assets/checkers-pic/music.png",
     "video": "",
     "images": [],
-    "discount": null,
-    "offer": null,
-    "offer_expiry": null,
+    "discount": "10%",
+    "discount_plans": ["Lifetime (No Patch)", "Lifetime (Inc Patch)", "Source Code"],
+    "offer": "Limited Time 10% OFF - Expires Soon!",
+    "offer_expiry": "2025-10-24",
     "release_date": "2025-04-29",
     "update_date": "2025-04-29",
     "tags": [
@@ -955,9 +979,10 @@
       "assets/checkers-pic/checking/2captcha1.png",
       "assets/checkers-pic/checking/2captcha2.png"
     ],
-    "discount": null,
-    "offer": null,
-    "offer_expiry": null,
+    "discount": "10%",
+    "discount_plans": ["Lifetime (No Patch)", "Lifetime (Inc Patch)", "Source Code"],
+    "offer": "Limited Time 10% OFF - Expires Soon!",
+    "offer_expiry": "2025-10-24",
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
     "tags": [
@@ -989,9 +1014,10 @@
     "image": "assets/checkers-pic/codashop.jpg",
     "video": "",
     "images": [],
-    "discount": null,
-    "offer": null,
-    "offer_expiry": null,
+    "discount": "10%",
+    "discount_plans": ["Lifetime (No Patch)", "Lifetime (Inc Patch)", "Source Code"],
+    "offer": "Limited Time 10% OFF - Expires Soon!",
+    "offer_expiry": "2025-10-24",
     "release_date": "2025-07-04",
     "update_date": "2025-07-04",
     "tags": [
@@ -1024,9 +1050,10 @@
       "assets/checkers-pic/checking/surfshark1.png",
       "assets/checkers-pic/checking/surfshark2.png"
     ],
-    "discount": null,
-    "offer": null,
-    "offer_expiry": null,
+    "discount": "10%",
+    "discount_plans": ["Lifetime (No Patch)", "Lifetime (Inc Patch)", "Source Code"],
+    "offer": "Limited Time 10% OFF - Expires Soon!",
+    "offer_expiry": "2025-10-24",
     "release_date": "2025-07-11",
     "update_date": "2025-08-06",
     "tags": [
@@ -1057,9 +1084,10 @@
     "images": [
       "assets/checkers-pic/checking/pia1.png" 
     ],
-    "discount": null,
-    "offer": null,
-    "offer_expiry": null,
+    "discount": "10%",
+    "discount_plans": ["Lifetime (No Patch)", "Lifetime (Inc Patch)", "Source Code"],
+    "offer": "Limited Time 10% OFF - Expires Soon!",
+    "offer_expiry": "2025-10-24",
     "release_date": "2025-10-13",
     "update_date": "2025-10-13",
     "tags": [
@@ -1097,9 +1125,10 @@
       "assets/checkers-pic/checking/tradingview4.png",
       "assets/checkers-pic/checking/tradingview5.png"
     ],
-    "discount": null,
-    "offer": null,
-    "offer_expiry": null,
+    "discount": "10%",
+    "discount_plans": ["Lifetime (No Patch)", "Lifetime (Inc Patch)", "Source Code"],
+    "offer": "Limited Time 10% OFF - Expires Soon!",
+    "offer_expiry": "2025-10-24",
     "release_date": "2025-05-20",
     "update_date": "2025-05-20",
     "tags": [
@@ -1137,9 +1166,10 @@
       "assets/checkers-pic/checking/smsv1.png",
       "assets/checkers-pic/checking/smsv2.png"
     ],
-    "discount": null,
-    "offer": null,
-    "offer_expiry": null,
+    "discount": "10%",
+    "discount_plans": ["Lifetime (No Patch)", "Lifetime (Inc Patch)", "Source Code"],
+    "offer": "Limited Time 10% OFF - Expires Soon!",
+    "offer_expiry": "2025-10-24",
     "release_date": "2025-07-22",
     "update_date": "2025-07-22",
     "tags": [
@@ -1177,9 +1207,10 @@
       "assets/checkers-pic/checking/pingproxy1.png",
       "assets/checkers-pic/checking/pingproxy2.png"
     ],
-    "discount": null,
-    "offer": null,
-    "offer_expiry": null,
+    "discount": "10%",
+    "discount_plans": ["Lifetime (No Patch)", "Lifetime (Inc Patch)", "Source Code"],
+    "offer": "Limited Time 10% OFF - Expires Soon!",
+    "offer_expiry": "2025-10-24",
     "release_date": "2025-09-05",
     "update_date": "2025-09-05",
     "tags": [
@@ -1215,9 +1246,10 @@
     "image": "assets/checkers-pic/pyproxy.png",
     "video": "",
     "images": [],
-    "discount": null,
-    "offer": null,
-    "offer_expiry": null,
+    "discount": "10%",
+    "discount_plans": ["Lifetime (No Patch)", "Lifetime (Inc Patch)", "Source Code"],
+    "offer": "Limited Time 10% OFF - Expires Soon!",
+    "offer_expiry": "2025-10-24",
     "release_date": "2025-08-04",
     "update_date": "2025-08-04",
     "tags": [
@@ -1249,9 +1281,10 @@
     "images": [
       "assets/checkers-pic/checking/quillbot1.png"
     ],
-    "discount": null,
-    "offer": null,
-    "offer_expiry": null,
+    "discount": "10%",
+    "discount_plans": ["Lifetime (No Patch)", "Lifetime (Inc Patch)", "Source Code"],
+    "offer": "Limited Time 10% OFF - Expires Soon!",
+    "offer_expiry": "2025-10-24",
     "release_date": "2025-09-23",
     "update_date": "2025-09-23",
     "tags": [

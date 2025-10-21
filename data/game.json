@@ -6,6 +6,10 @@
     "long_description": "<h1>Mortal Kombat 11</h1> is delivered as a valid Steam key. Fully secure and directly added to your Steam account. No risks involved. DLCs available upon request.",
     "image": "assets/steams-pic/mk11.jpg",
     "price": "$3.5",
+    "discount": null,
+    "discount_plans": [],
+    "offer": null,
+    "offer_expiry": "",
     "tags": [
       "Steam",
       "mk11",
@@ -29,6 +33,10 @@
     "long_description": "<h1>Mortal Kombat 1 (Standard or Premium)</h1> is delivered via a Steam key. Choose your edition and enjoy fast, global delivery. DLCs or bonus versions available upon request.",
     "image": "assets/steams-pic/mk1.png",
     "price": "- Standard: $17\n- Premium: $40\n- Premium + Bonus: $44\n",
+    "discount": null,
+    "discount_plans": [],
+    "offer": null,
+    "offer_expiry": "",
     "tags": [
       "Steam",
       "mk1",
@@ -53,6 +61,10 @@
     "long_description": "<h1>Spiderman 2</h1> is purchased through Steam and added directly to your account. No hacks or cracks involved. Official delivery with optional DLCs available. Lower than the official price.",
     "image": "assets/steams-pic/spiderman2.jpg",
     "price": "$52",
+    "discount": null,
+    "discount_plans": [],
+    "offer": null,
+    "offer_expiry": "",
     "tags": [
       "Steam",
       "spiderman",
@@ -77,6 +89,10 @@
     "long_description": "The remastered version of Marvel's Spider-Man is delivered to your Steam account via a valid key. Works globally without any hacks or third-party tools. Optional DLCs available.",
     "image": "assets/steams-pic/spidermanremastered.jpg",
     "price": "$25.48",
+    "discount": null,
+    "discount_plans": [],
+    "offer": null,
+    "offer_expiry": "",
     "tags": [
       "Steam",
       "spiderman",

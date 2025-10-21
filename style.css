@@ -2112,12 +2112,6 @@ body.dark #limited-section .tool-card {
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25), 0 4px 6px rgba(0, 0, 0, 0.15) inset;
 }
 
-body.dark #offers-section .tool-card:hover,
-body.dark #recommended-section .tool-card:hover,
-body.dark #limited-section .tool-card:hover {
-  box-shadow: 0 12px 24px rgba(255, 255, 255, 0.3), 0 4px 6px rgba(0, 0, 0, 0.4) inset;
-  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
-}
 
 /* Responsive adjustments for cards */
 @media (max-width: 768px) {
