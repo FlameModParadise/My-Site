@@ -71,7 +71,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   position: relative;
   overflow-x: hidden;
-  will-change: background, color;
 }
 
 /* Simplified background */
@@ -177,7 +176,6 @@ body.dark .navbar {
   font-weight: 700;
   color: var(--color-primary);
   transition: transform var(--transition);
-  will-change: transform;
 }
 
 .logo img {
@@ -212,7 +210,6 @@ body.dark .logo img {
   cursor: pointer;
   color: inherit;
   transition: transform var(--transition);
-  will-change: transform;
 }
 
 .navbar-toggle:hover {
@@ -669,7 +666,6 @@ body.dark .recommended-content p {
   font-weight: 500;
   font-size: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  will-change: transform, background, box-shadow;
 }
 
 .filter-tags button:hover {
@@ -737,7 +733,6 @@ body.dark .recommended-content p {
   flex-direction: column;
   height: auto;
   min-height: 180px;
-  will-change: transform, box-shadow;
 }
 
 .tool-card:hover {
@@ -765,7 +760,6 @@ body.dark .recommended-content p {
   flex-direction: column;
   transition: transform var(--transition);
   flex-shrink: 0;
-  will-change: transform;
 }
 
 .tool-card:hover .tool-thumb-wrapper {
@@ -1279,7 +1273,6 @@ body:not(.dark) .lifetime-badge {
   transition: all var(--transition);
   z-index: 999;
   animation: bounceIn 0.5s ease;
-  will-change: transform, box-shadow;
 }
 
 #scrollToTopBtn.show {
