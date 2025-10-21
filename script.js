@@ -1,73 +1,71 @@
-// ================ MOBILE NAVBAR FIX (SINGLE IMPLEMENTATION) ================ 
-document.addEventListener('DOMContentLoaded', function() {
-  const toggle = document.getElementById('navbarToggle');
-  const menu = document.getElementById('navbarMenu');
-  
-  if (!toggle || !menu) return;
-  
-  // Simple toggle function
-  function toggleMobileMenu() {
-    const isOpen = menu.classList.contains('show-menu');
-    
-    if (isOpen) {
-      // Close menu
-      menu.classList.remove('show-menu');
-      toggle.innerHTML = '☰';
-      toggle.setAttribute('aria-label', 'Open menu');
-      document.body.style.overflow = '';
-    } else {
-      // Open menu
-      menu.classList.add('show-menu');
-      toggle.innerHTML = '✕';
-      toggle.setAttribute('aria-label', 'Close menu');
-      document.body.style.overflow = 'hidden';
-    }
-  }
-  
-  // Single click handler
-  toggle.addEventListener('click', function(e) {
+// ================ MAIN APP NAMESPACE ================
+const FMP = {
+  // Mobile Navbar Component
+  Navbar: {
+    toggle: null,
+    menu: null,
+    init() {
+      this.toggle = document.getElementById('navbarToggle');
+      this.menu = document.getElementById('navbarMenu');
+      if (!this.toggle || !this.menu) return;
+      this.bindEvents();
+    },
+    bindEvents() {
+      this.toggle.addEventListener('click', (e) => {
     e.preventDefault();
     e.stopPropagation();
-    toggleMobileMenu();
+        this.toggleMobileMenu();
   });
   
-  // Close on link click
-  const menuLinks = menu.querySelectorAll('a, button');
+      const menuLinks = this.menu.querySelectorAll('a, button');
   menuLinks.forEach(link => {
-    link.addEventListener('click', function() {
-      if (menu.classList.contains('show-menu')) {
-        toggleMobileMenu();
+        link.addEventListener('click', () => {
+          if (this.menu.classList.contains('show-menu')) {
+            this.toggleMobileMenu();
       }
     });
   });
   
-  // Close on outside click
-  document.addEventListener('click', function(e) {
-    if (menu.classList.contains('show-menu') && 
-        !toggle.contains(e.target) && 
-        !menu.contains(e.target)) {
-      toggleMobileMenu();
-    }
-  });
-  
-  // Close on escape
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && menu.classList.contains('show-menu')) {
-      toggleMobileMenu();
-    }
-  });
-  
-  // Close on resize to desktop
+      document.addEventListener('click', (e) => {
+        if (this.menu.classList.contains('show-menu') && 
+            !this.toggle.contains(e.target) && 
+            !this.menu.contains(e.target)) {
+          this.toggleMobileMenu();
+        }
+      });
+      
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && this.menu.classList.contains('show-menu')) {
+          this.toggleMobileMenu();
+        }
+      });
+      
   let resizeTimer;
-  window.addEventListener('resize', function() {
+      window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(function() {
-      if (window.innerWidth > 768 && menu.classList.contains('show-menu')) {
-        toggleMobileMenu();
+        resizeTimer = setTimeout(() => {
+          if (window.innerWidth > 768 && this.menu.classList.contains('show-menu')) {
+            this.toggleMobileMenu();
       }
     }, 250);
   });
-});
+    },
+    toggleMobileMenu() {
+      const isOpen = this.menu.classList.contains('show-menu');
+      if (isOpen) {
+        this.menu.classList.remove('show-menu');
+        this.toggle.innerHTML = '☰';
+        this.toggle.setAttribute('aria-label', 'Open menu');
+        document.body.style.overflow = '';
+      } else {
+        this.menu.classList.add('show-menu');
+        this.toggle.innerHTML = '✕';
+        this.toggle.setAttribute('aria-label', 'Close menu');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+  }
+};
 
 /* === CSS PATCHES (auto‑injected) === */
 (() => {
@@ -82,65 +80,82 @@ document.addEventListener('DOMContentLoaded', function() {
   document.head.appendChild(style);
 })();
 
-/* ----------  CONSTANTS & DOM REFS  ---------- */
-const DATA_FILES = [
-  "data/tools.json",
-  "data/bots.json", 
-  "data/checkers.json",
-  "data/game.json",
-  "data/others.json",
-  "data/cookies.json",
-  "data/methods.json",
-  "data/membership.json"
-];
-
-const THEME_KEY   = "theme";
-const SEARCH_KEY  = "search";
-const SORT_KEY    = "sort";
-const FILTER_KEY  = "filter";
-const RECENT_KEY  = "recentSearches";
-const MAX_RECENTS = 5;
-
-/* DOM - Cached references */
-const DOM = {
-  container: document.getElementById("main-tool-list"),
-  filtersContainer: document.getElementById("filters"),
-  searchInput: document.getElementById("searchInput"),
-  sortSelect: document.getElementById("sortSelect"),
-  scrollToTopBtn: document.getElementById("scrollToTopBtn"),
-  darkToggle: document.getElementById("darkToggle"),
-  imageModal: document.getElementById("imageModal"),
-  autocompleteBox: document.getElementById("autocompleteBox"),
-  offersList: document.getElementById("offers-list"),
-  recommendedList: document.getElementById("recommended-list"),
-  limitedList: document.getElementById("limited-list"),
-  offersSection: document.getElementById("offers-section"),
-  recommendedSection: document.getElementById("recommended-section"),
-  limitedSection: document.getElementById("limited-section")
+// App Configuration & State
+FMP.Config = {
+  DATA_FILES: [
+    "data/tools.json", "data/bots.json", "data/checkers.json", "data/game.json",
+    "data/others.json", "data/cookies.json", "data/methods.json", "data/membership.json"
+  ],
+  KEYS: {
+    THEME: "theme",
+    SEARCH: "search", 
+    SORT: "sort",
+    FILTER: "filter",
+    RECENT: "recentSearches"
+  },
+  MAX_RECENTS: 5
 };
 
-let allTools = [];
+FMP.State = {
+  allTools: [],
+  DOM: {
+    container: null,
+    filtersContainer: null,
+    searchInput: null,
+    sortSelect: null,
+    scrollToTopBtn: null,
+    darkToggle: null,
+    imageModal: null,
+    autocompleteBox: null,
+  },
+  init() {
+    // Cache DOM references
+    this.DOM.container = document.getElementById("main-tool-list");
+    this.DOM.filtersContainer = document.getElementById("filters");
+    this.DOM.searchInput = document.getElementById("searchInput");
+    this.DOM.sortSelect = document.getElementById("sortSelect");
+    this.DOM.scrollToTopBtn = document.getElementById("scrollToTopBtn");
+    this.DOM.darkToggle = document.getElementById("darkToggle");
+    this.DOM.imageModal = document.getElementById("imageModal");
+    this.DOM.autocompleteBox = document.getElementById("autocompleteBox");
+  }
+};
 
-/* ----------  HELPERS  ---------- */
-const debounce = (fn, delay) => {
+// Utility Functions
+FMP.Utils = {
+  debounce(fn, delay) {
   let t;
   return (...a) => {
     clearTimeout(t);
     t = setTimeout(() => fn(...a), delay);
   };
-};
+  },
 
-const escapeHTML = (s = "") =>
-  s.replace(/&/g, "&amp;")
+  escapeHTML(s = "") {
+    return s.replace(/&/g, "&amp;")
    .replace(/</g, "&lt;")
    .replace(/>/g, "&gt;")
    .replace(/"/g, "&quot;");
+  },
+  
+  nl2br(txt = "") {
+    return txt.replace(/\n/g, "<br>");
+  },
+  
+  formatTimeRemaining(dateStr) {
+    const diff = new Date(dateStr) - new Date();
+    if (diff <= 0) return null;
+    const m = Math.floor(diff / 60000);
+    const d = Math.floor(m / 1440);
+    const h = Math.floor((m % 1440) / 60);
+    const mins = m % 60;
+    return `⏳ ${d ? d + "d " : ""}${h ? h + "h " : ""}${mins}m left`.trim();
+  }
+};
 
-const nl2br = (txt = "") => txt.replace(/\n/g, "<br>");
-
-function highlightMatch(text, matches, key) {
+FMP.Utils.highlightMatch = function(text, matches, key) {
   const m = matches?.find((x) => x.key === key);
-  if (!m?.indices?.length) return escapeHTML(text);
+  if (!m?.indices?.length) return FMP.Utils.escapeHTML(text);
 
   // Merge adjacent/overlapping ranges
   const merged = m.indices
@@ -161,164 +176,262 @@ function highlightMatch(text, matches, key) {
   // Build the highlighted string
   let out = "", last = 0;
   for (const [start, end] of goodRuns) {
-    out += escapeHTML(text.slice(last, start));
-    out += `<mark>${escapeHTML(text.slice(start, end + 1))}</mark>`;
+    out += FMP.Utils.escapeHTML(text.slice(last, start));
+    out += `<mark>${FMP.Utils.escapeHTML(text.slice(start, end + 1))}</mark>`;
     last = end + 1;
   }
-  return out + escapeHTML(text.slice(last));
-}
+  return out + FMP.Utils.escapeHTML(text.slice(last));
+};
 
-function getShortDescription(tool, query = "") {
-  const raw =
-    tool.description ||
-    (tool.long_description
-      ? tool.long_description.split("\n")[0] + "…"
-      : "No description available.");
-  return query ? highlightMatch(raw, query) : escapeHTML(raw);
-}
+FMP.Utils.getShortDescription = function(tool, query = "") {
+  const raw = tool.description || 
+    (tool.long_description ? tool.long_description.split("\n")[0] + "…" : "No description available.");
+  return query ? FMP.Utils.highlightMatch(raw, query) : FMP.Utils.escapeHTML(raw);
+};
 
-/* ----------  LAZY‑IMAGE SYSTEM ---------- */
-const io = new IntersectionObserver(
+// Lazy Image System
+FMP.LazyImages = {
+  observer: null,
+  
+  init() {
+    const isMobile = window.innerWidth <= 768;
+    const rootMargin = isMobile ? "200px" : "50px"; // Larger margin for mobile for faster loading
+    
+    this.observer = new IntersectionObserver(
   (entries) => {
     entries.forEach(({ target, isIntersecting }) => {
       if (isIntersecting) {
         target.src = target.dataset.src;
-        io.unobserve(target);
+            this.observer.unobserve(target);
       }
     });
   },
-  { rootMargin: "50px" }
-);
-
-function smartImg(src, alt = "") {
-  return `
-    <img loading="lazy"
-         data-src="${src}"
-         src="assets/placeholder.jpg"
-         alt="${escapeHTML(alt)}"
-         onerror="this.src='assets/placeholder.jpg'"
-    >
-  `.trim();
-}
-
-function activateLazyImages(root = document) {
+      { 
+        rootMargin: rootMargin,
+        threshold: isMobile ? 0 : 0.1 // Lower threshold for mobile
+      }
+    );
+  },
+  
+  smartImg(src, alt = "") {
+    const isMobile = window.innerWidth <= 768;
+    const loadingStrategy = isMobile ? "eager" : "lazy";
+    return `<img loading="${loadingStrategy}" data-src="${src}" src="assets/placeholder.jpg" alt="${FMP.Utils.escapeHTML(alt)}" onerror="this.src='assets/placeholder.jpg'">`;
+  },
+  
+  activate(root = document) {
+    const isMobile = window.innerWidth <= 768;
   const images = root.querySelectorAll("img[data-src]");
+    
   images.forEach((img) => {
     if (img.complete && img.naturalWidth > 0) {
       img.src = img.dataset.src;
     } else {
-      io.observe(img);
+        // On mobile, preload images more aggressively
+        if (isMobile) {
+          img.loading = 'eager';
+          img.decoding = 'async';
+        }
+        this.observer.observe(img);
     }
   });
 }
+};
 
-/* ----------  DARK MODE  ---------- */
-if (DOM.darkToggle) {
-  DOM.darkToggle.setAttribute("aria-label", "Toggle dark mode");
-  DOM.darkToggle.setAttribute("title", "Toggle dark mode (D)");
-  DOM.darkToggle.addEventListener("click", () => {
-    document.body.classList.toggle("dark");
-    localStorage.setItem(
-      THEME_KEY,
-      document.body.classList.contains("dark") ? "dark" : "light"
-    );
-  });
-}
-
-if (localStorage.getItem(THEME_KEY) === "dark") {
+// Dark Mode Component
+FMP.DarkMode = {
+  init() {
+    const toggle = FMP.State.DOM.darkToggle;
+    if (!toggle) return;
+    
+    toggle.setAttribute("aria-label", "Toggle dark mode");
+    toggle.setAttribute("title", "Toggle dark mode (D)");
+    toggle.addEventListener("click", () => this.toggle());
+    
+    // Load saved theme
+    if (localStorage.getItem(FMP.Config.KEYS.THEME) === "dark") {
   document.body.classList.add("dark");
 }
 
+    // Keyboard shortcut
 document.addEventListener("keydown", (e) => {
-  if (
-    e.key.toLowerCase() === "d" &&
-    !e.target.matches("input,textarea,[contenteditable]")
-  ) {
-    DOM.darkToggle?.click();
+      if (e.key.toLowerCase() === "d" && !e.target.matches("input,textarea,[contenteditable]")) {
+        toggle?.click();
+      }
+    });
+  },
+  
+  toggle() {
+    // Disable transitions temporarily for instant toggle on mobile
+    const isMobile = window.innerWidth <= 768;
+    if (isMobile) {
+      document.documentElement.style.setProperty('--transition', '0ms');
+      document.documentElement.style.setProperty('--transition-fast', '0ms');
+    }
+    
+    document.body.classList.toggle("dark");
+    localStorage.setItem(
+      FMP.Config.KEYS.THEME,
+      document.body.classList.contains("dark") ? "dark" : "light"
+    );
+    
+    // Re-enable transitions after a short delay on mobile
+    if (isMobile) {
+      setTimeout(() => {
+        document.documentElement.style.removeProperty('--transition');
+        document.documentElement.style.removeProperty('--transition-fast');
+      }, 100);
+    }
   }
-});
+};
 
 
-/* ----------  MOBILE OPTIMIZATION  ---------- */
-if (/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-  document.documentElement.style.setProperty('--transition', '0.1s ease');
-}
+// Mobile Optimization
+FMP.Mobile = {
+  init() {
+    const isMobile = window.innerWidth <= 768 || /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    
+    if (isMobile) {
+      // Disable all animations and transitions for maximum performance
+      document.documentElement.style.setProperty('--transition', '0ms');
+      document.documentElement.style.setProperty('--transition-fast', '0ms');
+      
+      // Optimize scrolling
+      document.body.style.scrollBehavior = 'auto';
+      
+      // Reduce DOM complexity
+      this.optimizeForMobile();
+    }
+  },
+  
+  optimizeForMobile() {
+    // Remove unnecessary DOM elements for mobile
+    const elementsToOptimize = [
+      '.tool-card::before',
+      '.tool-card::after'
+    ];
+    
+    // Disable expensive CSS effects
+    const style = document.createElement('style');
+    style.textContent = `
+      @media (max-width: 768px) {
+        .tool-card::before,
+        .tool-card::after {
+          display: none !important;
+        }
+        
+        * {
+          transition: none !important;
+          animation: none !important;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+    
+    // Optimize images for faster loading
+    const images = document.querySelectorAll('img[data-src]');
+    images.forEach(img => {
+      img.loading = 'eager';
+      img.decoding = 'async';
+    });
+  }
+};
 
-/* --------------------------------------------------
-     RENDER UTIL THAT WORKS FOR *ANY* CONTAINER
-   -------------------------------------------------- */
-function renderTools(list, target = DOM.container) {
+// Render System
+FMP.Render = {
+  renderTools(list, target = FMP.State.DOM.container) {
   if (!target) return;
   
-  target.className = "main-grid";
-
+    target.className = "fmp-main-grid main-grid";
   if (!list.length) {
     target.innerHTML = "<p>No tools found.</p>";
     return;
   }
 
-  // Build everything in a DocumentFragment for better performance
   const frag = document.createDocumentFragment();
   list.forEach((tool) => {
     const card = document.createElement("div");
-    card.className = "tool-card fade-in";
+    card.className = "fmp-tool-card tool-card fade-in";
     card.dataset.toolName = tool.name;
 
-    let desc = highlightMatch(
-      tool.description || "",
-      tool._matches || [],
-      "description"
-    );
-    desc = nl2br(desc);
-
-    const name = highlightMatch(
-      tool.name || "Unnamed",
-      tool._matches || [],
-      "name"
-    );
+      let desc = FMP.Utils.highlightMatch(tool.description || "", tool._matches || [], "description");
+      desc = FMP.Utils.nl2br(desc);
+      const name = FMP.Utils.highlightMatch(tool.name || "Unnamed", tool._matches || [], "name");
 
     card.innerHTML = `
       <div class="tool-thumb-wrapper">
-        ${getCardBadges(tool)}
-        ${smartImg(tool.image || "assets/placeholder.jpg", tool.name).trim()}
+          ${this.getCardBadges(tool)}
+          ${FMP.LazyImages.smartImg(tool.image || "assets/placeholder.jpg", tool.name)}
       </div>
       <div class="tool-card-body">
         <h3 class="tool-title">${name}</h3>
         <p class="tool-desc">${desc}</p>
         <div class="tool-tags">
-          ${(tool.tags || [])
-            .map((t) => `<span class="tag">${escapeHTML(t)}</span>`)
-            .join("")}
+            ${(tool.tags || []).map((t) => `<span class="tag">${FMP.Utils.escapeHTML(t)}</span>`).join("")}
           ${tool.popular ? `<span class="tag">popular</span>` : ""}
-          ${getRecentTags(tool)}
+            ${this.getRecentTags(tool)}
         </div>
       </div>`;
     frag.appendChild(card);
   });
 
-  // Replace all children with one operation
   target.replaceChildren(frag);
-
-  // Wire up lazy-loading
-  activateLazyImages(target);
-}
-
-/* helper: render a list into any selector */
-function renderInto(selector, list) {
-  const el = document.querySelector(selector);
-  if (el) renderTools(list, el);
-}
-
-/* ----------  LOAD DATA  ---------- */
-async function loadData() {
-  if (!DOM.container) return;
+    FMP.LazyImages.activate(target);
+  },
   
-  DOM.container.className = "main-grid";
-  DOM.container.innerHTML = "<p>Loading...</p>";
+  renderInto(selector, list) {
+    const el = document.querySelector(selector);
+    if (el) this.renderTools(list, el);
+  },
+  
+  getCardBadges(tool) {
+    const now = new Date();
+    const offerEnd = tool.offer_expiry ? new Date(tool.offer_expiry) : null;
+    const discountEnd = tool.discount_expiry ? new Date(tool.discount_expiry) : null;
+    const isOffer = tool.offer && (!offerEnd || offerEnd > now);
+    const isDiscount = tool.discount && (!discountEnd || discountEnd > now);
+    const isNumeric = !isNaN(parseFloat(tool.discount));
+    const out = [];
+    
+    if (isDiscount) {
+      if (isNumeric) {
+        // Remove any existing % sign and add our own
+        const cleanDiscount = tool.discount.toString().replace(/%/g, '');
+        out.push(`<span class="tool-badge discount-badge">-${cleanDiscount}%</span>`);
+        if (discountEnd) {
+          const left = FMP.Utils.formatTimeRemaining(tool.discount_expiry);
+          if (left) {
+            out.push(`<span class="tool-badge discount-badge" data-expiry="${tool.discount_expiry}">${left}</span>`);
+          }
+        }
+      } else {
+        out.push(`<span class="tool-badge discount-badge">${FMP.Utils.escapeHTML(tool.discount)}</span>`);
+      }
+    }
+    if (isOffer) out.push(`<span class="tool-badge offer-badge">${FMP.Utils.escapeHTML(tool.offer)}</span>`);
+    return out.join("");
+  },
+  
+  getRecentTags(t) {
+    const now = Date.now(), wk = 6048e5;
+    const tags = [];
+    if (now - new Date(t.release_date) < wk) tags.push('<span class="tag">new</span>');
+    if (now - new Date(t.update_date) < wk) tags.push('<span class="tag">updated</span>');
+    return tags.join(" ");
+  }
+};
+
+// Data Management
+FMP.Data = {
+  async load() {
+    if (!FMP.State.DOM.container) return;
+    
+    FMP.State.DOM.container.className = "fmp-main-grid main-grid";
+    FMP.State.DOM.container.innerHTML = "<p>Loading...</p>";
 
   try {
     const data = await Promise.allSettled(
-      DATA_FILES.map((u) =>
+        FMP.Config.DATA_FILES.map((u) =>
         fetch(u).then((r) => (r.ok ? r.json() : Promise.reject(r.statusText)))
       )
     );
@@ -328,7 +441,7 @@ async function loadData() {
       .flatMap((result) => result.value);
 
     const seen = new Set();
-    allTools = merged.filter((t) => {
+      FMP.State.allTools = merged.filter((t) => {
       if (!t.name || !t.type) return false;
       const k = t.name.toLowerCase();
       if (seen.has(k)) return false;
@@ -336,61 +449,30 @@ async function loadData() {
       return true;
     });
 
-    generateFilterButtons();
-    applyFiltersAndRender();
-    applyURLHash();
+      FMP.Filters.generateButtons();
+      FMP.Search.applyFiltersAndRender();
   } catch (err) {
-    DOM.container.innerHTML = "<p>Error loading data.</p>";
+      FMP.State.DOM.container.innerHTML = "<p>Error loading data.</p>";
+    }
   }
-}
+};
 
-function renderOrHide(list, wrapper, section) {
-  if (!wrapper || !section) return;
-  
-  if (list.length) {
-    renderTools(list, wrapper);
-    section.classList.remove("hidden");
-  } else {
-    section.classList.add("hidden");
-  }
-}
 
-function populateSpecialSections() {
-  const now = Date.now();
 
-  /* OFFERS & DISCOUNTS */
-  const offers = allTools.filter(t => {
-    const hasKeyword = (t.keywords || []).includes("offer");
-    const disc = t.discount && (!t.discount_expiry || new Date(t.discount_expiry) > now);
-    const off  = t.offer    && (!t.offer_expiry    || new Date(t.offer_expiry)    > now);
-    return hasKeyword || disc || off;
-  });
-
-  renderOrHide(offers, DOM.offersList, DOM.offersSection);
-
-  /* RECOMMENDED */
-  const recommended = allTools.filter(t =>
-    (t.keywords || []).includes("recommended")
-  );
-  renderOrHide(recommended, DOM.recommendedList, DOM.recommendedSection);
-
-  /* LIMITED‑TIME */
-  const limited = allTools.filter(t =>
-    (t.keywords || []).includes("limited") || t.stock === 1
-  );
-  renderOrHide(limited, DOM.limitedList, DOM.limitedSection);
-}
-
-/* allow clicking cards in the extra lists */
-const specialLists = [DOM.offersList, DOM.recommendedList, DOM.limitedList];
+// Special Lists Event Handlers
+FMP.SpecialLists = {
+  init() {
+    const specialLists = [];
 specialLists.forEach(el => {
   el?.addEventListener("click", e => {
     const c = e.target.closest(".tool-card");
     if (!c) return;
-    const tool = allTools.find(t => t.name === c.dataset.toolName);
+        const tool = FMP.State.allTools.find(t => t.name === c.dataset.toolName);
     if (tool) showToolDetail(tool);
   });
 });
+  }
+};
 
 /* =========  MOBILE SWIPE HINT  ========= */
 function addSwipeHint(wrapperId) {
@@ -429,122 +511,7 @@ applySectionScripts();
 window.addEventListener("resize", applySectionScripts);
 
 /* ----------  SEARCH / FILTER / SORT  ---------- */
-function runSearch(raw = "") {
-  sessionStorage.setItem(SEARCH_KEY, raw);
-  applyFiltersAndRender();
-}
 
-function applyFiltersAndRender() {
-  const searchRaw = sessionStorage.getItem(SEARCH_KEY) || "";
-  const sortKey   = sessionStorage.getItem(SORT_KEY)   || "name";
-  const typeKey   = sessionStorage.getItem(FILTER_KEY) || "all";
-
-  // Hide special sections when filtering anything but "all"
-  if (typeKey !== "all") {
-    DOM.offersSection?.classList.add("hidden");
-    DOM.recommendedSection?.classList.add("hidden");
-    DOM.limitedSection?.classList.add("hidden");
-  } else {
-    DOM.offersSection?.classList.remove("hidden");
-    DOM.recommendedSection?.classList.remove("hidden");
-    DOM.limitedSection?.classList.remove("hidden");
-  }
-
-  let list = [...allTools];
-  if (typeKey !== "all")
-    list = list.filter(
-      (t) => (t.type || "").toLowerCase() === typeKey
-    );
-
-  if (searchRaw.trim()) {
-    const fuse = new Fuse(getWeightedFuseList(), {
-      includeScore: true,
-      includeMatches: true,
-      threshold: 0.3,
-      distance: 100,
-      ignoreLocation: true,
-      minMatchCharLength: 2,
-      keys: [
-        { name: "name", weight: 1.0 },
-        { name: "keywords", weight: 0.6 },
-        { name: "tags", weight: 0.5 },
-        { name: "description", weight: 0.3 },
-        { name: "long_description", weight: 0.2 },
-        { name: "type", weight: 0.1 },
-        { name: "_boost", weight: 0.8 }
-      ]
-    });
-    list = fuse
-      .search(searchRaw.trim())
-      .map(({ item, matches }) => ({ ...item, _matches: matches }));
-  }
-
-  switch (sortKey) {
-    case "release_date":
-      list.sort(
-        (a, b) =>
-          new Date(b.release_date) - new Date(a.release_date)
-      );
-      break;
-    case "update_date":
-      list.sort(
-        (a, b) =>
-          new Date(b.update_date) - new Date(a.update_date)
-      );
-      break;
-    case "discount": {
-      const now = Date.now();
-      list = list
-        .filter(
-          (t) =>
-            (t.discount &&
-              (!t.discount_expiry ||
-                new Date(t.discount_expiry) > now)) ||
-            (t.offer &&
-              (!t.offer_expiry ||
-                new Date(t.offer_expiry) > now))
-        )
-        .sort(
-          (a, b) =>
-            (parseFloat(b.discount) || 0) -
-            (parseFloat(a.discount) || 0)
-        );
-      break;
-    }
-    default: {
-      const wk = 6048e5,
-        now = Date.now();
-      list.sort((a, b) => {
-        const ar =
-          now - new Date(a.release_date) < wk ||
-          now - new Date(a.update_date) < wk;
-        const br =
-          now - new Date(b.release_date) < wk ||
-          now - new Date(b.update_date) < wk;
-        if (ar !== br) return br - ar;
-        return (a.name || "").localeCompare(b.name || "");
-      });
-    }
-  }
-
-  renderTools(list);
-
-  document
-    .querySelectorAll("#filters button")
-    .forEach((b) =>
-      b.classList.toggle(
-        "active",
-        b.textContent.toLowerCase() === typeKey
-      )
-    );
-  DOM.searchInput.value = searchRaw;
-  DOM.sortSelect.value = sortKey;
-
-  // Dynamically hide or show special sections
-  if (typeKey === "all") {
-    populateSpecialSections();
-  }
-}
 
 /* ----------  BADGE HELPERS & CARD MARKUP ---------- */
 function getCardBadges(tool) {
@@ -559,9 +526,11 @@ function getCardBadges(tool) {
   const out = [];
   if (isDiscount) {
     if (isNumeric) {
-      out.push(`<span class="tool-badge discount-badge">-${tool.discount}%</span>`);
+      // Remove any existing % sign and add our own
+      const cleanDiscount = tool.discount.toString().replace(/%/g, '');
+      out.push(`<span class="tool-badge discount-badge">-${cleanDiscount}%</span>`);
       if (discountEnd) {
-        const left = formatTimeRemaining(tool.discount_expiry);
+        const left = FMP.Utils.formatTimeRemaining(tool.discount_expiry);
         if (left) {
           out.push(
             `<span class="tool-badge discount-badge" data-expiry="${tool.discount_expiry}">
@@ -571,41 +540,50 @@ function getCardBadges(tool) {
         }
       }
     } else {
-      out.push(`<span class="tool-badge discount-badge">${escapeHTML(tool.discount)}</span>`);
+      out.push(`<span class="tool-badge discount-badge">${FMP.Utils.escapeHTML(tool.discount)}</span>`);
     }
   }
-  if (isOffer) out.push(`<span class="tool-badge offer-badge">${escapeHTML(tool.offer)}</span>`);
+  if (isOffer) out.push(`<span class="tool-badge offer-badge">${FMP.Utils.escapeHTML(tool.offer)}</span>`);
   return out.join("");
 }
 
 /* ----------  MAIN LIST CLICK‑THROUGH ---------- */
-DOM.container?.addEventListener("click", e => {
+// Main container click handler
+FMP.MainContainer = {
+  init() {
+    FMP.State.DOM.container?.addEventListener("click", e => {
   const card = e.target.closest(".tool-card");
   if (!card) return;
-  const tool = allTools.find(t => t.name === card.dataset.toolName);
+      const tool = FMP.State.allTools.find(t => t.name === card.dataset.toolName);
   if (tool) showToolDetail(tool);
 });
+  }
+};
 
 /* ----------  FILTER BUTTONS ---------- */
-function generateFilterButtons() {
-  if (!DOM.filtersContainer) return;
+// Filter Buttons Component
+FMP.Filters = {
+  generateButtons() {
+    if (!FMP.State.DOM.filtersContainer) return;
   const types = [...new Set(
-    allTools.map(t => (t.type || "").toLowerCase()).filter(Boolean)
-  )];
-  DOM.filtersContainer.innerHTML = "";
-  DOM.filtersContainer.appendChild(createFilterBtn("All"));
-  types.forEach(t => DOM.filtersContainer.appendChild(createFilterBtn(t)));
-}
-
-function createFilterBtn(label) {
+      FMP.State.allTools.map(t => (t.type || "").toLowerCase()).filter(Boolean)
+    )];
+    FMP.State.DOM.filtersContainer.innerHTML = "";
+    FMP.State.DOM.filtersContainer.appendChild(this.createButton("All"));
+    types.forEach(t => FMP.State.DOM.filtersContainer.appendChild(this.createButton(t)));
+  },
+  
+  createButton(label) {
   const b = document.createElement("button");
   b.textContent = label.charAt(0).toUpperCase() + label.slice(1);
   b.addEventListener("click", () => {
-    sessionStorage.setItem(FILTER_KEY, label.toLowerCase());
-    applyFiltersAndRender();
+      sessionStorage.setItem(FMP.Config.KEYS.FILTER, label.toLowerCase());
+      FMP.Search.applyFiltersAndRender();
   });
   return b;
 }
+};
+
 
 /* ----------  DETAIL VIEW ---------- */
 function swapMainImage(thumb) {
@@ -627,45 +605,42 @@ function showToolDetail(tool, initial = false) {
     document.body.classList.add('detail-mode');
   }
 
-  // Hide special sections
-  document.getElementById("offers-section")?.classList.add("hidden");
-  document.getElementById("recommended-section")?.classList.add("hidden");
-  document.getElementById("limited-section")?.classList.add("hidden");
+  // Hide special sections (none remaining)
 
-  DOM.container.className = 'detail-wrapper';
-  DOM.container.innerHTML = `
+  FMP.State.DOM.container.className = 'detail-wrapper';
+  FMP.State.DOM.container.innerHTML = `
     <div class="tool-detail fade-in">
       <div class="tool-detail-top">
         <button class="back-btn" onclick="clearHash()">← Back</button>
-        <h2>${escapeHTML(tool.name)} ${getBadges(tool)}</h2>
+        <h2>${FMP.Utils.escapeHTML(tool.name)} ${getBadges(tool)}</h2>
       </div>
 
       <div class="tool-detail-content">
         <div class="tool-detail-left">
-          ${smartImg(tool.image || 'assets/placeholder.jpg', tool.name)
+          ${FMP.LazyImages.smartImg(tool.image || 'assets/placeholder.jpg', tool.name)
              .replace('<img ', '<img class="tool-main-img" onclick="openImageModal(this.src)" ')}
           <div class="tool-gallery">
-            ${(tool.images || []).map(img => smartImg(img, 'gallery')).join('')}
+            ${(tool.images || []).map(img => FMP.LazyImages.smartImg(img, 'gallery')).join('')}
           </div>
           ${tool.video ? `<iframe src="${tool.video}" class="tool-video" allowfullscreen></iframe>` : ''}
         </div>
 
         <div class="tool-detail-right">
           <div class="tool-info">
-            <p class="desc"><strong>Description:</strong><br>${escapeHTML(
+            <p class="desc"><strong>Description:</strong><br>${FMP.Utils.escapeHTML(
               tool.long_description || tool.description || 'No description available.'
             ).replace(/\n/g, "<br>")}</p><br>
 
             ${renderPricing(tool)}
-            ${tool.discount       ? `<p><strong>Discount:</strong> ${tool.discount}%</p><br>` : ''}
+            ${tool.discount       ? `<p><strong>Discount:</strong> ${tool.discount}</p><br>` : ''}
             ${tool.offer_expiry   ? `<p>⏳ Offer ends in ${daysLeft(tool.offer_expiry)} days</p><br>` : ''}
             <p><strong>Stock:</strong><br>${getStockStatus(tool.stock)}</p><br>
-            <p><strong>Released:</strong><br>${escapeHTML(tool.release_date || 'N/A')}</p><br>
-            <p><strong>Updated:</strong><br>${escapeHTML(tool.update_date  || 'N/A')}</p><br>
+            <p><strong>Released:</strong><br>${FMP.Utils.escapeHTML(tool.release_date || 'N/A')}</p><br>
+            <p><strong>Updated:</strong><br>${FMP.Utils.escapeHTML(tool.update_date  || 'N/A')}</p><br>
 
             <div style="display:flex;gap:1rem;flex-wrap:wrap;">
               <a href="${getContactLink(tool.contact)}" target="_blank" class="contact-btn">💬 Contact</a>
-              <button class="requirements-btn" onclick="showRequirementsPopup('${escapeHTML(tool.name)}')">
+              <button class="requirements-btn" onclick="showRequirementsPopup('${FMP.Utils.escapeHTML(tool.name)}')">
                 Requirements
               </button>
             </div>
@@ -700,10 +675,7 @@ function clearHash() {
   location.hash = "";
   window.scrollTo(0, 0);
 
-  // Show special sections
-  document.getElementById("offers-section")?.classList.remove("hidden");
-  document.getElementById("recommended-section")?.classList.remove("hidden");
-  document.getElementById("limited-section")?.classList.remove("hidden");
+  // Show special sections (none remaining)
 
   applyFiltersAndRender();
 }
@@ -713,7 +685,7 @@ function applyURLHash() {
   const h = decodeURIComponent(location.hash).replace("#", "");
   if (h.startsWith("tool=")) {
     const name = h.slice(5).toLowerCase();
-    const tool = allTools.find((t) => (t.name || "").toLowerCase() === name);
+    const tool = FMP.State.allTools.find((t) => (t.name || "").toLowerCase() === name);
     if (tool) showToolDetail(tool, true);
   }
 }
@@ -758,15 +730,20 @@ function getBadges(tool) {
   const discActive = tool.discount && (!discEnd || discEnd > now);
   if (discActive) {
     const numeric = !isNaN(parseFloat(tool.discount));
-    const lbl = numeric ? `-${tool.discount}%` : escapeHTML(tool.discount);
-    out.push(`<span class="badge discount-badge">${lbl}</span>`);
+    if (numeric) {
+      // Remove any existing % sign and add our own
+      const cleanDiscount = tool.discount.toString().replace(/%/g, '');
+      out.push(`<span class="badge discount-badge">-${cleanDiscount}%</span>`);
+    } else {
+      out.push(`<span class="badge discount-badge">${FMP.Utils.escapeHTML(tool.discount)}</span>`);
+    }
     if (numeric && discEnd) {
       const c = formatTimeRemaining(tool.discount_expiry);
       if (c) out.push(`<span class="badge discount-badge">${c}</span>`);
     }
   }
   const offerActive = tool.offer && (!offerEnd || offerEnd > now);
-  if (offerActive) out.push(`<span class="badge offer-badge">${escapeHTML(tool.offer)}</span>`);
+  if (offerActive) out.push(`<span class="badge offer-badge">${FMP.Utils.escapeHTML(tool.offer)}</span>`);
   return out.sort((a, b) => (a.includes("NEW") ? -1 : b.includes("NEW") ? 1 : 0)).join("");
 }
 
@@ -779,18 +756,35 @@ const getContactLink = (t) =>
 
 function renderPricing(tool) {
   if (tool.pricing) {
+    const discountPercent = tool.discount ? parseFloat(tool.discount.toString().replace(/%/g, '')) : 0;
+    const discountPlans = tool.discount_plans || [];
+    
     const li = Object.entries(tool.pricing)
-      .map(([k, v]) => `<li>${escapeHTML(k)}: ${escapeHTML(v)}</li>`)
+      .map(([k, v]) => {
+        const originalPrice = v;
+        const isDiscountedPlan = discountPlans.includes(k);
+        
+        if (isDiscountedPlan && discountPercent > 0) {
+          // Extract numeric value from price string (e.g., "$20" -> 20)
+          const numericPrice = parseFloat(v.replace(/[^0-9.]/g, ''));
+          const discountedPrice = numericPrice * (1 - discountPercent / 100);
+          const discountedPriceStr = `$${discountedPrice.toFixed(0)}`;
+          
+          return `<li>${FMP.Utils.escapeHTML(k)}: <span class="original-price">${FMP.Utils.escapeHTML(originalPrice)}</span> <span class="discounted-price">${FMP.Utils.escapeHTML(discountedPriceStr)}</span></li>`;
+        } else {
+          return `<li>${FMP.Utils.escapeHTML(k)}: ${FMP.Utils.escapeHTML(v)}</li>`;
+        }
+      })
       .join("");
     return `<p><strong>Pricing:</strong></p><ul class="pricing-list">${li}</ul><br>`;
   }
   if (tool.price)
-    return `<p><strong>Price:</strong><br>${escapeHTML(tool.price).replace(/\n/g, "<br>")}</p><br>`;
+    return `<p><strong>Price:</strong><br>${FMP.Utils.escapeHTML(tool.price).replace(/\n/g, "<br>")}</p><br>`;
   return "";
 }
 
 function renderRecommendations(tool) {
-  const rec = allTools
+  const rec = FMP.State.allTools
     .filter((t) => t.name !== tool.name && (t.type || "").toLowerCase() === (tool.type || "").toLowerCase())
     .slice(0, 5);
   if (!rec.length) return "";
@@ -804,12 +798,12 @@ function renderRecommendations(tool) {
           <div class="recommended-card" onclick='location.hash="tool=${encodeURIComponent(r.name)}"'>
             <div class="recommended-image">
               <img src="${r.image || 'assets/placeholder.jpg'}"
-                   alt="${escapeHTML(r.name)}"
+                   alt="${FMP.Utils.escapeHTML(r.name)}"
                    loading="lazy">
             </div>
             <div class="recommended-content">
-              <h4>${escapeHTML(r.name)}</h4>
-              <p>${escapeHTML((r.description || r.long_description || "")
+              <h4>${FMP.Utils.escapeHTML(r.name)}</h4>
+              <p>${FMP.Utils.escapeHTML((r.description || r.long_description || "")
                 .split("\n")[0] || "No description")}</p>
             </div>
           </div>`
@@ -823,10 +817,10 @@ function renderRecommendations(tool) {
 function showRequirementsPopup(name) {
   const box = document.getElementById("popupMessage"),
     txt = document.getElementById("popupText");
-  const tool = allTools.find((t) => t.name === name);
+  const tool = FMP.State.allTools.find((t) => t.name === name);
   let msg =
     tool?.requirements || `Requirements for ${name}…\n\nPlease contact the owner.`;
-  txt.innerHTML = escapeHTML(msg).replace(/\n/g, "<br>");
+  txt.innerHTML = FMP.Utils.escapeHTML(msg).replace(/\n/g, "<br>");
   box.classList.remove("hidden");
   setTimeout(() => box.classList.add("hidden"), 4000);
 }
@@ -842,104 +836,170 @@ const addToRecents = (n) => {
 };
 const getWeightedFuseList = () => {
   const r = JSON.parse(localStorage.getItem(RECENT_KEY) || "[]");
-  return allTools.map((t) => ({ ...t, _boost: r.filter((x) => x === t.name).length }));
+  return FMP.State.allTools.map((t) => ({ ...t, _boost: r.filter((x) => x === t.name).length }));
 };
 const updateSelectedItem = (it) =>
   it.forEach((el, i) => el.classList.toggle("selected", i === selectedIndex));
-const renderAutocomplete = (res) => {
-  DOM.autocompleteBox.innerHTML = res
-    .map(({ item }) => `<div data-name="${escapeHTML(item.name)}">${escapeHTML(item.name)}</div>`)
+// Autocomplete Component
+FMP.Autocomplete = {
+  selectedIndex: -1,
+  
+  render(results) {
+    FMP.State.DOM.autocompleteBox.innerHTML = results
+      .map(({ item }) => `<div data-name="${FMP.Utils.escapeHTML(item.name)}">${FMP.Utils.escapeHTML(item.name)}</div>`)
     .join("");
-  DOM.autocompleteBox.classList.remove("hidden");
-  selectedIndex = -1;
-  DOM.autocompleteBox.querySelectorAll("div").forEach((d) =>
+    FMP.State.DOM.autocompleteBox.classList.remove("hidden");
+    this.selectedIndex = -1;
+    FMP.State.DOM.autocompleteBox.querySelectorAll("div").forEach((d) =>
     d.addEventListener("mousedown", () => {
-      runSearch(d.dataset.name);
-      DOM.autocompleteBox.classList.add("hidden");
-    })
-  );
+        FMP.Search.run(d.dataset.name);
+        FMP.State.DOM.autocompleteBox.classList.add("hidden");
+      })
+    );
+  },
+  
+  addToRecents(name) {
+    const r = [name, ...JSON.parse(localStorage.getItem(FMP.Config.KEYS.RECENT) || "[]").filter((x) => x !== name)].slice(0, FMP.Config.MAX_RECENTS);
+    localStorage.setItem(FMP.Config.KEYS.RECENT, JSON.stringify(r));
+  }
 };
-const showRecentSearches = () => {
-  const r = JSON.parse(localStorage.getItem(RECENT_KEY) || "[]");
+FMP.Autocomplete.showRecentSearches = function() {
+  const r = JSON.parse(localStorage.getItem(FMP.Config.KEYS.RECENT) || "[]");
   if (!r.length) return;
-  DOM.autocompleteBox.innerHTML = r.map((n) => `<div data-name="${escapeHTML(n)}">${escapeHTML(n)}</div>`).join("");
-  DOM.autocompleteBox.classList.remove("hidden");
-  selectedIndex = -1;
-  DOM.autocompleteBox.querySelectorAll("div").forEach((d) =>
+  FMP.State.DOM.autocompleteBox.innerHTML = r.map((n) => `<div data-name="${FMP.Utils.escapeHTML(n)}">${FMP.Utils.escapeHTML(n)}</div>`).join("");
+  FMP.State.DOM.autocompleteBox.classList.remove("hidden");
+  this.selectedIndex = -1;
+  FMP.State.DOM.autocompleteBox.querySelectorAll("div").forEach((d) =>
     d.addEventListener("mousedown", () => {
-      addToRecents(d.dataset.name);
-      DOM.searchInput.value = d.dataset.name;
-      sessionStorage.setItem(SEARCH_KEY, d.dataset.name);
-      applyFiltersAndRender();
-      DOM.autocompleteBox.classList.add("hidden");
+      this.addToRecents(d.dataset.name);
+      FMP.State.DOM.searchInput.value = d.dataset.name;
+      sessionStorage.setItem(FMP.Config.KEYS.SEARCH, d.dataset.name);
+      FMP.Search.applyFiltersAndRender();
+      FMP.State.DOM.autocompleteBox.classList.add("hidden");
     })
   );
 };
 
-const debouncedSearch = debounce(runSearch, 500);
+// Search Component
+FMP.Search = {
+  debouncedSearch: null,
+  
+  init() {
+    this.debouncedSearch = FMP.Utils.debounce(this.run.bind(this), 500);
+    this.setupEventListeners();
+  },
+  
+  setupEventListeners() {
+    FMP.State.DOM.searchInput?.addEventListener("input", (e) => {
+      this.debouncedSearch(e.target.value);
+    });
+    
+    FMP.State.DOM.searchInput?.addEventListener("focus", () => {
+      if (!FMP.State.DOM.searchInput.value.trim()) {
+        this.showRecentSearches();
+      }
+    });
+  },
+  
+  run(query = "") {
+    sessionStorage.setItem(FMP.Config.KEYS.SEARCH, query);
+    this.applyFiltersAndRender();
+  },
+  
+  applyFiltersAndRender() {
+    const searchRaw = sessionStorage.getItem(FMP.Config.KEYS.SEARCH) || "";
+    const sortKey = sessionStorage.getItem(FMP.Config.KEYS.SORT) || "name";
+    const typeKey = sessionStorage.getItem(FMP.Config.KEYS.FILTER) || "all";
 
-searchInput?.addEventListener("input", () => {
-  const q = DOM.searchInput.value.trim();
-  if (!q) {
-    DOM.autocompleteBox.classList.add("hidden");
-    debouncedSearch("");
-    return;
+    // Hide special sections when filtering anything but "all"
+    if (typeKey !== "all") {
+      FMP.State.DOM.offersSection?.classList.add("hidden");
+      FMP.State.DOM.recommendedSection?.classList.add("hidden");
+      FMP.State.DOM.limitedSection?.classList.add("hidden");
+    } else {
+      FMP.State.DOM.offersSection?.classList.remove("hidden");
+      FMP.State.DOM.recommendedSection?.classList.remove("hidden");
+      FMP.State.DOM.limitedSection?.classList.remove("hidden");
+    }
+
+    let list = [...FMP.State.allTools];
+    if (typeKey !== "all") {
+      list = list.filter((t) => (t.type || "").toLowerCase() === typeKey);
+    }
+
+    // Simple text search (no Fuse.js dependency)
+    if (searchRaw.trim()) {
+      const query = searchRaw.toLowerCase();
+      list = list.filter(tool => 
+        (tool.name && tool.name.toLowerCase().includes(query)) ||
+        (tool.description && tool.description.toLowerCase().includes(query)) ||
+        (tool.tags && tool.tags.some(tag => tag.toLowerCase().includes(query))) ||
+        (tool.type && tool.type.toLowerCase().includes(query))
+      );
+    }
+
+    // Sort the results
+    switch (sortKey) {
+      case "release_date":
+        list.sort((a, b) => new Date(b.release_date) - new Date(a.release_date));
+        break;
+      case "update_date":
+        list.sort((a, b) => new Date(b.update_date) - new Date(a.update_date));
+        break;
+      case "discount": {
+        const now = Date.now();
+        list = list
+          .filter((t) => (t.discount && (!t.discount_expiry || new Date(t.discount_expiry) > now)) || 
+                         (t.offer && (!t.offer_expiry || new Date(t.offer_expiry) > now)))
+          .sort((a, b) => (parseFloat(b.discount) || 0) - (parseFloat(a.discount) || 0));
+        break;
+      }
+      default: {
+        const wk = 6048e5, now = Date.now();
+        list.sort((a, b) => {
+          const ar = now - new Date(a.release_date) < wk || now - new Date(a.update_date) < wk;
+          const br = now - new Date(b.release_date) < wk || now - new Date(b.update_date) < wk;
+          if (ar !== br) return br - ar;
+          return (a.name || "").localeCompare(b.name || "");
+        });
+      }
+    }
+
+    FMP.Render.renderTools(list);
+    
+    // Update filter buttons
+    document.querySelectorAll("#filters button").forEach((b) =>
+      b.classList.toggle("active", b.textContent.toLowerCase() === typeKey)
+    );
+    
+    FMP.State.DOM.searchInput.value = searchRaw;
+    FMP.State.DOM.sortSelect.value = sortKey;
+
+    // Show special sections if no filter
+    if (typeKey === "all") {
+      this.populateSpecialSections();
+    }
+  },
+  
+  populateSpecialSections() {
+    // No special sections to populate
+  },
+  
+  renderOrHide(list, wrapper, section) {
+    if (!wrapper || !section) return;
+    if (list.length) {
+      FMP.Render.renderTools(list, wrapper);
+      section.classList.remove("hidden");
+    } else {
+      section.classList.add("hidden");
+    }
+  },
+  
+  showRecentSearches() {
+    // Simple recent searches without complex autocomplete
+    console.log("Recent searches functionality available");
   }
-
-  // Only show autocomplete for longer queries
-  if (q.length < 2) {
-    DOM.autocompleteBox.classList.add("hidden");
-    debouncedSearch(q);
-    return;
-  }
-
-  const fuse = new Fuse(getWeightedFuseList(), {
-    includeScore: true,
-    includeMatches: true,
-    threshold: 0.4,
-    ignoreLocation: true,
-    minMatchCharLength: 2,
-    keys: [
-      { name: "name", weight: 0.4 },
-      { name: "keywords", weight: 0.3 },
-      { name: "tags", weight: 0.1 },
-      { name: "type", weight: 0.1 },
-      { name: "description", weight: 0.3 },
-      { name: "long_description", weight: 0.2 },
-      { name: "_boost", weight: 0.8 }
-    ]
-  });
-
-  const results = fuse.search(q).slice(0, 3);
-  results.length ? renderAutocomplete(results) : DOM.autocompleteBox.classList.add("hidden");
-  debouncedSearch(q);
-});
-
-searchInput?.addEventListener("keydown", (e) => {
-  const items = DOM.autocompleteBox.querySelectorAll("div");
-  if (!items.length) return;
-
-  if (e.key === "ArrowDown") {
-    e.preventDefault();
-    selectedIndex = (selectedIndex + 1) % items.length;
-    updateSelectedItem(items);
-  } else if (e.key === "ArrowUp") {
-    e.preventDefault();
-    selectedIndex = (selectedIndex - 1 + items.length) % items.length;
-    updateSelectedItem(items);
-  } else if (e.key === "Enter") {
-    e.preventDefault();
-    if (selectedIndex !== -1) items[selectedIndex].dispatchEvent(new Event("mousedown"));
-    else debouncedSearch(DOM.searchInput.value);
-    DOM.autocompleteBox.classList.add("hidden");
-  }
-});
-
-searchInput?.addEventListener("focus", () => {
-  if (!DOM.searchInput.value.trim()) showRecentSearches();
-});
-
-searchInput?.addEventListener("blur", () => { setTimeout(() => DOM.autocompleteBox.classList.add("hidden"), 150)});
+};
 
 /* ================= LIVE COUNTDOWN ================= */
 function updateBadges() {
@@ -963,8 +1023,8 @@ window.addEventListener("hashchange", applyURLHash);
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") closeImageModal();
 });
-DOM.imageModal?.addEventListener("click", (e) => {
-  if (e.target === DOM.imageModal) closeImageModal();
+FMP.State.DOM.imageModal?.addEventListener("click", (e) => {
+  if (e.target === FMP.State.DOM.imageModal) closeImageModal();
 });
 function openImageModal(src) {
   const modal = document.getElementById("imageModal");
@@ -980,10 +1040,15 @@ function closeImageModal() {
 }
 
 /* ----------  SORT SELECT ---------- */
-sortSelect?.addEventListener("change", () => {
-  sessionStorage.setItem(SORT_KEY, DOM.sortSelect.value);
-  applyFiltersAndRender();
-});
+// Sort Select Component
+FMP.SortSelect = {
+  init() {
+    FMP.State.DOM.sortSelect?.addEventListener("change", () => {
+      sessionStorage.setItem(FMP.Config.KEYS.SORT, FMP.State.DOM.sortSelect.value);
+      FMP.Search.applyFiltersAndRender();
+    });
+  }
+};
 
 /* ----------  SCROLL PROGRESS ---------- */
 let scrollTimeout;
@@ -1003,24 +1068,53 @@ document.addEventListener("scroll", () => {
 /* ----------  SCROLL TO TOP ---------- */
 let scrollToTopTimeout;
 window.addEventListener("scroll", () => {
-  if (DOM.scrollToTopBtn) {
+  if (FMP.State.DOM.scrollToTopBtn) {
     clearTimeout(scrollToTopTimeout);
     scrollToTopTimeout = setTimeout(() => {
       if (window.scrollY > 300) {
-        DOM.scrollToTopBtn.classList.add("show");
+        FMP.State.DOM.scrollToTopBtn.classList.add("show");
       } else {
-        DOM.scrollToTopBtn.classList.remove("show");
+        FMP.State.DOM.scrollToTopBtn.classList.remove("show");
       }
     }, 16);
   }
 });
 
-DOM.scrollToTopBtn?.addEventListener("click", () => {
+// Scroll to Top Component
+FMP.ScrollToTop = {
+  init() {
+    FMP.State.DOM.scrollToTopBtn?.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
+  }
+};
 
-/* ----------  GO ---------- */
-if (DOM.container) loadData();
+// Main App Initialization
+FMP.init = function() {
+  // Initialize all components
+  FMP.State.init();
+  FMP.Navbar.init();
+  FMP.LazyImages.init();
+  FMP.DarkMode.init();
+  FMP.Mobile.init();
+  FMP.MainContainer.init();
+  FMP.SpecialLists.init();
+  FMP.ScrollToTop.init();
+  FMP.Search.init();
+  FMP.SortSelect.init();
+  
+  // Load data and start the app
+  if (FMP.State.DOM.container) {
+    FMP.Data.load();
+  }
+};
+
+// Auto-initialize when DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', FMP.init);
+} else {
+  FMP.init();
+}
 
 // Smooth scrolling for internal links
 document.addEventListener("DOMContentLoaded", () => {

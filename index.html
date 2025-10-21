@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <!-- Essential Meta Tags (will be enhanced by SEO Manager) -->
+  <!-- Essential Meta Tags -->
   <meta name="author" content="Flame Mod Paradise" />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
   <meta name="theme-color" content="#FF6B35" />
@@ -21,14 +21,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preload" href="style.css" as="style" />
   <link rel="preload" href="script.js" as="script" />
-  <link rel="preload" href="seo-manager.js" as="script" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
   <link rel="stylesheet" href="style.css" />
 
-  <!-- Basic Title (will be enhanced by SEO Manager) -->
+  <!-- Page Title -->
   <title>Flame Mod Paradise</title>
 
-  <!-- Structured Data will be generated dynamically by SEO Manager -->
+  <!-- Structured Data -->
 </head>
 <body>
   <div id="scrollProgress"></div>
@@ -77,24 +76,6 @@
 
     <!-- Main Content -->
     <main class="container">
-      <!-- Offers Carousel -->
-      <section id="offers-section" class="carousel-section">
-        <h2 class="section-title">🔥 Offers &amp; Discounts</h2>
-        <div id="offers-list" class="main-grid carousel"></div>
-      </section>
-
-      <!-- Recommended Carousel -->
-      <section id="recommended-section" class="carousel-section">
-        <h2 class="section-title">⭐ Recommended</h2>
-        <div id="recommended-list" class="main-grid carousel"></div>
-      </section>
-
-      <!-- Limited‑Time Carousel -->
-      <section id="limited-section" class="carousel-section">
-        <h2 class="section-title">⏰ Limited‑Time Item</h2>
-        <div id="limited-list" class="main-grid carousel"></div>
-      </section>
-
       <!-- Master tool list (populated by script.js) -->
       <section class="main-grid" id="main-tool-list"></section>
     </main>
@@ -208,8 +189,6 @@
     function closePopup() { document.getElementById("popupMessage").classList.add("hidden"); }
   </script>
   <script src="script.js" defer></script>
-  <script src="seo-manager.js" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
   <noscript>
     <p>Enable JavaScript for better site readability.<br />Thank You.<hr /></p>
   </noscript>
