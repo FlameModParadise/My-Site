@@ -677,7 +677,7 @@ function clearHash() {
 
   // Show special sections (none remaining)
 
-  applyFiltersAndRender();
+  FMP.Search.applyFiltersAndRender();
 }
 
 /* ----------  HASH UTILS ---------- */
