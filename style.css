@@ -1118,19 +1118,19 @@ body.dark .tool-detail {
 /* ============ BADGES (Main List & Detail) ============ */
 .tool-badge {
   position: absolute;
-  top: 12px;
-  left: 12px;
+  top: 6px;
+  left: 6px;
   display: inline-block;
-  font-size: 0.72rem;
+  font-size: 0.65rem;
   font-weight: 600;
   color: #fff;
   background: var(--badge-default, #6f42c1);
-  padding: 5px 12px;
-  border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  padding: 2px 6px;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   white-space: normal;
   word-wrap: break-word;
-  max-width: calc(100% - 24px);
+  max-width: calc(100% - 12px);
   z-index: 2;
   backdrop-filter: blur(6px);
   transition: all var(--transition);
@@ -1157,8 +1157,14 @@ body.dark .tool-detail {
 
 /* Stacked badges spacing */
 .tool-badge + .tool-badge {
-  margin-top: 32px;
+  margin-top: 16px;
   animation-delay: 0.2s;
+}
+
+@media (max-width: 480px) {
+  .tool-badge + .tool-badge {
+    margin-top: 12px;
+  }
 }
 
 .tool-badge:hover {
@@ -1263,15 +1269,15 @@ body:not(.dark) .updated-badge {
 /* ============ Responsive Badge Fixes ============ */
 @media (max-width: 480px) {
   .tool-badge {
-    top: 8px;
-    right: 8px;
-    font-size: 0.65rem;
-    padding: 3px 8px;
-    border-radius: 10px;
+    top: 4px;
+    left: 4px;
+    font-size: 0.6rem;
+    padding: 2px 5px;
+    border-radius: 6px;
     white-space: normal;
     word-wrap: break-word;
-    max-width: calc(100% - 16px);
-    line-height: 1.2;
+    max-width: calc(100% - 8px);
+    line-height: 1.1;
   }
 
   .badge {
@@ -2149,8 +2155,8 @@ body.dark #removed-offers-section .tool-card:hover {
   
   .tool-badge {
     font-size: 0.6rem;
-    padding: 2px 6px;
-    max-width: calc(100% - 12px);
+    padding: 1px 4px;
+    max-width: calc(100% - 8px);
   }
 }
 
