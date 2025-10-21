@@ -111,12 +111,6 @@ const DOM = {
   darkToggle: document.getElementById("darkToggle"),
   imageModal: document.getElementById("imageModal"),
   autocompleteBox: document.getElementById("autocompleteBox"),
-  offersList: document.getElementById("offers-list"),
-  recommendedList: document.getElementById("recommended-list"),
-  limitedList: document.getElementById("limited-list"),
-  offersSection: document.getElementById("offers-section"),
-  recommendedSection: document.getElementById("recommended-section"),
-  limitedSection: document.getElementById("limited-section")
 };
 
 let allTools = [];
@@ -355,78 +349,8 @@ function renderOrHide(list, wrapper, section) {
   }
 }
 
-function populateSpecialSections() {
-  const now = Date.now();
 
-  /* OFFERS & DISCOUNTS */
-  const offers = allTools.filter(t => {
-    const hasKeyword = (t.keywords || []).includes("offer");
-    const disc = t.discount && (!t.discount_expiry || new Date(t.discount_expiry) > now);
-    const off  = t.offer    && (!t.offer_expiry    || new Date(t.offer_expiry)    > now);
-    return hasKeyword || disc || off;
-  });
 
-  renderOrHide(offers, DOM.offersList, DOM.offersSection);
-
-  /* RECOMMENDED */
-  const recommended = allTools.filter(t =>
-    (t.keywords || []).includes("recommended")
-  );
-  renderOrHide(recommended, DOM.recommendedList, DOM.recommendedSection);
-
-  /* LIMITED‑TIME */
-  const limited = allTools.filter(t =>
-    (t.keywords || []).includes("limited") || t.stock === 1
-  );
-  renderOrHide(limited, DOM.limitedList, DOM.limitedSection);
-}
-
-/* allow clicking cards in the extra lists */
-const specialLists = [DOM.offersList, DOM.recommendedList, DOM.limitedList];
-specialLists.forEach(el => {
-  el?.addEventListener("click", e => {
-    const c = e.target.closest(".tool-card");
-    if (!c) return;
-    const tool = allTools.find(t => t.name === c.dataset.toolName);
-    if (tool) showToolDetail(tool);
-  });
-});
-
-/* =========  MOBILE SWIPE HINT  ========= */
-function addSwipeHint(wrapperId) {
-  const list = document.getElementById(wrapperId);
-  const parent = list?.parentElement;
-  if (!list || !parent) return;
-
-  // Show the hint initially
-  parent.classList.add("has-scroll-hint");
-
-  // Hide after the user scrolls a bit (or after 6s as fallback)
-  const hide = () => parent.classList.remove("has-scroll-hint");
-  list.addEventListener(
-    "scroll",
-    () => {
-      if (list.scrollLeft > 24) hide();
-    },
-    { passive: true }
-  );
-
-  setTimeout(hide, 6000); // Auto-fade in case they don't scroll
-}
-
-/* ========= APPLY SECTION SCRIPTS ========= */
-function applySectionScripts() {
-  const ids = ["offers-list", "recommended-list", "limited-list"];
-  if (window.innerWidth > 480) {
-    ids.forEach(addSwipeHint);
-  }
-}
-
-// Run once on load
-applySectionScripts();
-
-// Re-run if the user resizes the window
-window.addEventListener("resize", applySectionScripts);
 
 /* ----------  SEARCH / FILTER / SORT  ---------- */
 function runSearch(raw = "") {
@@ -439,16 +363,6 @@ function applyFiltersAndRender() {
   const sortKey   = sessionStorage.getItem(SORT_KEY)   || "name";
   const typeKey   = sessionStorage.getItem(FILTER_KEY) || "all";
 
-  // Hide special sections when filtering anything but "all"
-  if (typeKey !== "all") {
-    DOM.offersSection?.classList.add("hidden");
-    DOM.recommendedSection?.classList.add("hidden");
-    DOM.limitedSection?.classList.add("hidden");
-  } else {
-    DOM.offersSection?.classList.remove("hidden");
-    DOM.recommendedSection?.classList.remove("hidden");
-    DOM.limitedSection?.classList.remove("hidden");
-  }
 
   let list = [...allTools];
   if (typeKey !== "all")
@@ -540,10 +454,6 @@ function applyFiltersAndRender() {
   DOM.searchInput.value = searchRaw;
   DOM.sortSelect.value = sortKey;
 
-  // Dynamically hide or show special sections
-  if (typeKey === "all") {
-    populateSpecialSections();
-  }
 }
 
 /* ----------  BADGE HELPERS & CARD MARKUP ---------- */
@@ -559,7 +469,7 @@ function getCardBadges(tool) {
   const out = [];
   if (isDiscount) {
     if (isNumeric) {
-      out.push(`<span class="tool-badge discount-badge">-${tool.discount}%</span>`);
+      out.push(`<span class="tool-badge discount-badge">-${tool.discount}</span>`);
       if (discountEnd) {
         const left = formatTimeRemaining(tool.discount_expiry);
         if (left) {
@@ -627,10 +537,6 @@ function showToolDetail(tool, initial = false) {
     document.body.classList.add('detail-mode');
   }
 
-  // Hide special sections
-  document.getElementById("offers-section")?.classList.add("hidden");
-  document.getElementById("recommended-section")?.classList.add("hidden");
-  document.getElementById("limited-section")?.classList.add("hidden");
 
   DOM.container.className = 'detail-wrapper';
   DOM.container.innerHTML = `
@@ -657,7 +563,7 @@ function showToolDetail(tool, initial = false) {
             ).replace(/\n/g, "<br>")}</p><br>
 
             ${renderPricing(tool)}
-            ${tool.discount       ? `<p><strong>Discount:</strong> ${tool.discount}%</p><br>` : ''}
+            ${tool.discount       ? `<p><strong>Discount:</strong> ${tool.discount}</p><br>` : ''}
             ${tool.offer_expiry   ? `<p>⏳ Offer ends in ${daysLeft(tool.offer_expiry)} days</p><br>` : ''}
             <p><strong>Stock:</strong><br>${getStockStatus(tool.stock)}</p><br>
             <p><strong>Released:</strong><br>${escapeHTML(tool.release_date || 'N/A')}</p><br>
@@ -700,10 +606,6 @@ function clearHash() {
   location.hash = "";
   window.scrollTo(0, 0);
 
-  // Show special sections
-  document.getElementById("offers-section")?.classList.remove("hidden");
-  document.getElementById("recommended-section")?.classList.remove("hidden");
-  document.getElementById("limited-section")?.classList.remove("hidden");
 
   applyFiltersAndRender();
 }
@@ -758,7 +660,7 @@ function getBadges(tool) {
   const discActive = tool.discount && (!discEnd || discEnd > now);
   if (discActive) {
     const numeric = !isNaN(parseFloat(tool.discount));
-    const lbl = numeric ? `-${tool.discount}%` : escapeHTML(tool.discount);
+    const lbl = numeric ? `-${tool.discount}` : escapeHTML(tool.discount);
     out.push(`<span class="badge discount-badge">${lbl}</span>`);
     if (numeric && discEnd) {
       const c = formatTimeRemaining(tool.discount_expiry);
