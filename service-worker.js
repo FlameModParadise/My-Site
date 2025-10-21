@@ -112,7 +112,7 @@ self.addEventListener("fetch", (e) => {
   // Skip cross-origin requests
   if (url.origin !== location.origin) return;
 
-  /* 1 IMAGES – Cache First Strategy */
+  /* 1 IMAGES – Cache First Strategy with Mobile Optimization */
   if (/\.(png|jpe?g|webp|gif|svg|ico)$/i.test(url.pathname)) {
     e.respondWith(
       caches.open(RUNTIME_IMG).then(async (cache) => {
@@ -123,10 +123,20 @@ self.addEventListener("fetch", (e) => {
             return cached;
           }
           
-          const fresh = await fetch(req);
+          // Mobile optimization: Add compression headers for images
+          const headers = new Headers(req.headers);
+          if (url.searchParams.has('q') || url.searchParams.has('w')) {
+            headers.set('Accept', 'image/webp,image/avif,image/*');
+          }
+          
+          const fresh = await fetch(req, { headers });
           if (fresh.ok) {
-            cache.put(req, fresh.clone());
-            console.log("Service Worker: Image cached", url.pathname);
+            // Only cache images smaller than 1MB on mobile
+            const contentLength = fresh.headers.get('content-length');
+            if (!contentLength || parseInt(contentLength) < 1024 * 1024) {
+              cache.put(req, fresh.clone());
+              console.log("Service Worker: Image cached", url.pathname);
+            }
           }
           return fresh;
         } catch (error) {

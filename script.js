@@ -1,19 +1,22 @@
-// ================ MOBILE NAVBAR ================ 
+// ================ MOBILE NAVBAR FIX (SINGLE IMPLEMENTATION) ================ 
 document.addEventListener('DOMContentLoaded', function() {
   const toggle = document.getElementById('navbarToggle');
   const menu = document.getElementById('navbarMenu');
   
   if (!toggle || !menu) return;
   
+  // Simple toggle function
   function toggleMobileMenu() {
     const isOpen = menu.classList.contains('show-menu');
     
     if (isOpen) {
+      // Close menu
       menu.classList.remove('show-menu');
       toggle.innerHTML = '☰';
       toggle.setAttribute('aria-label', 'Open menu');
       document.body.style.overflow = '';
     } else {
+      // Open menu
       menu.classList.add('show-menu');
       toggle.innerHTML = '✕';
       toggle.setAttribute('aria-label', 'Close menu');
@@ -21,13 +24,16 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
   
+  // Single click handler
   toggle.addEventListener('click', function(e) {
     e.preventDefault();
     e.stopPropagation();
     toggleMobileMenu();
   });
   
-  menu.querySelectorAll('a, button').forEach(link => {
+  // Close on link click
+  const menuLinks = menu.querySelectorAll('a, button');
+  menuLinks.forEach(link => {
     link.addEventListener('click', function() {
       if (menu.classList.contains('show-menu')) {
         toggleMobileMenu();
@@ -35,6 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
   
+  // Close on outside click
   document.addEventListener('click', function(e) {
     if (menu.classList.contains('show-menu') && 
         !toggle.contains(e.target) && 
@@ -43,12 +50,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
   
+  // Close on escape
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape' && menu.classList.contains('show-menu')) {
       toggleMobileMenu();
     }
   });
   
+  // Close on resize to desktop
   let resizeTimer;
   window.addEventListener('resize', function() {
     clearTimeout(resizeTimer);
@@ -60,9 +69,14 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
-/* === CSS PATCHES === */
+/* === CSS PATCHES (auto‑injected) === */
 (() => {
-  const css = `:focus-visible{outline:2px solid var(--color-primary);outline-offset:2px;}@keyframes pulse{0%,100%{opacity:.6}50%{opacity:1}}.tool-thumb-wrapper{aspect-ratio:16/9;position:relative;}.tool-thumb-wrapper img{object-fit:cover;width:100%;height:100%;}`;
+  const css = `
+:focus-visible{outline:2px solid var(--color-primary);outline-offset:2px;}
+@keyframes pulse{0%,100%{opacity:.6}50%{opacity:1}}
+.tool-thumb-wrapper{aspect-ratio:16/9;position:relative;}
+.tool-thumb-wrapper img{object-fit:cover;width:100%;height:100%;}
+`;
   const style = document.createElement("style");
   style.textContent = css;
   document.head.appendChild(style);
@@ -87,6 +101,7 @@ const FILTER_KEY  = "filter";
 const RECENT_KEY  = "recentSearches";
 const MAX_RECENTS = 5;
 
+/* DOM - Cached references */
 const DOM = {
   container: document.getElementById("main-tool-list"),
   filtersContainer: document.getElementById("filters"),
@@ -95,7 +110,13 @@ const DOM = {
   scrollToTopBtn: document.getElementById("scrollToTopBtn"),
   darkToggle: document.getElementById("darkToggle"),
   imageModal: document.getElementById("imageModal"),
-  autocompleteBox: document.getElementById("autocompleteBox")
+  autocompleteBox: document.getElementById("autocompleteBox"),
+  offersList: document.getElementById("offers-list"),
+  recommendedList: document.getElementById("recommended-list"),
+  limitedList: document.getElementById("limited-list"),
+  offersSection: document.getElementById("offers-section"),
+  recommendedSection: document.getElementById("recommended-section"),
+  limitedSection: document.getElementById("limited-section")
 };
 
 let allTools = [];
@@ -121,6 +142,7 @@ function highlightMatch(text, matches, key) {
   const m = matches?.find((x) => x.key === key);
   if (!m?.indices?.length) return escapeHTML(text);
 
+  // Merge adjacent/overlapping ranges
   const merged = m.indices
     .sort((a, b) => a[0] - b[0])
     .reduce((acc, [s, e]) => {
@@ -132,9 +154,11 @@ function highlightMatch(text, matches, key) {
       return acc;
     }, []);
 
+  // Filter out runs shorter than the minimum length
   const MIN_RUN = 2;
   const goodRuns = merged.filter(([s, e]) => e - s + 1 >= MIN_RUN);
 
+  // Build the highlighted string
   let out = "", last = 0;
   for (const [start, end] of goodRuns) {
     out += escapeHTML(text.slice(last, start));
@@ -144,68 +168,47 @@ function highlightMatch(text, matches, key) {
   return out + escapeHTML(text.slice(last));
 }
 
-function preventFOUC() {
-  const checkStylesLoaded = () => {
-    const stylesheets = document.querySelectorAll('link[rel="stylesheet"]');
-    let loadedCount = 0;
-    
-    stylesheets.forEach(link => {
-      if (link.sheet) loadedCount++;
-    });
-    
-    if (loadedCount === stylesheets.length || document.readyState === 'complete') {
-      document.body.classList.add('styles-loaded');
-    } else {
-      setTimeout(checkStylesLoaded, 10);
-    }
-  };
-  
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', checkStylesLoaded);
-  } else {
-    checkStylesLoaded();
-  }
-  
-  setTimeout(() => document.body.classList.add('styles-loaded'), 1000);
+function getShortDescription(tool, query = "") {
+  const raw =
+    tool.description ||
+    (tool.long_description
+      ? tool.long_description.split("\n")[0] + "…"
+      : "No description available.");
+  return query ? highlightMatch(raw, query) : escapeHTML(raw);
 }
 
-function compressImageIfNeeded(src, options = {}) {
-  if (!src.startsWith('assets/') && !src.startsWith('./assets/')) return src;
-  if (src.includes('?')) return src;
-  
-  const { type = 'general' } = options;
-  const compressionParams = new URLSearchParams();
-  
-  if (type === 'gallery') {
-    compressionParams.set('q', '80');
-    compressionParams.set('w', '200');
-    compressionParams.set('h', '200');
-  } else if (type === 'main') {
-    compressionParams.set('q', '85');
-    compressionParams.set('w', '800');
-  } else if (type === 'thumbnail') {
-    compressionParams.set('q', '75');
-    compressionParams.set('w', '300');
-  } else {
-    compressionParams.set('q', '85');
-    compressionParams.set('w', '600');
-  }
-  
-  return `${src}?${compressionParams.toString()}`;
-}
-
-function smartImg(src, alt = "", options = {}) {
-  const compressedSrc = compressImageIfNeeded(src, options);
-  return `<img loading="lazy" src="${compressedSrc}" alt="${escapeHTML(alt)}" onerror="this.src='assets/placeholder.jpg'">`;
-}
-
-function monitorImageSizes() {
-  document.querySelectorAll('img').forEach(img => {
-    img.addEventListener('load', () => {
-      if (img.naturalWidth > 1000 || img.naturalHeight > 1000) {
-        console.log(`Large image: ${img.src} (${img.naturalWidth}x${img.naturalHeight})`);
+/* ----------  LAZY‑IMAGE SYSTEM ---------- */
+const io = new IntersectionObserver(
+  (entries) => {
+    entries.forEach(({ target, isIntersecting }) => {
+      if (isIntersecting) {
+        target.src = target.dataset.src;
+        io.unobserve(target);
       }
     });
+  },
+  { rootMargin: "50px" }
+);
+
+function smartImg(src, alt = "") {
+  return `
+    <img loading="lazy"
+         data-src="${src}"
+         src="assets/placeholder.jpg"
+         alt="${escapeHTML(alt)}"
+         onerror="this.src='assets/placeholder.jpg'"
+    >
+  `.trim();
+}
+
+function activateLazyImages(root = document) {
+  const images = root.querySelectorAll("img[data-src]");
+  images.forEach((img) => {
+    if (img.complete && img.naturalWidth > 0) {
+      img.src = img.dataset.src;
+    } else {
+      io.observe(img);
+    }
   });
 }
 
@@ -233,19 +236,17 @@ document.addEventListener("keydown", (e) => {
   ) {
     DOM.darkToggle?.click();
   }
-  
-  if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "r") {
-    e.preventDefault();
-    clearServiceWorkerCache();
-    console.log("Cache cleared! Reloading page...");
-    setTimeout(() => location.reload(), 1000);
-  }
 });
 
+
+/* ----------  MOBILE OPTIMIZATION  ---------- */
 if (/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
   document.documentElement.style.setProperty('--transition', '0.1s ease');
 }
 
+/* --------------------------------------------------
+     RENDER UTIL THAT WORKS FOR *ANY* CONTAINER
+   -------------------------------------------------- */
 function renderTools(list, target = DOM.container) {
   if (!target) return;
   
@@ -256,6 +257,7 @@ function renderTools(list, target = DOM.container) {
     return;
   }
 
+  // Build everything in a DocumentFragment for better performance
   const frag = document.createDocumentFragment();
   list.forEach((tool) => {
     const card = document.createElement("div");
@@ -278,7 +280,7 @@ function renderTools(list, target = DOM.container) {
     card.innerHTML = `
       <div class="tool-thumb-wrapper">
         ${getCardBadges(tool)}
-        ${smartImg(tool.image || "assets/placeholder.jpg", tool.name, { type: 'thumbnail' })}
+        ${smartImg(tool.image || "assets/placeholder.jpg", tool.name).trim()}
       </div>
       <div class="tool-card-body">
         <h3 class="tool-title">${name}</h3>
@@ -294,14 +296,20 @@ function renderTools(list, target = DOM.container) {
     frag.appendChild(card);
   });
 
+  // Replace all children with one operation
   target.replaceChildren(frag);
+
+  // Wire up lazy-loading
+  activateLazyImages(target);
 }
 
+/* helper: render a list into any selector */
 function renderInto(selector, list) {
   const el = document.querySelector(selector);
   if (el) renderTools(list, el);
 }
 
+/* ----------  LOAD DATA  ---------- */
 async function loadData() {
   if (!DOM.container) return;
   
@@ -348,16 +356,52 @@ function renderOrHide(list, wrapper, section) {
 }
 
 function populateSpecialSections() {
-  // No special sections needed
+  const now = Date.now();
+
+  /* OFFERS & DISCOUNTS */
+  const offers = allTools.filter(t => {
+    const hasKeyword = (t.keywords || []).includes("offer");
+    const disc = t.discount && (!t.discount_expiry || new Date(t.discount_expiry) > now);
+    const off  = t.offer    && (!t.offer_expiry    || new Date(t.offer_expiry)    > now);
+    return hasKeyword || disc || off;
+  });
+
+  renderOrHide(offers, DOM.offersList, DOM.offersSection);
+
+  /* RECOMMENDED */
+  const recommended = allTools.filter(t =>
+    (t.keywords || []).includes("recommended")
+  );
+  renderOrHide(recommended, DOM.recommendedList, DOM.recommendedSection);
+
+  /* LIMITED‑TIME */
+  const limited = allTools.filter(t =>
+    (t.keywords || []).includes("limited") || t.stock === 1
+  );
+  renderOrHide(limited, DOM.limitedList, DOM.limitedSection);
 }
 
+/* allow clicking cards in the extra lists */
+const specialLists = [DOM.offersList, DOM.recommendedList, DOM.limitedList];
+specialLists.forEach(el => {
+  el?.addEventListener("click", e => {
+    const c = e.target.closest(".tool-card");
+    if (!c) return;
+    const tool = allTools.find(t => t.name === c.dataset.toolName);
+    if (tool) showToolDetail(tool);
+  });
+});
+
+/* =========  MOBILE SWIPE HINT  ========= */
 function addSwipeHint(wrapperId) {
   const list = document.getElementById(wrapperId);
   const parent = list?.parentElement;
   if (!list || !parent) return;
 
+  // Show the hint initially
   parent.classList.add("has-scroll-hint");
 
+  // Hide after the user scrolls a bit (or after 6s as fallback)
   const hide = () => parent.classList.remove("has-scroll-hint");
   list.addEventListener(
     "scroll",
@@ -367,9 +411,10 @@ function addSwipeHint(wrapperId) {
     { passive: true }
   );
 
-  setTimeout(hide, 6000);
+  setTimeout(hide, 6000); // Auto-fade in case they don't scroll
 }
 
+/* ========= APPLY SECTION SCRIPTS ========= */
 function applySectionScripts() {
   const ids = ["offers-list", "recommended-list", "limited-list"];
   if (window.innerWidth > 480) {
@@ -377,9 +422,13 @@ function applySectionScripts() {
   }
 }
 
+// Run once on load
 applySectionScripts();
+
+// Re-run if the user resizes the window
 window.addEventListener("resize", applySectionScripts);
 
+/* ----------  SEARCH / FILTER / SORT  ---------- */
 function runSearch(raw = "") {
   sessionStorage.setItem(SEARCH_KEY, raw);
   applyFiltersAndRender();
@@ -390,14 +439,15 @@ function applyFiltersAndRender() {
   const sortKey   = sessionStorage.getItem(SORT_KEY)   || "name";
   const typeKey   = sessionStorage.getItem(FILTER_KEY) || "all";
 
+  // Hide special sections when filtering anything but "all"
   if (typeKey !== "all") {
-    document.getElementById("offers-section")?.classList.add("hidden");
-    document.getElementById("recommended-section")?.classList.add("hidden");
-    document.getElementById("limited-section")?.classList.add("hidden");
+    DOM.offersSection?.classList.add("hidden");
+    DOM.recommendedSection?.classList.add("hidden");
+    DOM.limitedSection?.classList.add("hidden");
   } else {
-    document.getElementById("offers-section")?.classList.remove("hidden");
-    document.getElementById("recommended-section")?.classList.remove("hidden");
-    document.getElementById("limited-section")?.classList.remove("hidden");
+    DOM.offersSection?.classList.remove("hidden");
+    DOM.recommendedSection?.classList.remove("hidden");
+    DOM.limitedSection?.classList.remove("hidden");
   }
 
   let list = [...allTools];
@@ -490,11 +540,13 @@ function applyFiltersAndRender() {
   DOM.searchInput.value = searchRaw;
   DOM.sortSelect.value = sortKey;
 
+  // Dynamically hide or show special sections
   if (typeKey === "all") {
     populateSpecialSections();
   }
 }
 
+/* ----------  BADGE HELPERS & CARD MARKUP ---------- */
 function getCardBadges(tool) {
   const now = new Date();
   const offerEnd    = tool.offer_expiry    ? new Date(tool.offer_expiry)    : null;
@@ -507,7 +559,7 @@ function getCardBadges(tool) {
   const out = [];
   if (isDiscount) {
     if (isNumeric) {
-      out.push(`<span class="tool-badge discount-badge">-${tool.discount}</span>`);
+      out.push(`<span class="tool-badge discount-badge">-${tool.discount}%</span>`);
       if (discountEnd) {
         const left = formatTimeRemaining(tool.discount_expiry);
         if (left) {
@@ -522,16 +574,11 @@ function getCardBadges(tool) {
       out.push(`<span class="tool-badge discount-badge">${escapeHTML(tool.discount)}</span>`);
     }
   }
-  if (isOffer) {
-    let offerText = escapeHTML(tool.offer);
-    if (offerText.length > 25) {
-      offerText = offerText.substring(0, 22) + '...';
-    }
-    out.push(`<span class="tool-badge offer-badge" title="${escapeHTML(tool.offer)}">${offerText}</span>`);
-  }
+  if (isOffer) out.push(`<span class="tool-badge offer-badge">${escapeHTML(tool.offer)}</span>`);
   return out.join("");
 }
 
+/* ----------  MAIN LIST CLICK‑THROUGH ---------- */
 DOM.container?.addEventListener("click", e => {
   const card = e.target.closest(".tool-card");
   if (!card) return;
@@ -539,6 +586,7 @@ DOM.container?.addEventListener("click", e => {
   if (tool) showToolDetail(tool);
 });
 
+/* ----------  FILTER BUTTONS ---------- */
 function generateFilterButtons() {
   if (!DOM.filtersContainer) return;
   const types = [...new Set(
@@ -559,12 +607,14 @@ function createFilterBtn(label) {
   return b;
 }
 
+/* ----------  DETAIL VIEW ---------- */
 function swapMainImage(thumb) {
   const main = document.querySelector('.tool-main-img');
   if (!main) return;
 
-  const src = thumb.src;
+  const src = thumb.dataset.src || thumb.src;
   main.src = src;
+  main.dataset.src = src;
 
   document.querySelectorAll('.tool-gallery img')
           .forEach(i => i.classList.remove('active'));
@@ -577,6 +627,7 @@ function showToolDetail(tool, initial = false) {
     document.body.classList.add('detail-mode');
   }
 
+  // Hide special sections
   document.getElementById("offers-section")?.classList.add("hidden");
   document.getElementById("recommended-section")?.classList.add("hidden");
   document.getElementById("limited-section")?.classList.add("hidden");
@@ -591,9 +642,10 @@ function showToolDetail(tool, initial = false) {
 
       <div class="tool-detail-content">
         <div class="tool-detail-left">
-          ${smartImg(tool.image || 'assets/placeholder.jpg', tool.name, { type: 'main' }).replace('<img ', '<img class="tool-main-img" onclick="openImageModal(this.src)" ')}
+          ${smartImg(tool.image || 'assets/placeholder.jpg', tool.name)
+             .replace('<img ', '<img class="tool-main-img" onclick="openImageModal(this.src)" ')}
           <div class="tool-gallery">
-            ${(tool.images || []).map(img => smartImg(img, 'gallery', { type: 'gallery' })).join('')}
+            ${(tool.images || []).map(img => smartImg(img, 'gallery')).join('')}
           </div>
           ${tool.video ? `<iframe src="${tool.video}" class="tool-video" allowfullscreen></iframe>` : ''}
         </div>
@@ -605,7 +657,7 @@ function showToolDetail(tool, initial = false) {
             ).replace(/\n/g, "<br>")}</p><br>
 
             ${renderPricing(tool)}
-            ${tool.discount       ? `<p><strong>Discount:</strong> ${tool.discount}</p><br>` : ''}
+            ${tool.discount       ? `<p><strong>Discount:</strong> ${tool.discount}%</p><br>` : ''}
             ${tool.offer_expiry   ? `<p>⏳ Offer ends in ${daysLeft(tool.offer_expiry)} days</p><br>` : ''}
             <p><strong>Stock:</strong><br>${getStockStatus(tool.stock)}</p><br>
             <p><strong>Released:</strong><br>${escapeHTML(tool.release_date || 'N/A')}</p><br>
@@ -625,12 +677,18 @@ function showToolDetail(tool, initial = false) {
     ${renderRecommendations(tool)}
   `;
 
+  // Force load images in the detail view
+  const mainImg = document.querySelector('.tool-main-img');
   const galleryImgs = document.querySelectorAll('.tool-gallery img');
+  if (mainImg && mainImg.dataset.src) mainImg.src = mainImg.dataset.src;
+
   galleryImgs.forEach(img => {
+    if (img.dataset.src) img.src = img.dataset.src;
     img.style.cursor = 'pointer';
     img.addEventListener('click', () => swapMainImage(img));
   });
 
+  // Scroll the detail card into view
   setTimeout(() => {
     const detail = document.querySelector('.tool-detail');
     if (detail) window.scrollTo({ top: detail.getBoundingClientRect().top + window.scrollY - 100 });
@@ -642,6 +700,7 @@ function clearHash() {
   location.hash = "";
   window.scrollTo(0, 0);
 
+  // Show special sections
   document.getElementById("offers-section")?.classList.remove("hidden");
   document.getElementById("recommended-section")?.classList.remove("hidden");
   document.getElementById("limited-section")?.classList.remove("hidden");
@@ -649,6 +708,7 @@ function clearHash() {
   applyFiltersAndRender();
 }
 
+/* ----------  HASH UTILS ---------- */
 function applyURLHash() {
   const h = decodeURIComponent(location.hash).replace("#", "");
   if (h.startsWith("tool=")) {
@@ -658,6 +718,7 @@ function applyURLHash() {
   }
 }
 
+/* ----------  MISC UTILITIES ---------- */
 function getRecentTags(t) {
   const now = Date.now(), wk = 6048e5;
   const tags = [];
@@ -665,10 +726,11 @@ function getRecentTags(t) {
   if (now - new Date(t.update_date)  < wk) tags.push('<span class="tag">updated</span>');
   return tags.join(" ");
 }
-
 const getStockStatus = (v) =>
   typeof v === "number"
-    ? v === 0 ? "Not in stock" : `${v} in stock`
+    ? v === 0
+      ? "Not in stock"
+      : `${v} in stock`
     : typeof v === "string"
     ? { unlimited: "Unlimited", "very limited": "Very limited" }[v.toLowerCase()] || v
     : "Need to contact owner";
@@ -696,7 +758,7 @@ function getBadges(tool) {
   const discActive = tool.discount && (!discEnd || discEnd > now);
   if (discActive) {
     const numeric = !isNaN(parseFloat(tool.discount));
-    const lbl = numeric ? `-${tool.discount}` : escapeHTML(tool.discount);
+    const lbl = numeric ? `-${tool.discount}%` : escapeHTML(tool.discount);
     out.push(`<span class="badge discount-badge">${lbl}</span>`);
     if (numeric && discEnd) {
       const c = formatTimeRemaining(tool.discount_expiry);
@@ -717,38 +779,9 @@ const getContactLink = (t) =>
 
 function renderPricing(tool) {
   if (tool.pricing) {
-    const discountPercent = tool.discount ? parseFloat(tool.discount.replace('%', '')) : 0;
-    const hasActiveDiscount = discountPercent > 0 && (!tool.offer_expiry || new Date(tool.offer_expiry) > new Date());
-    
     const li = Object.entries(tool.pricing)
-      .map(([key, value]) => {
-        const originalPrice = parseFloat(value.replace('$', ''));
-        let displayPrice = value;
-        
-        if (hasActiveDiscount && originalPrice > 0) {
-          const shouldDiscount = !tool.discount_plans || tool.discount_plans.includes(key);
-          
-          if (shouldDiscount) {
-            const discountedPrice = originalPrice * (1 - discountPercent / 100);
-            const formattedDiscountedPrice = discountedPrice.toFixed(2);
-            displayPrice = `<span style="text-decoration: line-through;">${value}</span> ${formattedDiscountedPrice}`;
-          }
-        }
-        
-        const contextKey = key.toLowerCase();
-        let context = '';
-        if (contextKey.includes('day')) context = ' (per day)';
-        else if (contextKey.includes('month')) context = ' (per month)';
-        else if (contextKey.includes('week')) context = ' (per week)';
-        else if (contextKey.includes('year')) context = ' (per year)';
-        else if (contextKey.includes('piece')) context = ' (per piece)';
-        else if (contextKey.includes('lifetime')) context = ' (one-time)';
-        else if (contextKey.includes('source')) context = ' (one-time)';
-        
-        return `<li>${escapeHTML(key)}${context}: ${displayPrice}</li>`;
-      })
+      .map(([k, v]) => `<li>${escapeHTML(k)}: ${escapeHTML(v)}</li>`)
       .join("");
-    
     return `<p><strong>Pricing:</strong></p><ul class="pricing-list">${li}</ul><br>`;
   }
   if (tool.price)
@@ -770,7 +803,9 @@ function renderRecommendations(tool) {
             (r) => `
           <div class="recommended-card" onclick='location.hash="tool=${encodeURIComponent(r.name)}"'>
             <div class="recommended-image">
-              ${smartImg(r.image || 'assets/placeholder.jpg', r.name, { type: 'thumbnail' })}
+              <img src="${r.image || 'assets/placeholder.jpg'}"
+                   alt="${escapeHTML(r.name)}"
+                   loading="lazy">
             </div>
             <div class="recommended-content">
               <h4>${escapeHTML(r.name)}</h4>
@@ -784,6 +819,7 @@ function renderRecommendations(tool) {
     </section>`;
 }
 
+/* ----------  REQUIREMENTS POPUP ---------- */
 function showRequirementsPopup(name) {
   const box = document.getElementById("popupMessage"),
     txt = document.getElementById("popupText");
@@ -795,6 +831,7 @@ function showRequirementsPopup(name) {
   setTimeout(() => box.classList.add("hidden"), 4000);
 }
 
+/* ----------  AUTOCOMPLETE ---------- */
 let selectedIndex = -1;
 const addToRecents = (n) => {
   const r = [n, ...JSON.parse(localStorage.getItem(RECENT_KEY) || "[]").filter((x) => x !== n)].slice(
@@ -849,6 +886,7 @@ searchInput?.addEventListener("input", () => {
     return;
   }
 
+  // Only show autocomplete for longer queries
   if (q.length < 2) {
     DOM.autocompleteBox.classList.add("hidden");
     debouncedSearch(q);
@@ -903,6 +941,7 @@ searchInput?.addEventListener("focus", () => {
 
 searchInput?.addEventListener("blur", () => { setTimeout(() => DOM.autocompleteBox.classList.add("hidden"), 150)});
 
+/* ================= LIVE COUNTDOWN ================= */
 function updateBadges() {
   const now = Date.now();
   document.querySelectorAll("[data-expiry]").forEach((el) => {
@@ -918,6 +957,7 @@ function updateBadges() {
 }
 setInterval(updateBadges, 300_000);
 
+/* ----------  HASH & MODAL ---------- */
 window.addEventListener("hashchange", applyURLHash);
 
 document.addEventListener("keydown", (e) => {
@@ -939,11 +979,13 @@ function closeImageModal() {
   if (modal) modal.classList.add("hidden");
 }
 
+/* ----------  SORT SELECT ---------- */
 sortSelect?.addEventListener("change", () => {
   sessionStorage.setItem(SORT_KEY, DOM.sortSelect.value);
   applyFiltersAndRender();
 });
 
+/* ----------  SCROLL PROGRESS ---------- */
 let scrollTimeout;
 document.addEventListener("scroll", () => {
   const scrollProgress = document.getElementById("scrollProgress");
@@ -958,6 +1000,7 @@ document.addEventListener("scroll", () => {
   }, 16);
 });
 
+/* ----------  SCROLL TO TOP ---------- */
 let scrollToTopTimeout;
 window.addEventListener("scroll", () => {
   if (DOM.scrollToTopBtn) {
@@ -976,25 +1019,10 @@ DOM.scrollToTopBtn?.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
-function clearServiceWorkerCache() {
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.ready.then(registration => {
-      const messageChannel = new MessageChannel();
-      messageChannel.port1.onmessage = (event) => {
-        console.log('Cache cleared:', event.data.message);
-      };
-      registration.active.postMessage({ type: 'CLEAR_ALL_CACHES' }, [messageChannel.port2]);
-    });
-  }
-}
+/* ----------  GO ---------- */
+if (DOM.container) loadData();
 
-preventFOUC();
-
-if (DOM.container) {
-  monitorImageSizes();
-  loadData();
-}
-
+// Smooth scrolling for internal links
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener("click", function (e) {
