@@ -39,8 +39,39 @@
   <!-- Performance Optimized Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preload" href="style.css" as="style" />
-  <link rel="preload" href="script.js" as="script" />
+  
+  <!-- Critical CSS inline to prevent FOUC -->
+  <style>
+    /* Critical CSS to prevent FOUC */
+    body { 
+      margin: 0; 
+      padding: 0; 
+      font-family: "Inter", sans-serif;
+      background: #f4f7fa;
+      color: #1e1e1e;
+      visibility: hidden;
+    }
+    body.styles-loaded { visibility: visible; }
+    .navbar { 
+      display: flex; 
+      align-items: center; 
+      justify-content: space-between;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 0.8rem 2.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .container { 
+      max-width: 1350px; 
+      margin: auto; 
+      padding: 1rem 1rem; 
+    }
+  </style>
+  
+  <!-- Load stylesheets -->
+  <link rel="preload" href="style.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="style.css" /></noscript>
   
   <!-- Critical Image Preloading -->
   <link rel="preload" href="assets/icons/fmp-icon.gif" as="image" />
@@ -49,7 +80,6 @@
   <link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
   
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
-  <link rel="stylesheet" href="style.css" />
 
   <!-- SEO Optimized Title -->
   <title>FMP - Best Discord Server | Free Netflix Cookies, Free ChatGPT, Free Claude AI | Flame Mod Paradise</title>
@@ -341,7 +371,7 @@
     function closePopup() { document.getElementById("popupMessage").classList.add("hidden"); }
   </script>
   <script src="script.js" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js" defer></script>
   <noscript>
     <p>Enable JavaScript for better site readability.<br />Thank You.<hr /></p>
   </noscript>

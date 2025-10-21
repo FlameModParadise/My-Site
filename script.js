@@ -171,7 +171,40 @@ function getShortDescription(tool, query = "") {
   return query ? highlightMatch(raw, query) : escapeHTML(raw);
 }
 
-/* ----------  SIMPLE IMAGE SYSTEM ---------- */
+// Prevent FOUC (Flash of Unstyled Content)
+function preventFOUC() {
+  // Wait for stylesheets to load
+  const checkStylesLoaded = () => {
+    const stylesheets = document.querySelectorAll('link[rel="stylesheet"]');
+    let loadedCount = 0;
+    
+    stylesheets.forEach(link => {
+      if (link.sheet) {
+        loadedCount++;
+      }
+    });
+    
+    // If all stylesheets are loaded or timeout reached
+    if (loadedCount === stylesheets.length || document.readyState === 'complete') {
+      document.body.classList.add('styles-loaded');
+    } else {
+      // Check again in 10ms
+      setTimeout(checkStylesLoaded, 10);
+    }
+  };
+  
+  // Start checking when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', checkStylesLoaded);
+  } else {
+    checkStylesLoaded();
+  }
+  
+  // Fallback timeout to prevent infinite waiting
+  setTimeout(() => {
+    document.body.classList.add('styles-loaded');
+  }, 1000);
+}
 
 // Smart image compression for large images
 function compressImageIfNeeded(src, options = {}) {
@@ -1067,6 +1100,9 @@ function clearServiceWorkerCache() {
 }
 
 /* ----------  GO ---------- */
+// Prevent FOUC immediately
+preventFOUC();
+
 if (DOM.container) {
   // Monitor image sizes for optimization
   monitorImageSizes();

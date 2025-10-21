@@ -59,7 +59,7 @@ body.dark {
   --tag-active-text: #fff;
 }
 
-/* ================ BODY ================ */
+/* ================ FOUC PREVENTION ================ */
 body {
   font-family: var(--font-body);
   font-size: var(--font-size);
@@ -71,6 +71,19 @@ body {
   -moz-osx-font-smoothing: grayscale;
   position: relative;
   overflow-x: hidden;
+}
+
+/* Prevent layout shifts during loading */
+.main-grid {
+  min-height: 200px; /* Reserve space to prevent layout shift */
+}
+
+.tool-card {
+  min-height: 180px; /* Consistent card height */
+}
+
+.navbar {
+  min-height: 70px; /* Reserve navbar height */
 }
 
 /* Simplified background */
