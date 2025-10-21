@@ -195,34 +195,40 @@ FMP.LazyImages = {
   
   init() {
     const isMobile = window.innerWidth <= 768;
-    const rootMargin = isMobile ? "500px" : "100px"; // Much larger margin for faster loading
+    const rootMargin = isMobile ? "500px" : "2000px"; // HUGE margin for desktop - load almost everything immediately
     
     this.observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(({ target, isIntersecting }) => {
-          if (isIntersecting) {
+  (entries) => {
+    entries.forEach(({ target, isIntersecting }) => {
+      if (isIntersecting) {
             // Load image immediately when in viewport
-            target.src = target.dataset.src;
+        target.src = target.dataset.src;
             target.loading = 'eager';
             target.decoding = 'async';
             this.observer.unobserve(target);
-          }
-        });
-      },
+      }
+    });
+  },
       { 
         rootMargin: rootMargin,
         threshold: 0 // Load as soon as any part enters viewport
       }
     );
+    
+    // Preload all visible images immediately on desktop
+    if (!isMobile) {
+      setTimeout(() => this.preloadVisibleImages(), 100);
+    }
   },
   
   smartImg(src, alt = "") {
     const isMobile = window.innerWidth <= 768;
-    const loadingStrategy = isMobile ? "eager" : "lazy";
-    const decoding = isMobile ? "async" : "sync";
+    // On desktop, load images immediately - no lazy loading bullshit
+    const loadingStrategy = "eager"; // Always eager loading
+    const decoding = "async";
     
-    // Use a much smaller, faster placeholder or skip it entirely on mobile
-    const placeholder = isMobile ? "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB2aWV3Qm94PSIwIDAgMSAxIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InRyYW5zcGFyZW50Ii8+PC9zdmc+" : "assets/placeholder.jpg";
+    // Use tiny transparent placeholder for instant display
+    const placeholder = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB2aWV3Qm94PSIwIDAgMSAxIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InRyYW5zcGFyZW50Ii8+PC9zdmc+";
     
     return `<img loading="${loadingStrategy}" decoding="${decoding}" data-src="${src}" src="${placeholder}" alt="${FMP.Utils.escapeHTML(alt)}" onerror="this.src='${placeholder}'">`;
   },
@@ -232,19 +238,21 @@ FMP.LazyImages = {
     const images = root.querySelectorAll("img[data-src]");
     
     images.forEach((img) => {
-      // On mobile, load images immediately for faster experience
-      if (isMobile) {
+      // Load ALL images immediately - no more lazy loading delays
+      img.src = img.dataset.src;
+      img.loading = 'eager';
+      img.decoding = 'async';
+    });
+  },
+  
+  // Preload all visible images immediately on desktop
+  preloadVisibleImages() {
+    const images = document.querySelectorAll("img[data-src]");
+    images.forEach((img) => {
+      if (img.dataset.src) {
         img.src = img.dataset.src;
         img.loading = 'eager';
         img.decoding = 'async';
-        return;
-      }
-      
-      // On desktop, use intersection observer but with aggressive settings
-      if (img.complete && img.naturalWidth > 0) {
-        img.src = img.dataset.src;
-      } else {
-        this.observer.observe(img);
       }
     });
   },
