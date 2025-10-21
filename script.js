@@ -195,7 +195,7 @@ FMP.LazyImages = {
   
   init() {
     const isMobile = window.innerWidth <= 768;
-    const rootMargin = isMobile ? "500px" : "2000px"; // HUGE margin for desktop - load almost everything immediately
+    const rootMargin = isMobile ? "300px" : "500px"; // Balanced margin - fast but not overwhelming
     
     this.observer = new IntersectionObserver(
   (entries) => {
@@ -211,48 +211,54 @@ FMP.LazyImages = {
   },
       { 
         rootMargin: rootMargin,
-        threshold: 0 // Load as soon as any part enters viewport
+        threshold: 0.1 // Load when 10% visible for better performance
       }
     );
     
-    // Preload all visible images immediately on desktop
+    // Preload visible images with delay to avoid flooding
     if (!isMobile) {
-      setTimeout(() => this.preloadVisibleImages(), 100);
+      setTimeout(() => this.preloadVisibleImages(), 200);
     }
   },
   
   smartImg(src, alt = "") {
-    const isMobile = window.innerWidth <= 768;
-    // On desktop, load images immediately - no lazy loading bullshit
-    const loadingStrategy = "eager"; // Always eager loading
-    const decoding = "async";
+    // Balanced loading - fast but not overwhelming
+    const loadingStrategy = "lazy"; // Use lazy loading to prevent flooding
+    const decoding = "async"; // Async decoding for better performance
+    const fetchpriority = "auto"; // Auto priority to avoid overwhelming
     
     // Use tiny transparent placeholder for instant display
     const placeholder = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB2aWV3Qm94PSIwIDAgMSAxIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InRyYW5zcGFyZW50Ii8+PC9zdmc+";
     
-    return `<img loading="${loadingStrategy}" decoding="${decoding}" data-src="${src}" src="${placeholder}" alt="${FMP.Utils.escapeHTML(alt)}" onerror="this.src='${placeholder}'" onload="FMP.LazyImages.compressImage(this)">`;
+    return `<img loading="${loadingStrategy}" decoding="${decoding}" fetchpriority="${fetchpriority}" data-src="${src}" src="${placeholder}" alt="${FMP.Utils.escapeHTML(alt)}" onerror="this.src='${placeholder}'" onload="FMP.LazyImages.compressImage(this)">`;
   },
   
   activate(root = document) {
-    const isMobile = window.innerWidth <= 768;
-  const images = root.querySelectorAll("img[data-src]");
+    const images = root.querySelectorAll("img[data-src]");
     
-  images.forEach((img) => {
-      // Load ALL images immediately - no more lazy loading delays
-      img.src = img.dataset.src;
-      img.loading = 'eager';
-      img.decoding = 'async';
+    // Balanced loading - use intersection observer instead of flooding
+    images.forEach((img) => {
+      this.observer.observe(img);
     });
   },
   
-  // Preload all visible images immediately on desktop
+  // Preload visible images gradually to avoid flooding
   preloadVisibleImages() {
     const images = document.querySelectorAll("img[data-src]");
-    images.forEach((img) => {
+    let loadedCount = 0;
+    const maxConcurrent = 3; // Limit concurrent loads
+    
+    images.forEach((img, index) => {
       if (img.dataset.src) {
-        img.src = img.dataset.src;
-        img.loading = 'eager';
-        img.decoding = 'async';
+        // Stagger loading to prevent flooding
+        setTimeout(() => {
+          if (loadedCount < maxConcurrent) {
+            img.src = img.dataset.src;
+            img.loading = 'eager';
+            img.decoding = 'async';
+            loadedCount++;
+          }
+        }, index * 100); // 100ms delay between each load
       }
     });
   },
@@ -271,6 +277,11 @@ FMP.LazyImages = {
   // Compress image file size without changing dimensions
   compressImage(img) {
     if (img.complete && img.naturalWidth > 0) {
+      // Skip compression for very small images to maintain speed
+      if (img.naturalWidth < 100 || img.naturalHeight < 100) {
+        return;
+      }
+      
       // Create canvas to compress image
       const canvas = document.createElement('canvas');
       const ctx = canvas.getContext('2d');
@@ -282,12 +293,22 @@ FMP.LazyImages = {
       // Draw image to canvas with compression
       ctx.drawImage(img, 0, 0);
       
-      // Convert to compressed format (JPEG with quality 0.8)
-      const compressedDataURL = canvas.toDataURL('image/jpeg', 0.8);
+      // Convert to compressed format (JPEG with quality 0.85 for better speed/quality balance)
+      const compressedDataURL = canvas.toDataURL('image/jpeg', 0.85);
       
       // Replace original image with compressed version
       img.src = compressedDataURL;
     }
+  },
+  
+  // Balanced preload for critical images
+  preloadBalanced(src) {
+    const img = new Image();
+    img.loading = 'lazy'; // Use lazy loading to prevent flooding
+    img.decoding = 'async';
+    img.fetchPriority = 'auto'; // Auto priority
+    img.src = src;
+    return img;
   }
 };
 

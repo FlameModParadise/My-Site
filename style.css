@@ -132,12 +132,16 @@ img {
   max-width: 100%;
   display: block;
   transition: transform var(--transition);
-  /* Optimize image rendering for faster loading */
+  /* ULTRA FAST image rendering */
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
   /* Faster loading and rendering */
   content-visibility: auto;
   contain: layout style paint;
+  /* Additional speed optimizations */
+  transform: translateZ(0); /* Hardware acceleration */
+  backface-visibility: hidden; /* Better rendering */
+  -webkit-transform: translateZ(0); /* Safari acceleration */
 }
 
 .hidden {
