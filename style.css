@@ -71,7 +71,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   position: relative;
   overflow-x: hidden;
-  will-change: background, color;
 }
 
 /* Simplified background */
@@ -133,6 +132,12 @@ img {
   max-width: 100%;
   display: block;
   transition: transform var(--transition);
+  /* Optimize image rendering for faster loading */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  /* Faster loading and rendering */
+  content-visibility: auto;
+  contain: layout style paint;
 }
 
 .hidden {
@@ -176,7 +181,6 @@ body.dark .navbar {
   font-weight: 700;
   color: var(--color-primary);
   transition: transform var(--transition);
-  will-change: transform;
 }
 
 .logo img {
@@ -211,7 +215,6 @@ body.dark .logo img {
   cursor: pointer;
   color: inherit;
   transition: transform var(--transition);
-  will-change: transform;
 }
 
 .navbar-toggle:hover {
@@ -667,7 +670,6 @@ body.dark .recommended-content p {
   font-weight: 500;
   font-size: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  will-change: transform, background, box-shadow;
 }
 
 .filter-tags button:hover {
@@ -744,7 +746,6 @@ body.dark .recommended-content p {
   flex-direction: column;
   height: auto;
   min-height: 180px;
-  will-change: transform, box-shadow;
 }
 
 /* Backward compatibility */
@@ -762,7 +763,6 @@ body.dark .recommended-content p {
   flex-direction: column;
   height: auto;
   min-height: 180px;
-  will-change: transform, box-shadow;
 }
 
 .tool-card:hover {
@@ -790,7 +790,6 @@ body.dark .recommended-content p {
   flex-direction: column;
   transition: transform var(--transition);
   flex-shrink: 0;
-  will-change: transform;
 }
 
 .tool-card:hover .tool-thumb-wrapper {
@@ -1304,7 +1303,6 @@ body:not(.dark) .updated-badge {
   transition: all var(--transition);
   z-index: 999;
   animation: bounceIn 0.5s ease;
-  will-change: transform, box-shadow;
 }
 
 #scrollToTopBtn.show {
@@ -2163,6 +2161,16 @@ body.dark #removed-offers-section .tool-card:hover {
 /* ================ MOBILE PERFORMANCE OPTIMIZATIONS ================ */
 /* Disable ALL animations and transitions on mobile for maximum performance */
 @media (max-width: 768px) {
+  /* Optimize images for mobile */
+  img {
+    image-rendering: -webkit-optimize-contrast !important;
+    image-rendering: crisp-edges !important;
+    content-visibility: auto !important;
+    contain: layout style paint !important;
+    /* Faster loading */
+    loading: eager !important;
+    decoding: async !important;
+  }
   /* Disable all animations and transitions */
   *, *::before, *::after {
     transition: none !important;

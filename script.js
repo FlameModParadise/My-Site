@@ -195,20 +195,23 @@ FMP.LazyImages = {
   
   init() {
     const isMobile = window.innerWidth <= 768;
-    const rootMargin = isMobile ? "200px" : "50px"; // Larger margin for mobile for faster loading
+    const rootMargin = isMobile ? "500px" : "100px"; // Much larger margin for faster loading
     
     this.observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach(({ target, isIntersecting }) => {
-      if (isIntersecting) {
-        target.src = target.dataset.src;
+      (entries) => {
+        entries.forEach(({ target, isIntersecting }) => {
+          if (isIntersecting) {
+            // Load image immediately when in viewport
+            target.src = target.dataset.src;
+            target.loading = 'eager';
+            target.decoding = 'async';
             this.observer.unobserve(target);
-      }
-    });
-  },
+          }
+        });
+      },
       { 
         rootMargin: rootMargin,
-        threshold: isMobile ? 0 : 0.1 // Lower threshold for mobile
+        threshold: 0 // Load as soon as any part enters viewport
       }
     );
   },
@@ -216,26 +219,46 @@ FMP.LazyImages = {
   smartImg(src, alt = "") {
     const isMobile = window.innerWidth <= 768;
     const loadingStrategy = isMobile ? "eager" : "lazy";
-    return `<img loading="${loadingStrategy}" data-src="${src}" src="assets/placeholder.jpg" alt="${FMP.Utils.escapeHTML(alt)}" onerror="this.src='assets/placeholder.jpg'">`;
+    const decoding = isMobile ? "async" : "sync";
+    
+    // Use a much smaller, faster placeholder or skip it entirely on mobile
+    const placeholder = isMobile ? "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB2aWV3Qm94PSIwIDAgMSAxIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InRyYW5zcGFyZW50Ii8+PC9zdmc+" : "assets/placeholder.jpg";
+    
+    return `<img loading="${loadingStrategy}" decoding="${decoding}" data-src="${src}" src="${placeholder}" alt="${FMP.Utils.escapeHTML(alt)}" onerror="this.src='${placeholder}'">`;
   },
   
   activate(root = document) {
     const isMobile = window.innerWidth <= 768;
-  const images = root.querySelectorAll("img[data-src]");
+    const images = root.querySelectorAll("img[data-src]");
     
-  images.forEach((img) => {
-    if (img.complete && img.naturalWidth > 0) {
-      img.src = img.dataset.src;
-    } else {
-        // On mobile, preload images more aggressively
-        if (isMobile) {
-          img.loading = 'eager';
-          img.decoding = 'async';
-        }
+    images.forEach((img) => {
+      // On mobile, load images immediately for faster experience
+      if (isMobile) {
+        img.src = img.dataset.src;
+        img.loading = 'eager';
+        img.decoding = 'async';
+        return;
+      }
+      
+      // On desktop, use intersection observer but with aggressive settings
+      if (img.complete && img.naturalWidth > 0) {
+        img.src = img.dataset.src;
+      } else {
         this.observer.observe(img);
-    }
-  });
-}
+      }
+    });
+  },
+  
+  // Preload critical images immediately
+  preloadCritical(images) {
+    images.forEach(src => {
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.as = 'image';
+      link.href = src;
+      document.head.appendChild(link);
+    });
+  }
 };
 
 // Dark Mode Component
