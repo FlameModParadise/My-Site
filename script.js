@@ -230,14 +230,14 @@ FMP.LazyImages = {
     // Use tiny transparent placeholder for instant display
     const placeholder = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB2aWV3Qm94PSIwIDAgMSAxIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InRyYW5zcGFyZW50Ii8+PC9zdmc+";
     
-    return `<img loading="${loadingStrategy}" decoding="${decoding}" data-src="${src}" src="${placeholder}" alt="${FMP.Utils.escapeHTML(alt)}" onerror="this.src='${placeholder}'">`;
+    return `<img loading="${loadingStrategy}" decoding="${decoding}" data-src="${src}" src="${placeholder}" alt="${FMP.Utils.escapeHTML(alt)}" onerror="this.src='${placeholder}'" onload="FMP.LazyImages.compressImage(this)">`;
   },
   
   activate(root = document) {
     const isMobile = window.innerWidth <= 768;
-    const images = root.querySelectorAll("img[data-src]");
+  const images = root.querySelectorAll("img[data-src]");
     
-    images.forEach((img) => {
+  images.forEach((img) => {
       // Load ALL images immediately - no more lazy loading delays
       img.src = img.dataset.src;
       img.loading = 'eager';
@@ -266,6 +266,28 @@ FMP.LazyImages = {
       link.href = src;
       document.head.appendChild(link);
     });
+  },
+  
+  // Compress image file size without changing dimensions
+  compressImage(img) {
+    if (img.complete && img.naturalWidth > 0) {
+      // Create canvas to compress image
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      
+      // Set canvas dimensions to match image
+      canvas.width = img.naturalWidth;
+      canvas.height = img.naturalHeight;
+      
+      // Draw image to canvas with compression
+      ctx.drawImage(img, 0, 0);
+      
+      // Convert to compressed format (JPEG with quality 0.8)
+      const compressedDataURL = canvas.toDataURL('image/jpeg', 0.8);
+      
+      // Replace original image with compressed version
+      img.src = compressedDataURL;
+    }
   }
 };
 
