@@ -135,54 +135,6 @@ img {
   transition: transform var(--transition), filter var(--transition);
 }
 
-/* Enhanced lazy loading styles */
-.lazy-image {
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-  background-size: 200% 100%;
-  animation: shimmer 1.5s infinite;
-}
-
-.lazy-image.loading {
-  filter: blur(5px);
-  opacity: 0.7;
-}
-
-.lazy-image.loaded {
-  filter: none;
-  opacity: 1;
-  animation: none;
-}
-
-.lazy-image.error {
-  filter: none;
-  opacity: 0.5;
-  animation: none;
-}
-
-.lazy-image.timeout {
-  filter: none;
-  opacity: 0.6;
-  animation: none;
-  border: 2px dashed #ccc;
-}
-
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
-}
-
-/* Picture element optimization */
-picture {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-picture img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
 
 .hidden {
   display: none !important;
@@ -923,11 +875,6 @@ body.dark .tag:hover {
 body.dark .tool-card {
   background: #1f1f1f;
   color: var(--text-dark);
-}
-
-/* Dark mode lazy loading */
-body.dark .lazy-image {
-  background: linear-gradient(90deg, #2a2a2a 25%, #333 50%, #2a2a2a 75%);
 }
 
 /* ================ DETAIL VIEW ================ */

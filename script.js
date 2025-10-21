@@ -171,144 +171,16 @@ function getShortDescription(tool, query = "") {
   return query ? highlightMatch(raw, query) : escapeHTML(raw);
 }
 
-/* ----------  OPTIMIZED LAZY‑IMAGE SYSTEM ---------- */
-// Enhanced Intersection Observer with better performance
-const io = new IntersectionObserver(
-  (entries) => {
-    entries.forEach(({ target, isIntersecting }) => {
-      if (isIntersecting) {
-        loadImage(target);
-        io.unobserve(target);
-      }
-    });
-  },
-  { 
-    rootMargin: "100px", // Load images earlier
-    threshold: 0.1 // Trigger when 10% visible
-  }
-);
+/* ----------  SIMPLE IMAGE SYSTEM ---------- */
 
-// Image loading with progressive enhancement and error handling
-function loadImage(img) {
-  if (!img.dataset.src) return;
-  
-  // Add loading state
-  img.classList.add('loading');
-  
-  // Create new image to preload
-  const tempImg = new Image();
-  
-  // Set timeout for slow loading images
-  const timeout = setTimeout(() => {
-    if (img.classList.contains('loading')) {
-      console.warn('Image loading timeout:', img.dataset.src);
-      img.src = 'assets/placeholder.jpg';
-      img.classList.remove('loading');
-      img.classList.add('timeout');
-    }
-  }, 10000); // 10 second timeout
-  
-  tempImg.onload = () => {
-    clearTimeout(timeout);
-    
-    // Progressive loading: blur to sharp
-    img.style.filter = 'blur(5px)';
-    img.style.transition = 'filter 0.3s ease';
-    img.src = img.dataset.src;
-    
-    // Remove blur after image loads
-    img.onload = () => {
-      img.style.filter = 'none';
-      img.classList.remove('loading');
-      img.classList.add('loaded');
-    };
-    
-    // Clean up
-    img.removeAttribute('data-src');
-  };
-  
-  tempImg.onerror = () => {
-    clearTimeout(timeout);
-    console.warn('Image failed to load:', img.dataset.src);
-    img.src = 'assets/placeholder.jpg';
-    img.classList.remove('loading');
-    img.classList.add('error');
-  };
-  
-  tempImg.src = img.dataset.src;
-}
-
-// Image loading performance monitoring
-function trackImagePerformance() {
-  const images = document.querySelectorAll('img');
-  images.forEach(img => {
-    img.addEventListener('load', () => {
-      const loadTime = performance.now() - performance.timing.navigationStart;
-      if (loadTime > 3000) { // Log slow loading images
-        console.warn('Slow image load:', img.src, `${loadTime}ms`);
-      }
-    });
-  });
-}
-
-// Enhanced image function with WebP support and responsive sizing
-function smartImg(src, alt = "", options = {}) {
-  const { 
-    priority = false, 
-    sizes = "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw",
-    quality = 80,
-    simple = false // For gallery images that need simple img tags
-  } = options;
-  
-  // For gallery images, use simple img tags to avoid conflicts with click handlers
-  if (simple) {
-    return `
-      <img 
-        ${priority ? 'loading="eager"' : 'loading="lazy"'}
-        data-src="${src}"
-        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23f0f0f0'/%3E%3C/svg%3E"
-        alt="${escapeHTML(alt)}"
-        class="lazy-image"
-        onerror="this.src='assets/placeholder.jpg'"
-      >
-    `.trim();
-  }
-  
-  // Generate WebP and fallback URLs
-  const webpSrc = src.replace(/\.(jpg|jpeg|png)$/i, '.webp');
-  const baseSrc = src;
-  
-  // Create responsive srcset for better performance
-  const srcset = [
-    `${baseSrc}?w=400&q=${quality} 400w`,
-    `${baseSrc}?w=800&q=${quality} 800w`,
-    `${baseSrc}?w=1200&q=${quality} 1200w`
-  ].join(', ');
-  
-  const webpSrcset = [
-    `${webpSrc}?w=400&q=${quality} 400w`,
-    `${webpSrc}?w=800&q=${quality} 800w`,
-    `${webpSrc}?w=1200&q=${quality} 1200w`
-  ].join(', ');
-  
+// Simple, fast image function - no complex lazy loading
+function smartImg(src, alt = "") {
   return `
-    <picture>
-      <source 
-        type="image/webp" 
-        data-srcset="${webpSrcset}"
-        sizes="${sizes}"
-      >
-      <img 
-        ${priority ? 'loading="eager"' : 'loading="lazy"'}
-        data-src="${baseSrc}"
-        data-srcset="${srcset}"
-        sizes="${sizes}"
-        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23f0f0f0'/%3E%3C/svg%3E"
-        alt="${escapeHTML(alt)}"
-        class="lazy-image"
-        onerror="this.src='assets/placeholder.jpg'"
-      >
-    </picture>
+    <img loading="lazy"
+         src="${src}"
+         alt="${escapeHTML(alt)}"
+         onerror="this.src='assets/placeholder.jpg'"
+    >
   `.trim();
 }
 
@@ -328,44 +200,6 @@ function preloadCriticalImages() {
   });
 }
 
-// Enhanced lazy loading activation
-function activateLazyImages(root = document) {
-  const images = root.querySelectorAll("img[data-src], picture source[data-srcset]");
-  
-  images.forEach((element) => {
-    if (element.tagName === 'IMG') {
-      const img = element;
-      if (img.complete && img.naturalWidth > 0) {
-        loadImage(img);
-      } else {
-        io.observe(img);
-      }
-    } else if (element.tagName === 'SOURCE') {
-      const source = element;
-      const img = source.parentElement.querySelector('img');
-      if (img && img.complete && img.naturalWidth > 0) {
-        source.srcset = source.dataset.srcset;
-        img.srcset = img.dataset.srcset;
-        img.src = img.dataset.src;
-      } else if (img) {
-        io.observe(img);
-      }
-    }
-  });
-}
-
-// Image optimization utilities
-function optimizeImageUrl(url, options = {}) {
-  const { width, height, quality = 80, format = 'auto' } = options;
-  const params = new URLSearchParams();
-  
-  if (width) params.set('w', width);
-  if (height) params.set('h', height);
-  if (quality) params.set('q', quality);
-  if (format !== 'auto') params.set('f', format);
-  
-  return params.toString() ? `${url}?${params.toString()}` : url;
-}
 
 /* ----------  DARK MODE  ---------- */
 if (DOM.darkToggle) {
@@ -435,10 +269,7 @@ function renderTools(list, target = DOM.container) {
     card.innerHTML = `
       <div class="tool-thumb-wrapper">
         ${getCardBadges(tool)}
-        ${smartImg(tool.image || "assets/placeholder.jpg", tool.name, {
-          priority: tool.popular || tool.featured,
-          sizes: "(max-width: 480px) 100vw, (max-width: 768px) 50vw, 33vw"
-        }).trim()}
+        ${smartImg(tool.image || "assets/placeholder.jpg", tool.name).trim()}
       </div>
       <div class="tool-card-body">
         <h3 class="tool-title">${name}</h3>
@@ -456,9 +287,6 @@ function renderTools(list, target = DOM.container) {
 
   // Replace all children with one operation
   target.replaceChildren(frag);
-
-  // Wire up lazy-loading
-  activateLazyImages(target);
 }
 
 /* helper: render a list into any selector */
@@ -745,20 +573,8 @@ function swapMainImage(thumb) {
   const main = document.querySelector('.tool-main-img');
   if (!main) return;
 
-  // Handle both simple img elements and picture elements
-  let src;
-  if (thumb.tagName === 'IMG') {
-    src = thumb.dataset.src || thumb.src;
-  } else {
-    // If it's a picture element, find the img inside
-    const img = thumb.querySelector('img');
-    src = img ? (img.dataset.src || img.src) : null;
-  }
-  
-  if (!src) return;
-  
+  const src = thumb.src;
   main.src = src;
-  main.dataset.src = src;
 
   document.querySelectorAll('.tool-gallery img')
           .forEach(i => i.classList.remove('active'));
@@ -786,15 +602,9 @@ function showToolDetail(tool, initial = false) {
 
       <div class="tool-detail-content">
         <div class="tool-detail-left">
-          ${smartImg(tool.image || 'assets/placeholder.jpg', tool.name, {
-            priority: true,
-            sizes: "(max-width: 768px) 100vw, 50vw",
-            simple: true
-          }).replace('<img ', '<img class="tool-main-img" onclick="openImageModal(this.src)" ')}
+          ${smartImg(tool.image || 'assets/placeholder.jpg', tool.name).replace('<img ', '<img class="tool-main-img" onclick="openImageModal(this.src)" ')}
           <div class="tool-gallery">
-            ${(tool.images || []).map(img => smartImg(img, 'gallery', {
-              simple: true
-            })).join('')}
+            ${(tool.images || []).map(img => smartImg(img, 'gallery')).join('')}
           </div>
           ${tool.video ? `<iframe src="${tool.video}" class="tool-video" allowfullscreen></iframe>` : ''}
         </div>
@@ -826,18 +636,9 @@ function showToolDetail(tool, initial = false) {
     ${renderRecommendations(tool)}
   `;
 
-  // Force load images in the detail view
-  const mainImg = document.querySelector('.tool-main-img');
+  // Set up gallery click handlers
   const galleryImgs = document.querySelectorAll('.tool-gallery img');
-  
-  if (mainImg && mainImg.dataset.src) {
-    mainImg.src = mainImg.dataset.src;
-  }
-
   galleryImgs.forEach(img => {
-    if (img.dataset.src) {
-      img.src = img.dataset.src;
-    }
     img.style.cursor = 'pointer';
     img.addEventListener('click', () => swapMainImage(img));
   });
@@ -988,9 +789,9 @@ function renderRecommendations(tool) {
             (r) => `
           <div class="recommended-card" onclick='location.hash="tool=${encodeURIComponent(r.name)}"'>
             <div class="recommended-image">
-              ${smartImg(r.image || 'assets/placeholder.jpg', r.name, {
-                sizes: "(max-width: 768px) 50vw, 20vw"
-              })}
+              <img src="${r.image || 'assets/placeholder.jpg'}"
+                   alt="${escapeHTML(r.name)}"
+                   loading="lazy">
             </div>
             <div class="recommended-content">
               <h4>${escapeHTML(r.name)}</h4>
@@ -1206,12 +1007,6 @@ DOM.scrollToTopBtn?.addEventListener("click", () => {
 
 /* ----------  GO ---------- */
 if (DOM.container) {
-  // Preload critical images first
-  preloadCriticalImages();
-  
-  // Initialize performance tracking
-  trackImagePerformance();
-  
   loadData();
 }
 
