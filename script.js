@@ -110,13 +110,7 @@ const DOM = {
   scrollToTopBtn: document.getElementById("scrollToTopBtn"),
   darkToggle: document.getElementById("darkToggle"),
   imageModal: document.getElementById("imageModal"),
-  autocompleteBox: document.getElementById("autocompleteBox"),
-  offersList: document.getElementById("offers-list"),
-  recommendedList: document.getElementById("recommended-list"),
-  limitedList: document.getElementById("limited-list"),
-  offersSection: document.getElementById("offers-section"),
-  recommendedSection: document.getElementById("recommended-section"),
-  limitedSection: document.getElementById("limited-section")
+  autocompleteBox: document.getElementById("autocompleteBox")
 };
 
 let allTools = [];
@@ -356,41 +350,9 @@ function renderOrHide(list, wrapper, section) {
 }
 
 function populateSpecialSections() {
-  const now = Date.now();
-
-  /* OFFERS & DISCOUNTS */
-  const offers = allTools.filter(t => {
-    const hasKeyword = (t.keywords || []).includes("offer");
-    const disc = t.discount && (!t.discount_expiry || new Date(t.discount_expiry) > now);
-    const off  = t.offer    && (!t.offer_expiry    || new Date(t.offer_expiry)    > now);
-    return hasKeyword || disc || off;
-  });
-
-  renderOrHide(offers, DOM.offersList, DOM.offersSection);
-
-  /* RECOMMENDED */
-  const recommended = allTools.filter(t =>
-    (t.keywords || []).includes("recommended")
-  );
-  renderOrHide(recommended, DOM.recommendedList, DOM.recommendedSection);
-
-  /* LIMITED‑TIME */
-  const limited = allTools.filter(t =>
-    (t.keywords || []).includes("limited") || t.stock === 1
-  );
-  renderOrHide(limited, DOM.limitedList, DOM.limitedSection);
+  // Sections removed - no special sections needed
 }
 
-/* allow clicking cards in the extra lists */
-const specialLists = [DOM.offersList, DOM.recommendedList, DOM.limitedList];
-specialLists.forEach(el => {
-  el?.addEventListener("click", e => {
-    const c = e.target.closest(".tool-card");
-    if (!c) return;
-    const tool = allTools.find(t => t.name === c.dataset.toolName);
-    if (tool) showToolDetail(tool);
-  });
-});
 
 /* =========  MOBILE SWIPE HINT  ========= */
 function addSwipeHint(wrapperId) {
