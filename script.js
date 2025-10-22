@@ -271,13 +271,19 @@ FMP.DarkMode = {
     toggle.setAttribute("title", "Toggle dark mode (D)");
     toggle.addEventListener("click", () => this.toggle());
     
-    // Load saved theme
-    if (localStorage.getItem(FMP.Config.KEYS.THEME) === "dark") {
-  document.body.classList.add("dark");
-}
+    // Set dark mode as default, but allow user preference
+    const savedTheme = localStorage.getItem(FMP.Config.KEYS.THEME);
+    if (savedTheme === "light") {
+      // User explicitly chose light mode
+      document.body.classList.remove("dark");
+    } else {
+      // Default to dark mode (first visit or no preference)
+      document.body.classList.add("dark");
+      localStorage.setItem(FMP.Config.KEYS.THEME, "dark");
+    }
 
     // Keyboard shortcut
-document.addEventListener("keydown", (e) => {
+    document.addEventListener("keydown", (e) => {
       if (e.key.toLowerCase() === "d" && !e.target.matches("input,textarea,[contenteditable]")) {
         toggle?.click();
       }
