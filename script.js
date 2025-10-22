@@ -191,6 +191,49 @@ FMP.Utils.getShortDescription = function(tool, query = "") {
   return query ? FMP.Utils.highlightMatch(raw, query) : FMP.Utils.escapeHTML(raw);
 };
 
+// Image Cache System
+FMP.ImageCache = {
+  cache: new Map(),
+  
+  // Store loaded image in cache
+  store(src, imgElement) {
+    this.cache.set(src, {
+      element: imgElement,
+      loaded: true,
+      timestamp: Date.now()
+    });
+  },
+  
+  // Get cached image if available
+  get(src) {
+    const cached = this.cache.get(src);
+    if (cached && cached.loaded) {
+      return cached.element;
+    }
+    return null;
+  },
+  
+  // Check if image is already loaded
+  isLoaded(src) {
+    const cached = this.cache.get(src);
+    return cached && cached.loaded;
+  },
+  
+  // Create a copy of cached image for reuse
+  reuse(src) {
+    const cached = this.cache.get(src);
+    if (cached && cached.loaded) {
+      // Create a new img element with the same src
+      const newImg = document.createElement('img');
+      newImg.src = src;
+      newImg.loading = 'eager';
+      newImg.decoding = 'async';
+      return newImg;
+    }
+    return null;
+  }
+};
+
 // Optimized Image System for Mobile
 FMP.LazyImages = {
   observer: null,
@@ -203,11 +246,26 @@ FMP.LazyImages = {
       (entries) => {
         entries.forEach(({ target, isIntersecting }) => {
           if (isIntersecting) {
+            const src = target.dataset.src;
+            
+            // Check cache first
+            if (FMP.ImageCache.isLoaded(src)) {
+              target.src = src;
+              target.removeAttribute('data-src');
+              this.observer.unobserve(target);
+              return;
+            }
+            
             // Load image immediately when in viewport
-            target.src = target.dataset.src;
+            target.src = src;
             target.loading = 'eager';
             target.decoding = 'async';
             this.observer.unobserve(target);
+            
+            // Cache when loaded
+            target.onload = () => {
+              FMP.ImageCache.store(src, target);
+            };
           }
         });
       },
@@ -219,6 +277,16 @@ FMP.LazyImages = {
   },
   
   smartImg(src, alt = "") {
+    // Check if image is already cached
+    if (FMP.ImageCache.isLoaded(src)) {
+      const isMobile = window.innerWidth <= 768;
+      const loadingStrategy = isMobile ? "eager" : "lazy";
+      const decoding = "async";
+      const fetchpriority = isMobile ? "high" : "auto";
+      
+      return `<img loading="${loadingStrategy}" decoding="${decoding}" fetchpriority="${fetchpriority}" src="${src}" alt="${FMP.Utils.escapeHTML(alt)}">`;
+    }
+    
     const isMobile = window.innerWidth <= 768;
     
     // Use different strategies for mobile vs desktop
@@ -239,9 +307,23 @@ FMP.LazyImages = {
     const isMobile = window.innerWidth <= 768;
     if (isMobile) {
       images.forEach((img) => {
-        img.src = img.dataset.src;
+        const src = img.dataset.src;
+        
+        // Check cache first
+        if (FMP.ImageCache.isLoaded(src)) {
+          img.src = src;
+          img.removeAttribute('data-src');
+          return;
+        }
+        
+        img.src = src;
         img.loading = 'eager';
         img.decoding = 'async';
+        
+        // Cache when loaded
+        img.onload = () => {
+          FMP.ImageCache.store(src, img);
+        };
       });
     } else {
       // Use intersection observer for desktop
@@ -1486,4 +1568,12 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
+});
+
+// Prevent extension-related errors from affecting the site
+window.addEventListener('error', (e) => {
+  if (e.filename && e.filename.includes('moz-extension://')) {
+    e.preventDefault();
+    return false;
+  }
 });
