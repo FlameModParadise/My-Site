@@ -1302,24 +1302,52 @@ setInterval(updateBadges, 300_000);
 /* ----------  HASH & MODAL ---------- */
 window.addEventListener("hashchange", applyURLHash);
 
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") closeImageModal();
-});
 FMP.State.DOM.imageModal?.addEventListener("click", (e) => {
   if (e.target === FMP.State.DOM.imageModal) closeImageModal();
 });
+
+// Enhanced image modal functionality
 function openImageModal(src) {
   const modal = document.getElementById("imageModal");
   const modalImg = document.getElementById("modalImage");
+  
   if (modal && modalImg) {
     modalImg.src = src;
     modal.classList.remove("hidden");
+    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    
+    // Add keyboard support
+    document.addEventListener('keydown', handleImageModalKeydown);
   }
 }
+
 function closeImageModal() {
   const modal = document.getElementById("imageModal");
-  if (modal) modal.classList.add("hidden");
+  if (modal) {
+    modal.classList.add("hidden");
+    document.body.style.overflow = ''; // Restore scrolling
+    
+    // Remove keyboard support
+    document.removeEventListener('keydown', handleImageModalKeydown);
+  }
 }
+
+function handleImageModalKeydown(e) {
+  if (e.key === 'Escape') {
+    closeImageModal();
+  }
+}
+
+// Ensure close button works
+document.addEventListener('DOMContentLoaded', () => {
+  const closeBtn = document.querySelector('.image-close-btn');
+  if (closeBtn) {
+    closeBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeImageModal();
+    });
+  }
+});
 
 /* ----------  SORT SELECT ---------- */
 // Sort Select Component
