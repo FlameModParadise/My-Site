@@ -369,6 +369,19 @@ body.dark .logo img {
 
 /* ================ MOBILE RESPONSIVE DESIGN ================ */
 /* Mobile First Approach - Tablet and Mobile */
+
+/* Large tablets and small desktops */
+@media (max-width: 1024px) {
+  .navbar {
+    padding: 0.9rem 1.5rem;
+  }
+  
+  .navbar.scrolled {
+    padding: 0.7rem 1.5rem;
+  }
+}
+
+/* Tablets */
 @media (max-width: 768px) {
   .navbar {
     padding: 0.8rem 1.2rem;
@@ -393,7 +406,6 @@ body.dark .logo img {
     width: 44px;
     height: 44px;
     border-radius: 12px;
-    display: flex;
     align-items: center;
     justify-content: center;
     box-shadow: 0 4px 16px rgba(13, 110, 253, 0.3);
@@ -548,6 +560,54 @@ body.dark .logo img {
   body.dark .navbar-toggle:hover {
     background: rgba(255, 255, 255, 0.1);
     border-color: rgba(255, 255, 255, 0.15);
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+  .navbar {
+    padding: 0.6rem 1rem;
+  }
+  
+  .navbar.scrolled {
+    padding: 0.5rem 1rem;
+  }
+  
+  .navbar-toggle {
+    width: 40px;
+    height: 40px;
+    font-size: 1.6rem;
+    border-radius: 10px;
+  }
+  
+  .logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 360px) {
+  .navbar {
+    padding: 0.5rem 0.8rem;
+  }
+  
+  .navbar.scrolled {
+    padding: 0.4rem 0.8rem;
+  }
+  
+  .navbar-toggle {
+    width: 36px;
+    height: 36px;
+    font-size: 1.4rem;
+    border-radius: 8px;
+  }
+  
+  .logo {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
   }
 }
 
@@ -2748,31 +2808,6 @@ body.dark #removed-offers-section .tool-card:hover {
     transform: scale(1.08) rotate(1deg);
   }
 
-  .navbar-toggle {
-    display: block;
-    padding: 0.6rem;
-    border-radius: 10px;
-    font-size: 1.4rem;
-    min-width: 44px;
-    min-height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    background: rgba(0, 0, 0, 0.03);
-    border: 1px solid rgba(0, 0, 0, 0.05);
-  }
-
-  .navbar-toggle:hover {
-    background: rgba(0, 0, 0, 0.08);
-    transform: scale(1.05);
-    border-color: rgba(0, 0, 0, 0.1);
-  }
-
-  .navbar-toggle:active {
-    transform: scale(0.95);
-    background: rgba(0, 0, 0, 0.12);
-  }
 
   /* Optimize text rendering and mobile typography */
   body {
