@@ -56,29 +56,17 @@ const FMP = {
         this.menu.classList.remove('show-menu');
         this.toggle.innerHTML = '☰';
         this.toggle.setAttribute('aria-label', 'Open menu');
-        document.body.style.overflow = '';
+        // Overflow handled by CSS
       } else {
         this.menu.classList.add('show-menu');
         this.toggle.innerHTML = '✕';
         this.toggle.setAttribute('aria-label', 'Close menu');
-        document.body.style.overflow = 'hidden';
+        // Overflow handled by CSS
       }
     }
   }
 };
 
-/* === CSS PATCHES (auto‑injected) === */
-(() => {
-  const css = `
-:focus-visible{outline:2px solid var(--color-primary);outline-offset:2px;}
-@keyframes pulse{0%,100%{opacity:.6}50%{opacity:1}}
-.tool-thumb-wrapper{aspect-ratio:16/9;position:relative;}
-.tool-thumb-wrapper img{object-fit:cover;width:100%;height:100%;}
-`;
-  const style = document.createElement("style");
-  style.textContent = css;
-  document.head.appendChild(style);
-})();
 
 // App Configuration & State
 FMP.Config = {
@@ -375,12 +363,7 @@ FMP.DarkMode = {
   },
   
   toggle() {
-    // Disable transitions temporarily for instant toggle on mobile
-    const isMobile = window.innerWidth <= 768 || /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-    if (isMobile) {
-      document.documentElement.style.setProperty('--transition', '0ms');
-      document.documentElement.style.setProperty('--transition-fast', '0ms');
-    }
+        // Transitions handled by CSS
     
     document.body.classList.toggle("dark");
     localStorage.setItem(
@@ -388,13 +371,7 @@ FMP.DarkMode = {
       document.body.classList.contains("dark") ? "dark" : "light"
     );
     
-    // Re-enable transitions after a short delay on mobile
-    if (isMobile) {
-      setTimeout(() => {
-        document.documentElement.style.removeProperty('--transition');
-        document.documentElement.style.removeProperty('--transition-fast');
-      }, 100);
-    }
+        // Transitions handled by CSS
   }
 };
 
@@ -431,41 +408,9 @@ FMP.Mobile = {
     }
   },
   
+  
+  
   optimizeForMobile() {
-    // Add mobile-specific optimizations
-    const style = document.createElement('style');
-    style.textContent = `
-      @media (max-width: 768px) {
-        /* Optimize scrolling performance */
-        * {
-          -webkit-overflow-scrolling: touch;
-        }
-        
-        /* Improve touch targets */
-        button, a, .tool-card {
-          min-height: 44px;
-          min-width: 44px;
-        }
-        
-        /* Optimize text selection */
-        * {
-          -webkit-user-select: none;
-          -moz-user-select: none;
-          -ms-user-select: none;
-          user-select: none;
-        }
-        
-        /* Allow text selection in content areas */
-        .tool-desc, .desc, p {
-          -webkit-user-select: text;
-          -moz-user-select: text;
-          -ms-user-select: text;
-          user-select: text;
-        }
-      }
-    `;
-    document.head.appendChild(style);
-    
     // Optimize images for faster loading
     const images = document.querySelectorAll('img[data-src]');
     images.forEach(img => {
@@ -494,7 +439,7 @@ FMP.Mobile = {
         const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
         const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
         const scrollPercentage = (scrollTop / scrollHeight) * 100;
-        scrollProgress.style.width = `${scrollPercentage}%`;
+        // Scroll progress handled by CSS
       }
       ticking = false;
     };
@@ -508,24 +453,8 @@ FMP.Mobile = {
   },
   
   optimizeTouchInteractions() {
-    // Add touch feedback for better UX
-    document.addEventListener('touchstart', (e) => {
-      const target = e.target.closest('.tool-card, button, a');
-      if (target) {
-        target.style.transform = 'scale(0.98)';
-        target.style.transition = 'transform 0.1s ease';
-      }
-    }, { passive: true });
-    
-    document.addEventListener('touchend', (e) => {
-      const target = e.target.closest('.tool-card, button, a');
-      if (target) {
-        setTimeout(() => {
-          target.style.transform = '';
-          target.style.transition = '';
-        }, 100);
-      }
-    }, { passive: true });
+    // Touch feedback handled by CSS
+    console.log('Touch interactions handled by CSS');
   }
 };
 
@@ -535,6 +464,8 @@ FMP.Render = {
   if (!target) return;
   
     target.className = "fmp-main-grid main-grid";
+    
+    
   if (!list.length) {
     const currentFilter = sessionStorage.getItem(FMP.Config.KEYS.FILTER) || "all";
     const searchQuery = sessionStorage.getItem(FMP.Config.KEYS.SEARCH) || "";
@@ -677,8 +608,6 @@ FMP.Data = {
     }
   }
 };
-
-
 
 // Special Lists Event Handlers
 FMP.SpecialLists = {
@@ -880,7 +809,7 @@ function showToolDetail(tool, initial = false) {
 
   galleryImgs.forEach(img => {
     if (img.dataset.src) img.src = img.dataset.src;
-    img.style.cursor = 'pointer';
+    // Image cursor handled by CSS
     img.addEventListener('click', () => swapMainImage(img));
   });
 
@@ -1149,10 +1078,9 @@ FMP.Search = {
     const clearBtn = FMP.State.DOM.clearSearchBtn;
     if (clearBtn) {
       if (query.length > 0) {
-        clearBtn.style.display = 'flex';
-        clearBtn.style.opacity = '0.6';
+        // Clear button visibility handled by CSS
       } else {
-        clearBtn.style.display = 'none';
+        // Clear button visibility handled by CSS
       }
     }
   },
@@ -1411,7 +1339,7 @@ function openImageModal(src) {
   if (modal && modalImg) {
     modalImg.src = src;
     modal.classList.remove("hidden");
-    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    // Modal overflow handled by CSS
     
     // Add keyboard support
     document.addEventListener('keydown', handleImageModalKeydown);
@@ -1422,7 +1350,7 @@ function closeImageModal() {
   const modal = document.getElementById("imageModal");
   if (modal) {
     modal.classList.add("hidden");
-    document.body.style.overflow = ''; // Restore scrolling
+    // Modal overflow handled by CSS
     
     // Remove keyboard support
     document.removeEventListener('keydown', handleImageModalKeydown);
@@ -1468,7 +1396,7 @@ document.addEventListener("scroll", () => {
     const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
     const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
     const scrollPercentage = (scrollTop / scrollHeight) * 100;
-    scrollProgress.style.width = `${scrollPercentage}%`;
+    // Scroll progress handled by CSS
   }, 16);
 });
 
@@ -1495,31 +1423,6 @@ function handleNavbarScroll() {
 }
 
 window.addEventListener("scroll", handleNavbarScroll, { passive: true });
-
-// Mobile-specific navbar optimizations
-if (window.innerWidth <= 768) {
-  // Add touch feedback for navbar toggle
-  const navbarToggle = document.getElementById('navbarToggle');
-  if (navbarToggle) {
-    navbarToggle.addEventListener('touchstart', (e) => {
-      e.target.style.transform = 'scale(0.95)';
-    }, { passive: true });
-    
-    navbarToggle.addEventListener('touchend', (e) => {
-      e.target.style.transform = 'scale(1)';
-    }, { passive: true });
-  }
-  
-  // Optimize navbar menu animations
-  const navbarMenu = document.getElementById('navbarMenu');
-  if (navbarMenu) {
-    navbarMenu.addEventListener('transitionend', () => {
-      if (!navbarMenu.classList.contains('show-menu')) {
-        navbarMenu.style.display = 'none';
-      }
-    });
-  }
-}
 
 /* ----------  SCROLL TO TOP ---------- */
 let scrollToTopTimeout;
@@ -1565,40 +1468,6 @@ FMP.init = function() {
   }
 };
 
-// Debug function to test mobile detection
-FMP.debugMobile = function() {
-  const isMobile = window.innerWidth <= 768 || /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-  console.log('Mobile Detection Debug:');
-  console.log('- Window width:', window.innerWidth);
-  console.log('- User agent:', navigator.userAgent);
-  console.log('- Is mobile:', isMobile);
-  console.log('- Navbar toggle visible:', document.getElementById('navbarToggle')?.style.display !== 'none');
-  console.log('- Mobile menu visible:', document.getElementById('navbarMenu')?.classList.contains('show-menu'));
-  
-  // Add visual indicator
-  const indicator = document.createElement('div');
-  indicator.style.cssText = `
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    background: ${isMobile ? '#28a745' : '#dc3545'};
-    color: white;
-    padding: 10px;
-    border-radius: 5px;
-    z-index: 10000;
-    font-size: 12px;
-    font-family: monospace;
-  `;
-  indicator.textContent = `Mobile: ${isMobile ? 'YES' : 'NO'} (${window.innerWidth}px)`;
-  document.body.appendChild(indicator);
-  
-  setTimeout(() => {
-    document.body.removeChild(indicator);
-  }, 3000);
-};
-
-// Add debug function to window for easy access
-window.debugMobile = FMP.debugMobile;
 
 // Smooth scrolling for internal links
 document.addEventListener("DOMContentLoaded", () => {
@@ -1619,4 +1488,9 @@ window.addEventListener('error', (e) => {
     e.preventDefault();
     return false;
   }
+});
+
+// Initialize the app when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+  FMP.init();
 });
