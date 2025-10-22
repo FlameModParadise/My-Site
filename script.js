@@ -1152,6 +1152,55 @@ document.addEventListener("scroll", () => {
   }, 16);
 });
 
+/* ----------  NAVBAR SCROLL EFFECT ---------- */
+let navbarScrollTimeout;
+let isScrolling = false;
+
+// Optimized scroll handler with throttling
+function handleNavbarScroll() {
+  if (isScrolling) return;
+  
+  isScrolling = true;
+  requestAnimationFrame(() => {
+    const navbar = document.querySelector('.navbar');
+    if (navbar) {
+      if (window.scrollY > 50) {
+        navbar.classList.add("scrolled");
+      } else {
+        navbar.classList.remove("scrolled");
+      }
+    }
+    isScrolling = false;
+  });
+}
+
+window.addEventListener("scroll", handleNavbarScroll, { passive: true });
+
+// Mobile-specific navbar optimizations
+if (window.innerWidth <= 768) {
+  // Add touch feedback for navbar toggle
+  const navbarToggle = document.getElementById('navbarToggle');
+  if (navbarToggle) {
+    navbarToggle.addEventListener('touchstart', (e) => {
+      e.target.style.transform = 'scale(0.95)';
+    }, { passive: true });
+    
+    navbarToggle.addEventListener('touchend', (e) => {
+      e.target.style.transform = 'scale(1)';
+    }, { passive: true });
+  }
+  
+  // Optimize navbar menu animations
+  const navbarMenu = document.getElementById('navbarMenu');
+  if (navbarMenu) {
+    navbarMenu.addEventListener('transitionend', () => {
+      if (!navbarMenu.classList.contains('show-menu')) {
+        navbarMenu.style.display = 'none';
+      }
+    });
+  }
+}
+
 /* ----------  SCROLL TO TOP ---------- */
 let scrollToTopTimeout;
 window.addEventListener("scroll", () => {
