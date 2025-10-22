@@ -189,78 +189,64 @@ FMP.Utils.getShortDescription = function(tool, query = "") {
   return query ? FMP.Utils.highlightMatch(raw, query) : FMP.Utils.escapeHTML(raw);
 };
 
-// Lazy Image System
+// Optimized Image System for Mobile
 FMP.LazyImages = {
   observer: null,
   
   init() {
     const isMobile = window.innerWidth <= 768;
-    const rootMargin = isMobile ? "300px" : "500px"; // Balanced margin - fast but not overwhelming
+    const rootMargin = isMobile ? "200px" : "300px"; // Smaller margin for faster loading
     
     this.observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach(({ target, isIntersecting }) => {
-      if (isIntersecting) {
+      (entries) => {
+        entries.forEach(({ target, isIntersecting }) => {
+          if (isIntersecting) {
             // Load image immediately when in viewport
-        target.src = target.dataset.src;
+            target.src = target.dataset.src;
             target.loading = 'eager';
             target.decoding = 'async';
             this.observer.unobserve(target);
-      }
-    });
-  },
+          }
+        });
+      },
       { 
         rootMargin: rootMargin,
-        threshold: 0.1 // Load when 10% visible for better performance
+        threshold: 0.1
       }
     );
-    
-    // Preload visible images with delay to avoid flooding
-    if (!isMobile) {
-      setTimeout(() => this.preloadVisibleImages(), 200);
-    }
   },
   
   smartImg(src, alt = "") {
-    // Balanced loading - fast but not overwhelming
-    const loadingStrategy = "lazy"; // Use lazy loading to prevent flooding
-    const decoding = "async"; // Async decoding for better performance
-    const fetchpriority = "auto"; // Auto priority to avoid overwhelming
+    const isMobile = window.innerWidth <= 768;
     
-    // Use tiny transparent placeholder for instant display
-    const placeholder = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB2aWV3Qm94PSIwIDAgMSAxIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InRyYW5zcGFyZW50Ii8+PC9zdmc+";
+    // Use different strategies for mobile vs desktop
+    const loadingStrategy = isMobile ? "eager" : "lazy";
+    const decoding = "async";
+    const fetchpriority = isMobile ? "high" : "auto";
     
-    return `<img loading="${loadingStrategy}" decoding="${decoding}" fetchpriority="${fetchpriority}" data-src="${src}" src="${placeholder}" alt="${FMP.Utils.escapeHTML(alt)}" onerror="this.src='${placeholder}'" onload="FMP.LazyImages.compressImage(this)">`;
+    // Simple placeholder for faster rendering
+    const placeholder = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjgwIiBoZWlnaHQ9IjE0MCIgdmlld0JveD0iMCAwIDI4MCAxNDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjI4MCIgaGVpZ2h0PSIxNDAiIGZpbGw9IiNmNWY1ZjUiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjOTk5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+TG9hZGluZy4uLjwvdGV4dD48L3N2Zz4=";
+    
+    return `<img loading="${loadingStrategy}" decoding="${decoding}" fetchpriority="${fetchpriority}" data-src="${src}" src="${placeholder}" alt="${FMP.Utils.escapeHTML(alt)}" onerror="this.src='${placeholder}'">`;
   },
   
   activate(root = document) {
     const images = root.querySelectorAll("img[data-src]");
     
-    // Balanced loading - use intersection observer instead of flooding
-    images.forEach((img) => {
-      this.observer.observe(img);
-    });
-  },
-  
-  // Preload visible images gradually to avoid flooding
-  preloadVisibleImages() {
-    const images = document.querySelectorAll("img[data-src]");
-    let loadedCount = 0;
-    const maxConcurrent = 3; // Limit concurrent loads
-    
-    images.forEach((img, index) => {
-      if (img.dataset.src) {
-        // Stagger loading to prevent flooding
-        setTimeout(() => {
-          if (loadedCount < maxConcurrent) {
-            img.src = img.dataset.src;
-            img.loading = 'eager';
-            img.decoding = 'async';
-            loadedCount++;
-          }
-        }, index * 100); // 100ms delay between each load
-      }
-    });
+    // For mobile, load images immediately
+    const isMobile = window.innerWidth <= 768;
+    if (isMobile) {
+      images.forEach((img) => {
+        img.src = img.dataset.src;
+        img.loading = 'eager';
+        img.decoding = 'async';
+      });
+    } else {
+      // Use intersection observer for desktop
+      images.forEach((img) => {
+        this.observer.observe(img);
+      });
+    }
   },
   
   // Preload critical images immediately
@@ -272,43 +258,6 @@ FMP.LazyImages = {
       link.href = src;
       document.head.appendChild(link);
     });
-  },
-  
-  // Compress image file size without changing dimensions
-  compressImage(img) {
-    if (img.complete && img.naturalWidth > 0) {
-      // Skip compression for very small images to maintain speed
-      if (img.naturalWidth < 100 || img.naturalHeight < 100) {
-        return;
-      }
-      
-      // Create canvas to compress image
-      const canvas = document.createElement('canvas');
-      const ctx = canvas.getContext('2d');
-      
-      // Set canvas dimensions to match image
-      canvas.width = img.naturalWidth;
-      canvas.height = img.naturalHeight;
-      
-      // Draw image to canvas with compression
-      ctx.drawImage(img, 0, 0);
-      
-      // Convert to compressed format (JPEG with quality 0.85 for better speed/quality balance)
-      const compressedDataURL = canvas.toDataURL('image/jpeg', 0.85);
-      
-      // Replace original image with compressed version
-      img.src = compressedDataURL;
-    }
-  },
-  
-  // Balanced preload for critical images
-  preloadBalanced(src) {
-    const img = new Image();
-    img.loading = 'lazy'; // Use lazy loading to prevent flooding
-    img.decoding = 'async';
-    img.fetchPriority = 'auto'; // Auto priority
-    img.src = src;
-    return img;
   }
 };
 
@@ -366,37 +315,47 @@ FMP.Mobile = {
     const isMobile = window.innerWidth <= 768 || /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
     
     if (isMobile) {
-      // Disable all animations and transitions for maximum performance
-      document.documentElement.style.setProperty('--transition', '0ms');
-      document.documentElement.style.setProperty('--transition-fast', '0ms');
-      
-      // Optimize scrolling
-      document.body.style.scrollBehavior = 'auto';
-      
-      // Reduce DOM complexity
+      // Optimize for mobile performance
       this.optimizeForMobile();
+      
+      // Add mobile-specific event listeners
+      this.addMobileEventListeners();
+      
+      // Optimize touch interactions
+      this.optimizeTouchInteractions();
     }
   },
   
   optimizeForMobile() {
-    // Remove unnecessary DOM elements for mobile
-    const elementsToOptimize = [
-      '.tool-card::before',
-      '.tool-card::after'
-    ];
-    
-    // Disable expensive CSS effects
+    // Add mobile-specific optimizations
     const style = document.createElement('style');
     style.textContent = `
       @media (max-width: 768px) {
-        .tool-card::before,
-        .tool-card::after {
-          display: none !important;
+        /* Optimize scrolling performance */
+        * {
+          -webkit-overflow-scrolling: touch;
         }
         
+        /* Improve touch targets */
+        button, a, .tool-card {
+          min-height: 44px;
+          min-width: 44px;
+        }
+        
+        /* Optimize text selection */
         * {
-          transition: none !important;
-          animation: none !important;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+        }
+        
+        /* Allow text selection in content areas */
+        .tool-desc, .desc, p {
+          -webkit-user-select: text;
+          -moz-user-select: text;
+          -ms-user-select: text;
+          user-select: text;
         }
       }
     `;
@@ -407,7 +366,61 @@ FMP.Mobile = {
     images.forEach(img => {
       img.loading = 'eager';
       img.decoding = 'async';
+      img.fetchPriority = 'high';
     });
+  },
+  
+  addMobileEventListeners() {
+    // Prevent zoom on double tap
+    let lastTouchEnd = 0;
+    document.addEventListener('touchend', (event) => {
+      const now = (new Date()).getTime();
+      if (now - lastTouchEnd <= 300) {
+        event.preventDefault();
+      }
+      lastTouchEnd = now;
+    }, false);
+    
+    // Optimize scroll performance
+    let ticking = false;
+    const updateScrollProgress = () => {
+      const scrollProgress = document.getElementById("scrollProgress");
+      if (scrollProgress) {
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrollPercentage = (scrollTop / scrollHeight) * 100;
+        scrollProgress.style.width = `${scrollPercentage}%`;
+      }
+      ticking = false;
+    };
+    
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(updateScrollProgress);
+        ticking = true;
+      }
+    }, { passive: true });
+  },
+  
+  optimizeTouchInteractions() {
+    // Add touch feedback for better UX
+    document.addEventListener('touchstart', (e) => {
+      const target = e.target.closest('.tool-card, button, a');
+      if (target) {
+        target.style.transform = 'scale(0.98)';
+        target.style.transition = 'transform 0.1s ease';
+      }
+    }, { passive: true });
+    
+    document.addEventListener('touchend', (e) => {
+      const target = e.target.closest('.tool-card, button, a');
+      if (target) {
+        setTimeout(() => {
+          target.style.transform = '';
+          target.style.transition = '';
+        }, 100);
+      }
+    }, { passive: true });
   }
 };
 
