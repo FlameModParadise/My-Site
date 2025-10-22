@@ -239,7 +239,7 @@ FMP.LazyImages = {
   observer: null,
   
   init() {
-    const isMobile = window.innerWidth <= 768;
+    const isMobile = window.innerWidth <= 768 || /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
     const rootMargin = isMobile ? "200px" : "300px"; // Smaller margin for faster loading
     
     this.observer = new IntersectionObserver(
@@ -279,7 +279,7 @@ FMP.LazyImages = {
   smartImg(src, alt = "") {
     // Check if image is already cached
     if (FMP.ImageCache.isLoaded(src)) {
-      const isMobile = window.innerWidth <= 768;
+      const isMobile = window.innerWidth <= 768 || /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
       const loadingStrategy = isMobile ? "eager" : "lazy";
       const decoding = "async";
       const fetchpriority = isMobile ? "high" : "auto";
@@ -287,7 +287,7 @@ FMP.LazyImages = {
       return `<img loading="${loadingStrategy}" decoding="${decoding}" fetchpriority="${fetchpriority}" src="${src}" alt="${FMP.Utils.escapeHTML(alt)}">`;
     }
     
-    const isMobile = window.innerWidth <= 768;
+    const isMobile = window.innerWidth <= 768 || /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
     
     // Use different strategies for mobile vs desktop
     const loadingStrategy = isMobile ? "eager" : "lazy";
@@ -304,7 +304,7 @@ FMP.LazyImages = {
     const images = root.querySelectorAll("img[data-src]");
     
     // For mobile, load images immediately
-    const isMobile = window.innerWidth <= 768;
+    const isMobile = window.innerWidth <= 768 || /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
     if (isMobile) {
       images.forEach((img) => {
         const src = img.dataset.src;
@@ -376,7 +376,7 @@ FMP.DarkMode = {
   
   toggle() {
     // Disable transitions temporarily for instant toggle on mobile
-    const isMobile = window.innerWidth <= 768;
+    const isMobile = window.innerWidth <= 768 || /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
     if (isMobile) {
       document.documentElement.style.setProperty('--transition', '0ms');
       document.documentElement.style.setProperty('--transition-fast', '0ms');
@@ -402,6 +402,21 @@ FMP.DarkMode = {
 // Mobile Optimization
 FMP.Mobile = {
   init() {
+    this.checkMobileAndOptimize();
+    
+    // Listen for orientation changes and resize events
+    window.addEventListener('resize', () => {
+      this.checkMobileAndOptimize();
+    });
+    
+    window.addEventListener('orientationchange', () => {
+      setTimeout(() => {
+        this.checkMobileAndOptimize();
+      }, 100);
+    });
+  },
+  
+  checkMobileAndOptimize() {
     const isMobile = window.innerWidth <= 768 || /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
     
     if (isMobile) {
@@ -1550,12 +1565,40 @@ FMP.init = function() {
   }
 };
 
-// Auto-initialize when DOM is ready
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', FMP.init);
-} else {
-  FMP.init();
-}
+// Debug function to test mobile detection
+FMP.debugMobile = function() {
+  const isMobile = window.innerWidth <= 768 || /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  console.log('Mobile Detection Debug:');
+  console.log('- Window width:', window.innerWidth);
+  console.log('- User agent:', navigator.userAgent);
+  console.log('- Is mobile:', isMobile);
+  console.log('- Navbar toggle visible:', document.getElementById('navbarToggle')?.style.display !== 'none');
+  console.log('- Mobile menu visible:', document.getElementById('navbarMenu')?.classList.contains('show-menu'));
+  
+  // Add visual indicator
+  const indicator = document.createElement('div');
+  indicator.style.cssText = `
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: ${isMobile ? '#28a745' : '#dc3545'};
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 10000;
+    font-size: 12px;
+    font-family: monospace;
+  `;
+  indicator.textContent = `Mobile: ${isMobile ? 'YES' : 'NO'} (${window.innerWidth}px)`;
+  document.body.appendChild(indicator);
+  
+  setTimeout(() => {
+    document.body.removeChild(indicator);
+  }, 3000);
+};
+
+// Add debug function to window for easy access
+window.debugMobile = FMP.debugMobile;
 
 // Smooth scrolling for internal links
 document.addEventListener("DOMContentLoaded", () => {
