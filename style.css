@@ -195,6 +195,20 @@ body.dark .navbar.scrolled {
   box-shadow: 0 4px 32px rgba(0, 0, 0, 0.3);
 }
 
+body.dark .navbar-right a,
+body.dark .navbar-right button {
+  color: var(--text-dark);
+}
+
+body.dark .navbar-right a:hover,
+body.dark .navbar-right button:hover {
+  color: var(--color-primary);
+}
+
+body.dark .navbar-right a.active {
+  color: var(--color-primary);
+}
+
 .logo {
   display: inline-block;
   width: 48px;
@@ -432,8 +446,18 @@ body.dark .logo img {
   
   body.dark .navbar-right a:hover,
   body.dark .navbar-right button:hover {
+    color: var(--color-primary);
+  }
+  
+  body.dark .navbar-right a.active {
+    color: var(--color-primary);
+  }
+  
+  body.dark .navbar-right a:hover,
+  body.dark .navbar-right button:hover {
     background: rgba(13, 110, 253, 0.15);
     border-color: rgba(13, 110, 253, 0.3);
+    color: var(--color-primary);
   }
   
   body.dark .navbar-toggle {
