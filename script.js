@@ -102,6 +102,7 @@ FMP.State = {
     container: null,
     filtersContainer: null,
     searchInput: null,
+    clearSearchBtn: null,
     sortSelect: null,
     scrollToTopBtn: null,
     darkToggle: null,
@@ -113,6 +114,7 @@ FMP.State = {
     this.DOM.container = document.getElementById("main-tool-list");
     this.DOM.filtersContainer = document.getElementById("filters");
     this.DOM.searchInput = document.getElementById("searchInput");
+    this.DOM.clearSearchBtn = document.getElementById("clearSearchBtn");
     this.DOM.sortSelect = document.getElementById("sortSelect");
     this.DOM.scrollToTopBtn = document.getElementById("scrollToTopBtn");
     this.DOM.darkToggle = document.getElementById("darkToggle");
@@ -437,7 +439,36 @@ FMP.Render = {
   
     target.className = "fmp-main-grid main-grid";
   if (!list.length) {
-    target.innerHTML = "<p>No tools found.</p>";
+    const currentFilter = sessionStorage.getItem(FMP.Config.KEYS.FILTER) || "all";
+    const searchQuery = sessionStorage.getItem(FMP.Config.KEYS.SEARCH) || "";
+    
+    let message = "No items found.";
+    let suggestion = "";
+    
+    if (searchQuery && currentFilter !== "all") {
+      message = `No ${currentFilter} found matching "${searchQuery}".`;
+      suggestion = `Try searching in "All" categories to see if it exists elsewhere.`;
+    } else if (searchQuery) {
+      message = `No results found for "${searchQuery}".`;
+      suggestion = "Try adjusting your search terms or check different categories.";
+    } else if (currentFilter !== "all") {
+      message = `No ${currentFilter} available at the moment.`;
+      suggestion = `Try browsing "All" categories to see what's available.`;
+    } else {
+      suggestion = "Try adjusting your search or filter criteria.";
+    }
+    
+    target.innerHTML = `
+      <div class="no-results">
+        <p>${message}</p>
+        <p class="no-results-hint">${suggestion}</p>
+        ${currentFilter !== "all" && searchQuery ? `
+          <button class="try-all-btn" onclick="FMP.Search.tryAllCategories()">
+            Search in All Categories
+          </button>
+        ` : ''}
+      </div>
+    `;
     return;
   }
 
@@ -984,13 +1015,171 @@ FMP.Search = {
   
   setupEventListeners() {
     FMP.State.DOM.searchInput?.addEventListener("input", (e) => {
-      this.debouncedSearch(e.target.value);
+      const query = e.target.value.trim();
+      this.updateClearButtonVisibility(query);
+      if (query.length > 0) {
+        this.showSuggestions(query);
+      } else {
+        this.hideSuggestions();
+      }
+      this.debouncedSearch(query);
     });
     
     FMP.State.DOM.searchInput?.addEventListener("focus", () => {
-      if (!FMP.State.DOM.searchInput.value.trim()) {
+      const query = FMP.State.DOM.searchInput.value.trim();
+      this.updateClearButtonVisibility(query);
+      if (query.length > 0) {
+        this.showSuggestions(query);
+      } else {
         this.showRecentSearches();
       }
+    });
+    
+    FMP.State.DOM.searchInput?.addEventListener("blur", () => {
+      // Delay hiding to allow clicking on suggestions
+      setTimeout(() => {
+        this.hideSuggestions();
+      }, 200);
+    });
+    
+    // Clear button functionality
+    FMP.State.DOM.clearSearchBtn?.addEventListener("click", () => {
+      this.clearSearch();
+    });
+  },
+  
+  updateClearButtonVisibility(query) {
+    const clearBtn = FMP.State.DOM.clearSearchBtn;
+    if (clearBtn) {
+      if (query.length > 0) {
+        clearBtn.style.display = 'flex';
+        clearBtn.style.opacity = '0.6';
+      } else {
+        clearBtn.style.display = 'none';
+      }
+    }
+  },
+  
+  clearSearch() {
+    FMP.State.DOM.searchInput.value = '';
+    this.hideSuggestions();
+    this.run('');
+    this.updateClearButtonVisibility('');
+    FMP.State.DOM.searchInput.focus();
+  },
+  
+  tryAllCategories() {
+    // Switch to "All" filter and keep the current search
+    sessionStorage.setItem(FMP.Config.KEYS.FILTER, "all");
+    this.applyFiltersAndRender();
+    
+    // Update the active filter button
+    document.querySelectorAll("#filters button").forEach((btn) => {
+      btn.classList.toggle("active", btn.textContent.toLowerCase() === "all");
+    });
+  },
+  
+  showSuggestions(query) {
+    if (!query || query.length < 1) return;
+    
+    const suggestions = this.getSuggestions(query);
+    if (suggestions.length > 0) {
+      this.renderSuggestions(suggestions);
+    } else {
+      this.hideSuggestions();
+    }
+  },
+  
+  getSuggestions(query) {
+    const allTools = FMP.State.allTools || [];
+    const queryLower = query.toLowerCase();
+    
+    // Get tools that match the query
+    const matchingTools = allTools.filter(tool => 
+      tool.name.toLowerCase().includes(queryLower) ||
+      tool.description.toLowerCase().includes(queryLower) ||
+      (tool.tags && tool.tags.some(tag => tag.toLowerCase().includes(queryLower)))
+    );
+    
+    // Sort by relevance (exact name match first, then partial matches)
+    const sortedSuggestions = matchingTools.sort((a, b) => {
+      const aNameLower = a.name.toLowerCase();
+      const bNameLower = b.name.toLowerCase();
+      
+      // Exact match gets highest priority
+      if (aNameLower === queryLower) return -1;
+      if (bNameLower === queryLower) return 1;
+      
+      // Starts with query gets second priority
+      if (aNameLower.startsWith(queryLower) && !bNameLower.startsWith(queryLower)) return -1;
+      if (bNameLower.startsWith(queryLower) && !aNameLower.startsWith(queryLower)) return 1;
+      
+      // Then alphabetical
+      return aNameLower.localeCompare(bNameLower);
+    });
+    
+    return sortedSuggestions.slice(0, 8); // Limit to 8 suggestions
+  },
+  
+  renderSuggestions(suggestions) {
+    const autocompleteBox = FMP.State.DOM.autocompleteBox;
+    if (!autocompleteBox) return;
+    
+    const html = suggestions.map(tool => `
+      <div class="suggestion-item" data-name="${FMP.Utils.escapeHTML(tool.name)}">
+        <div class="suggestion-name">${FMP.Utils.escapeHTML(tool.name)}</div>
+        <div class="suggestion-desc">${FMP.Utils.escapeHTML(tool.description.substring(0, 60))}${tool.description.length > 60 ? '...' : ''}</div>
+      </div>
+    `).join('');
+    
+    autocompleteBox.innerHTML = html;
+    autocompleteBox.classList.remove("hidden");
+    
+    // Add click handlers
+    autocompleteBox.querySelectorAll(".suggestion-item").forEach(item => {
+      item.addEventListener("mousedown", (e) => {
+        e.preventDefault();
+        const toolName = item.dataset.name;
+        FMP.State.DOM.searchInput.value = toolName;
+        this.run(toolName);
+        this.hideSuggestions();
+      });
+    });
+  },
+  
+  hideSuggestions() {
+    const autocompleteBox = FMP.State.DOM.autocompleteBox;
+    if (autocompleteBox) {
+      autocompleteBox.classList.add("hidden");
+    }
+  },
+  
+  showRecentSearches() {
+    const recentSearches = JSON.parse(localStorage.getItem(FMP.Config.KEYS.RECENT) || "[]");
+    if (recentSearches.length === 0) return;
+    
+    const autocompleteBox = FMP.State.DOM.autocompleteBox;
+    if (!autocompleteBox) return;
+    
+    const html = recentSearches.slice(0, 5).map(search => `
+      <div class="suggestion-item recent-search" data-name="${FMP.Utils.escapeHTML(search)}">
+        <div class="suggestion-name">${FMP.Utils.escapeHTML(search)}</div>
+        <div class="suggestion-desc">Recent search</div>
+      </div>
+    `).join('');
+    
+    autocompleteBox.innerHTML = html;
+    autocompleteBox.classList.remove("hidden");
+    
+    // Add click handlers
+    autocompleteBox.querySelectorAll(".suggestion-item").forEach(item => {
+      item.addEventListener("mousedown", (e) => {
+        e.preventDefault();
+        const searchTerm = item.dataset.name;
+        FMP.State.DOM.searchInput.value = searchTerm;
+        this.run(searchTerm);
+        this.hideSuggestions();
+      });
     });
   },
   

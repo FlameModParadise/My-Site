@@ -62,7 +62,10 @@
     <!-- Search bar -->
     <div class="search-bar-true-right">
       <div class="search-group">
-        <input id="searchInput" type="text" placeholder="Search..." />
+        <div class="search-input-wrapper">
+          <input id="searchInput" type="text" placeholder="Search..." />
+          <button id="clearSearchBtn" class="clear-search-btn" type="button" aria-label="Clear search">×</button>
+        </div>
         <div id="autocompleteBox" class="autocomplete-box hidden" role="listbox"></div>
         <select id="sortSelect">
           <option value="name">Name A → Z</option>
