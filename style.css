@@ -20,7 +20,7 @@ body {
 /* ================ THEME VARIABLES ================ */
 :root {
   --font-body: "Inter", sans-serif;
-  --font-size: 16px;
+  --font-size: 14px;
   --line-height: 1.6;
 
   --light-bg: #f4f7fa;
@@ -260,7 +260,7 @@ body.dark .logo img {
   padding: 0.6rem 1.2rem;
   border-radius: 10px;
   position: relative;
-  font-size: 0.95rem;
+  font-size: 0.55rem;
   will-change: transform, color;
 }
 
@@ -404,7 +404,7 @@ body.dark .navbar-right button {
 }
 
 .recommended-section h3 {
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   font-weight: 700;
   background: var(--gradient-primary);
   -webkit-background-clip: text;
@@ -508,7 +508,7 @@ body.dark .navbar-right button {
 }
 
 .recommended-content h4 {
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 600;
   color: var(--text-light);
   margin: 0 0 0.5rem 0;
@@ -517,7 +517,7 @@ body.dark .navbar-right button {
 }
 
 .recommended-content p {
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   color: var(--color-accent);
   margin: 0;
   line-height: 1.4;
@@ -575,7 +575,7 @@ body.dark .recommended-content p {
 
 .title {
   text-align: center;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 600;
   background: var(--gradient-primary);
   -webkit-background-clip: text;
@@ -624,7 +624,7 @@ body.dark .recommended-content p {
   position: relative;
   overflow: hidden;
   font-weight: 500;
-  font-size: 12px;
+  font-size: 11px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
@@ -726,7 +726,7 @@ body.dark .recommended-content p {
 
 .tool-title {
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 0.9rem;
   margin: 0.5rem 0;
   transition: color 0.3s ease;
   line-height: 1.3;
@@ -746,7 +746,7 @@ body.dark .recommended-content p {
 }
 
 .tool-desc {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: #150f0f;
   transition: color 0.3s ease;
   line-height: 1.4;
@@ -778,7 +778,7 @@ body.dark .tool-desc {
 }
 
 .tag {
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   padding: 4px 10px;
   border-radius: 20px;
   background: #e0e0e0;
@@ -2075,7 +2075,7 @@ body.dark #removed-offers-section .tool-card:hover {
   }
 
   .navbar-toggle {
-    display: block;
+    display: block !important;
     font-size: 1.8rem;
     background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
     color: white;
@@ -2127,7 +2127,7 @@ body.dark #removed-offers-section .tool-card:hover {
   }
 
   .navbar-right.show-menu {
-    display: flex;
+    display: flex !important;
     transform: translateX(0);
     opacity: 1;
     visibility: visible;
@@ -2137,7 +2137,7 @@ body.dark #removed-offers-section .tool-card:hover {
   .navbar-right a,
   .navbar-right button {
     color: white;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     font-weight: 600;
     padding: 1rem 2rem;
     border-radius: 16px;
