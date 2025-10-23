@@ -1273,23 +1273,26 @@ body.dark .tool-detail {
 
 .tool-detail-content {
   display: flex;
-  gap: 2rem;
-  flex-wrap: wrap;
+  gap: 3rem;
   position: relative;
   z-index: 1;
   align-items: flex-start;
   /* Align to top */
+  padding: 1rem 0;
 }
 
 .tool-detail-left {
-  flex: 1 1 300px;
-  min-width: 250px;
+  flex: 0 0 40%;
+  min-width: 300px;
+  max-width: 500px;
+  padding: 1rem;
 }
 
 .tool-detail-right {
-  flex: 1 1 300px;
-  min-width: 250px;
+  flex: 1 1 60%;
+  min-width: 300px;
   animation: slideInFromRight 0.8s ease;
+  padding: 1rem 1.5rem;
 }
 
 @keyframes slideInFromRight {
@@ -1360,8 +1363,8 @@ body.dark .tool-detail {
 
 .tool-detail-right .desc {
   font-size: 1rem;
-  margin: 1rem 0;
-  line-height: 1.6;
+  margin: 1.5rem 0;
+  line-height: 1.7;
   animation: fadeIn 1s ease 0.5s both;
   word-wrap: break-word;
   overflow-wrap: break-word;
@@ -1403,16 +1406,18 @@ body.dark .tool-detail {
 .contact-btn {
   background: var(--gradient-primary);
   color: #fff;
-  padding: 0.6rem 1.2rem;
-  border-radius: 6px;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
   display: inline-block;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
+  margin-right: 1rem;
   text-align: center;
   text-decoration: none;
   transition: all var(--transition);
   position: relative;
   overflow: hidden;
   box-shadow: var(--shadow-strong);
+  font-weight: 600;
 }
 
 .contact-btn::before {
@@ -2025,12 +2030,12 @@ body.dark .search-group select:focus {
   background: var(--gradient-warm);
   color: #fff;
   border: none;
-  padding: 0.6rem 1.2rem;
-  border-radius: 6px;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
   cursor: pointer;
   font-weight: 600;
   transition: all var(--transition);
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   position: relative;
   overflow: hidden;
   box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3);
@@ -2160,6 +2165,17 @@ body.dark #popupText {
     padding: 1rem 0.8rem;
   }
 
+  .tool-detail-content {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .tool-detail-left,
+  .tool-detail-right {
+    flex: 1 1 100%;
+    min-width: unset;
+  }
+
   /* Smaller filter tags for mobile */
   .filter-tags {
     gap: 0.3rem !important;
@@ -2203,16 +2219,6 @@ body.dark #popupText {
   width: 100%;
 }
 
-.tool-detail-content {
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.tool-detail-left,
-.tool-detail-right {
-  flex: 1 1 100%;
-  min-width: unset;
-}
 
 .title {
   font-size: 1.3rem;
@@ -2937,12 +2943,13 @@ body.dark #removed-offers-section .tool-card:hover {
 .pricing-list {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 1rem 0;
 }
 
 .pricing-list li {
-  padding: 0.3rem 0;
+  padding: 0.5rem 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 0.5rem;
 }
 
 .pricing-list li:last-child {
