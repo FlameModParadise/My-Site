@@ -2704,10 +2704,30 @@ body.dark #removed-offers-section .tool-card:hover {
   }
 }
 
-/* Desktop navbar toggle hide */
+/* Desktop navbar toggle hide and enhanced sizing */
 @media (min-width: 769px) {
   .navbar-toggle {
     display: none !important;
+  }
+  
+  /* Enhanced navbar sizing for desktop/laptop */
+  .navbar {
+    padding: 1.5rem 2rem;
+  }
+  
+  .navbar.scrolled {
+    padding: 1.2rem 2rem;
+  }
+  
+  .navbar-right a,
+  .navbar-right button {
+    font-size: 0.9rem;
+    padding: 0.6rem 1.2rem;
+  }
+  
+  .logo {
+    width: 56px;
+    height: 56px;
   }
 }
 
