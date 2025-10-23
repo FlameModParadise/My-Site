@@ -327,14 +327,13 @@ body.dark .navbar-right button {
   }
 }
 
-@keyframes slideInFromLeft {
+@keyframes slideInFromRight {
   from {
-    width: 0;
+    transform: translateX(100%);
     opacity: 0;
   }
-
   to {
-    width: 100%;
+    transform: translateX(0);
     opacity: 1;
   }
 }
@@ -517,7 +516,7 @@ body.dark .navbar-right button {
 }
 
 .recommended-content p {
-  font-size: 0.75rem;
+  font-size: 0.6rem;
   color: var(--color-accent);
   margin: 0;
   line-height: 1.4;
@@ -575,7 +574,7 @@ body.dark .recommended-content p {
 
 .title {
   text-align: center;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   font-weight: 600;
   background: var(--gradient-primary);
   -webkit-background-clip: text;
@@ -624,7 +623,7 @@ body.dark .recommended-content p {
   position: relative;
   overflow: hidden;
   font-weight: 500;
-  font-size: 11px;
+  font-size: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
@@ -778,7 +777,7 @@ body.dark .tool-desc {
 }
 
 .tag {
-  font-size: 0.7rem;
+  font-size: 0.6rem;
   padding: 4px 10px;
   border-radius: 20px;
   background: #e0e0e0;
@@ -2096,23 +2095,31 @@ body.dark #removed-offers-section .tool-card:hover {
   .navbar-right {
     position: fixed;
     top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
+    right: 0;
+    width: auto;
+    min-width: 200px;
+    max-width: 280px;
+    height: auto;
+    max-height: 100vh;
     display: none !important;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 2rem;
-    background: linear-gradient(135deg, rgba(13, 110, 253, 0.95), rgba(111, 66, 193, 0.9));
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
-    transform: translateX(-100%);
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    transform: translateX(100%);
     opacity: 0;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 9999;
-    overflow: hidden;
+    overflow-y: auto;
     visibility: hidden;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    margin-top: 80px;
+    border-radius: 12px 0 0 12px;
+    padding: 0.25rem 0;
   }
 
   .navbar-right::before {
@@ -2124,6 +2131,30 @@ body.dark #removed-offers-section .tool-card:hover {
     bottom: 0;
     background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="mobile-nav-pattern" width="40" height="40" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23mobile-nav-pattern)"/></svg>');
     opacity: 0.3;
+    z-index: -1;
+  }
+
+  .navbar-right::after {
+    content: 'Menu';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 0.5rem 1rem;
+    background: rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-light);
+    text-align: center;
+    z-index: 1;
+    border-radius: 12px 0 0 0;
+  }
+
+  body.dark .navbar-right::after {
+    background: rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-dark);
   }
 
   .navbar-right.show-menu {
@@ -2131,25 +2162,37 @@ body.dark #removed-offers-section .tool-card:hover {
     transform: translateX(0);
     opacity: 1;
     visibility: visible;
-    animation: slideInFromLeft 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: slideInFromRight 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .navbar-right a,
   .navbar-right button {
-    color: white;
-    font-size: 1.2rem;
-    font-weight: 600;
-    padding: 1rem 2rem;
-    border-radius: 16px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    color: var(--text-light);
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 0.4rem 0.8rem;
+    border-radius: 0;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    transition: all 0.2s ease;
     position: relative;
     overflow: hidden;
-    min-width: 200px;
-    text-align: center;
+    min-width: auto;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2rem;
+    white-space: nowrap;
+  }
+
+  body.dark .navbar-right a,
+  body.dark .navbar-right button {
+    color: var(--text-dark);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   .navbar-right a::before,
@@ -2171,20 +2214,40 @@ body.dark #removed-offers-section .tool-card:hover {
 
   .navbar-right a:hover,
   .navbar-right button:hover {
-    transform: translateY(-3px) scale(1.02);
-    background: rgba(255, 255, 255, 0.2);
-    border-color: rgba(255, 255, 255, 0.4);
-    box-shadow: 0 8px 32px rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.05);
+    transform: none;
+    border-bottom-color: rgba(0, 0, 0, 0.15);
+    box-shadow: none;
+  }
+
+  body.dark .navbar-right a:hover,
+  body.dark .navbar-right button:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-bottom-color: rgba(255, 255, 255, 0.15);
   }
 
   .navbar-right a.active {
-    background: rgba(255, 255, 255, 0.25);
-    border-color: rgba(255, 255, 255, 0.5);
-    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.3);
+    background: rgba(0, 0, 0, 0.08);
+    border-bottom-color: rgba(0, 0, 0, 0.2);
+    box-shadow: none;
   }
 
-  .navbar-right a.active::after {
-    display: none !important;
+  body.dark .navbar-right a.active {
+    background: rgba(255, 255, 255, 0.08);
+    border-bottom-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .navbar-right a:last-child,
+  .navbar-right button:last-child {
+    border-radius: 0 0 0 12px;
+    border-bottom: none;
+  }
+
+  /* Dark mode sidebar styles */
+  body.dark .navbar-right {
+    background: rgba(0, 0, 0, 0.95);
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
   }
 
   /* Recommended section */
