@@ -495,7 +495,7 @@
     "type": "Checker",
     "name": "Netflix Cookie Privatizer",
     "description": "Netflix is a global streaming service for movies, TV shows, and original content.",
-    "long_description": "🔐 Safely privatize any Netflix cookies.\n🚫 No modifications or negotiations allowed.\n🌍 VPN support is recommended for a seamless experience.",
+    "long_description": "🔐 Safely privatize any Netflix cookies.\n🚫Don't use for checking purpose.",
     "requirements": "✅ Use this tool only for privatizing cookies, not for checking them.",
     "image": "assets/checkers-pic/netflix.png",
     "video": "",
@@ -520,7 +520,6 @@
     "pricing": {
       "1 Day": "$1",
       "1 Month": "$10",
-      "3 Months": "$20",
       "Lifetime": "$25",
       "Source Code": "$35"
     }
