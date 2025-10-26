@@ -179,158 +179,14 @@ FMP.Utils.getShortDescription = function(tool, query = "") {
   return query ? FMP.Utils.highlightMatch(raw, query) : FMP.Utils.escapeHTML(raw);
 };
 
-// Image Cache System
-FMP.ImageCache = {
-  cache: new Map(),
-  
-  // Store loaded image in cache
-  store(src, imgElement) {
-    this.cache.set(src, {
-      element: imgElement,
-      loaded: true,
-      timestamp: Date.now()
-    });
-  },
-  
-  // Get cached image if available
-  get(src) {
-    const cached = this.cache.get(src);
-    if (cached && cached.loaded) {
-      return cached.element;
-    }
-    return null;
-  },
-  
-  // Check if image is already loaded
-  isLoaded(src) {
-    const cached = this.cache.get(src);
-    return cached && cached.loaded;
-  },
-  
-  // Create a copy of cached image for reuse
-  reuse(src) {
-    const cached = this.cache.get(src);
-    if (cached && cached.loaded) {
-      // Create a new img element with the same src
-      const newImg = document.createElement('img');
-      newImg.src = src;
-      newImg.loading = 'eager';
-      newImg.decoding = 'async';
-      return newImg;
-    }
-    return null;
-  }
-};
+/* ----------  ULTRA FAST IMAGE SYSTEM ---------- */
+function smartImg(src, alt = "") {
+  return `<img loading="lazy" decoding="async" src="${src}" alt="${FMP.Utils.escapeHTML(alt)}">`;
+}
 
-// Optimized Image System for Mobile
 FMP.LazyImages = {
-  observer: null,
-  
-  init() {
-    const isMobile = window.innerWidth <= 768 || /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-    const rootMargin = isMobile ? "200px" : "300px"; // Smaller margin for faster loading
-    
-    this.observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(({ target, isIntersecting }) => {
-          if (isIntersecting) {
-            const src = target.dataset.src;
-            
-            // Check cache first
-            if (FMP.ImageCache.isLoaded(src)) {
-              target.src = src;
-              target.removeAttribute('data-src');
-              this.observer.unobserve(target);
-              return;
-            }
-            
-            // Load image immediately when in viewport
-            target.src = src;
-            target.loading = 'eager';
-            target.decoding = 'async';
-            this.observer.unobserve(target);
-            
-            // Cache when loaded
-            target.onload = () => {
-              FMP.ImageCache.store(src, target);
-            };
-          }
-        });
-      },
-      { 
-        rootMargin: rootMargin,
-        threshold: 0.1
-      }
-    );
-  },
-  
-  smartImg(src, alt = "") {
-    // Check if image is already cached
-    if (FMP.ImageCache.isLoaded(src)) {
-      const isMobile = window.innerWidth <= 768 || /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-      const loadingStrategy = isMobile ? "eager" : "lazy";
-      const decoding = "async";
-      const fetchpriority = isMobile ? "high" : "auto";
-      
-      return `<img loading="${loadingStrategy}" decoding="${decoding}" fetchpriority="${fetchpriority}" src="${src}" alt="${FMP.Utils.escapeHTML(alt)}">`;
-    }
-    
-    const isMobile = window.innerWidth <= 768 || /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-    
-    // Use different strategies for mobile vs desktop
-    const loadingStrategy = isMobile ? "eager" : "lazy";
-    const decoding = "async";
-    const fetchpriority = isMobile ? "high" : "auto";
-    
-    // Simple placeholder for faster rendering
-    const placeholder = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjgwIiBoZWlnaHQ9IjE0MCIgdmlld0JveD0iMCAwIDI4MCAxNDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjI4MCIgaGVpZ2h0PSIxNDAiIGZpbGw9IiNmNWY1ZjUiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmaWxsPSIjOTk5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+TG9hZGluZy4uLjwvdGV4dD48L3N2Zz4=";
-    
-    return `<img loading="${loadingStrategy}" decoding="${decoding}" fetchpriority="${fetchpriority}" data-src="${src}" src="${placeholder}" alt="${FMP.Utils.escapeHTML(alt)}" onerror="this.src='${placeholder}'">`;
-  },
-  
-  activate(root = document) {
-    const images = root.querySelectorAll("img[data-src]");
-    
-    // For mobile, load images immediately
-    const isMobile = window.innerWidth <= 768 || /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-    if (isMobile) {
-      images.forEach((img) => {
-        const src = img.dataset.src;
-        
-        // Check cache first
-        if (FMP.ImageCache.isLoaded(src)) {
-          img.src = src;
-          img.removeAttribute('data-src');
-          return;
-        }
-        
-        img.src = src;
-        img.loading = 'eager';
-        img.decoding = 'async';
-        
-        // Cache when loaded
-        img.onload = () => {
-          FMP.ImageCache.store(src, img);
-        };
-      });
-    } else {
-      // Use intersection observer for desktop
-      images.forEach((img) => {
-        this.observer.observe(img);
-      });
-    }
-  },
-  
-  // Preload critical images immediately
-  preloadCritical(images) {
-    images.forEach(src => {
-      const link = document.createElement('link');
-      link.rel = 'preload';
-      link.as = 'image';
-      link.href = src;
-      document.head.appendChild(link);
-    });
-  }
+  activate: () => {},
+  smartImg: smartImg
 };
 
 // Dark Mode Component
@@ -528,7 +384,6 @@ FMP.Render = {
   });
 
   target.replaceChildren(frag);
-    FMP.LazyImages.activate(target);
   },
   
   renderInto(selector, list) {
@@ -1453,7 +1308,6 @@ FMP.init = function() {
   // Initialize all components
   FMP.State.init();
   FMP.Navbar.init();
-  FMP.LazyImages.init();
   FMP.DarkMode.init();
   FMP.Mobile.init();
   FMP.MainContainer.init();
