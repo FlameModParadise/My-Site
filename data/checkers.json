@@ -1155,6 +1155,45 @@
   },
   {
     "type": "Checker",
+    "name": "PinecodeAI Cookie Checker",
+    "description": "PinecodeAI is a platform for AI-driven coding assistance.",
+    "long_description": "📈 Validate PinecodeAI cookies and retrieve account details.\n💳 Capture subscription and payment information.\n🌍 Fast and works without proxies.\n✅ Ideal for account management.",
+    "requirements": "✅ Very very hard to find cookies because it is not known site.",
+    "image": "assets/checkers-pic/pinecode.webp",
+    "video": "",
+    "images": [
+    ],
+    "discount": "10%",
+    "discount_plans": ["Lifetime (Inc Patch)", "Source Code"],
+    "offer": "Limited Time 10% OFF - Lifetime & Source Code Only!",
+    "offer_expiry": "2025-10-24",
+    "release_date": "2025-05-20",
+    "update_date": "2025-05-20",
+    "tags": [
+      "tradingview",
+      "finance",
+      "stock market"
+    ],
+    "keywords": [
+      "tradingview cookie checker",
+      "check tradingview cookies",
+      "tradingview account status",
+      "slot capture tradingview",
+      "tradingview cookies tool"
+    ],
+    "contact": "telegram",
+    "stock": "unlimited",
+    "pricing": {
+      "1 Day": "$1",
+      "1 Week": "$4",
+      "30 Days": "$7",
+      "Lifetime (No Patch)": "$10",
+      "Lifetime (Inc Patch)": "$15",
+      "Source Code": "$20"
+    }
+  },
+  {
+    "type": "Checker",
     "name": "SMS-virtual Cookie Checker",
     "description": "SMS-virtual is a service for receiving SMS online.You can rent or buy virtual phone numbers to receive SMS for account verification.",
     "long_description": "📱 Validate SMS-virtual cookies and retrieve account details.🔍 Detects subscription status and plan type. Detects if account has any balance or not.\n•📌 Can find if any rented or bought number is still active.\n• 💳 If account has balance, you can buy new numbers — no matter if you're a premium subscriber or not.\n• 🛒 You can buy Netflix number, Telegram number, WhatsApp number, and more.\n🌐 Site: https://smsvirtual.org/",
