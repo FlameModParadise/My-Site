@@ -138,7 +138,7 @@
     "type": "Membership",
     "description": "Claude Ai is the best ai chatbot for coding purposes.",
     "long_description": "🤖 ClaudeAi Cookie Plan\n• Use ClaudeAi through browser cookies.",
-    "requirements": "Cookies are browser-based only.\nNo sharing or misuse.\nReplacement only within limits.(Don't ask for max plan, it will be always mixed.)",
+    "requirements": "Cookies are browser-based only.\nNo sharing or misuse.\nReplacement only within limits.\n\nAvailable plans:\n- Pro Only: Basic Claude access\n- Mixed: Standard Claude access\n- Max Only: Premium Claude access",
     "image": "assets/membership/claudeai.png",
     "tags": [
       "claude",
@@ -149,7 +149,7 @@
     ],
     "release_date": "2025-05-02",
     "update_date": "2025-05-02",
-    "price": "10days: 2$ \n17days: 3$",
+    "price": "Pro Only:\n10days: 1$ \n17days: 2$\n\nMixed:\n10days: 2$ \n17days: 3$\n\nMax Only:\n10days: 3$ \n17days: 4$",
     "contact": "telegram",
     "keywords": [
       "claude membership",
