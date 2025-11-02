@@ -7,7 +7,7 @@
     "tags": ["netflix", "method", "c2p", "em", "private"],
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
-    "price": "- Netflix C2P: $3\n- Netflix EM: $1\n- Manual Privatize: $1.5\n",
+    "price": "- Netflix C2P: $3 (Not working, patched)\n- Netflix EM: $1\n- Manual Privatize: $1.5\n",
     "discount": null,
     "discount_plans": [],
     "offer": null,
