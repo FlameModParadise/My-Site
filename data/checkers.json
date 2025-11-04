@@ -1350,7 +1350,7 @@
     "name": "DuoLingo Account Checker",
     "description": "DuoLingo is a language-learning platform that offers courses in various languages through interactive lessons and exercises.",
     "long_description": "🤖 Validate DuoLingo accounts and check subscription status.\n🔍 Automatically detects free, premium accounts.\n📊 Detailed account information including subscription type and expiry.",
-    "requirements": "✅ No specific requirements.",
+    "requirements": "✅ It has ip ban issue so use good proxies or vpn while checking.",
     "image": "assets/checkers-pic/duolingo.webp",
     "video": "",
     "images": [
@@ -1360,12 +1360,11 @@
     "discount_plans": ["Lifetime (Inc Patch)", "Source Code"],
     "offer": "",
     "offer_expiry": "",
-    "release_date": "2025-09-23",
-    "update_date": "2025-09-23",
+    "release_date": "2025-11-04",
+    "update_date": "2025-11-04",
     "tags": [
-      "quillbot",
-      "writing",
-      "ai"
+      "duolingo",
+      "language learning"
     ],
     "keywords": [
       "duolingo account check",
