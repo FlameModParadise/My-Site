@@ -1349,7 +1349,7 @@
     "type": "Checker",
     "name": "DuoLingo Account Checker",
     "description": "DuoLingo is a language-learning platform that offers courses in various languages through interactive lessons and exercises.",
-    "long_description": "🤖 Validate DuoLingo accounts and check subscription status.\n🔍 Automatically detects free, premium accounts.\n📊 Detailed account information including subscription type and expiry.",
+    "long_description": "🤖 Validate DuoLingo accounts and check subscription status.\n🔍 Automatically detects free, premium accounts.\n📊 Detailed account information.",
     "requirements": "✅ It has ip ban issue so use good proxies or vpn while checking.",
     "image": "assets/checkers-pic/duolingo.webp",
     "video": "",
