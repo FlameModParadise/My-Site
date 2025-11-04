@@ -1344,5 +1344,43 @@
       "Lifetime (Inc Patch)": "$15",
       "Source Code": "$20"
     }
+  },
+  {
+    "type": "Checker",
+    "name": "DuoLingo Account Checker",
+    "description": "DuoLingo is a language-learning platform that offers courses in various languages through interactive lessons and exercises.",
+    "long_description": "🤖 Validate DuoLingo accounts and check subscription status.\n🔍 Automatically detects free, premium accounts.\n📊 Detailed account information including subscription type and expiry.",
+    "requirements": "✅ No specific requirements.",
+    "image": "assets/checkers-pic/duolingo.webp",
+    "video": "",
+    "images": [
+      "assets/checkers-pic/checking/duolingo1.webp"
+    ],
+    "discount": "",
+    "discount_plans": ["Lifetime (Inc Patch)", "Source Code"],
+    "offer": "",
+    "offer_expiry": "",
+    "release_date": "2025-09-23",
+    "update_date": "2025-09-23",
+    "tags": [
+      "quillbot",
+      "writing",
+      "ai"
+    ],
+    "keywords": [
+      "duolingo account check",
+      "validate duolingo accounts",
+      "duolingo",
+      "language learning"
+    ],
+    "contact": "telegram",
+    "stock": "unlimited",
+    "pricing": {
+      "1 Day": "$1",
+      "1 Month": "$4",
+      "Lifetime (No Patch)": "$10",
+      "Lifetime (Inc Patch)": "$15",
+      "Source Code": "$20"
+    }
   }
 ]
