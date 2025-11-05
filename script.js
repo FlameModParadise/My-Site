@@ -458,6 +458,9 @@ FMP.Data = {
 
       FMP.Filters.generateButtons();
       FMP.Search.applyFiltersAndRender();
+      
+      // Apply URL hash after data is loaded (for direct links with hash)
+      applyURLHash();
   } catch (err) {
       FMP.State.DOM.container.innerHTML = "<p>Error loading data.</p>";
     }
@@ -689,8 +692,30 @@ function clearHash() {
 function applyURLHash() {
   const h = decodeURIComponent(location.hash).replace("#", "");
   if (h.startsWith("tool=")) {
-    const name = h.slice(5).toLowerCase();
-    const tool = FMP.State.allTools.find((t) => (t.name || "").toLowerCase() === name);
+    const name = h.slice(5).toLowerCase().trim();
+    if (!name || !FMP.State.allTools || FMP.State.allTools.length === 0) return;
+    
+    // Try exact match first
+    let tool = FMP.State.allTools.find((t) => (t.name || "").toLowerCase() === name);
+    
+    // If no exact match, try partial match on name
+    if (!tool) {
+      tool = FMP.State.allTools.find((t) => {
+        const toolName = (t.name || "").toLowerCase();
+        return toolName.includes(name) || name.includes(toolName);
+      });
+    }
+    
+    // If still no match, try matching with keywords or tags
+    if (!tool) {
+      tool = FMP.State.allTools.find((t) => {
+        const keywords = (t.keywords || []).map(k => k.toLowerCase());
+        const tags = (t.tags || []).map(t => t.toLowerCase());
+        const searchTerms = [...keywords, ...tags];
+        return searchTerms.some(term => term.includes(name) || name.includes(term));
+      });
+    }
+    
     if (tool) showToolDetail(tool, true);
   }
 }
