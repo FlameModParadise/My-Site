@@ -459,8 +459,8 @@ FMP.Data = {
       FMP.Filters.generateButtons();
       FMP.Search.applyFiltersAndRender();
       
-      // Apply URL hash after data is loaded (for direct links with hash)
-      applyURLHash();
+      const pendingHashName = pendingToolHash;
+      applyURLHash(pendingHashName || undefined);
   } catch (err) {
       FMP.State.DOM.container.innerHTML = "<p>Error loading data.</p>";
     }
@@ -689,34 +689,54 @@ function clearHash() {
 }
 
 /* ----------  HASH UTILS ---------- */
-function applyURLHash() {
-  const h = decodeURIComponent(location.hash).replace("#", "");
-  if (h.startsWith("tool=")) {
-    const name = h.slice(5).toLowerCase().trim();
-    if (!name || !FMP.State.allTools || FMP.State.allTools.length === 0) return;
-    
-    // Try exact match first
-    let tool = FMP.State.allTools.find((t) => (t.name || "").toLowerCase() === name);
-    
-    // If no exact match, try partial match on name
-    if (!tool) {
-      tool = FMP.State.allTools.find((t) => {
-        const toolName = (t.name || "").toLowerCase();
-        return toolName.includes(name) || name.includes(toolName);
-      });
-    }
-    
-    // If still no match, try matching with keywords or tags
-    if (!tool) {
-      tool = FMP.State.allTools.find((t) => {
-        const keywords = (t.keywords || []).map(k => k.toLowerCase());
-        const tags = (t.tags || []).map(t => t.toLowerCase());
-        const searchTerms = [...keywords, ...tags];
-        return searchTerms.some(term => term.includes(name) || name.includes(term));
-      });
-    }
-    
-    if (tool) showToolDetail(tool, true);
+let pendingToolHash = null;
+function applyURLHash(forceName) {
+  const hashString = typeof forceName === "string" && forceName.trim().length
+    ? `tool=${forceName}`
+    : decodeURIComponent(location.hash || "").replace("#", "");
+
+  if (!hashString.startsWith("tool=")) {
+    pendingToolHash = null;
+    return;
+  }
+
+  const name = hashString.slice(5).toLowerCase().trim();
+  if (!name) {
+    pendingToolHash = null;
+    return;
+  }
+
+  if (!Array.isArray(FMP.State.allTools) || FMP.State.allTools.length === 0) {
+    pendingToolHash = name;
+    return;
+  }
+
+  // Try exact match first
+  let tool = FMP.State.allTools.find((t) => (t.name || "").toLowerCase() === name);
+
+  // If no exact match, try partial match on name
+  if (!tool) {
+    tool = FMP.State.allTools.find((t) => {
+      const toolName = (t.name || "").toLowerCase();
+      return toolName.includes(name) || name.includes(toolName);
+    });
+  }
+
+  // If still no match, try matching with keywords or tags
+  if (!tool) {
+    tool = FMP.State.allTools.find((t) => {
+      const keywords = (t.keywords || []).map((k) => (k || "").toLowerCase());
+      const tags = (t.tags || []).map((tag) => (tag || "").toLowerCase());
+      const searchTerms = [...keywords, ...tags];
+      return searchTerms.some((term) => term.includes(name) || name.includes(term));
+    });
+  }
+
+  if (tool) {
+    pendingToolHash = null;
+    showToolDetail(tool, true);
+  } else {
+    pendingToolHash = name;
   }
 }
 
@@ -1205,6 +1225,7 @@ function updateBadges() {
 setInterval(updateBadges, 300_000);
 
 /* ----------  HASH & MODAL ---------- */
+window.addEventListener("load", () => applyURLHash());
 window.addEventListener("hashchange", applyURLHash);
 
 FMP.State.DOM.imageModal?.addEventListener("click", (e) => {
