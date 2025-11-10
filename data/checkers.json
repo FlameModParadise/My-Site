@@ -338,6 +338,46 @@
   },
   {
     "type": "Checker",
+    "name": "Mistral AI Cookie Checker",
+    "description": "Mistral AI is a platform for AI-powered coding and developer tools.",
+    "long_description": "🤖 Validate Mistral AI cookies and retrieve account details.\n🔍 Detects free or premium accounts.",
+    "requirements": "✅ Need vpn rotatiing or rotating proxies cuz it has ip banning issues.",
+    "image": "assets/checkers-pic/MistralAI.webp",
+    "video": "",
+    "images": [
+
+    ],
+    "discount": "",
+    "discount_plans": ["Lifetime (Inc Patch)", "Source Code"],
+    "offer": "",
+    "offer_expiry": "",
+    "release_date": "2025-11-10",
+    "update_date": "2025-11-10",
+    "tags": [
+      "mistralai"
+    ],
+    "keywords": [
+      "mistral ai login",
+      "check mistral cookie",
+      "detect mistral subscription",
+      "mistral ai tool",
+      "ai plan validation",
+      "chatgpt",
+      "ai"
+    ],
+    "contact": "telegram",
+    "stock": "unlimited",
+    "pricing": {
+      "1 Day": "$1",
+      "1 Week": "$4",
+      "30 Days": "$7",
+      "Lifetime (No Patch)": "$12",
+      "Lifetime (Inc Patch)": "$17",
+      "Source Code": "$20"
+    }
+  },
+  {
+    "type": "Checker",
     "name": "Klingai Cookie Checker",
     "description": "Kling AI is a platform for generative AI-based image and video creation.",
     "long_description": "Kling AI, tools for creating imaginative images and videos, based on state-of-art generative AI methods.",
