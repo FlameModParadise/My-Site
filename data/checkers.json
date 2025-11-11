@@ -941,7 +941,7 @@
     "type": "Checker",
     "name": "Akool Cookie Checker",
     "description": "Akool is premium video Ai site including faceswap.",
-    "long_description": "Akool is a leading Generative AI Platform that revolutionizes digital content creation which offer a comprehensive suite of AI tools designed for dynamic storytelling and studio-quality video for businesses and creators like face swap, lipsyc, background changer, .",
+    "long_description": "Akool is an AI-powered video generation platform that enables users to create high-quality videos using advanced artificial intelligence technologies. With Akool, users can easily generate videos for various purposes, such as marketing, social media, presentations, and more. The platform offers a user-friendly interface and a range of customizable templates, making it accessible to both beginners and experienced video creators. Akool leverages cutting-edge AI algorithms to automate the video creation process, allowing users to produce professional-looking videos quickly and efficiently.",
     "requirements": "✅ Generally no requirements, use big logs",
     "image": "assets/checkers-pic/akool.webp",
     "video": "",
