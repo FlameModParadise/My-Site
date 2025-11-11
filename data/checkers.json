@@ -939,6 +939,45 @@
   },
   {
     "type": "Checker",
+    "name": "Akool Cookie Checker",
+    "description": "Akool is premium video Ai site including faceswap.",
+    "long_description": "Akool is a leading Generative AI Platform that revolutionizes digital content creation which offer a comprehensive suite of AI tools designed for dynamic storytelling and studio-quality video for businesses and creators like face swap, lipsyc, background changer, .",
+    "requirements": "✅ Generally no requirements, use big logs",
+    "image": "assets/checkers-pic/akool.webp",
+    "video": "",
+    "images": [
+      "assets/checkers-pic/checking/akool.webp"
+    ],
+    "discount": "",
+    "discount_plans": ["Lifetime (Inc Patch)", "Source Code"],
+    "offer": "",
+    "offer_expiry": "",
+    "release_date": "2025-11-11",
+    "update_date": "2025-11-11",
+    "tags": [
+      "akool"
+    ],
+    "keywords": [
+      "akool cookie checker",
+      "check akool cookies",
+      "akool",
+      "ai",
+      "video ai tool",
+      "faceswap"
+    ],
+    "contact": "telegram",
+    "stock": "unlimited",
+    "pricing": {
+      "1 Day": "$1",
+      "1 Week": "$4",
+      "30 Days": "$7",
+      "Lifetime (No Patch)": "$10",
+      "Lifetime (Inc Patch)": "$15",
+      "Source Code": "$20"
+    }
+  },
+  {
+    "type": "Checker",
     "name": "Freepik Cookie Checker",
     "description": "Freepik is a platform for designers to access images, vectors, and design resources.",
     "long_description": "🖼️ Check Freepik cookies for free or premium accounts.\n🔍 Detects account credits and basic details.\n📊 Efficient and works without proxies.\n🌍 Optional payment capture available for an additional $2.",
