@@ -939,6 +939,45 @@
   },
   {
     "type": "Checker",
+    "name": "Deepswap Cookie Checker",
+    "description": "Deepswap is an AI-powered face swap platform for creating realistic videos and images.",
+    "long_description": "Deepswap is an AI-powered video generation platform that enables users to create high-quality videos using advanced artificial intelligence technologies. With Deepswap, users can easily generate videos for various purposes, such as marketing, social media, presentations, and more. The platform offers a user-friendly interface and a range of customizable templates, making it accessible to both beginners and experienced video creators. Deepswap leverages cutting-edge AI algorithms to automate the video creation process, allowing users to produce professional-looking videos quickly and efficiently.",
+    "requirements": "✅ Generally no requirements, use big logs",
+    "image": "assets/checkers-pic/deepswap.webp",
+    "video": "",
+    "images": [
+      "assets/checkers-pic/checking/deepswap1.webp"
+    ],
+    "discount": "",
+    "discount_plans": ["Lifetime (Inc Patch)", "Source Code"],
+    "offer": "",
+    "offer_expiry": "",
+    "release_date": "2025-11-11",
+    "update_date": "2025-11-11",
+    "tags": [
+      "deepswap"
+    ],
+    "keywords": [
+      "deepswap cookie checker",
+      "check deepswap cookies",
+      "deepswap",
+      "ai",
+      "video ai tool",
+      "faceswap"
+    ],
+    "contact": "telegram",
+    "stock": "unlimited",
+    "pricing": {
+      "1 Day": "$1",
+      "1 Week": "$4",
+      "30 Days": "$7",
+      "Lifetime (No Patch)": "$10",
+      "Lifetime (Inc Patch)": "$15",
+      "Source Code": "$20"
+    }
+  },
+  {
+    "type": "Checker",
     "name": "Akool Cookie Checker",
     "description": "Akool is premium video Ai site including faceswap.",
     "long_description": "Akool is an AI-powered video generation platform that enables users to create high-quality videos using advanced artificial intelligence technologies. With Akool, users can easily generate videos for various purposes, such as marketing, social media, presentations, and more. The platform offers a user-friendly interface and a range of customizable templates, making it accessible to both beginners and experienced video creators. Akool leverages cutting-edge AI algorithms to automate the video creation process, allowing users to produce professional-looking videos quickly and efficiently.",
