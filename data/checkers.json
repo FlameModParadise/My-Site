@@ -1527,7 +1527,7 @@
     "type": "Checker",
     "name": "LinkedIn Cookie Checker",
     "description": "LinkedIn is a professional networking platform for career development and job searching.",
-    "long_description": "📡 Validate LinkedIn cookies and retrieve account details.\n🔍 Detects subscription status and plan type.\n🌐 Fast and works without proxies.\n✅ Site: https://www.linkedin.com",
+    "long_description": "📡 Validate LinkedIn cookies and retrieve account details.\n🌐 Fast and works without proxies.\n✅ Site: https://www.linkedin.com",
     "requirements": "✅ Use fresh and good logs for results.",
     "image": "assets/checkers-pic/linkedin.webp",
     "video": "",
