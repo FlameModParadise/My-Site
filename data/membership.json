@@ -1,6 +1,6 @@
 [
   {
-    "name": "Tools Membership",
+    "name": "Tools Membership (Cookie Checkers)",
     "type": "Membership",
     "description": "Access to all private tools i.e cookie checkers with license",
     "long_description": "🛠️ Tools Membership\n• Private channel access for all current and future cookie checkers.\n• Includes 15+ working cookie checkers.\n• Tools may take time — not daily posts.\n• Limited to 15 members max.",
@@ -33,7 +33,7 @@
       "exclusive tools",
       "membership"
     ],
-    "stock": 12
+    "stock": 11
   },
   {
     "name": "Source Code Membership",
