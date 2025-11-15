@@ -5,7 +5,7 @@
     "description": "Easy access to all private cookie checking tools with a simple license.",
     "long_description": "Get access to a private channel that includes every current and future cookie-checking tool. You can use 20+ working cookie checkers, and more will be added from time to time. Tools are delivered whenever ready (not daily). This group is limited to 20 members for better support.\nPrice will change when more added so faster you join, the lower the price.",
     "requirements": "Tools work on Windows (.exe). No sharing or leaking allowed. Breaking rules results in a ban with no refund.",
-    "image": "assets/membership/toolmem1.webp",
+    "image": "assets/membership/toolmem1.png",
     "images": [
       "assets/membership/toolchannel1.png",
       "assets/membership/toolchannel2.png",
@@ -50,7 +50,7 @@
     ],
     "release_date": "2025-11-15",
     "update_date": "2025-11-15",
-    "price": "$20/week \n$50/month \n$100/year \n$300 Lifetime",
+    "price": "$20/week \n$50/month \n$100/year \n$250 Lifetime",
     "discount": null,
     "discount_plans": [],
     "offer": null,
@@ -71,14 +71,14 @@
     "description": "Get all cookie-checker tools with full source code included.",
     "long_description": "This membership gives you access to a private channel that includes every cookie-checking tool along with their source codes. You receive all current and future cookie checkers (20+ tools). Tools are added only when ready and not daily.\nYou can use or resell the source code freely.\nPrice will change when more added so faster you join, the lower the price.",
     "requirements": "Pricey but worthy.",
-    "image": "assets/membership/srcmem1.webp",
+    "image": "assets/membership/srcmem1.png",
     "images": [],
     "tags": [
       "cookie checkers membership",
       "source code access"
     ],
     "release_date": "2025-05-02",
-    "update_date": "2025-010-23",
+    "update_date": "2025-11-15",
     "price": "Lifetime: $300",
     "discount": null,
     "discount_plans": [],
@@ -103,7 +103,7 @@
     "description": "Access to all private tools with full source code included.",
     "long_description": "Get full access to all cookie checkers, account checkers, and other tools — along with their source codes. You get 20+ tools and all future updates. Tools are posted when completed, not daily.\nYou can use or resell the source code freely.\nPrice will change when more added so faster you join, the lower the price.",
     "requirements": "I know pricey but worthy.",
-    "image": "assets/membership/srcmem2.webp",
+    "image": "assets/membership/srcmem2.png",
     "images": [],
     "tags": [
       "tools",
