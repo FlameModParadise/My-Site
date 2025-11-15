@@ -1575,6 +1575,45 @@
   },
   {
     "type": "Checker",
+    "name": "Grammarly Cookie Checker",
+    "description": "Grammarly is a digital writing assistant that helps improve grammar, spelling, and style in writing.",
+    "long_description": "📡 Validate Grammarly cookies and retrieve account details.\n🌐 Fast and works without proxies.\n✅ Site: https://www.grammarly.com",
+    "requirements": "✅ Use fresh and good logs for results.",
+    "image": "assets/checkers-pic/grammarly.webp",
+    "video": "",
+    "images": ["assets/checkers-pic/checking/grammarly1.webp"],
+    "discount": "",
+    "discount_plans": [
+      "Lifetime (Inc Patch)",
+      "Source Code"
+    ],
+    "offer": "",
+    "offer_expiry": "",
+    "release_date": "2025-11-15",
+    "update_date": "2025-11-15",
+    "tags": [
+      "grammarly",
+      "writing assistant"
+    ],
+    "keywords": [
+      "grammarly cookie checker",
+      "check grammarly cookies",
+      "grammarly account status",
+      "grammarly cookies tool",
+      "writing assistant"
+    ],
+    "contact": "telegram",
+    "stock": "unlimited",
+    "pricing": {
+      "1 Day": "$1",
+      "1 Month": "$4",
+      "Lifetime (No Patch)": "$15",
+      "Lifetime (Inc Patch)": "$20",
+      "Source Code": "$25"
+    }
+  },
+  {
+    "type": "Checker",
     "name": "Quillbot Account Checker",
     "description": "Quillbot is an AI-powered writing assistant that helps improve writing quality through paraphrasing, grammar checking, and style enhancement.",
     "long_description": "🤖 Validate Quillbot accounts and check subscription status.\n🔍 Automatically detects free, premium accounts.\n📊 Detailed account information including subscription type and expiry.",
