@@ -1092,8 +1092,8 @@
     "type": "Checker",
     "name": "Freepik Cookie Checker",
     "description": "Freepik is a platform for designers to access images, vectors, and design resources.",
-    "long_description": "🖼️ Check Freepik cookies for free or premium accounts.\n🔍 Detects account credits and basic details.\n📊 Efficient and works without proxies.\n🌍 Optional payment capture available for an additional $2.",
-    "requirements": "✅ Generally no requirements, but a VPN may be needed occasionally.",
+    "long_description": "🖼️ Check Freepik cookies for free or premium accounts.\n🔍 Detects account credits, basic details and payment stuff.\n📊 Efficient and works fully proxyless.",
+    "requirements": "✅ No requirements",
     "image": "assets/checkers-pic/freepik.png",
     "video": "",
     "images": [
@@ -1110,12 +1110,18 @@
     "offer": "",
     "offer_expiry": "",
     "release_date": "2025-04-29",
-    "update_date": "2025-04-29",
+    "update_date": "2025-11-15",
     "tags": [
-      "freepik"
+      "freepik",
+      "design"
     ],
     "keywords": [
-      "freepik cookie checker"
+      "freepik cookie checker",
+      "check freepik cookies",
+      "freepik account status",
+      "freepik access tool",
+      "design resources",
+      "ai"
     ],
     "contact": "telegram",
     "stock": "unlimited",
