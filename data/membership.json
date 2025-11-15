@@ -40,7 +40,7 @@
     "description": "Full access to all private tools, including cookie checkers, ID/pass checkers, and more.",
     "long_description": "This membership gives you entry to a private channel with every tool — now and in the future. You get 25+ tools, including cookie checkers, ID/pass checkers, and many other helpful tools. New tools are added only when ready. Limited to 15 members for quality support. If you already have the cookie checker membership, you can upgrade at a lower price instead of paying full.\nPrice will change when more added so faster you join, the lower the price.",
     "requirements": "Tools work on Windows (.exe). No sharing or leaking allowed. Breaking rules results in a ban with no refund.",
-    "image": "assets/membership/toolmem2.webp",
+    "image": "assets/membership/toolmem2.png",
     "images": [],
     "tags": [
       "tools",
@@ -66,7 +66,7 @@
     "stock": 15
   },
   {
-    "name": "Cookie Source Code Membership",
+    "name": "Cookie SourceCode Membership",
     "type": "Membership",
     "description": "Get all cookie-checker tools with full source code included.",
     "long_description": "This membership gives you access to a private channel that includes every cookie-checking tool along with their source codes. You receive all current and future cookie checkers (20+ tools). Tools are added only when ready and not daily.\nYou can use or resell the source code freely.\nPrice will change when more added so faster you join, the lower the price.",
@@ -98,7 +98,7 @@
     "stock": 10
   },
   {
-    "name": "Source Code Membership",
+    "name": "All SourceCode Membership",
     "type": "Membership",
     "description": "Access to all private tools with full source code included.",
     "long_description": "Get full access to all cookie checkers, account checkers, and other tools — along with their source codes. You get 20+ tools and all future updates. Tools are posted when completed, not daily.\nYou can use or resell the source code freely.\nPrice will change when more added so faster you join, the lower the price.",
