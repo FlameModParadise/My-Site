@@ -1,11 +1,11 @@
 [
   {
-    "name": "Tools Membership (Cookie Checkers)",
+    "name": "Cookie Tools Membership",
     "type": "Membership",
-    "description": "Access to all private tools i.e cookie checkers with license",
-    "long_description": "🛠️ Tools Membership\n• Private channel access for all current and future cookie checkers.\n• Includes 15+ working cookie checkers.\n• Tools may take time — not daily posts.\n• Limited to 15 members max.",
+    "description": "Private bundle of compiled cookie-checker executables with ongoing updates and usage license.",
+    "long_description": "🛠️ Cookie Tools Membership\nWhat it includes:\n• Private channel access for every current and upcoming cookie checker.\n• 20+ actively maintained Windows executables with short usage notes.\n• Early notice whenever an existing checker is patched or replaced.\nDelivery cadence & limits:\n• Utilities drop when they are ready—expect weekly batches, not daily spam.\n• Seat cap stays at 15 to keep distribution manageable and fast.",
     "requirements": "Tools are .exe only.\nNo source code.\nNo leak.\nNo sharing else direct ban no warning.\nThe price may change as more tools are added, so please don’t be surprised.\nAny rule violation direct ban no refund.",
-    "image": "assets/membership/tools.png",
+    "image": "assets/membership/toolmem1.webp",
     "images": [
       "assets/membership/toolchannel1.png",
       "assets/membership/toolchannel2.png",
@@ -13,13 +13,11 @@
       "assets/membership/toolchannel4.png"
     ],
     "tags": [
-      "tools",
-      "cookie",
-      "checkers",
-      "membership"
+      "cookie checkers membership",
+      "only cookie checkers"
     ],
     "release_date": "2025-05-02",
-    "update_date": "2025-10-23",
+    "update_date": "2025-11-15",
     "price": "$15/week \n$30/month \n$70/year \n$150 Lifetime",
     "discount": null,
     "discount_plans": [],
@@ -27,6 +25,7 @@
     "offer_expiry": "",
     "contact": "telegram",
     "keywords": [
+      "cookie tools membership",
       "tools membership",
       "cookie checker access",
       "software license",
@@ -36,12 +35,77 @@
     "stock": 11
   },
   {
+    "name": "All Tools Membership",
+    "type": "Membership",
+    "description": "Complete compiled-tool catalog: cookie checkers, ID/pass utilities, and every future executable with license.",
+    "long_description": "🛠️ All Tools Membership\nCoverage:\n• One private feed for all cookie, account, ID/pass, and miscellaneous automation tools we publish.\n• 25+ working executables today with automatic access to every future drop.\n• Upgrade bridge for Cookie Tools members—pay only the difference when moving here.\nPace & availability:\n• Releases appear as soon as they clear internal testing; no guaranteed daily quota.\n• Seats capped at 15 so update pings, mirrors, and support stay manageable.",
+    "requirements": "Tools are .exe only.\nNo source code.\nNo leak.\nNo sharing else direct ban no warning.\nThe price may change as more tools are added, so please don’t be surprised.\nAny rule violation direct ban no refund.",
+    "image": "assets/membership/toolmem2.webp",
+    "images": [
+    ],
+    "tags": [
+      "tools",
+      "cookie",
+      "checkers",
+      "membership"
+    ],
+    "release_date": "2025-11-15",
+    "update_date": "2025-11-15",
+    "price": "$20/week \n$50/month \n$100/year \n$300 Lifetime",
+    "discount": null,
+    "discount_plans": [],
+    "offer": null,
+    "offer_expiry": "",
+    "contact": "telegram",
+    "keywords": [
+      "tools membership",
+      "all tools access",
+      "software license",
+      "exclusive tools",
+      "membership"
+    ],
+    "stock": 15
+  },
+  {
+    "name": "Cookie Source Code Membership",
+    "type": "Membership",
+    "description": "Full source repository access for every private cookie checker plus future commits.",
+    "long_description": "🛠️ Cookie Source Code Membership\nAccess scope:\n• Git-based delivery of every cookie checker we maintain, including historical revisions.\n• Roadmap channel that announces new repos, major refactors, and dependency changes.\n• Implementation notes so you can adapt, resell, or extend the projects quickly.\nExpectations:\n• Same drop cadence as compiled tools—code lands when it is stable, not on a daily schedule.\n• You manage your own builds and hosting; we only provide the repositories and documentation.",
+    "requirements": "Resell or use at ur own, doesn't matter.",
+    "image": "assets/membership/srcmem1.webp",
+    "images": [
+    ],
+    "tags": [
+      "cookie checkers membership",
+      "source code access"
+    ],
+    "release_date": "2025-05-02",
+    "update_date": "2025-010-23",
+    "price": "Lifetime: $300",
+    "discount": null,
+    "discount_plans": [],
+    "offer": null,
+    "offer_expiry": "",
+    "contact": "telegram",
+    "keywords": [
+      "tools membership",
+      "cookie checker access",
+      "cookie checker code",
+      "software license",
+      "exclusive tools",
+      "membership",
+      "source code",
+      "source code access"
+    ],
+    "stock": 7
+  },
+  {
     "name": "Source Code Membership",
     "type": "Membership",
-    "description": "Access to all private tools and cookie checkers with source code",
-    "long_description": "🛠️ Source Code Membership\n• Private channel access for all current and future cookie checkers.\n• Includes 15+ working cookie checkers.\n• Tools may take time — not daily posts.\n• Source code provided for all cookie checkers.",
+    "description": "Source code delivery for every cookie, account, and utility tool now and in the future.",
+    "long_description": "🛠️ All Tools Source Membership\nWhat you receive:\n• Repository access for cookie checkers, account checkers, combolists helpers, and other automation suites.\n• Continuous updates mirrored from our internal monorepo so you can pull fixes immediately.\n• Build notes, dependency manifests, and lightweight usage docs for each project.\nProgram notes:\n• Drops follow our internal schedule; once code is ready, it ships to this tier first.\n• Redistribution is allowed per membership rules—use privately or package for clients at your own risk.",
     "requirements": "Resell or use at ur own, doesn't matter.",
-    "image": "assets/membership/sourcecodemembership.png",
+    "image": "assets/membership/srcmem2.webp",
     "images": [
     ],
     "tags": [
@@ -51,8 +115,8 @@
       "source code"
     ],
     "release_date": "2025-05-02",
-    "update_date": "2025-010-23",
-    "price": "Lifetime: $300",
+    "update_date": "2025-11-25",
+    "price": "Lifetime: $400",
     "discount": null,
     "discount_plans": [],
     "offer": null,
@@ -70,7 +134,7 @@
     "stock": 7
   },
   {
-    "name": "Cookie Membership",
+    "name": "Cookies Membership",
     "type": "Membership",
     "description": "Private cookie drops not posted elsewhere",
     "long_description": "🍪 Cookie Membership\n• Private cookies from multiple sites.\n• Drops every once or twice in a week.\n• These are not posted in public or other channels.\n• Max 5 members only.",
