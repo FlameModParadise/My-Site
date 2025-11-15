@@ -2,9 +2,9 @@
   {
     "name": "Cookie Tools Membership",
     "type": "Membership",
-    "description": "Private bundle of compiled cookie-checker executables with ongoing updates and usage license.",
-    "long_description": "🛠️ Cookie Tools Membership\nWhat it includes:\n• Private channel access for every current and upcoming cookie checker.\n• 20+ actively maintained Windows executables with short usage notes.\n• Early notice whenever an existing checker is patched or replaced.\nDelivery cadence & limits:\n• Utilities drop when they are ready—expect weekly batches, not daily spam.\n• Seat cap stays at 15 to keep distribution manageable and fast.",
-    "requirements": "Tools are .exe only.\nNo source code.\nNo leak.\nNo sharing else direct ban no warning.\nThe price may change as more tools are added, so please don’t be surprised.\nAny rule violation direct ban no refund.",
+    "description": "Easy access to all private cookie checking tools with a simple license.",
+    "long_description": "Get access to a private channel that includes every current and future cookie-checking tool. You can use 20+ working cookie checkers, and more will be added from time to time. Tools are delivered whenever ready (not daily). This group is limited to 20 members for better support.\nPrice will change when more added so faster you join, the lower the price.",
+    "requirements": "Tools work on Windows (.exe). No sharing or leaking allowed. Breaking rules results in a ban with no refund.",
     "image": "assets/membership/toolmem1.webp",
     "images": [
       "assets/membership/toolchannel1.png",
@@ -32,17 +32,16 @@
       "exclusive tools",
       "membership"
     ],
-    "stock": 11
+    "stock": 19
   },
   {
     "name": "All Tools Membership",
     "type": "Membership",
-    "description": "Complete compiled-tool catalog: cookie checkers, ID/pass utilities, and every future executable with license.",
-    "long_description": "🛠️ All Tools Membership\nCoverage:\n• One private feed for all cookie, account, ID/pass, and miscellaneous automation tools we publish.\n• 25+ working executables today with automatic access to every future drop.\n• Upgrade bridge for Cookie Tools members—pay only the difference when moving here.\nPace & availability:\n• Releases appear as soon as they clear internal testing; no guaranteed daily quota.\n• Seats capped at 15 so update pings, mirrors, and support stay manageable.",
-    "requirements": "Tools are .exe only.\nNo source code.\nNo leak.\nNo sharing else direct ban no warning.\nThe price may change as more tools are added, so please don’t be surprised.\nAny rule violation direct ban no refund.",
+    "description": "Full access to all private tools, including cookie checkers, ID/pass checkers, and more.",
+    "long_description": "This membership gives you entry to a private channel with every tool — now and in the future. You get 25+ tools, including cookie checkers, ID/pass checkers, and many other helpful tools. New tools are added only when ready. Limited to 15 members for quality support. If you already have the cookie checker membership, you can upgrade at a lower price instead of paying full.\nPrice will change when more added so faster you join, the lower the price.",
+    "requirements": "Tools work on Windows (.exe). No sharing or leaking allowed. Breaking rules results in a ban with no refund.",
     "image": "assets/membership/toolmem2.webp",
-    "images": [
-    ],
+    "images": [],
     "tags": [
       "tools",
       "cookie",
@@ -69,12 +68,11 @@
   {
     "name": "Cookie Source Code Membership",
     "type": "Membership",
-    "description": "Full source repository access for every private cookie checker plus future commits.",
-    "long_description": "🛠️ Cookie Source Code Membership\nAccess scope:\n• Git-based delivery of every cookie checker we maintain, including historical revisions.\n• Roadmap channel that announces new repos, major refactors, and dependency changes.\n• Implementation notes so you can adapt, resell, or extend the projects quickly.\nExpectations:\n• Same drop cadence as compiled tools—code lands when it is stable, not on a daily schedule.\n• You manage your own builds and hosting; we only provide the repositories and documentation.",
-    "requirements": "Resell or use at ur own, doesn't matter.",
+    "description": "Get all cookie-checker tools with full source code included.",
+    "long_description": "This membership gives you access to a private channel that includes every cookie-checking tool along with their source codes. You receive all current and future cookie checkers (20+ tools). Tools are added only when ready and not daily.\nYou can use or resell the source code freely.\nPrice will change when more added so faster you join, the lower the price.",
+    "requirements": "Pricey but worthy.",
     "image": "assets/membership/srcmem1.webp",
-    "images": [
-    ],
+    "images": [],
     "tags": [
       "cookie checkers membership",
       "source code access"
@@ -97,17 +95,16 @@
       "source code",
       "source code access"
     ],
-    "stock": 7
+    "stock": 10
   },
   {
     "name": "Source Code Membership",
     "type": "Membership",
-    "description": "Source code delivery for every cookie, account, and utility tool now and in the future.",
-    "long_description": "🛠️ All Tools Source Membership\nWhat you receive:\n• Repository access for cookie checkers, account checkers, combolists helpers, and other automation suites.\n• Continuous updates mirrored from our internal monorepo so you can pull fixes immediately.\n• Build notes, dependency manifests, and lightweight usage docs for each project.\nProgram notes:\n• Drops follow our internal schedule; once code is ready, it ships to this tier first.\n• Redistribution is allowed per membership rules—use privately or package for clients at your own risk.",
-    "requirements": "Resell or use at ur own, doesn't matter.",
+    "description": "Access to all private tools with full source code included.",
+    "long_description": "Get full access to all cookie checkers, account checkers, and other tools — along with their source codes. You get 20+ tools and all future updates. Tools are posted when completed, not daily.\nYou can use or resell the source code freely.\nPrice will change when more added so faster you join, the lower the price.",
+    "requirements": "I know pricey but worthy.",
     "image": "assets/membership/srcmem2.webp",
-    "images": [
-    ],
+    "images": [],
     "tags": [
       "tools",
       "checkers",
