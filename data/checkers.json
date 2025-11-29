@@ -692,6 +692,47 @@
   },
   {
     "type": "Checker",
+    "name": "Deezer Account Checker",
+    "description": "Deezer is a music streaming service that offers a wide range of songs and playlists.",
+    "long_description": "🎧 Check Deezer accounts.\n🔍 Detect account is free or premium.\n🌍 Can use with proxy or without proxy or you can use vpn.\nInclude extractor and full gui support",
+    "requirements": "✅ No specific requirements.",
+    "image": "assets/checkers-pic/deezer.webp",
+    "video": "",
+    "images": [],
+    "discount": "",
+    "discount_plans": [
+      "Lifetime (Inc Patch)",
+      "Source Code"
+    ],
+    "offer": "",
+    "offer_expiry": "",
+    "release_date": "2025-03-19",
+    "update_date": "2025-04-01",
+    "tags": [
+      "deezer"
+    ],
+    "keywords": [
+      "deezer account checker",
+      "check deezer account",
+      "deezer account status",
+      "deezer access tool",
+      "deezer",
+      "spotify",
+      "music",
+      "music streaming"
+    ],
+    "contact": "telegram",
+    "stock": "unlimited",
+    "pricing": {
+      "1 Day": "$1",
+      "1 Month": "$3",
+      "Lifetime (No Patch)": "$10",
+      "Lifetime (Inx Patch)": "$15",
+      "Source Code": "$20"
+    }
+  },
+  {
+    "type": "Checker",
     "name": "Crunchyroll Cookie Checker",
     "description": "Crunchyroll is a streaming platform for anime, manga, and Asian dramas.",
     "long_description": "📺 Designed for Crunchyroll cookie validation.\n🔓 Includes auto-captcha solving and works without proxies.\n🤖 Captures session, subscription, and region details.\n🎯 Organizes cookies for easy sorting.",
