@@ -531,6 +531,50 @@
   },
   {
     "type": "Checker",
+    "name": "PlexTv Account Checker",
+    "description": "PlexTv is a platform for discovering and streaming movies, TV shows, and web series.",
+    "long_description": "📺 Validate PlexTv account for active subscriptions.\n⚡ Fast and works even with free proxies.",
+    "requirements": "✅ Need proxy also free proxies are working.",
+    "image": "assets/checkers-pic/plextv.webp",
+    "video": "",
+    "images": [],
+    "discount": "",
+    "discount_plans": [
+      "Lifetime (Inc Patch)",
+      "Source Code"
+    ],
+    "offer": "",
+    "offer_expiry": "",
+    "release_date": "2025-11-30",
+    "update_date": "2025-11-30",
+    "tags": [
+      "plex",
+      "plex tv"
+    ],
+    "keywords": [
+      "plex tv account checker",
+      "check plex tv account",
+      "plex tv account status",
+      "plex tv access tool",
+      "plex tv",
+      "plex tv account",
+      "netflix",
+      "streaming",
+      "movies"
+    ],
+    "contact": "telegram",
+    "stock": "unlimited",
+    "pricing": {
+      "1 Day": "$1",
+      "1 Week": "$4",
+      "30 Days": "$10",
+      "Lifetime (No Patch)": "$15",
+      "Lifetime (Inc Patch)": "$20",
+      "Source Code": "$25"
+    }
+  },
+  {
+    "type": "Checker",
     "name": "Netflix Cookie Checker",
     "description": "Netflix Cookie Checker – Verify and validate Netflix cookies with precision and reliability.",
     "long_description": "✅ Capture complete slot details with accuracy.\n🌐 Supports rotating proxies for safe and consistent checking. If no proxies are available, you may proceed without one, but in case of 20+ consecutive network errors or IP bans, use a reliable VPN and switch servers/countries as needed.\n🍪 New Feature: Automatically extract and convert session IDs from valid combo formats (id:pass:cookie:details) into standard Netscape cookies for easy checking.\n⚙️ Fully compatible with all Netflix cookie types.\n⏱️ Designed for stable and reliable results without skipping.\nNote: Check and validate your rotating proxy before using this checker cuz this is cookie checker guys not proxychecker.",
@@ -1186,8 +1230,8 @@
     "type": "Checker",
     "name": "ElevenLabs AI Account Checker",
     "description": "ElevenLabs is a platform for creating and using AI voices.",
-    "long_description": "🖼️ Check ElevenLabs cookies for free or premium accounts.\n🔍 Detects account free or paid.\n📊 Need good proxy to work.",
-    "requirements": "✅ Need good proxy to work.",
+    "long_description": "🖼️ Check ElevenLabs cookies for free or premium accounts.\n🔍 Detects account free or paid.\n📊 Need good proxy to work and also added free proxies support.",
+    "requirements": "✅ Need good proxy to work or free valid proxies.",
     "image": "assets/checkers-pic/elevenlabs.webp",
     "video": "",
     "images": [],
