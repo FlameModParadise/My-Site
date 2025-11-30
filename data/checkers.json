@@ -1182,6 +1182,46 @@
   },
   {
     "type": "Checker",
+    "name": "ElevenLabs AI Account Checker",
+    "description": "ElevenLabs is a platform for creating and using AI voices.",
+    "long_description": "🖼️ Check ElevenLabs cookies for free or premium accounts.\n🔍 Detects account free or paid.\n📊 Need good proxy to work.",
+    "requirements": "✅ Need good proxy to work.",
+    "image": "assets/checkers-pic/elevenlabs.webp",
+    "video": "",
+    "images": [],
+    "discount": "",
+    "discount_plans": [
+      "Lifetime (Inc Patch)",
+      "Source Code"
+    ],
+    "offer": "",
+    "offer_expiry": "",
+    "release_date": "2025-04-29",
+    "update_date": "2025-11-15",
+    "tags": [
+      "elevenlabs"
+    ],
+    "keywords": [
+      "elevenlabs account checker",
+      "check elevenlabs account",
+      "elevenlabs account status",
+      "elevenlabs access tool",
+      "ai",
+      "voice ai"
+    ],
+    "contact": "telegram",
+    "stock": "unlimited",
+    "pricing": {
+      "1 Day": "$1",
+      "1 Week": "$4",
+      "30 Days": "$7",
+      "Lifetime (No Patch)": "$15",
+      "Lifetime (Inc Patch)": "$20",
+      "Source Code": "$25"
+    }
+  },
+  {
+    "type": "Checker",
     "name": "Musicful.ai Cookie Checker",
     "description": "Transform your words into captivating songs with our AI music generator. Simply input your text, choose a style or genre, and let our AI create unique songs.",
     "long_description": "Musicful AI is the ultimate AI-driven music generator for inspiration and creativity. Simply enter your lyrics or ideas, click .Create Song,and get studio-quality tracks in an instant. Create Rap, Rock, Pop, Country, Auto-Tune, Jazz, Lo-fi, Acapella, Beats, and more—Musicful AI adapts to your style",
