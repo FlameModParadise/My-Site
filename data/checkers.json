@@ -531,6 +531,46 @@
   },
   {
     "type": "Checker",
+    "name": "TodTV Cookie Checker",
+    "description": "TodTV is a platform for discovering and streaming sports events.",
+    "long_description": "📺 Validate TodTV cookies for active subscriptions.\n⚡ Fast and works without proxies.\n🔍 Detects free or premium accounts.",
+    "requirements": "✅ No specific requirements but hard to find cookies and logout on unusal locations.",
+    "image": "assets/checkers-pic/todtv.webp",
+    "video": "",
+    "images": [
+    ],
+    "discount": "",
+    "discount_plans": [
+      "Lifetime (Inc Patch)",
+      "Source Code"
+    ],
+    "offer": "",
+    "offer_expiry": "",
+    "release_date": "2025-12-01",
+    "update_date": "2025-12-01",
+    "tags": [
+      "todtv"
+    ],
+    "keywords": [
+      "todtv cookie checker",
+      "validate todtv cookies",
+      "check todtv subscription",
+      "todtv access tool",
+      "streaming"
+    ],
+    "contact": "telegram",
+    "stock": "unlimited",
+    "pricing": {
+      "1 Day": "$1",
+      "1 Week": "$4",
+      "30 Days": "$7",
+      "Lifetime (No Patch)": "$10",
+      "Lifetime (Inc Patch)": "$15",
+      "Source Code": "$20"
+    }
+  },
+  {
+    "type": "Checker",
     "name": "PlexTv Account Checker",
     "description": "PlexTv is a platform for discovering and streaming movies, TV shows, and web series.",
     "long_description": "📺 Validate PlexTv account for active subscriptions.\n⚡ Fast and works even with free proxies.",
