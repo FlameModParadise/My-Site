@@ -615,6 +615,50 @@
   },
   {
     "type": "Checker",
+    "name": "Epicon Account Checker",
+    "description": "Epicon is a platform for discovering and streaming movies, TV shows, and web series.",
+    "long_description": "📺 Validate Epicon account for active subscriptions.It also check Valid-Mail (VM) accounts too. It does not have any issue but if u found any ip issue use vpn.",
+    "requirements": "✅ No requirements",
+    "image": "assets/checkers-pic/epicon.webp",
+    "video": "",
+    "images": [
+    ],
+    "discount": "",
+    "discount_plans": [
+      "Lifetime (Inc Patch)",
+      "Source Code"
+    ],
+    "offer": "",
+    "offer_expiry": "",
+    "release_date": "2025-12-05",
+    "update_date": "2025-12-05",
+    "tags": [
+      "epicon"
+    ],
+    "keywords": [
+      "epicon account checker",
+      "check epicon account",
+      "epicon account status",
+      "epicon access tool",
+      "epicon",
+      "epicon account",
+      "streaming",
+      "movies",
+      "tv shows",
+      "web series"
+    ],
+    "contact": "telegram",
+    "stock": "unlimited",
+    "pricing": {
+      "1 Day": "$1",
+      "1 Month": "$7",
+      "Lifetime(no patch)": "$15",
+      "Lifetime(Inc patch)": "$20",
+      "Source Code": "$25"
+    }
+  },
+  {
+    "type": "Checker",
     "name": "Netflix Cookie Checker",
     "description": "Netflix Cookie Checker – Verify and validate Netflix cookies with precision and reliability.",
     "long_description": "✅ Capture complete slot details with accuracy.\n🌐 Supports rotating proxies for safe and consistent checking. If no proxies are available, you may proceed without one, but in case of 20+ consecutive network errors or IP bans, use a reliable VPN and switch servers/countries as needed.\n🍪 New Feature: Automatically extract and convert session IDs from valid combo formats (id:pass:cookie:details) into standard Netscape cookies for easy checking.\n⚙️ Fully compatible with all Netflix cookie types.\n⏱️ Designed for stable and reliable results without skipping.\nNote: Check and validate your rotating proxy before using this checker cuz this is cookie checker guys not proxychecker.",
@@ -1334,6 +1378,46 @@
       "30 Days": "$7",
       "Lifetime (No Patch)": "$12",
       "Source Code": "$17"
+    }
+  },
+  {
+    "type": "Checker",
+    "name": "Steam Cookie Checker",
+    "description": "Steam is a digital distribution platform for video games.",
+    "long_description": "🔑 Check if any cookie is valid or not and if valid check its balance.From steam cookies if it has balance you can send gift to any account.\nAll support free proxies, paid proxies, vpn, etc. if you see any ip ban issue.",
+    "requirements": "✅ No specific requirements but you can use free proxies, paid proxies, vpn, etc.",
+    "image": "assets/checkers-pic/steam.webp",
+    "video": "",
+    "images": [],
+    "discount": "",
+    "discount_plans": [
+      "Lifetime (Inc Patch)",
+      "Source Code"
+    ],
+    "offer": "",
+    "offer_expiry": "",
+    "release_date": "2025-12-05",
+    "update_date": "2025-12-05",
+    "tags": [
+      "steam"
+    ],
+    "keywords": [
+      "steam cookie checker",
+      "check steam cookies",
+      "steam account status",
+      "steam access tool",
+      "steam balance checker",
+      "steam gift card",
+      "gift card"
+    ],
+    "contact": "telegram",
+    "stock": "unlimited",
+    "pricing": {
+      "1 Day": "$1",
+      "30 Days": "$7",
+      "Lifetime (No Patch)": "$15",
+      "Lifetime (Inc Patch)": "$20",
+      "Source Code": "$30"
     }
   },
   {
