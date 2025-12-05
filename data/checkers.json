@@ -1384,7 +1384,7 @@
     "type": "Checker",
     "name": "Steam Cookie Checker",
     "description": "Steam is a digital distribution platform for video games.",
-    "long_description": "🔑 Check if any cookie is valid or not and if valid check its balance.From steam cookies if it has balance you can send gift to any account.\nAll support free proxies, paid proxies, vpn, etc. if you see any ip ban issue.",
+    "long_description": "🔑 Check if any cookie is valid or not and if valid check its balance.From steam cookies if it has balance you can send gift to any account.\nAll support free proxies, paid proxies, vpn, etc. if you see any ip ban issue, you can use them.",
     "requirements": "✅ No specific requirements but you can use free proxies, paid proxies, vpn, etc.",
     "image": "assets/checkers-pic/steam.webp",
     "video": "",
