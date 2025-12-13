@@ -172,8 +172,8 @@
     "pricing": {
       "1 Day": "$1",
       "1 Month": "$4",
-      "Lifetime (No Patch)": "$12",
-      "Lifetime (Inc Patch)": "$17",
+      "Lifetime (No Patch)": "$15",
+      "Lifetime (Inc Patch)": "$20",
       "Source Code": "$25"
     }
   },
