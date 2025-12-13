@@ -22,7 +22,7 @@
     "offer": "",
     "offer_expiry": "",
     "release_date": "2025-03-19",
-    "update_date": "2025-04-22",
+    "update_date": "2025-12-13",
     "tags": [
       "gpt",
       "chatgpt"
@@ -128,6 +128,44 @@
       "ai plan validation",
       "chatgpt",
       "ai"
+    ],
+    "contact": "telegram",
+    "stock": "unlimited",
+    "pricing": {
+      "1 Day": "$1",
+      "1 Month": "$4",
+      "Lifetime (No Patch)": "$12",
+      "Lifetime (Inc Patch)": "$17",
+      "Source Code": "$25"
+    }
+  },
+  {
+    "type": "Checker",
+    "name": "LovableAi account Checker",
+    "description": "LovableAi is a platform for creating best ui/ux for your website.",
+    "long_description": "🤖 Validate LovableAi acounts and retrieve account details.\n🔍 Detects free or premium accounts.\n🌍 Fast and user-friendly interface.\nSite: lovableai.com",
+    "requirements": "✅ It is slowly getting popular so valid premium accounts are hard to find, ensure you have good ulp. But valid free accounts are easy to find.",
+    "image": "assets/checkers-pic/lovable.webp",
+    "video": "",
+    "images": [],
+    "discount": "",
+    "discount_plans": [
+      "Lifetime (Inc Patch)",
+      "Source Code"
+    ],
+    "offer": "",
+    "offer_expiry": "",
+    "release_date": "2025-09-03",
+    "update_date": "2025-09-03",
+    "tags": [
+      "lovableai",
+      "coding",
+      "loveable",
+      "loveableai",
+      "ui",
+      "ux",
+      "ai",
+      "chatbot"
     ],
     "contact": "telegram",
     "stock": "unlimited",
