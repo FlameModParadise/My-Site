@@ -1984,5 +1984,45 @@
       "Lifetime (Inc Patch)": "$15",
       "Source Code": "$20"
     }
+  },
+  {
+    "type": "Checker",
+    "name": "Spotify VM Checker",
+    "description": "With Spotify VM you can check valid-mail (VM) accounts.",
+    "long_description": "🤖 Validate Spotify VM accounts, it is valid it will save to valid and if not then saved to invalid.\nIt suports both proxy and proxyless.\nIt only check valid mail or not , it does not check any other details like which plan you have or any other details.\nWhat it does is check if your given mail (can be outloook, gmail, email yahoo) is valid or not. If valid then you can login to hotmail, email, yahoo etc direct and change the password and use it if it has subscription.",
+    "requirements": "✅ No specific requirements.",
+    "image": "assets/checkers-pic/spotify.jpg",
+    "video": "",
+    "images": [],
+    "discount": "",
+    "discount_plans": [
+      "Lifetime (Inc Patch)",
+      "Source Code"
+    ],
+    "offer": "",
+    "offer_expiry": "",
+    "release_date": "2025-12-13",
+    "update_date": "2025-12-13",
+    "tags": [
+      "spotify",
+      "spotify vm"
+    ],
+    "keywords": [
+      "spotify vm checker",
+      "check spotify vm",
+      "spotify vm account",
+      "spotify vm account status",
+      "spotify vm cookies tool",
+      "spotify vm"
+    ],
+    "contact": "telegram",
+    "stock": "unlimited",
+    "pricing": {
+      "1 Day": "$1",
+      "1 Month": "$5",
+      "Lifetime (No Patch)": "$13",
+      "Lifetime (Inc Patch)": "$15",
+      "Source Code": "$20"
+    }
   }
 ]
