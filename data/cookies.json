@@ -7,7 +7,7 @@
     "tags": ["chatgpt", "cookies"],
     "release_date": "2025-03-19",
     "update_date": "2025-04-01",
-    "price": "- Solo: $0.5\n-(Invite on mail : 4$ | 100% autopay but luck based random life.)\n-If you want invite on mail with warranty/monthly then: 8$ per month",
+    "price": "- Solo (any plan): $0.5\n-(Invite on mail : 4$ | 100% autopay but luck based random life.)\n-If you want invite on mail with warranty/monthly then: 8$ per month",
     "discount": null,
     "discount_plans": [],
     "offer": null,
@@ -35,7 +35,7 @@
     "keywords": ["claude", "cookies", "anthropic", "ai", "assistant", "nlp", "chatbot"],
     "image": "assets/images/claudeai.png",
     "requirements": "✅ None.",
-    "stock": "16"
+    "stock": "Out of stock"
   },
   {
     "name": "Cursor AI Cookies",
@@ -110,7 +110,7 @@
     "keywords": ["freepik", "cookies", "design", "graphics", "vectors", "photos", "illustrations"],
     "image": "assets/images/freepik.png",
     "requirements": "After that per 10k credit will be 0.50$.\nAnd i am not responsible for any device limit issue.",
-    "stock": "4"
+    "stock": "7"
   },
   {
     "name": "Spotify Cookies",

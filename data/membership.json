@@ -195,6 +195,33 @@
     "stock": "Unlimited"
   },
   {
+    "name": "ChatGPT Membership",
+    "type": "Membership",
+    "description": "ChatGPT access via cookie with browser only.",
+    "long_description": "🤖 ChatGPT Cookie Plan\n• Use ChatGPT through browser cookies.You can login to mobile browser, laptop browser if support extension.",
+    "requirements": "Cookies are browser-based only.\nNo sharing or misuse.\nReplacement only within limits.",
+    "image": "assets/checkers-pic/chatgpt.jpg",
+    "tags": [
+      "chatgpt",
+      "cookies",
+      "browser",
+      "ai",
+      "membership"
+    ],
+    "release_date": "2025-12-31",
+    "update_date": "2025-12-31",
+    "price": "\nGo plan: 10days: 3$ \n18days: 5$\n Plus plan: 10days: 4$ \n17days: 6$\n (Invite on mail : 4$ | 100% autopay but luck based random life.)\n-If you want invite on mail with warranty/monthly then: 8$ per month",
+    "contact": "telegram",
+    "keywords": [
+      "chatgpt membership",
+      "ai access",
+      "chatgpt cookies",
+      "browser chatgpt",
+      "chatgpt ai"
+    ],
+    "stock": "Unlimited"
+  },
+  {
     "name": "ClaudeAi Membership",
     "type": "Membership",
     "description": "Claude Ai is the best ai chatbot for coding purposes.",
