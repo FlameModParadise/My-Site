@@ -6,8 +6,8 @@
     "long_description": "Enjoy enhanced AI interactions with ChatGPT+, featuring priority availability and improved performance.",
     "tags": ["chatgpt", "cookies"],
     "release_date": "2025-03-19",
-    "update_date": "2025-04-01",
-    "price": "- Solo (any plan): $0.5\n-(Invite on mail : 4$ | 100% autopay but luck based random life.)\n-If you want invite on mail with warranty/monthly then: 8$ per month",
+    "update_date": "2026-01-03",
+    "price": "- Solo (any plan): $0.5 \n-Specific plan: $2 per 1\n-(Invite on mail : 4$ | 100% autopay but luck based random life.)\n-If you want invite on mail with warranty/monthly then: 8$ per month",
     "discount": null,
     "discount_plans": [],
     "offer": null,
@@ -15,18 +15,18 @@
     "contact": "telegram",
     "keywords": ["chatgpt", "cookies", "gpt", "ai", "assistant", "language-model", "prompt"],
     "image": "assets/images/chatgpt.png",
-    "requirements": "✅ To be open, it don't last long.\n✅ If you want to use it for a long time, you can buy the checker or use claude ai cookie. ",
+    "requirements": "✅ To be open, it don't last long.",
     "stock": "Ask before sending money"
   },
   {
     "name": "ClaudeAi Cookies",
     "type": "Cookie",
     "description": "Claude AI is an advanced AI chatbot platform for coding and productivity.",
-    "long_description": "Utilize Anthropic's Claude AI for creative writing, coding help and research support.In max there are 2 plans 5x usage and 20x usgage. ",
+    "long_description": "Utilize Anthropic's Claude AI for creative writing, coding help and research support.In max there are 2 plans 5x usage and 20x usgage.\nPrice updated due to low stock, high demand and new method.",
     "tags": ["claude", "cookies"],
     "release_date": "2025-03-19",
-    "update_date": "2025-08-20",
-    "price": "- Pro: $0.5 per 1\nMax(5x): $1 per 1\nMax(20x): $2 per 1",
+    "update_date": "2026-01-03",
+    "price": "- Pro: $3 per 1\nMax(5x): $4 per 1\nMax(20x): $5.5 per 1",
     "discount": null,
     "discount_plans": [],
     "offer": null,
@@ -35,7 +35,7 @@
     "keywords": ["claude", "cookies", "anthropic", "ai", "assistant", "nlp", "chatbot"],
     "image": "assets/images/claudeai.png",
     "requirements": "✅ None.",
-    "stock": "Out of stock"
+    "stock": "Out of stock ask for stock availability."
   },
   {
     "name": "Cursor AI Cookies",

@@ -210,7 +210,7 @@
     ],
     "release_date": "2025-12-31",
     "update_date": "2025-12-31",
-    "price": "\nGo plan: 10days: 3$ \n18days: 5$\n Plus plan: 10days: 4$ \n17days: 6$\n (Invite on mail : 4$ | 100% autopay but luck based random life.)\n-If you want invite on mail with warranty/monthly then: 8$ per month",
+    "price": "\nGo plan:\n 10days: 3$ \n18days: 5$\n Plus plan:\n 10days: 4$ \n17days: 6$\n (Invite on mail : 4$ | 100% autopay but luck based random life.)\n-If you want invite on mail with warranty/monthly then: 8$ per month",
     "contact": "telegram",
     "keywords": [
       "chatgpt membership",
@@ -226,7 +226,7 @@
     "type": "Membership",
     "description": "Claude Ai is the best ai chatbot for coding purposes.",
     "long_description": "🤖 ClaudeAi Cookie Plan\n• Use ClaudeAi through browser cookies.",
-    "requirements": "Cookies are browser-based only.\nNo sharing or misuse.\nReplacement only within limits.\n\nAvailable plans:\n- Pro Only: Basic Claude access\n- Mixed: Standard Claude access\n- Max Only: Premium Claude access",
+    "requirements": "Cookies are browser-based only.\nNo sharing or misuse.\nReplacement only within limits.\n\nAvailable plans:\n- Pro Only: Basic Claude access\n- Mixed: Standard Claude access\n- Max Only: Premium Claude access\nIf i found you are using for any other method except for using for urself no refund no replacement not even after 1 minutes.",
     "image": "assets/membership/claudeai.png",
     "tags": [
       "claude",
@@ -236,8 +236,8 @@
       "membership"
     ],
     "release_date": "2025-05-02",
-    "update_date": "2025-05-02",
-    "price": "Pro Only:\n10days: 1$ \n17days: 2$\n\nMixed:\n10days: 2$ \n17days: 3$\n\nMax Only:\n10days: 3$ \n17days: 4$",
+    "update_date": "2026-01-03",
+    "price": "Pro Only:\n10days: 3$ \n17days: 5$\n\nMixed:\n10days: 4$ \n17days: 6$\n\nMax Only:\n10days: 5.5$ \n17days: 7.5$",
     "contact": "telegram",
     "keywords": [
       "claude membership",
