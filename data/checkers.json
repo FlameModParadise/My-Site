@@ -697,10 +697,52 @@
   },
   {
     "type": "Checker",
+    "name": "Netflix Cookie Checker And Privatizer (Package)",
+    "description": "Netflix Cookie Checker And Privatizer (Package) – Verify and validate Netflix cookies with precision and reliability.",
+    "long_description": "This package includes Netflix Cookie Checker and Netflix Cookie Privatizer at one place (exe and py). You can use both of them to get the best results.",
+    "requirements": "✅ Normal proxies will work but make sure there are many and valid.\n⚡ If you don’t have a proxy, use a VPN and rotate servers/countries if errors persist.\n🔁 For unknown-based cookies, please recheck after restarting the checker.",
+    "image": "assets/checkers-pic/netflix.png",
+    "video": "",
+    "images": [],
+    "discount": "",
+    "discount_plans": [
+      "Lifetime (Inc Patch)",
+      "Source Code"
+    ],
+    "offer": "",
+    "offer_expiry": "",
+    "release_date": "2026-01-15",
+    "update_date": "2026-01-15",
+    "tags": [
+      "netflix",
+      "privatizer"
+    ],
+    "keywords": [
+      "netflix cookie checker and privatizer",
+      "netflix cookie checker",
+      "netflix privatizer",
+      "check netflix cookies",
+      "netflix account status",
+      "slot capture netflix",
+      "netflix cookies tool"
+    ],
+    "contact": "telegram",
+    "stock": "unlimited",
+    "pricing": {
+      "1 Day": "$3",
+      "1 Month": "$15",
+      "Lifetime(no patch)": "$30",
+      "Lifetime(Inc patch)": "$40",
+      "Source Code": "$50",
+      "Custom Function": "+$7"
+    }
+  },
+  {
+    "type": "Checker",
     "name": "Netflix Cookie Checker",
     "description": "Netflix Cookie Checker – Verify and validate Netflix cookies with precision and reliability.",
     "long_description": "✅ Capture complete slot details with accuracy.\n🌐 Supports rotating proxies for safe and consistent checking. If no proxies are available, you may proceed without one, but in case of 20+ consecutive network errors or IP bans, use a reliable VPN and switch servers/countries as needed.\n🍪 New Feature: Automatically extract and convert session IDs from valid combo formats (id:pass:cookie:details) into standard Netscape cookies for easy checking.\n⚙️ Fully compatible with all Netflix cookie types.\n⏱️ Designed for stable and reliable results without skipping.\nNote: Check and validate your rotating proxy before using this checker cuz this is cookie checker guys not proxychecker.",
-    "requirements": "✅ A Rotating, Valid, and Checked Proxy is strongly recommended to prevent IP bans.\n⚡ If you don’t have a proxy, use a VPN and rotate servers/countries if errors persist.\n🔁 For unknown-based cookies, please recheck after restarting the checker.",
+    "requirements": "✅ A Rotating, Valid, and Checked Proxy is strongly recommended to prevent IP bans.\n⚡ If you don’t have a proxy, use a VPN and rotate servers/countries if errors persist.\n🔁 For unknown-based cookies, please recheck after restarting the checker.\nYou can use normal proxies too but make sure there are many and valid.",
     "image": "assets/checkers-pic/netflix.png",
     "video": "",
     "images": [
@@ -726,7 +768,8 @@
       "check netflix cookies",
       "netflix account status",
       "slot capture netflix",
-      "netflix cookies tool"
+      "netflix cookies tool",
+      "streaming"
     ],
     "contact": "telegram",
     "stock": "unlimited",
