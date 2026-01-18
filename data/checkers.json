@@ -814,8 +814,10 @@
     "pricing": {
       "1 Day": "$1",
       "1 Month": "$10",
-      "Lifetime": "$25",
-      "Source Code": "$35"
+      "Lifetime(no patch)": "$25",
+      "Lifetime(inc patch)": "$30",
+      "Source Code": "$35",
+      "Custom Function": "+$5"
     }
   },
   {
