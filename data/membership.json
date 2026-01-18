@@ -222,28 +222,29 @@
     "stock": "Unlimited"
   },
   {
-    "name": "ClaudeAi Membership",
+    "name": "ClaudeAi Gift (on mail)",
     "type": "Membership",
     "description": "Claude Ai is the best ai chatbot for coding purposes.",
-    "long_description": "🤖 ClaudeAi Cookie Plan\n• Use ClaudeAi through browser cookies.",
-    "requirements": "Cookies are browser-based only.\nNo sharing or misuse.\nReplacement only within limits.\n\nAvailable plans:\n- Pro Only: Basic Claude access\n- Mixed: Standard Claude access\n- Max Only: Premium Claude access\nIf i found you are using for any other method except for using for urself no refund no replacement not even after 1 minutes.",
+    "long_description": "🤖 ClaudeAi Gift (on mail)\n• Get gift link or invite link to your email and use it for personal use.\nClaude's rule multiple logins can leads to direct ban.\nI'm not doing any refund or replacement if your account is banned or limited.",
+    "requirements": "No sharing or misuse.",
     "image": "assets/membership/claudeai.png",
     "tags": [
       "claude",
-      "cookies",
-      "browser",
-      "ai",
       "membership"
     ],
     "release_date": "2025-05-02",
     "update_date": "2026-01-03",
-    "price": "Pro Only:\n10days: 3$ \n17days: 5$\n\nMixed:\n10days: 4$ \n17days: 6$\n\nMax Only:\n10days: 5.5$ \n17days: 7.5$",
+    "price": "Pro: $7 per gift link 1month\nMax(5x): $15 per gift link 1month\nMax(20x): $20 per gift link 1month",
     "contact": "telegram",
     "keywords": [
-      "claude membership",
-      "ai access",
-      "claude cookies",
-      "browser claude",
+      "claude gift (on mail)",
+      "claude gift",
+      "claude gift link",
+      "claude invite link",
+      "claude gift link (on mail)",
+      "claude invite link (on mail)",
+      "ai",
+      "personal use",
       "claude ai"
     ],
     "stock": "Unlimited"

@@ -786,7 +786,7 @@
     "type": "Checker",
     "name": "Netflix Cookie Privatizer",
     "description": "Netflix is a global streaming service for movies, TV shows, and original content.",
-    "long_description": "🔐 Safely privatize any Netflix cookies.\n🚫Don't use for checking purpose.",
+    "long_description": "🔐 Safely privatize any Netflix cookies.\n🚫Don't use for checking purpose.\nApi Changed and netflix added some security like mfa (not on all but on some like flagged cookies , it can be multiple logged in from different country different device in short time).Rest all good no issue. And above mentioned is not my issue it is secrurity measures by netflix.\nProxy support added.",
     "requirements": "✅ Use this tool only for privatizing cookies, not for checking them.",
     "image": "assets/checkers-pic/netflix.png",
     "video": "",
@@ -799,7 +799,7 @@
     "offer": "",
     "offer_expiry": "",
     "release_date": "2025-03-19",
-    "update_date": "2025-04-01",
+    "update_date": "2026-01-18",
     "tags": [
       "netflix",
       "privatizer"
